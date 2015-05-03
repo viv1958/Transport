@@ -1,0 +1,235 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{2CE97378-0B6B-41B1-8977-46CB1B019F1C}</ProjectGuid>
+			<ProjectVersion>13.4</ProjectVersion>
+			<FrameworkType>VCL</FrameworkType>
+			<MainSource>Transp.cpp</MainSource>
+			<Base>True</Base>
+			<Config Condition="'$(Config)'==''">Debug</Config>
+			<Platform Condition="'$(Platform)'==''">Win32</Platform>
+			<TargetedPlatforms>1</TargetedPlatforms>
+			<AppType>Application</AppType>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Base)'=='true') or '$(Base_Win32)'!=''">
+			<Base_Win32>true</Base_Win32>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_1)'!=''">
+			<Cfg_1>true</Cfg_1>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_1)'=='true') or '$(Cfg_1_Win32)'!=''">
+			<Cfg_1_Win32>true</Cfg_1_Win32>
+			<CfgParent>Cfg_1</CfgParent>
+			<Cfg_1>true</Cfg_1>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_2)'!=''">
+			<Cfg_2>true</Cfg_2>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base)'!=''">
+			<ILINK_LibraryPath>D:\Embarcadero\Other\Transport\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+			<_TCHARMapping>wchar_t</_TCHARMapping>
+			<Multithreaded>true</Multithreaded>
+			<PackageImports>fmx;IndySystem;DBXInterBaseDriver;DataSnapClient;DataSnapCommon;DataSnapServer;DataSnapProviderClient;DbxCommonDriver;dbxcds;DBXOracleDriver;CustomIPTransport;dsnap;fmxase;IndyCore;inetdbxpress;IPIndyImpl;bindcompfmx;rtl;dbrtl;DbxClientDriver;bindcomp;inetdb;xmlrtl;ibxpress;IndyProtocols;DBXMySQLDriver;soaprtl;bindengine;DBXInformixDriver;DBXFirebirdDriver;inet;fmxobj;DBXSybaseASADriver;fmxdae;dbexpress;DataSnapIndy10ServerTransport;$(PackageImports)</PackageImports>
+			<ProjectType>CppVCLApplication</ProjectType>
+			<DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
+			<AllPackageLibs>rtl.lib;vcl.lib;dbrtl.lib;bdertl.lib;acntBuilderXE2_R.lib;vclimg.lib;vclx.lib;EhLib160.lib;vcldb.lib;cxLibraryRS16.lib;dxGDIPlusRS16.lib;dxCoreRS16.lib;dxThemeRS16.lib;cxEditorsRS16.lib;cxDataRS16.lib;dxSkinsCoreRS16.lib;cxVerticalGridRS16.lib;cxExportRS16.lib;xmlrtl.lib</AllPackageLibs>
+			<Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
+			<UsingDelphiRTL>true</UsingDelphiRTL>
+			<IncludePath>D:\Embarcadero\Other\Transport\;$(IncludePath)</IncludePath>
+			<DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
+			<DynamicRTL>true</DynamicRTL>
+			<UsePackages>true</UsePackages>
+			<IntermediateOutputDir>.\$(Platform)\$(Config)</IntermediateOutputDir>
+			<FinalOutputDir>.\$(Platform)\$(Config)</FinalOutputDir>
+			<BCC_wpar>false</BCC_wpar>
+			<BCC_OptimizeForSpeed>true</BCC_OptimizeForSpeed>
+			<BCC_ExtendedErrorInfo>true</BCC_ExtendedErrorInfo>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base_Win32)'!=''">
+			<PackageImports>fsADO16;dxBarDBNavRS16;dxdborRS16;dxPScxVGridLnkRS16;cxLibraryRS16;dxLayoutControlRS16;dxPScxPivotGridLnkRS16;dxCoreRS16;cxExportRS16;EhLibIBXDataDrivers160;dxBarRS16;dxSkinsdxNavBarPainterRS16;EhLibBDEDataDrivers160;cxSpreadSheetRS16;cxTreeListdxBarPopupMenuRS16;TeeDB;frxTee16;vclib;inetdbbde;frxBDE16;cxPivotGridOLAPRS16;dxPSCoreRS16;dxPScxGridLnkRS16;cxPageControlRS16;dxRibbonRS16;DBXSybaseASEDriver;fsIBX16;dxPScxTLLnkRS16;vclimg;dxPsPrVwAdvRS16;cxTreeListRS16;dxComnRS16;vcldb;dxSkinsdxRibbonPainterRS16;vcldsnap;dxBarExtDBItemsRS16;DBXDb2Driver;Intraweb_120_160;frxADO16;vclribbon;frxe16;dxSkinscxSchedulerPainterRS16;vcl;CloudService;DBXMSSQLDriver;FmxTeeUI;cxDataRS16;cxBarEditItemRS16;dxDockingRS16;fsTee16;cxPageControldxBarPopupMenuRS16;dxPSDBTeeChartRS16;cxSchedulerGridRS16;webdsnap;dxBarExtItemsRS16;dxtrmdRS16;EhLib160;dxSkinsdxDLPainterRS16;dxPSLnksRS16;EhLibDBXDataDrivers160;adortl;dxPSdxLCLnkRS16;dxPSTeeChartRS16;cxVerticalGridRS16;EhLibADODataDrivers160;dxorgcRS16;frxDBX16;dxPScxExtCommonRS16;vcldbx;dxNavBarRS16;frx16;dxPSdxDBOCLnkRS16;dxSkinsdxBarPainterRS16;Tee;DBXOdbcDriver;dxdbtrRS16;dxSkinsCoreRS16;cxPivotGridChartRS16;dxPScxCommonRS16;dxmdsRS16;fsBDE16;intrawebdb_120_160;frxDB16;cxGridRS16;dxSkinscxPCPainterRS16;fs16;vclactnband;FMXTee;TeeUI;cxEditorsRS16;bindcompvcl;cxPivotGridRS16;dxSpellCheckerRS16;dxPScxSchedulerLnkRS16;vclie;dxPScxSSLnkRS16;dxPSdxDBTVLnkRS16;cxSchedulerRS16;dxPSPrVwRibbonRS16;acntBuilderXE2;vcltouch;bcbsmp;websnap;acntBuilderXE2_R;VclSmp;fsDB16;dxTabbedMDIRS16;DataSnapConnectors;dclfrxTee16;dxPSdxOCLnkRS16;dsnapcon;dxPSdxFCLnkRS16;dxThemeRS16;dcldxSkinsCoreRS16;dxPScxPCProdRS16;vclx;dxFlowChartRS16;bdertl;frxIBX16;dxGDIPlusRS16;bcbie;$(PackageImports)</PackageImports>
+			<DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
+			<IncludePath>$(BDSINCLUDE)\windows\vcl;$(IncludePath)</IncludePath>
+			<VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+			<VerInfo_Locale>1033</VerInfo_Locale>
+			<Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
+			<VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_1)'!=''">
+			<BCC_OptimizeForSpeed>false</BCC_OptimizeForSpeed>
+			<BCC_DisableOptimizations>true</BCC_DisableOptimizations>
+			<DCC_Optimize>false</DCC_Optimize>
+			<DCC_DebugInfoInExe>true</DCC_DebugInfoInExe>
+			<Defines>_DEBUG;$(Defines)</Defines>
+			<BCC_InlineFunctionExpansion>false</BCC_InlineFunctionExpansion>
+			<BCC_UseRegisterVariables>None</BCC_UseRegisterVariables>
+			<DCC_Define>DEBUG</DCC_Define>
+			<BCC_DebugLineNumbers>true</BCC_DebugLineNumbers>
+			<TASM_DisplaySourceLines>true</TASM_DisplaySourceLines>
+			<BCC_StackFrames>true</BCC_StackFrames>
+			<ILINK_FullDebugInfo>true</ILINK_FullDebugInfo>
+			<TASM_Debugging>Full</TASM_Debugging>
+			<BCC_SourceDebuggingOn>true</BCC_SourceDebuggingOn>
+			<ILINK_LibraryPath>$(BDSLIB)\$(PLATFORM)\debug;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+			<VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+			<UsePackages>false</UsePackages>
+			<UsingDelphiRTL>false</UsingDelphiRTL>
+			<VerInfo_Locale>1033</VerInfo_Locale>
+			<DynamicRTL>false</DynamicRTL>
+			<LinkPackageStatics>rtl.lib;vcl.lib;dbrtl.lib;bdertl.lib;acntBuilderXE2_R.lib;vclimg.lib;vclx.lib;EhLib160.lib;vcldb.lib;cxLibraryRS16.lib;dxGDIPlusRS16.lib;dxCoreRS16.lib;dxThemeRS16.lib;cxEditorsRS16.lib;cxDataRS16.lib;dxSkinsCoreRS16.lib;cxVerticalGridRS16.lib;cxExportRS16.lib;xmlrtl.lib</LinkPackageStatics>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_2)'!=''">
+			<Defines>NDEBUG;$(Defines)</Defines>
+			<TASM_Debugging>None</TASM_Debugging>
+		</PropertyGroup>
+		<ItemGroup>
+			<CppCompile Include="ComProc.cpp">
+				<DependentOn>ComProc.h</DependentOn>
+				<BuildOrder>3</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="DModT.cpp">
+				<Form>DModT</Form>
+				<DesignClass>TDataModule</DesignClass>
+				<DependentOn>DModT.h</DependentOn>
+				<BuildOrder>2</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="FrmDateRange.cpp">
+				<Form>FormDateRange</Form>
+				<FormType>dfm</FormType>
+				<DependentOn>FrmDateRange.h</DependentOn>
+				<BuildOrder>11</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="FrmDriverGraph.cpp">
+				<Form>FormDriverGraph</Form>
+				<FormType>dfm</FormType>
+				<DependentOn>FrmDriverGraph.h</DependentOn>
+				<BuildOrder>9</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="FrmDriverGraphDay.cpp">
+				<Form>FormDriverGraphDay</Form>
+				<DependentOn>FrmDriverGraphDay.h</DependentOn>
+				<BuildOrder>10</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="FrmFilter.cpp">
+				<Form>FormFilter</Form>
+				<DependentOn>FrmFilter.h</DependentOn>
+				<BuildOrder>4</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="FrmGetFieldFilter.cpp">
+				<Form>FormGetFieldFilter</Form>
+				<DependentOn>FrmGetFieldFilter.h</DependentOn>
+				<BuildOrder>5</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="FrmOrderCopy.cpp">
+				<Form>FormOrderCopy</Form>
+				<DependentOn>FrmOrderCopy.h</DependentOn>
+				<BuildOrder>6</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="FrmPassWord.cpp">
+				<Form>FormPassWord</Form>
+				<DependentOn>FrmPassWord.h</DependentOn>
+				<BuildOrder>7</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="FrmSelSimpleEh.cpp">
+				<Form>FormSelSimpleEh</Form>
+				<DependentOn>FrmSelSimpleEh.h</DependentOn>
+				<BuildOrder>8</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="FrmTrans.cpp">
+				<Form>FormTrans</Form>
+				<DependentOn>FrmTrans.h</DependentOn>
+				<BuildOrder>3</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="Transp.cpp">
+				<BuildOrder>0</BuildOrder>
+			</CppCompile>
+			<FormResources Include="FrmPassWord.dfm"/>
+			<FormResources Include="FrmOrderCopy.dfm"/>
+			<FormResources Include="FrmSelSimpleEh.dfm"/>
+			<FormResources Include="FrmTrans.dfm"/>
+			<FormResources Include="FrmGetFieldFilter.dfm"/>
+			<FormResources Include="DModT.dfm"/>
+			<FormResources Include="FrmDriverGraph.dfm"/>
+			<FormResources Include="FrmFilter.dfm"/>
+			<FormResources Include="FrmDriverGraphDay.dfm"/>
+			<FormResources Include="FrmDateRange.dfm"/>
+			<BuildConfiguration Include="Release">
+				<Key>Cfg_2</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Base">
+				<Key>Base</Key>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Debug">
+				<Key>Cfg_1</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>CPlusPlusBuilder.Personality.12</Borland.Personality>
+			<Borland.ProjectType>CppVCLApplication</Borland.ProjectType>
+			<BorlandProject>
+				<CPlusPlusBuilder.Personality>
+					<Source>
+						<Source Name="MainSource">Transp.cpp</Source>
+					</Source>
+					<VersionInfo>
+						<VersionInfo Name="IncludeVerInfo">False</VersionInfo>
+						<VersionInfo Name="AutoIncBuild">False</VersionInfo>
+						<VersionInfo Name="MajorVer">1</VersionInfo>
+						<VersionInfo Name="MinorVer">0</VersionInfo>
+						<VersionInfo Name="Release">0</VersionInfo>
+						<VersionInfo Name="Build">0</VersionInfo>
+						<VersionInfo Name="Debug">False</VersionInfo>
+						<VersionInfo Name="PreRelease">False</VersionInfo>
+						<VersionInfo Name="Special">False</VersionInfo>
+						<VersionInfo Name="Private">False</VersionInfo>
+						<VersionInfo Name="DLL">False</VersionInfo>
+						<VersionInfo Name="Locale">1049</VersionInfo>
+						<VersionInfo Name="CodePage">1251</VersionInfo>
+					</VersionInfo>
+					<VersionInfoKeys>
+						<VersionInfoKeys Name="CompanyName"/>
+						<VersionInfoKeys Name="FileDescription"/>
+						<VersionInfoKeys Name="FileVersion">1.0.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="InternalName"/>
+						<VersionInfoKeys Name="LegalCopyright"/>
+						<VersionInfoKeys Name="LegalTrademarks"/>
+						<VersionInfoKeys Name="OriginalFilename"/>
+						<VersionInfoKeys Name="ProductName"/>
+						<VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="Comments"/>
+					</VersionInfoKeys>
+					<Excluded_Packages>
+						<Excluded_Packages Name="$(BDSBIN)\acntBuilderXE2_R.bpl">acntBuilderXE2_R</Excluded_Packages>
+						<Excluded_Packages Name="$(BDSBIN)\bcboffice2k160.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
+						<Excluded_Packages Name="$(BDSBIN)\bcbofficexp160.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
+						<Excluded_Packages Name="$(BDSBIN)\dcloffice2k160.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDSBIN)\dclofficexp160.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+					</Excluded_Packages>
+					<ProjectProperties>
+						<ProjectProperties Name="AutoShowDeps">False</ProjectProperties>
+						<ProjectProperties Name="ManagePaths">True</ProjectProperties>
+						<ProjectProperties Name="VerifyPackages">True</ProjectProperties>
+					</ProjectProperties>
+				</CPlusPlusBuilder.Personality>
+				<Deployment/>
+				<Platforms>
+					<Platform value="Win32">True</Platform>
+				</Platforms>
+			</BorlandProject>
+			<ProjectFileVersion>12</ProjectFileVersion>
+		</ProjectExtensions>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Cpp.Targets')" Project="$(BDS)\Bin\CodeGear.Cpp.Targets"/>
+		<Import Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')" Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj"/>
+	</Project>

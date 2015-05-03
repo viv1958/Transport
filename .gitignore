@@ -1,0 +1,7 @@
+__history/
+*.[~#]*
+*.dsk
+*.tds
+*.map
+*.obj
+*.i*
