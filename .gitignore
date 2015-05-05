@@ -4,6 +4,11 @@ __history/
 *.tds
 *.map
 *.obj
+<<<<<<< HEAD
 *.exe
 *.pch
+=======
+*.pch
+*.exe
+>>>>>>> remove *.exe
 *.i*
