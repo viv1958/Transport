@@ -1066,33 +1066,6 @@ void __fastcall TFormTrans::EnablePageCtrl()
 	sSpeedButton15->Enabled = En;  //
 	sSpeedButton16->Enabled  = (PageTag != 4);  // поиск
 //	sSpeedButton17->Enabled = En;  //
-
-	sLabel1->Enabled = En;
-	sLabel2->Enabled = En;
-	sLabel3->Enabled = En;
-	sLabel4->Enabled = En;
-	sLabel5->Enabled = En;
-	sLabel6->Enabled = En;
-
-	sComboBox1->Enabled    = En;
-	sDateEdit1->Enabled    = En;
-	sDateEdit2->Enabled    = En;
-
-	sComboEdit1->Enabled   = En;
-	sComboEdit2->Enabled   = En;
-
-	sGroupBox1->Enabled    = En;
-	sCheckBox1->Enabled    = En;
-	sCheckBox2->Enabled    = En;
-	sCheckBox3->Enabled    = En;
-	sCheckBox4->Enabled    = En;
-	sCheckBox5->Enabled    = En;
-	sCheckBox7->Enabled    = En;
-	sCheckBox8->Enabled    = En;
-	sCheckBox9->Enabled    = En;
-	sCheckBox10->Enabled   = En;  sCheckBox10->Visible   = En;
-	sCheckBox20->Enabled   = En;  sCheckBox20->Visible   = En;
-	sCheckBox21->Enabled   = En;  sCheckBox21->Visible   = En;
 	sMemo1->Enabled        = En;
 	sMemo1->Visible        = En;
 }
