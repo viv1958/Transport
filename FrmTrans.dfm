@@ -389,6 +389,54 @@ object FormTrans: TFormTrans
       OnClick = sSpeedButtonClick
       SkinData.SkinSection = 'SPEEDBUTTON'
     end
+    object sSpeedButton9: TsSpeedButton
+      Tag = 9
+      Left = 822
+      Top = 34
+      Width = 104
+      Height = 22
+      Hint = #1055#1088#1086#1089#1084#1086#1090#1088' '#1080' '#1087#1077#1095#1072#1090#1100' '#1086#1090#1095#1077#1090#1086#1074' '
+      Caption = #1054#1090#1095#1077#1090
+      Glyph.Data = {
+        36040000424D3604000000000000360000002800000010000000100000000100
+        2000000000000004000000000000000000000000000000000000000000000000
+        002F000000330000003300000033000000330000003300000033000000330000
+        003300000033000000330000003300000033000000300000000000000000AB80
+        51F0B88956FFB88A57FFB88955FFB58550FFB4834CFFB4834CFFB4834CFFB483
+        4CFFB4834CFFB4834CFFB4834CFFB58550FFAD8050F20000000000000033BA88
+        51FFFFDFAAFFBC8D58FFB5844FFFFFF9EDFFFEF2E4FFFDF1E3FFFDF1E3FFFDF1
+        E3FFFDF1E3FFFDF1E3FFFEF2E4FFFFF9EDFFB58550FF00000000888E97FFC3CA
+        D4FF57616EFFC6975EFFB4824BFFFEF2E4FFF8E7D4FFF7E6D3FFF7E6D3FFF7E6
+        D3FFF7E6D3FFF7E6D3FFF8E7D4FFFEF2E4FFB4834CFF0000000000000000BC89
+        51FFAA7A3FFFCB9F65FFB2814BFFFCF1E3FFF6E3CEFFF5E2CDFFF5E2CCFFF5E2
+        CCFFF5E2CCFFF5E2CDFFF6E3CEFFFCF1E3FFB4834CFF0000000000000033BA88
+        50FFFFDFA4FFD0A568FFB2804AFFFDF1E3FFF4E0C7FFF4DEC4FFF4DEC3FFF4DE
+        C3FFF4DEC3FFF4DEC4FFF4E0C7FFFEF1E3FFB4834CFF00000000888E97FFC3CA
+        D4FF555F6DFFD9AE6FFFB2804AFFFCF1E4FFF3DBC1FFFEF6EEFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFEF7EFFFF3DCC1FFFCF1E4FFB4834CFF0000000000000000BC88
+        51FFA67B3AFFDEB576FFB17F49FFFDF2E4FFF2D9BBFFFFFFFFFFBABBBCFFBDBE
+        BEFF818283FFFFFFFFFFF2D9BBFFFEF3E4FFB4834CFF0000000000000033BA87
+        50FFFFE09FFFE3BB7AFFB17E49FFFDF3E7FFF2D6B6FFFFFFFFFF818384FFBDBE
+        BEFFBABBBCFFFFFFFFFFF2D6B6FFFEF4E7FFB4834CFF00000000888E97FFC3CA
+        D4FF545E6DFFEBC47FFFB17E49FFFEF5EAFFF1D3B3FFFEF4EBFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFDF4EAFFF1D3B3FFFFF6EAFFB4834CFF0000000000000000BC89
+        51FFA47C36FFECC581FFB07E49FFFEF8EEFFF0D2B1FFF1D3B1FFF3D5B3FFF2D4
+        B2FFF2D4B1FFF0D2B0FFF0D2B1FFFFF9EFFFB4824CFF0000000000000033BA87
+        50FFF9D18BFFEBC47FFFB07D48FFFFFAF2FFEFD0ADFFF1D4B2FFAB773EFFCFA6
+        7AFFCDA477FFF0D2B0FFEFD0ACFFFFFBF3FFB4824CFF00000000888D97FFC1C8
+        D2FF525A67FFEBC37BFFB07D46FFFFFDF8FFEECCA6FFEFCEA9FFF0D1ACFFF0D1
+        ACFFF0CFABFFEECDA8FFEECCA6FFFFFEF9FFB4834CFF0000000000000000BA86
+        4EFFFFF2D4FFFEF1D4FFB27F49FFFFFFFFFFFFFEFAFFFFFEFAFFFFFFFBFFFFFF
+        FBFFFFFEFAFFFFFEFAFFFFFEFAFFFFFFFFFFB5844FFF00000000000000009C74
+        49D7B78752FFB68652FFB78752FFB5844EFFB4824CFFB4824BFFB4824BFFB482
+        4BFFB4824BFFB4824BFFB4824CFFB5844FFFAC8050EF00000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000}
+      ParentShowHint = False
+      ShowHint = True
+      OnClick = sSpeedButtonClick
+      SkinData.SkinSection = 'SPEEDBUTTON'
+    end
     object sCheckBox21: TsCheckBox
       Tag = 21
       Left = 14
@@ -453,7 +501,7 @@ object FormTrans: TFormTrans
     Top = 64
     Width = 1292
     Height = 772
-    ActivePage = sTabSheet2
+    ActivePage = sTabSheet3
     Align = alClient
     TabOrder = 1
     OnChange = sPageControl1Change
@@ -3632,8 +3680,8 @@ object FormTrans: TFormTrans
         Align = alTop
         TabOrder = 1
         SkinData.SkinSection = 'PANEL'
-        object sSpeedButton10: TsSpeedButton
-          Tag = 10
+        object sSpeedButton15: TsSpeedButton
+          Tag = 15
           Left = 942
           Top = 33
           Width = 116
@@ -3700,8 +3748,8 @@ object FormTrans: TFormTrans
           OnClick = sSpeedButtonClick
           SkinData.SkinSection = 'SPEEDBUTTON'
         end
-        object sSpeedButton11: TsSpeedButton
-          Tag = 11
+        object sSpeedButton31: TsSpeedButton
+          Tag = 31
           Left = 15
           Top = 6
           Width = 35
@@ -3754,8 +3802,8 @@ object FormTrans: TFormTrans
           OnClick = sSpeedButtonClick
           SkinData.SkinSection = 'SPEEDBUTTON'
         end
-        object sSpeedButton12: TsSpeedButton
-          Tag = 12
+        object sSpeedButton32: TsSpeedButton
+          Tag = 32
           Left = 60
           Top = 6
           Width = 65
@@ -3767,8 +3815,8 @@ object FormTrans: TFormTrans
           OnClick = sSpeedButtonClick
           SkinData.SkinSection = 'SPEEDBUTTON'
         end
-        object sSpeedButton13: TsSpeedButton
-          Tag = 13
+        object sSpeedButton33: TsSpeedButton
+          Tag = 33
           Left = 135
           Top = 6
           Width = 65
@@ -3780,8 +3828,8 @@ object FormTrans: TFormTrans
           OnClick = sSpeedButtonClick
           SkinData.SkinSection = 'SPEEDBUTTON'
         end
-        object sSpeedButton14: TsSpeedButton
-          Tag = 14
+        object sSpeedButton34: TsSpeedButton
+          Tag = 34
           Left = 211
           Top = 6
           Width = 65
@@ -3791,8 +3839,8 @@ object FormTrans: TFormTrans
           OnClick = sSpeedButtonClick
           SkinData.SkinSection = 'SPEEDBUTTON'
         end
-        object sSpeedButton15: TsSpeedButton
-          Tag = 15
+        object sSpeedButton35: TsSpeedButton
+          Tag = 35
           Left = 285
           Top = 6
           Width = 35
@@ -3910,8 +3958,8 @@ object FormTrans: TFormTrans
           Font.Name = 'Tahoma'
           Font.Style = [fsBold]
         end
-        object sSpeedButton9: TsSpeedButton
-          Tag = 9
+        object sSpeedButton14: TsSpeedButton
+          Tag = 14
           Left = 698
           Top = 33
           Width = 95
@@ -4382,7 +4430,7 @@ object FormTrans: TFormTrans
           OnClick = sSpeedButtonClick
           SkinData.SkinSection = 'SPEEDBUTTON'
         end
-        object sSpeedButton35: TsSpeedButton
+        object sSpeedButton_45: TsSpeedButton
           Tag = 45
           Left = 1096
           Top = 70

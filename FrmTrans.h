@@ -488,7 +488,7 @@ __published:	// IDE-managed Components
 	TDateTimeField *MemTableEh21DATECHANGE;
 	TIntegerField *MemTableEh21STATUS;
 	TsCheckBox *sCheckBox21;
-	TsSpeedButton *sSpeedButton10;
+	TsSpeedButton *sSpeedButton15;
 	TsSpeedButton *sSpeedButton17;
 	TsLabel *sLabelGraphEnd;
 	TsGroupBox *sGroupBox1;
@@ -502,11 +502,11 @@ __published:	// IDE-managed Components
 	TsCheckBox *sCheckBox10;
 	TsCheckBox *sCheckBox1;
 	TsCheckBox *sCheckBox4;
-	TsSpeedButton *sSpeedButton11;
-	TsSpeedButton *sSpeedButton12;
-	TsSpeedButton *sSpeedButton13;
-	TsSpeedButton *sSpeedButton14;
-	TsSpeedButton *sSpeedButton15;
+	TsSpeedButton *sSpeedButton31;
+	TsSpeedButton *sSpeedButton32;
+	TsSpeedButton *sSpeedButton33;
+	TsSpeedButton *sSpeedButton34;
+	TsSpeedButton *sSpeedButton35;
 	TsLabel *sLabel1;
 	TsComboBox *sComboBox1;
 	TsLabel *sLabel2;
@@ -517,7 +517,7 @@ __published:	// IDE-managed Components
 	TsComboEdit *sComboEdit2;
 	TsLabel *sLabel4;
 	TsComboEdit *sComboEdit1;
-	TsSpeedButton *sSpeedButton9;
+	TsSpeedButton *sSpeedButton14;
 	TsSpeedButton *sSpeedButton16;
 	TsSpeedButton *sSpeedButton18;
 	TsSpeedButton *sSpeedButton19;
@@ -665,10 +665,11 @@ __published:	// IDE-managed Components
 	TComboBox *ComboBox2;
 	TsMemo *sMemo1;
 	TsSpeedButton *sSpeedButton45;
-	TsSpeedButton *sSpeedButton35;
+	TsSpeedButton *sSpeedButton_45;
 	TsCheckBox *sCheckBox42;
 	TsLabel *sLabel44;
 	TsCheckBox *sCheckBox6;
+	TsSpeedButton *sSpeedButton9;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);

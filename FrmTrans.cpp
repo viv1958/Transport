@@ -1057,15 +1057,6 @@ void __fastcall TFormTrans::EnablePageCtrl()
 	sSpeedButton5->Enabled  = En || (PageTag == 5); // отмена
 	sSpeedButton7->Enabled  = (PageTag != 4);   		// история
 	sSpeedButton8->Enabled  = (PageTag != 4);   		// фильтр
-	sSpeedButton9->Enabled  = En;  						// сохранить фильт
-//	sSpeedButton10->Enabled = En;  //
-	sSpeedButton11->Enabled = En;  //
-	sSpeedButton12->Enabled = En;  //
-	sSpeedButton13->Enabled = En;  //
-	sSpeedButton14->Enabled = En;  //
-	sSpeedButton15->Enabled = En;  //
-	sSpeedButton16->Enabled  = (PageTag != 4);  // поиск
-//	sSpeedButton17->Enabled = En;  //
 	sMemo1->Enabled        = En;
 	sMemo1->Visible        = En;
 }
@@ -2830,17 +2821,20 @@ void __fastcall TFormTrans::sSpeedButtonClick(TObject *Sender)
 		  case  8:  if (PageTag == 3)	ProcFilter();
 						else 				   ProcFilterStd(*WrkGData);
 						break;
-		  case  9:	SaveCurrentView();  					break;
-		  case 10:  CopyOrder();                     break;
+		  // перемещение по датам в заказах
+		  case 31:  ShowOrders(DT_Beg_Ord - 1);      break;
+		  case 32:  ShowOrders(Date() - 1);          break;
+		  case 33:  ShowOrders(Date());              break;
+		  case 34:  ShowOrders(Date()+1);            break;
+		  case 35:  ShowOrders(DT_Beg_Ord + 1);      break;
 
-		  case 11:  ShowOrders(DT_Beg_Ord - 1);      break;
-		  case 12:  ShowOrders(Date() - 1);          break;
-		  case 13:  ShowOrders(Date());              break;
-		  case 14:  ShowOrders(Date()+1);            break;
-		  case 15:  ShowOrders(DT_Beg_Ord + 1);      break;
+		  case 14:	SaveCurrentView();  					break;
+		  case 15:  CopyOrder();                     break;
+
 		  case 16:  FindOrder();                     break;
 		  case 17:  DublicateOrder();                break;
 
+		  // работа с видимыми колонками
 		  case 18:  ShowNextColumn(DBGridEh31,-1);
 						DBGridEh31->Col = max(DBGridEh31->Col-1,1);
 						break;
@@ -2854,7 +2848,7 @@ void __fastcall TFormTrans::sSpeedButtonClick(TObject *Sender)
 		  case 23:  ShowCurColumnGroup(DBGridEh31);		   break;
 		  case 24:  ShowAllColumns(DBGridEh31,true);	   	break;
 		  case 25:  ShowAllColumns(DBGridEh31,false);    	break;
-		  case 35:  GoToCurrentOrder();                    break;
+//		  case 45:  GoToCurrentOrder();                    break;
 
 		  case 41:  MoveGraphDay(-1);   					break;
 		  case 42:  MoveGraphDay(1);    					break;
