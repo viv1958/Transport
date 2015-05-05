@@ -70,8 +70,8 @@ __fastcall TFormTrans::TFormTrans(TComponent* Owner)
 //---------------------------------------------------------------------------
 void __fastcall TFormTrans::FormCreate(TObject *Sender)
 {
-//	SetFormPosStd(this,Screen->Width,750,0,true);
-	SetFormPosStd(this,1280,750,0,true);
+	SetFormPosStd(this,Screen->Width,750,0,true);
+//	SetFormPosStd(this,1280,750,0,true);
 	Caption = Caption + " > " +DModT->Database1->AliasName + " < ";
 	if (ChooseStartPage()) {
 		InitGData();
