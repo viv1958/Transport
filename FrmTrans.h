@@ -668,6 +668,7 @@ __published:	// IDE-managed Components
 	TsSpeedButton *sSpeedButton35;
 	TsCheckBox *sCheckBox42;
 	TsLabel *sLabel44;
+	TsCheckBox *sCheckBox6;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
