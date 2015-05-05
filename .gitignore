@@ -4,4 +4,6 @@ __history/
 *.tds
 *.map
 *.obj
+*.exe
+*.pch
 *.i*
