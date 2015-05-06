@@ -97,6 +97,13 @@
 				<DependentOn>ComProc.h</DependentOn>
 				<BuildOrder>3</BuildOrder>
 			</CppCompile>
+			<CppCompile Include="DModRep.cpp">
+				<Form>DModReport</Form>
+				<FormType>dfm</FormType>
+				<DesignClass>TDataModule</DesignClass>
+				<DependentOn>DModRep.h</DependentOn>
+				<BuildOrder>12</BuildOrder>
+			</CppCompile>
 			<CppCompile Include="DModT.cpp">
 				<Form>DModT</Form>
 				<DesignClass>TDataModule</DesignClass>
@@ -155,14 +162,15 @@
 			</CppCompile>
 			<FormResources Include="FrmPassWord.dfm"/>
 			<FormResources Include="FrmOrderCopy.dfm"/>
-			<FormResources Include="FrmSelSimpleEh.dfm"/>
-			<FormResources Include="FrmTrans.dfm"/>
 			<FormResources Include="FrmGetFieldFilter.dfm"/>
+			<FormResources Include="FrmTrans.dfm"/>
+			<FormResources Include="FrmSelSimpleEh.dfm"/>
+			<FormResources Include="FrmDateRange.dfm"/>
 			<FormResources Include="DModT.dfm"/>
-			<FormResources Include="FrmDriverGraph.dfm"/>
 			<FormResources Include="FrmFilter.dfm"/>
 			<FormResources Include="FrmDriverGraphDay.dfm"/>
-			<FormResources Include="FrmDateRange.dfm"/>
+			<FormResources Include="FrmDriverGraph.dfm"/>
+			<FormResources Include="DModRep.dfm"/>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>
 				<CfgParent>Base</CfgParent>

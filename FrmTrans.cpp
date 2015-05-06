@@ -107,18 +107,14 @@ void __fastcall TFormTrans::InitCommon()
 	sComboBox1->ItemIndex = SelIndex = 1;
 	sComboEdit1->Text     = "Не выбран";
 	sComboEdit2->Text     = "Не выбран";
-//	sDateEdit3->Color     = clRed;
 	RestoreEditMulti      = false;
 	SData.FieldKey        = GDataGraph.FieldKey;
 
 	RDPWCtrl              = NULL;
-//	FirstOpenDetail       = true;
 
 	DT_Beg_Ord = Date();     sDateEdit1->Date = DT_Beg_Ord;
 	DT_End_Ord = Date()+1;   sDateEdit2->Date = DT_End_Ord;
 
-//	DT_Beg_Grp = Date() - 1; sDateEdit3->Date = DT_Beg_Grp; TM_Beg_Grp = DT_Beg_Grp - 1./12;
-//	DT_End_Grp = Date() + 1; sDateEdit4->Date = DT_End_Grp; TM_End_Grp = DT_Beg_Grp + 1./12;
 	DT_Graph = Date(); sDateEdit3->Date = DT_Graph; TM_Beg_Grp = Date() - 1 - 1./12;
 																	TM_End_Grp = Date() + 1 + 1./12;
 	SetGraphLabels();
@@ -158,7 +154,6 @@ void __fastcall TFormTrans::CreateGraphColumns()
 	 CalcMinutes();
 	 if (Minuts_Rnd < 60) return;
 	 int N_Hours = Minuts_Rnd / 60;
-//	 TDateTime DT_B = TDateTime(GetDateStr(DT_Beg_Grp) + " " + TM_Beg_Grp.FormatString("hh") + ":00");
 	 TDateTime DT_B = TDateTime(GetDateStr(DT_Graph - 1) + " " + TM_Beg_Grp.FormatString("hh") + ":00");
 
 	 Wdt = (DBGridEh41->ClientWidth - Wdt)/ N_Hours + 2;
@@ -374,10 +369,8 @@ void __fastcall TFormTrans::InitGData()
 	GDataTransComp.WrkSBar       = sStatusBar1;
 
 	GDataTransComp.FieldKey      = "TRANS_COMPANY_ID";
-//	GDataTransComp.DefFieldFlt   =
 	GDataTransComp.FieldOut      = "TRANS_COMPANY_NAME";
 	GDataTransComp.GetErrMsg     = GetErrMsg;
-//	GDataTransComp.FunAcceptRec  = AcceptRecord;
 
 	GDataTransComp.SrcDSet       = Query11;
 	GDataTransComp.WrkGrid       = DBGridEh11;
@@ -399,7 +392,6 @@ void __fastcall TFormTrans::InitGData()
 	GDataTransType.FieldKey      = "TRANS_TYPE_ID";
 	GDataTransType.DefFieldFlt   = "TRANS_TYPE_NAME";
 	GDataTransType.GetErrMsg     = GetErrMsg;
-//	GDataTransType.FunAcceptRec  = AcceptRecord;
 
 	GDataTransType.SrcDSet       = Query12;
 	GDataTransType.WrkGrid       = DBGridEh12;
@@ -421,7 +413,6 @@ void __fastcall TFormTrans::InitGData()
 	GDataTransport.FieldKey      = "TRANSPORT_ID";
 	GDataTransport.FieldOut      = "TRANSPORT_NAME";
 	GDataTransport.GetErrMsg     = GetErrMsg;
-//	GDataTransport.FunAcceptRec  = AcceptRecord;
 
 	GDataTransport.SrcDSet       = Query13;
 	GDataTransport.WrkGrid       = DBGridEh13;
@@ -454,7 +445,6 @@ void __fastcall TFormTrans::InitGData()
 	GDataClient.FieldKey      = "CLIENT_ID";
 	GDataClient.FieldOut      = "CLIENT_NAME";
 	GDataClient.GetErrMsg     = GetErrMsg;
-//	GDataClient.FunAcceptRec  = AcceptRecord;
 
 	GDataClient.SrcDSet       = Query21;
 	GDataClient.WrkGrid       = DBGridEh21;
@@ -478,14 +468,12 @@ void __fastcall TFormTrans::InitGData()
 	SetCommonExtParams(GDataClient);
 // ==== список контактов =======================================================
 	GDataContact.Flags         =  Flags;
-//	GDataContact.WrkSBar       = sStatusBar1;
+	GDataContact.WrkSBar       = sStatusBar1;
 
 	GDataContact.FieldKey      = "CONTACT_ID";
 	GDataContact.FieldOut      = "CONTACT_NAME";
 	GDataContact.GetErrMsg     = GetErrMsg;
-//	GDataContact.FunAcceptRec  = AcceptRecord;
 
-//	GDataContact.SrcDSet       = Query22;
 	GDataContact.WrkGrid       = DBGridEh22;
 	GDataContact.WrkDBase      = DModT->Database1;
 	GDataContact.EditAllowMask =  0x03;
@@ -502,7 +490,6 @@ void __fastcall TFormTrans::InitGData()
 	GDataClientTax.FieldKey      = "CLIENT_TAX_ID";
 	GDataClientTax.GetErrMsg     = GetErrMsg;
 
-//	GDataClientTax.SrcDSet       = Query23;
 	GDataClientTax.WrkGrid       = DBGridEh23;
 	GDataClientTax.WrkDBase      = DModT->Database1;
 	GDataClientTax.EditAllowMask =  0x00FF;
@@ -518,7 +505,6 @@ void __fastcall TFormTrans::InitGData()
 	GDataClientTax.FunSetSQLOne  = RefreshOneRow;
 
 	GDataClientTax.AddSelParam(ftInteger,"TRANS_TYPE_ID",Null);
-//	GDataClientTax.AddSelParam(ftInteger,"WORK_TYPE_ID",Null);
 
 	GDataClientTax.FunGetIDMap.insert(pair<AnsiString,FunGetID>(AnsiString("TRANS_TYPE_ID"),   GetTransTypeID));
 	GDataClientTax.FunGetIDMap.insert(pair<AnsiString,FunGetID>(AnsiString("WORK_TYPE_ID"),    GetWorkTypeID));
@@ -624,7 +610,6 @@ void __fastcall TFormTrans::InitGData()
 
 	GDataDetail.GetErrMsg     = GetErrMsg;
 	GDataDetail.EditAllowMask =  -1;
-//	GDataDetail.NullAllowMask =  -1;
 	GDataDetail.Select_IDMask =  -1;
 	GDataDetail.SetSQL        = GetSQL;
 
@@ -641,7 +626,6 @@ void __fastcall TFormTrans::InitGData()
 	GDataDetail.FldTranslateMap.insert(pair<AnsiString,AnsiString>("HINT_STR5",  "DRIVER_ID"));
 	GDataDetail.FunGetIDMap.insert(pair<AnsiString,FunGetID>("DRIVER_ID",        GetDriverID));
 
-//	SetBitMask(GDataDetail.FilterFldMask,"111");
 	SetCommonExtParams(GDataDetail);
 
 // =============================================================================
@@ -654,14 +638,11 @@ void __fastcall TFormTrans::InitGData()
 	GDataOutlay.GetErrMsg     = GetErrMsg;
 	GDataOutlay.FunAddRow     = AddCurrentRow;
 	GDataOutlay.FunSetSQLOne  = RefreshOneRow;
-//	GDataOutlay.FunAcceptRec  = AcceptRecord;
 
 
 	GDataOutlay.SrcDSet       = Query51;
 	GDataOutlay.WrkGrid       = DBGridEh51;
 	GDataOutlay.WrkDBase      = DModT->Database1;
-//	GDataOutlay.EditAllowMask =  0x03F2;  //0x00FE;
-//	GDataOutlay.NullAllowMask =  0x03F0;
 	SetBitMask(GDataOutlay.EditAllowMask,"0001 1111 1111");
 	SetBitMask(GDataOutlay.NullAllowMask,"0000 0011 1111");
 	SetBitMask(GDataOutlay.Select_IDMask,"0000 1000 1111");
@@ -714,7 +695,6 @@ void __fastcall TFormTrans::InitGData()
 	GDataStreet.FieldKey   	  = "STREET_ID";
 	GDataStreet.FieldOut   	  = "STREET_NAME";
 	GDataStreet.GetErrMsg  	  = GetErrMsg;
-//	GDataStreet.FunAcceptRec  = AcceptRecord;
 	GDataStreet.FunSetSQLOne  = RefreshOneRow;
 
 	GDataStreet.SrcDSet       = Query62;
@@ -726,13 +706,12 @@ void __fastcall TFormTrans::InitGData()
 	GDataStreet.WrkQuery      = Query65;
 	SetCommonExtParams(GDataStreet);
 // ==== список водителей =======================================================
-	GDataDriver.Flags         =  Flags;
+	GDataDriver.Flags         = Flags;
 	GDataDriver.WrkSBar       = sStatusBar1;
 
 	GDataDriver.FieldKey      = "DRIVER_ID";
 	GDataDriver.FieldOut      = "DRIVER_NAME";
 	GDataDriver.GetErrMsg     = GetErrMsg;
-//	GDataDriver.FunAcceptRec  = AcceptRecord;
 	GDataDriver.FunSetSQLOne  = RefreshOneRow;
 
 	GDataDriver.SrcDSet       = Query63;
@@ -758,7 +737,6 @@ void __fastcall TFormTrans::InitGData()
 	GDataEmployee.FieldKey      = "EMPLOYEE_ID";
 	GDataEmployee.FieldOut      = "FULL_NAME";
 	GDataEmployee.GetErrMsg     = GetErrMsg;
-//	GDataEmployee.FunAcceptRec  = AcceptRecord;
 	GDataEmployee.FunSetSQLOne  = RefreshOneRow;
 
 	GDataEmployee.SrcDSet       = Query71;
@@ -908,8 +886,6 @@ void __fastcall TFormTrans::ProcHistory(bool All)
 		FieldNamesList->Add(FieldNames);
 		TitleNamesList->Add(TitleNames);
 	}
-//	FieldNames = FieldNames.UpperCase();
-//	if (SimpleSelHistoryID(this, 0,Title,TableName,ID,FieldNames,TitleNames)) {
 	RestValue RestData;
 	if (SimpleSelHistoryID(this, 0,Title,TableName,ID,FieldNamesList,TitleNamesList,RestData)) {
 		RestoreValue(RestData,!All);
@@ -1181,12 +1157,6 @@ AnsiString __fastcall TFormTrans::GetErrMsg(GridData& GData,int Error)
 AnsiString __fastcall TFormTrans::GetErrMsgBody(int Tag,int Error)
 {
 	AnsiString S;
-//	if (Error == -1) {
-//		S = "Данные изменены другим пользователем";
-//	}
-//	else if (Error == -2) {
-//		S = "Данные удалены другим пользователем";
-//	}
 	switch (Tag) {
 		case 43: if (Error == -3) {
 						S = "Нельзя заменить водителя - водитель"
@@ -1201,9 +1171,6 @@ AnsiString __fastcall TFormTrans::GetErrMsgBody(int Tag,int Error)
 					}
 					break;
 	}
-//	if (S == "") {
-//		S = "Ошибка " + IntToStr(Error) + ", источник ошибки N " + IntToStr(Tag);
-//	}
 	return S;
 }
 //---------------------------------------------------------------------------
@@ -1317,43 +1284,6 @@ void __fastcall TFormTrans::MemTableEhAfterScroll(TDataSet *DataSet)
 	}
 }
 //---------------------------------------------------------------------------
-/*
-void __fastcall TFormTrans::SetOrdersBitMask()
-{
-	int Flag = MemTableEh31->FieldByName("ORDER_FLAG")->AsInteger & EDIT_CONTACT_IS_ALLOWED;
-	if (Flag) {
-//																    7    11   15   19   23   27   31   35   39   43   47   51
-//                                                  8    12   16   20   24   28   32   36   40   44   48   52
-//																    |    |    |    |    |    |    |    |    |    |    |    |
-		SetBitMask(GDataOrders.Select_IDMask,"0000 0000 0001 1001 0110 1100 1110 0000 1000 0000 0000 0000 0000 0001");
-		std::map<AnsiString,AnsiString>::iterator iter1 = GDataOrders.FldTranslateMap.find("CONTACT_NAME");
-		if (iter1 != GDataOrders.FldTranslateMap.end()) {
-			GDataOrders.FldTranslateMap.erase(iter1);
-		}
-		std::map<AnsiString,FunGetID>::iterator iter2 = GDataOrders.FunGetIDMap.find("CONTACT_ID");
-		if (iter2 != GDataOrders.FunGetIDMap.end()) {
-			GDataOrders.FunGetIDMap.erase(iter2);
-		}
-	}
-	else {
-//																    7    11   15   19   23   27   31   35   39   43   47   51
-//                                                  8    12   16   20   24   28   32   36   40   44   48   52
-//																    |    |    |    |    |    |    |    |    |    |    |    |
-		SetBitMask(GDataOrders.Select_IDMask,"0000 0000 0001 1101 0110 1100 1110 0000 1000 0000 0000 0000 0000 0001");
-
-		std::map<AnsiString,AnsiString>::iterator iter1 = GDataOrders.FldTranslateMap.find("CONTACT_NAME");
-		if (iter1 == GDataOrders.FldTranslateMap.end()) {
-			GDataOrders.FldTranslateMap.insert(pair<AnsiString,AnsiString>("CONTACT_NAME",  	  "CONTACT_ID"));
-		}
-		std::map<AnsiString,FunGetID>::iterator iter2 = GDataOrders.FunGetIDMap.find("CONTACT_ID");
-		if (iter2 == GDataOrders.FunGetIDMap.end()) {
-			GDataOrders.FunGetIDMap.insert(pair<AnsiString,FunGetID>(AnsiString("CONTACT_ID"), GetContactID));
-		}
-
-	}
-}
-*/
-//---------------------------------------------------------------------------
 void __fastcall TFormTrans::MemTableEhBeforeScroll(TDataSet *DataSet)
 {
 	BeforeScrollStd(GetGDataRef(DataSet));
@@ -1429,16 +1359,9 @@ void __fastcall TFormTrans::MemTableEhFilterRecord(TDataSet *DataSet, bool &Acce
 					}
 					break;
 
-		case 43: /*Accept = DataSet->FieldByName("TRANSPORT_ID")->AsInteger == MemTableEh41->FieldByName("TRANSPORT_ID")->AsInteger &&
-								DataSet->FieldByName("FLAG_MES")->AsInteger > 0;
-					if (!Accept) {
-						RefreshGraphRow(DataSet);
-					}
-					else FillHintStructures(DataSet);
-					*/
-					if (DataSet->FieldByName("FLAG_KIND")->AsInteger == 1) {
+		case 43: if (DataSet->FieldByName("FLAG_KIND")->AsInteger == 1) {
 						Accept = DataSet->FieldByName("GRAPH_ID")->AsInteger == MemTableEh41->FieldByName("GRAPH_ID")->AsInteger;
-						FillHintStructures(DataSet);
+//						FillHintStructures(DataSet);
 					}
 					else {
 						 Accept = DataSet->FieldByName("TRANSPORT_ID")->AsInteger == MemTableEh41->FieldByName("TRANSPORT_ID")->AsInteger &&
@@ -1446,7 +1369,7 @@ void __fastcall TFormTrans::MemTableEhFilterRecord(TDataSet *DataSet, bool &Acce
 						 if (!Accept) {
 							 RefreshGraphRow(DataSet);
 						 }
-						 else FillHintStructures(DataSet);
+//						 else FillHintStructures(DataSet);
 					}
 					break;
 		default: Accept = FilterRecordStd(GetGDataRef(DataSet));
