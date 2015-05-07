@@ -501,7 +501,7 @@ object FormTrans: TFormTrans
     Top = 64
     Width = 1292
     Height = 772
-    ActivePage = sTabSheet3
+    ActivePage = sTabSheet4
     Align = alClient
     TabOrder = 1
     OnChange = sPageControl1Change
@@ -8776,5 +8776,14 @@ object FormTrans: TFormTrans
         Name = 'STATUS'
         ParamType = ptInput
       end>
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 792
+    Top = 32
+    object N1: TMenuItem
+      Tag = 1
+      Caption = #1054#1090#1095#1077#1090' '#1087#1086' '#1074#1086#1076#1080#1090#1077#1083#1102
+      OnClick = N1Click
+    end
   end
 end

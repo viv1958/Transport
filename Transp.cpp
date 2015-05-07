@@ -4,17 +4,21 @@
 #pragma hdrstop
 #include <tchar.h>
 //---------------------------------------------------------------------------
-USEFORMNS("FrmTrans.cpp",XXX, FormTrans);
+
+
+
 USEFORM("FrmPassWord.cpp", FormPassWord);
 USEFORM("FrmOrderCopy.cpp", FormOrderCopy);
 USEFORM("FrmGetFieldFilter.cpp", FormGetFieldFilter);
+USEFORMNS("FrmTrans.cpp",XXX, FormTrans);
 USEFORM("FrmSelSimpleEh.cpp", FormSelSimpleEh);
-USEFORM("FrmDateRange.cpp", FormDateRange);
-USEFORM("DModT.cpp", DModT); /* TDataModule: File Type */
 USEFORM("FrmFilter.cpp", FormFilter);
+USEFORM("DModT.cpp", DModT); /* TDataModule: File Type */
+USEFORM("DModRep.cpp", DModReport); /* TDataModule: File Type */
 USEFORM("FrmDriverGraphDay.cpp", FormDriverGraphDay);
 USEFORM("FrmDriverGraph.cpp", FormDriverGraph);
-USEFORM("DModRep.cpp", DModReport); /* TDataModule: File Type */
+USEFORM("FrmDateRange.cpp", FormDateRange);
+USEFORM("FrmDriverRep.cpp", FormDriverRep);
 //---------------------------------------------------------------------------
 extern int AppTerminate;
 //---------------------------------------------------------------------------
@@ -28,7 +32,7 @@ WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		if (!AppTerminate) {
 			Application->CreateForm(__classid(TDModReport), &DModReport);
 			Application->CreateForm(__classid(TFormTrans), &FormTrans);
-			Application->Run();
+		   Application->Run();
       }
 	}
 	catch (Exception &exception)

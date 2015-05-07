@@ -127,6 +127,12 @@
 				<DependentOn>FrmDriverGraphDay.h</DependentOn>
 				<BuildOrder>10</BuildOrder>
 			</CppCompile>
+			<CppCompile Include="FrmDriverRep.cpp">
+				<Form>FormDriverRep</Form>
+				<FormType>dfm</FormType>
+				<DependentOn>FrmDriverRep.h</DependentOn>
+				<BuildOrder>13</BuildOrder>
+			</CppCompile>
 			<CppCompile Include="FrmFilter.cpp">
 				<Form>FormFilter</Form>
 				<DependentOn>FrmFilter.h</DependentOn>
@@ -160,17 +166,18 @@
 			<CppCompile Include="Transp.cpp">
 				<BuildOrder>0</BuildOrder>
 			</CppCompile>
-			<FormResources Include="FrmPassWord.dfm"/>
 			<FormResources Include="FrmOrderCopy.dfm"/>
 			<FormResources Include="FrmGetFieldFilter.dfm"/>
+			<FormResources Include="FrmFilter.dfm"/>
+			<FormResources Include="FrmPassWord.dfm"/>
 			<FormResources Include="FrmTrans.dfm"/>
 			<FormResources Include="FrmSelSimpleEh.dfm"/>
-			<FormResources Include="FrmDateRange.dfm"/>
 			<FormResources Include="DModT.dfm"/>
-			<FormResources Include="FrmFilter.dfm"/>
+			<FormResources Include="DModRep.dfm"/>
+			<FormResources Include="FrmDateRange.dfm"/>
+			<FormResources Include="FrmDriverRep.dfm"/>
 			<FormResources Include="FrmDriverGraphDay.dfm"/>
 			<FormResources Include="FrmDriverGraph.dfm"/>
-			<FormResources Include="DModRep.dfm"/>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>
 				<CfgParent>Base</CfgParent>

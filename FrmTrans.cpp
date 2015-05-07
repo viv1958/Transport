@@ -13,6 +13,7 @@
 #include "FrmFilter.h"
 #include "FrmOrderCopy.h"
 #include "FrmDriverGraph.h"
+#include "FrmDriverRep.h"
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -2744,6 +2745,9 @@ void __fastcall TFormTrans::sSpeedButtonClick(TObject *Sender)
 		  case  8:  if (PageTag == 3)	ProcFilter();
 						else 				   ProcFilterStd(*WrkGData);
 						break;
+		  case  9:  PopupMenu1->Popup(Left +sSpeedButton9->Left + 4,
+												Top  + sSpeedButton9->Top + sSpeedButton9->Height + 22);
+						break;
 		  // перемещение по датам в заказах
 		  case 31:  ShowOrders(DT_Beg_Ord - 1);      break;
 		  case 32:  ShowOrders(Date() - 1);          break;
@@ -4347,6 +4351,30 @@ void __fastcall TFormTrans::DBGridEh41ColEnter(TObject *Sender)
 //      DBGridEh41->Repaint();
 	}
 	PrvGraphCol = CurGraphCol;
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormTrans::N1Click(TObject *Sender)
+{
+	switch (GetComponentTag(Sender)) {
+		case 1: switch (PageTag) {
+					  case 1: ShowDriverReport(MemTableEh13->FieldByName("TRANS_DRIVER_ID")->AsInteger,
+														MemTableEh13->FieldByName("DRIVER_NAME")->AsString);
+								 break;
+					  case 3: ShowDriverReport(MemTableEh31->FieldByName("DRIVER_ID")->AsInteger,
+														MemTableEh31->FieldByName("DRIVER_NAME")->AsString);
+								 break;
+					  case 4: ShowDriverReport(MemTableEh41->FieldByName("DRIVER_ID")->AsInteger,
+														MemTableEh41->FieldByName("DRIVER_NAME")->AsString);
+								 break;
+					  case 5: ShowDriverReport(MemTableEh51->FieldByName("DRIVER_ID")->AsInteger,
+														MemTableEh51->FieldByName("DRIVER_NAME")->AsString);
+					  case 6: ShowDriverReport(MemTableEh61->FieldByName("DRIVER_ID")->AsInteger,
+														MemTableEh61->FieldByName("DRIVER_NAME")->AsString);
+					  default: ShowDriverReport(0,"");
+								 break;
+				  }
+				  break;
+	}
 }
 //---------------------------------------------------------------------------
 

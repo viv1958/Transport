@@ -52,6 +52,7 @@
 #include "sMemo.hpp"
 #include "sEdit.hpp"
 #include "sButton.hpp"
+#include <Vcl.Menus.hpp>
 //---------------------------------------------------------------------------
 struct DrawData {
 	int GraphID;
@@ -670,6 +671,8 @@ __published:	// IDE-managed Components
 	TsLabel *sLabel44;
 	TsCheckBox *sCheckBox6;
 	TsSpeedButton *sSpeedButton9;
+	TPopupMenu *PopupMenu1;
+	TMenuItem *N1;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
@@ -721,6 +724,7 @@ __published:	// IDE-managed Components
 	void __fastcall sPageControl1Exit(TObject *Sender);
 	void __fastcall DBGridEh41CellClick(TColumnEh *Column);
 	void __fastcall DBGridEh41ColEnter(TObject *Sender);
+	void __fastcall N1Click(TObject *Sender);
 
 
 
