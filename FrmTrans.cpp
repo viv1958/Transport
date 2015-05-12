@@ -647,7 +647,7 @@ void __fastcall TFormTrans::InitGData()
 	SetBitMask(GDataOutlay.EditAllowMask,"0001 1111 1111");
 	SetBitMask(GDataOutlay.NullAllowMask,"0000 0011 1111");
 	SetBitMask(GDataOutlay.Select_IDMask,"0000 1000 1111");
-	GDataOutlay.FilterFldMask =  0x0F82;
+	GDataOutlay.FilterFldMask =  0x0F70;
 	GDataOutlay.TextEdit      = DBEditEh;
 	GDataOutlay.NumbEdit   	  = DBNumberEditEh;
 	GDataOutlay.DateEdit      = DBDateTimeEditEh;
@@ -4368,8 +4368,10 @@ void __fastcall TFormTrans::N1Click(TObject *Sender)
 								 break;
 					  case 5: ShowDriverReport(MemTableEh51->FieldByName("DRIVER_ID")->AsInteger,
 														MemTableEh51->FieldByName("DRIVER_NAME")->AsString);
+								 break;
 					  case 6: ShowDriverReport(MemTableEh61->FieldByName("DRIVER_ID")->AsInteger,
 														MemTableEh61->FieldByName("DRIVER_NAME")->AsString);
+								 break;
 					  default: ShowDriverReport(0,"");
 								 break;
 				  }

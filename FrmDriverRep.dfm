@@ -2,8 +2,8 @@ object FormDriverRep: TFormDriverRep
   Left = 0
   Top = 0
   Caption = #1054#1090#1095#1077#1090' '#1087#1086' '#1074#1086#1076#1080#1090#1077#1083#1102
-  ClientHeight = 798
-  ClientWidth = 2134
+  ClientHeight = 573
+  ClientWidth = 1292
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,20 +17,10 @@ object FormDriverRep: TFormDriverRep
   OnKeyDown = FormKeyDown
   PixelsPerInch = 96
   TextHeight = 13
-  object sSplitter1: TsSplitter
-    Left = 1594
-    Top = 104
-    Height = 675
-    Align = alRight
-    SkinData.SkinSection = 'SPLITTER'
-    ExplicitLeft = 552
-    ExplicitTop = 288
-    ExplicitHeight = 100
-  end
   object sStatusBar1: TsStatusBar
     Left = 0
-    Top = 779
-    Width = 2134
+    Top = 554
+    Width = 1292
     Height = 19
     Panels = <
       item
@@ -53,8 +43,8 @@ object FormDriverRep: TFormDriverRep
   object sPanel1: TsPanel
     Left = 0
     Top = 0
-    Width = 2134
-    Height = 104
+    Width = 1292
+    Height = 89
     Align = alTop
     TabOrder = 1
     SkinData.SkinSection = 'PANEL'
@@ -653,26 +643,16 @@ object FormDriverRep: TFormDriverRep
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
     end
-    object sCheckBox21: TsCheckBox
-      Tag = 21
-      Left = 14
-      Top = 60
-      Width = 350
-      Height = 20
-      Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1090#1100' '#1074#1089#1077' '#1074#1099#1073#1088#1072#1085#1085#1099#1077' '#1089#1090#1088#1086#1082#1080' '#1086#1076#1085#1086#1074#1088#1077#1084#1077#1085#1085#1086
-      TabOrder = 0
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
-    end
     object sCheckBox6: TsCheckBox
       Tag = 21
-      Left = 408
-      Top = 60
+      Left = 19
+      Top = 63
       Width = 246
       Height = 20
       Caption = #1055#1086#1082#1072#1079#1072#1090#1100' '#1090#1086#1083#1100#1082#1086' '#1074#1099#1073#1088#1072#1085#1085#1099#1077' '#1089#1090#1088#1086#1082#1080
-      TabOrder = 1
+      Enabled = False
+      TabOrder = 0
+      Visible = False
       SkinData.SkinSection = 'CHECKBOX'
       ImgChecked = 0
       ImgUnchecked = 0
@@ -693,7 +673,7 @@ object FormDriverRep: TFormDriverRep
       Font.Style = [fsBold]
       MaxLength = 10
       ParentFont = False
-      TabOrder = 2
+      TabOrder = 1
       Text = '  .  .    '
       BoundLabel.Indent = 0
       BoundLabel.Font.Charset = DEFAULT_CHARSET
@@ -725,7 +705,7 @@ object FormDriverRep: TFormDriverRep
       Font.Style = [fsBold]
       MaxLength = 10
       ParentFont = False
-      TabOrder = 3
+      TabOrder = 2
       Text = '  .  .    '
       BoundLabel.Indent = 0
       BoundLabel.Font.Charset = DEFAULT_CHARSET
@@ -754,7 +734,7 @@ object FormDriverRep: TFormDriverRep
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
-      TabOrder = 4
+      TabOrder = 3
       BoundLabel.Indent = 0
       BoundLabel.Font.Charset = DEFAULT_CHARSET
       BoundLabel.Font.Color = clWindowText
@@ -771,218 +751,423 @@ object FormDriverRep: TFormDriverRep
       DirectInput = False
     end
   end
-  object sPanel2: TsPanel
-    Left = 1600
-    Top = 104
-    Width = 534
-    Height = 675
-    Align = alRight
-    Caption = 'sPanel2'
-    TabOrder = 2
-    Visible = False
-    SkinData.SkinSection = 'PANEL'
-    object sSplitter2: TsSplitter
-      Left = 1
-      Top = 121
-      Width = 532
-      Height = 6
-      Cursor = crVSplit
-      Align = alTop
-      SkinData.SkinSection = 'SPLITTER'
-      ExplicitWidth = 365
-    end
-    object DBGridEh2: TDBGridEh
-      Tag = 2
-      Left = 1
-      Top = 1
-      Width = 532
-      Height = 120
-      Align = alTop
-      DataSource = DataSource2
-      DynProps = <>
-      IndicatorOptions = [gioShowRowIndicatorEh]
-      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
-      OptionsEh = [dghFixed3D, dghClearSelection, dghDialogFind, dghColumnResize, dghColumnMove, dghExtendVertLines]
-      TabOrder = 0
-      object RowDetailData: TRowDetailPanelControlEh
-      end
-    end
-    object DBGridEh3: TDBGridEh
-      Tag = 3
-      Left = 1
-      Top = 127
-      Width = 532
-      Height = 547
-      Align = alClient
-      DataSource = DataSource3
-      DynProps = <>
-      IndicatorOptions = [gioShowRowIndicatorEh]
-      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
-      OptionsEh = [dghFixed3D, dghClearSelection, dghDialogFind, dghColumnResize, dghColumnMove, dghExtendVertLines]
-      TabOrder = 1
-      object RowDetailData: TRowDetailPanelControlEh
-      end
-    end
-  end
-  object DBGridEh1: TDBGridEh
-    Tag = 1
+  object sPageControl1: TsPageControl
     Left = 0
-    Top = 104
-    Width = 1594
-    Height = 675
+    Top = 89
+    Width = 1292
+    Height = 465
+    ActivePage = sTabSheet3
     Align = alClient
-    DataSource = DataSource1
-    DynProps = <>
-    FooterRowCount = 1
-    FooterParams.Color = clMoneyGreen
-    FrozenCols = 13
-    GridLineParams.DataHorzLines = True
-    IndicatorOptions = [gioShowRowIndicatorEh, gioShowRecNoEh]
-    Options = [dgTitles, dgIndicator, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgMultiSelect]
-    OptionsEh = [dghFixed3D, dghClearSelection, dghAutoSortMarking, dghMultiSortMarking, dghDialogFind, dghShowRecNo, dghColumnResize, dghExtendVertLines]
-    RowDetailPanel.Height = 510
-    SearchPanel.Enabled = True
-    SearchPanel.FilterOnTyping = True
-    SortLocal = True
-    STFilter.Local = True
-    TabOrder = 3
-    TitleParams.MultiTitle = True
-    Columns = <
-      item
+    TabOrder = 2
+    OnChange = sPageControl1Change
+    SkinData.SkinSection = 'PAGECONTROL'
+    object sTabSheet1: TsTabSheet
+      Tag = 1
+      Caption = '1. '#1047#1072#1082#1072#1079#1099
+      SkinData.CustomColor = False
+      SkinData.CustomFont = False
+      object DBGridEh1: TDBGridEh
+        Tag = 1
+        Left = 0
+        Top = 0
+        Width = 1284
+        Height = 437
+        Align = alClient
+        DataSource = DataSource1
         DynProps = <>
-        EditButtons = <>
-        FieldName = 'ORDERS_ID'
-        Footer.Value = #1057#1091#1084#1084#1072' '
-        Footer.ValueType = fvtStaticText
-        Footers = <>
-        Title.Caption = 'N '#1079#1072#1082#1072#1079#1072
-        Title.TitleButton = True
-        Title.ToolTips = True
-        ToolTips = True
-        Width = 57
+        FooterRowCount = 2
+        FooterParams.Color = clMoneyGreen
+        GridLineParams.DataHorzLines = True
+        IndicatorOptions = [gioShowRowIndicatorEh, gioShowRecNoEh]
+        Options = [dgTitles, dgIndicator, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgMultiSelect]
+        OptionsEh = [dghFixed3D, dghClearSelection, dghAutoSortMarking, dghMultiSortMarking, dghDialogFind, dghShowRecNo, dghColumnResize, dghExtendVertLines]
+        RowDetailPanel.Height = 510
+        SearchPanel.Enabled = True
+        SearchPanel.FilterOnTyping = True
+        SortLocal = True
+        STFilter.Local = True
+        TabOrder = 0
+        TitleParams.MultiTitle = True
+        OnDrawColumnCell = DBGridEhDrawColumnCell
+        OnEnter = DBGridEhEnter
+        OnExit = DBGridEhExit
+        OnGetCellParams = DBGridEhGetCellParams
+        OnKeyDown = DBGridEhKeyDown
+        OnKeyPress = DBGridEhKeyPress
+        Columns = <
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'ORDERS_ID'
+            Footer.ValueType = fvtStaticText
+            Footers = <
+              item
+                Value = #1042#1099#1073#1088#1072#1085#1086
+                ValueType = fvtStaticText
+              end
+              item
+                Value = #1042#1089#1077#1075#1086
+                ValueType = fvtStaticText
+              end>
+            Title.Caption = 'N '#1079#1072#1082#1072#1079#1072
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
+            Width = 57
+          end
+          item
+            DisplayFormat = 'dd.mm.yy hh:nn'
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'DT_BEG'
+            Footer.ValueType = fvtStaticText
+            Footers = <>
+            Title.Caption = #1053#1072#1095#1072#1083#1086
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
+            Width = 90
+          end
+          item
+            DisplayFormat = 'dd.mm.yy hh:nn'
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'DT_END'
+            Footer.ValueType = fvtStaticText
+            Footers = <>
+            Title.Caption = #1054#1082#1086#1085#1095#1072#1085#1080#1077
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
+            Width = 90
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'CLIENT_NAME'
+            Footer.ValueType = fvtStaticText
+            Footers = <>
+            Title.Caption = #1050#1083#1080#1077#1085#1090
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
+            Width = 212
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'WORK_TYPE_NAME'
+            Footers = <>
+            Title.Caption = #1058#1080#1087' '#1088#1072#1073#1086#1090#1099
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
+            Width = 123
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'BEG_ADDR_NAME'
+            Footer.ValueType = fvtStaticText
+            Footers = <>
+            Title.Caption = #1054#1090#1087#1088#1072#1074#1085#1086#1081' '#1087#1091#1085#1082#1090
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
+            Width = 188
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'END_ADDR_NAME'
+            Footer.ValueType = fvtStaticText
+            Footers = <>
+            Title.Caption = #1055#1091#1085#1082#1090' '#1085#1072#1079#1085#1072#1095#1077#1085#1080#1103
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
+            Width = 180
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'TRANSPORT_NAME'
+            Footer.ValueType = fvtStaticText
+            Footers = <>
+            Title.Caption = #1058#1088#1072#1085#1089#1087#1086#1088#1090' '#1085#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
+            Width = 139
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'REG_NUMBER'
+            Footer.ValueType = fvtStaticText
+            Footers = <>
+            Title.Caption = #1056#1077#1075'.'#1085#1086#1084#1077#1088
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
+            Width = 70
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'DRIVER_HAND_MONEY'
+            Footer.ValueType = fvtStaticText
+            Footers = <
+              item
+                ValueType = fvtStaticText
+              end
+              item
+                ValueType = fvtStaticText
+              end>
+            Title.Caption = #1042#1099#1076#1072#1085#1086'  '#1085#1072' '#1088#1091#1082#1080
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
+            Width = 67
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'DRV_PAY'
+            Footer.ValueType = fvtStaticText
+            Footers = <
+              item
+                ValueType = fvtStaticText
+              end
+              item
+                ValueType = fvtStaticText
+              end>
+            Title.Caption = #1054#1087#1083#1072#1090#1072' '#1088#1072#1073#1086#1090#1099
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
+            Width = 71
+          end>
+        object RowDetailData: TRowDetailPanelControlEh
+        end
       end
-      item
-        DisplayFormat = 'dd.mm.yy hh:nn'
+    end
+    object sTabSheet2: TsTabSheet
+      Tag = 2
+      Caption = '2.'#1056#1072#1089#1093#1086#1076#1099
+      SkinData.CustomColor = False
+      SkinData.CustomFont = False
+      object DBGridEh2: TDBGridEh
+        Tag = 2
+        Left = 0
+        Top = 0
+        Width = 1284
+        Height = 437
+        Align = alClient
+        DataSource = DataSource2
         DynProps = <>
-        EditButtons = <>
-        FieldName = 'DT_BEG'
-        Footer.ValueType = fvtStaticText
-        Footers = <>
-        Title.Caption = #1053#1072#1095#1072#1083#1086
-        Title.TitleButton = True
-        Title.ToolTips = True
-        ToolTips = True
-        Width = 85
+        FooterRowCount = 2
+        FooterParams.Color = clMoneyGreen
+        IndicatorOptions = [gioShowRowIndicatorEh]
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgMultiSelect]
+        OptionsEh = [dghFixed3D, dghClearSelection, dghAutoSortMarking, dghMultiSortMarking, dghDialogFind, dghColumnResize, dghColumnMove, dghExtendVertLines]
+        ParentShowHint = False
+        RowHeight = 4
+        RowLines = 1
+        ShowHint = True
+        TabOrder = 0
+        TitleParams.MultiTitle = True
+        OnDrawColumnCell = DBGridEhDrawColumnCell
+        OnEnter = DBGridEhEnter
+        OnExit = DBGridEhExit
+        OnGetCellParams = DBGridEhGetCellParams
+        OnKeyDown = DBGridEhKeyDown
+        OnKeyPress = DBGridEhKeyPress
+        Columns = <
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'OUTLAY_ID'
+            Footer.ValueType = fvtStaticText
+            Footers = <>
+            Title.Caption = 'ID'
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
+            Width = 50
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'YY'
+            Footer.ValueType = fvtStaticText
+            Footers = <>
+            Title.Caption = #1043#1086#1076
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
+            Width = 50
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'MM'
+            Footer.ValueType = fvtStaticText
+            Footers = <>
+            Title.Caption = #1052#1077#1089#1103#1094
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
+            Width = 50
+          end
+          item
+            DisplayFormat = 'dd.mmm.yy'
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'DATEMAKE'
+            Footer.ValueType = fvtStaticText
+            Footers = <
+              item
+                Value = #1042#1099#1073#1088#1072#1085#1086
+                ValueType = fvtStaticText
+              end
+              item
+                Value = #1057#1091#1084#1084#1072
+                ValueType = fvtStaticText
+              end>
+            Title.Caption = #1044#1072#1090#1072
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
+            Width = 80
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'EXPENSE_NAME'
+            Footer.ValueType = fvtStaticText
+            Footers = <>
+            Title.Caption = #1057#1090#1072#1090#1100#1103' '#1088#1072#1089#1093#1086#1076#1072
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
+            Width = 200
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'OUTLAY_NAME'
+            Footer.ValueType = fvtStaticText
+            Footers = <>
+            Title.Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077' '#1088#1072#1089#1093#1086#1076#1072
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
+            Width = 200
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'OUTLAY_TYPE_STR'
+            Footer.ValueType = fvtStaticText
+            Footers = <>
+            PickList.Strings = (
+              '---'
+              #1041#1077#1079#1085#1072#1083#1080#1095#1085#1099#1077' '#1089' '#1053#1044#1057
+              #1041#1077#1079#1085#1072#1083#1080#1095#1085#1099#1077' '#1073#1077#1079' '#1053#1044#1057
+              #1053#1072#1083#1080#1095#1085#1099#1077
+              #1053#1072#1083#1080#1095#1085#1099#1077' '#1042#1086#1076#1080#1090#1077#1083#1100)
+            Title.Caption = #1058#1080#1087' '#1088#1072#1089#1093#1086#1076#1072
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
+            Width = 130
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'OUTLAY_VALUE'
+            Footer.ValueType = fvtStaticText
+            Footers = <
+              item
+                ValueType = fvtStaticText
+              end
+              item
+                ValueType = fvtStaticText
+              end>
+            Title.Caption = #1057#1091#1084#1084#1072
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
+            Width = 60
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'TRANS_TYPE_NAME'
+            Footer.ValueType = fvtStaticText
+            Footers = <>
+            Title.Caption = #1058#1080#1087' '#1058#1057
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
+            Width = 120
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'TRANSPORT_NAME'
+            Footer.ValueType = fvtStaticText
+            Footers = <>
+            Title.Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077' '#1058#1057
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
+            Width = 150
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'REG_NUMBER'
+            Footer.ValueType = fvtStaticText
+            Footers = <>
+            Title.Caption = #1056#1077#1075'.'#1053#1086#1084#1077#1088
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
+            Width = 80
+          end>
+        object RowDetailData: TRowDetailPanelControlEh
+        end
       end
-      item
-        DisplayFormat = 'dd.mm.yy hh:nn'
+    end
+    object sTabSheet3: TsTabSheet
+      Tag = 3
+      Caption = '3. '#1044#1077#1085#1100#1075#1080
+      SkinData.CustomColor = False
+      SkinData.CustomFont = False
+      object DBGridEh3: TDBGridEh
+        Tag = 3
+        Left = 0
+        Top = 0
+        Width = 1284
+        Height = 437
+        Align = alClient
+        DataSource = DataSource3
         DynProps = <>
-        EditButtons = <>
-        FieldName = 'DT_END'
-        Footer.ValueType = fvtStaticText
-        Footers = <>
-        Title.Caption = #1054#1082#1086#1085#1095#1072#1085#1080#1077
-        Title.TitleButton = True
-        Title.ToolTips = True
-        ToolTips = True
-        Width = 83
+        IndicatorOptions = [gioShowRowIndicatorEh]
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
+        OptionsEh = [dghFixed3D, dghClearSelection, dghDialogFind, dghColumnResize, dghColumnMove, dghExtendVertLines]
+        TabOrder = 0
+        OnDrawColumnCell = DBGridEhDrawColumnCell
+        OnEnter = DBGridEhEnter
+        OnExit = DBGridEhExit
+        OnGetCellParams = DBGridEhGetCellParams
+        OnKeyDown = DBGridEhKeyDown
+        OnKeyPress = DBGridEhKeyPress
+        object RowDetailData: TRowDetailPanelControlEh
+        end
       end
-      item
-        DynProps = <>
-        EditButtons = <>
-        FieldName = 'CLIENT_NAME'
-        Footer.ValueType = fvtStaticText
-        Footers = <>
-        Title.Caption = #1050#1083#1080#1077#1085#1090
-        Title.TitleButton = True
-        Title.ToolTips = True
-        ToolTips = True
-        Width = 212
-      end
-      item
-        DynProps = <>
-        EditButtons = <>
-        FieldName = 'WORK_TYPE_NAME'
-        Footers = <>
-        Title.Caption = #1058#1080#1087' '#1088#1072#1073#1086#1090#1099
-        Title.TitleButton = True
-        Title.ToolTips = True
-        ToolTips = True
-        Width = 123
-      end
-      item
-        DynProps = <>
-        EditButtons = <>
-        FieldName = 'BEG_ADDR_NAME'
-        Footer.ValueType = fvtStaticText
-        Footers = <>
-        Title.Caption = #1054#1090#1087#1088#1072#1074#1085#1086#1081' '#1087#1091#1085#1082#1090
-        Title.TitleButton = True
-        Title.ToolTips = True
-        ToolTips = True
-        Width = 188
-      end
-      item
-        DynProps = <>
-        EditButtons = <>
-        FieldName = 'END_ADDR_NAME'
-        Footer.ValueType = fvtStaticText
-        Footers = <>
-        Title.Caption = #1055#1091#1085#1082#1090' '#1085#1072#1079#1085#1072#1095#1077#1085#1080#1103
-        Title.TitleButton = True
-        Title.ToolTips = True
-        ToolTips = True
-        Width = 180
-      end
-      item
-        DynProps = <>
-        EditButtons = <>
-        FieldName = 'TRANSPORT_NAME'
-        Footer.ValueType = fvtStaticText
-        Footers = <>
-        Title.Caption = #1058#1088#1072#1085#1089#1087#1086#1088#1090' '#1085#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
-        Title.TitleButton = True
-        Title.ToolTips = True
-        ToolTips = True
-        Width = 162
-      end
-      item
-        DynProps = <>
-        EditButtons = <>
-        FieldName = 'REG_NUMBER'
-        Footer.ValueType = fvtStaticText
-        Footers = <>
-        Title.Caption = #1056#1077#1075'.'#1085#1086#1084#1077#1088
-        Title.TitleButton = True
-        Title.ToolTips = True
-        ToolTips = True
-        Width = 66
-      end
-      item
-        DynProps = <>
-        EditButtons = <>
-        FieldName = 'DRIVER_HAND_MONEY'
-        Footer.ValueType = fvtStaticText
-        Footers = <>
-        Title.Caption = #1042#1099#1076#1072#1085#1086'  '#1085#1072' '#1088#1091#1082#1080
-        Title.TitleButton = True
-        Title.ToolTips = True
-        ToolTips = True
-        Width = 67
-      end
-      item
-        DynProps = <>
-        EditButtons = <>
-        FieldName = 'DRV_PAY'
-        Footer.ValueType = fvtStaticText
-        Footers = <>
-        Title.Caption = #1054#1087#1083#1072#1090#1072' '#1088#1072#1073#1086#1090#1099
-        Title.TitleButton = True
-        Title.ToolTips = True
-        ToolTips = True
-        Width = 71
-      end>
-    object RowDetailData: TRowDetailPanelControlEh
     end
   end
   object Query1: TQuery
@@ -1013,7 +1198,7 @@ object FormDriverRep: TFormDriverRep
     Top = 339
   end
   object DataSource2: TDataSource
-    DataSet = Query2
+    DataSet = MemTableEh2
     Left = 253
     Top = 339
   end
@@ -1024,11 +1209,20 @@ object FormDriverRep: TFormDriverRep
   end
   object MemTableEh1: TMemTableEh
     Tag = 1
+    Filtered = True
     Params = <>
     DataDriver = DataSetDriverEh1
     SortOrder = 'DT_Beg'
+    AfterOpen = MemTableEh1AfterOpen
+    AfterClose = MemTableEh1AfterClose
+    BeforeScroll = MemTableEh1BeforeScroll
+    AfterScroll = MemTableEh1AfterScroll
+    OnFilterRecord = MemTableEhFilterRecord
     Left = 133
     Top = 285
+    object MemTableEh1FLAG_MES: TIntegerField
+      FieldName = 'FLAG_MES'
+    end
     object MemTableEh1ORDERS_ID: TIntegerField
       FieldName = 'ORDERS_ID'
     end
@@ -1136,15 +1330,91 @@ object FormDriverRep: TFormDriverRep
   end
   object MemTableEh2: TMemTableEh
     Tag = 2
+    Filtered = True
     Params = <>
     DataDriver = DataSetDriverEh2
+    AfterOpen = MemTableEh1AfterOpen
+    AfterClose = MemTableEh1AfterClose
+    BeforeScroll = MemTableEh1BeforeScroll
+    AfterScroll = MemTableEh1AfterScroll
+    OnFilterRecord = MemTableEhFilterRecord
     Left = 254
     Top = 287
+    object MemTableEh2FLAG_MES: TIntegerField
+      FieldName = 'FLAG_MES'
+    end
+    object MemTableEh2OUTLAY_ID: TIntegerField
+      FieldName = 'OUTLAY_ID'
+    end
+    object MemTableEh2YY: TIntegerField
+      FieldName = 'YY'
+    end
+    object MemTableEh2MM: TIntegerField
+      FieldName = 'MM'
+    end
+    object MemTableEh2EXPENSE_ID: TIntegerField
+      FieldName = 'EXPENSE_ID'
+    end
+    object MemTableEh2EXPENSE_NAME: TStringField
+      FieldName = 'EXPENSE_NAME'
+      Size = 64
+    end
+    object MemTableEh2DATEMAKE: TDateTimeField
+      FieldName = 'DATEMAKE'
+    end
+    object MemTableEh2OUTLAY_NAME: TStringField
+      FieldName = 'OUTLAY_NAME'
+      Size = 255
+    end
+    object MemTableEh2OUTLAY_TYPE: TIntegerField
+      FieldName = 'OUTLAY_TYPE'
+    end
+    object MemTableEh2OUTLAY_TYPE_STR: TStringField
+      FieldName = 'OUTLAY_TYPE_STR'
+      Size = 32
+    end
+    object MemTableEh2OUTLAY_VALUE: TIntegerField
+      FieldName = 'OUTLAY_VALUE'
+    end
+    object MemTableEh2TRANSPORT_ID: TIntegerField
+      FieldName = 'TRANSPORT_ID'
+    end
+    object MemTableEh2DRIVER_ID: TIntegerField
+      FieldName = 'DRIVER_ID'
+    end
+    object MemTableEh2DATECHANGE: TDateTimeField
+      FieldName = 'DATECHANGE'
+    end
+    object MemTableEh2STATUS: TIntegerField
+      FieldName = 'STATUS'
+    end
+    object MemTableEh2TRANSPORT_NAME: TStringField
+      FieldName = 'TRANSPORT_NAME'
+      Size = 48
+    end
+    object MemTableEh2REG_NUMBER: TStringField
+      FieldName = 'REG_NUMBER'
+      Size = 16
+    end
+    object MemTableEh2TRANS_TYPE_NAME: TStringField
+      FieldName = 'TRANS_TYPE_NAME'
+      Size = 64
+    end
+    object MemTableEh2DRIVER_NAME: TStringField
+      FieldName = 'DRIVER_NAME'
+      Size = 48
+    end
   end
   object MemTableEh3: TMemTableEh
     Tag = 3
+    Filtered = True
     Params = <>
     DataDriver = DataSetDriverEh3
+    AfterOpen = MemTableEh1AfterOpen
+    AfterClose = MemTableEh1AfterClose
+    BeforeScroll = MemTableEh1BeforeScroll
+    AfterScroll = MemTableEh1AfterScroll
+    OnFilterRecord = MemTableEhFilterRecord
     Left = 380
     Top = 289
   end
@@ -1162,5 +1432,13 @@ object FormDriverRep: TFormDriverRep
     ProviderDataSet = Query3
     Left = 383
     Top = 236
+  end
+  object Query4: TQuery
+    Left = 192
+    Top = 192
+  end
+  object Query5: TQuery
+    Left = 312
+    Top = 192
   end
 end

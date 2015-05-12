@@ -501,7 +501,7 @@ object FormTrans: TFormTrans
     Top = 64
     Width = 1292
     Height = 772
-    ActivePage = sTabSheet4
+    ActivePage = sTabSheet5
     Align = alClient
     TabOrder = 1
     OnChange = sPageControl1Change
@@ -513,6 +513,10 @@ object FormTrans: TFormTrans
       Caption = '1. '#1058#1088#1072#1085#1089#1087#1086#1088#1090
       SkinData.CustomColor = False
       SkinData.CustomFont = False
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object sSplitter1: TsSplitter
         Left = 0
         Top = 270
@@ -876,6 +880,10 @@ object FormTrans: TFormTrans
       Caption = '2. '#1050#1083#1080#1077#1085#1090#1099
       SkinData.CustomColor = False
       SkinData.CustomFont = False
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object sSplitter2: TsSplitter
         Left = 781
         Top = 0
@@ -1210,6 +1218,10 @@ object FormTrans: TFormTrans
       Caption = '3. '#1047#1072#1082#1072#1079#1099
       SkinData.CustomColor = False
       SkinData.CustomFont = False
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object DBGridEh31: TDBGridEh
         Tag = 31
         Left = 0
@@ -4831,6 +4843,10 @@ object FormTrans: TFormTrans
       Caption = '4. '#1043#1088#1072#1092#1080#1082
       SkinData.CustomColor = False
       SkinData.CustomFont = False
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object sPanel6: TsPanel
         Left = 0
         Top = 0
@@ -5406,6 +5422,10 @@ object FormTrans: TFormTrans
       Caption = '5.'#1056#1072#1089#1093#1086#1076#1099' '
       SkinData.CustomColor = False
       SkinData.CustomFont = False
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object DBGridEh51: TDBGridEh
         Tag = 51
         Left = 0
@@ -5719,6 +5739,10 @@ object FormTrans: TFormTrans
       Caption = '6. '#1057#1087#1088#1072#1074#1086#1095#1085#1080#1082#1080' '
       SkinData.CustomColor = False
       SkinData.CustomFont = False
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object sSplitter3: TsSplitter
         Left = 320
         Top = 0
@@ -5877,6 +5901,10 @@ object FormTrans: TFormTrans
       Caption = '7. '#1055#1086#1083#1100#1079#1086#1074#1072#1090#1077#1083#1080
       SkinData.CustomColor = False
       SkinData.CustomFont = False
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object DBGridEh71: TDBGridEh
         Tag = 71
         Left = 0
