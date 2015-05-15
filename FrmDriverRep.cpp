@@ -31,15 +31,18 @@
 #pragma link "MemTableDataEh"
 #pragma link "MemTableEh"
 #pragma link "sPageControl"
+#pragma link "frxClass"
+#pragma link "frxDBSet"
+#pragma link "frxDesgn"
+#pragma link "frxDMPExport"
 #pragma resource "*.dfm"
 void ShowDriverReport(int DriverID, AnsiString DriverName)
 {
-	TFormDriverRep* Form = new TFormDriverRep(Application);
-	Form->SetDriver(DriverID,DriverName);
+	TFormDriverRep* Form = new TFormDriverRep(Application, DriverID, DriverName);
 	Form->ShowModal();
 }
 //---------------------------------------------------------------------------
-__fastcall TFormDriverRep::TFormDriverRep(TComponent* Owner)
+__fastcall TFormDriverRep::TFormDriverRep(TComponent* Owner,int DriverID, AnsiString DriverName)
 	: TForm(Owner)
 {
 
@@ -50,21 +53,25 @@ void __fastcall TFormDriverRep::SetDriver(int DriverID, AnsiString DriverName)
 	if (DriverID != this->DriverID) {
 		this->DriverID = DriverID;
 		sComboEdit1->Text = DriverName;
-		ProcRefresh();
+		ProcRefreshPage();
 	}
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormDriverRep::FormCreate(TObject *Sender)
 {
+   sPageControl1->ActivePage = sTabSheet1;
 	InitCommon();
 	InitGData();
 	SetPage();
+	if (!DriverID) {
+	  SelectDriver();
+	}
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormDriverRep::InitCommon()
 {
 //	SetFormPosStd(this,Screen->Width,750,0,true);
-	SetFormPosStd(this,1280,750,0,true);
+	SetFormPosStd(this,1330,750,0,true);
 
 	TDateTime DT = Date();
 	SelYY = MaxYY = CurYY = StrToInt(DT.FormatString("yy"));
@@ -153,7 +160,8 @@ void __fastcall TFormDriverRep::InitGData()
 //---------------------------------------------------------------------------
 bool __fastcall TFormDriverRep::SetSQL(TDataSet* DSet)
 {
-	AnsiString SQL;
+	AnsiString SQL, Tail;
+//	if (Printing) Tail = " where Flag_Mes = 0
 	switch (DSet->Tag) {
 		case 1:  SQL = "select * from Sel_Orders_Driver("  + IntToStr(DriverID) + ",'" +
 							GetDateStr(DT_Beg) + "','" + GetDateStr(DT_End) + "')";
@@ -174,7 +182,7 @@ void __fastcall TFormDriverRep::CloseAll()
 	MemTableEh3->Active = false;
 }
 //---------------------------------------------------------------------------
-void __fastcall TFormDriverRep::ProcRefresh()
+void __fastcall TFormDriverRep::ProcRefreshPage()
 {
 	CloseAll();
 	ProcRefreshStd(*WrkGData,true);
@@ -197,8 +205,103 @@ void __fastcall TFormDriverRep::FormKeyDown(TObject *Sender, WORD &Key, TShiftSt
 	switch (Key) {
 		case VK_F3:  ProcFilterStd(*WrkGData);
 						 break;
-		case VK_F5:  ProcRefresh();
+		case VK_F5:  ProcRefreshPage();
 						 break;
+		case VK_F11: ProcHistory(Shift.Contains(ssCtrl));
+						 break;
+	}
+}
+//---------------------------------------------------------------------------
+AnsiString __fastcall TFormDriverRep::TranslateName(AnsiString FldName)
+{
+	if (WrkGData->FldTranslateMap.size()) {
+		std::map<AnsiString,AnsiString>::iterator iter = WrkGData->FldTranslateMap.find(FldName);
+		if (iter != WrkGData->FldTranslateMap.end()) {
+			 FldName = iter->second;
+		}
+	}
+	return FldName;
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormDriverRep::ProcHistory(bool All)
+{
+	AnsiString Title  = "Просмотр истории изменения";
+	AnsiString FldKey = WrkGData->FieldKey;
+	AnsiString TableName = GetPiece(FldKey,"_ID",1).UpperCase();
+	int ID = WrkGData->WrkDSet->FieldByName(FldKey)->AsInteger;
+	AnsiString FieldNames;
+	AnsiString TitleNames;
+	AnsiString SS;
+	TDBGridEh* Grid = WrkGData->WrkGrid;
+	TStringList* FieldNamesList = new TStringList();
+	TStringList* TitleNamesList = new TStringList();
+	AnsiString AllFieldNames;
+	if (All) {
+		TDBGridColumnsEh* Columns = Grid->Columns;
+		int Cnt = Columns->Count;
+//		if (Grid->Tag == 1) {
+//			FieldNames = ",CLIENT_TAX_ID,DOG_TAX";
+//			TitleNames = ",ID Таблицы тарифов,Сумма по договору";
+//		}
+		AnsiString S;
+		bool KeyIncduded = true;
+		for (int i = 0; i < Cnt; i++) {
+			 TColumnEh* Column = Columns->Items[i];
+			 if (Column->Visible) {
+				 AnsiString X = ","+TranslateName(Column->FieldName);
+				 if (!AllFieldNames.Pos(X)) {
+					 AllFieldNames += X;
+					 FieldNames += X ;
+					 SS = Column->Title->Caption;
+					 TitleNames += "," + GetPiece(SS, "|",1);
+					 SS = GetPiece(SS, "|",2);
+					 if (SS != "")  TitleNames += "-> " + SS;
+					 if (FieldNames.Length() > 230 || TitleNames.Length() > 200) {
+						 KeyIncduded = KeyIncduded || FieldNames.Pos("," + FldKey);
+						 FieldNames  = FieldNames.SubString(2,1000);
+						 TitleNames  = TitleNames.SubString(2,1000);
+						 FieldNames  = FieldNames.UpperCase();
+						 FieldNamesList->Add(FieldNames);
+						 TitleNamesList->Add(TitleNames);
+						 FieldNames = "";
+						 TitleNames = "";
+					 }
+				 }
+			 }
+		}
+		if (!KeyIncduded) {
+			FieldNames = "," +FldKey + FieldNames  + ",STATUS";
+			TitleNames = ",N записи"  + TitleNames + ",Состояние";
+		}
+		else {
+			FieldNames = FieldNames + ",STATUS";
+			TitleNames = TitleNames + ",Состояние";
+		}
+		FieldNames  = FieldNames.SubString(2,1000);
+		TitleNames  = TitleNames.SubString(2,1000);
+		FieldNames = FieldNames.UpperCase();
+		FieldNamesList->Add(FieldNames);
+		TitleNamesList->Add(TitleNames);
+		FieldNames = "";
+		TitleNames = "";
+
+		Title = Title + " всех видимых полей";
+	}
+	else {
+		TColumnEh* Column = Grid->Columns->Items[Grid->Col - 1];
+		FieldNames = TranslateName(Column->FieldName);
+		SS = Column->Title->Caption;
+		TitleNames =  GetPiece(SS, "|",1);
+		SS = GetPiece(SS, "|",2);
+		if (SS != "")  TitleNames += "-> " + SS;
+		Title = Title + " поля > "+ TitleNames + " <";
+		FieldNames = FieldNames.UpperCase();
+		FieldNamesList->Add(FieldNames);
+		TitleNamesList->Add(TitleNames);
+	}
+	RestValue RestData;
+	if (SimpleSelHistoryID(this, 0,Title,TableName,ID,FieldNamesList,TitleNamesList,RestData)) {
+//		RestoreValue(RestData,!All);
 	}
 }
 //---------------------------------------------------------------------------
@@ -209,21 +312,28 @@ void __fastcall TFormDriverRep::FormClose(TObject *Sender, TCloseAction &Action)
 //---------------------------------------------------------------------------
 void __fastcall TFormDriverRep::sSpeedButtonClick(TObject *Sender)
 {
-	 switch (GetComponentTag(Sender)) {
-		 case  1: ProcRefresh(); break;
-		 case  5: ClearSums();
-					 ProcUnsAllStd(*WrkGData, NULL);
-					 break;
-		 case 31: ShowMonth(-3);
-					 break;
-		 case 32: ShowMonth(-2);
-					 break;
-		 case 33: ShowMonth(-1);
-					 break;
-		 case 34: ShowMonth(0);
-					 break;
-		 case 35: ShowMonth(1);
-					 break;
+	switch (GetComponentTag(Sender)) {
+		case  1:	ProcRefreshPage();                   break;
+		case  4: ProcSelAllStd(*WrkGData, NULL);	break;
+		case  5: ClearSums();
+					ProcUnsAllStd(*WrkGData, NULL);
+					break;
+		case  6: frxReport1->Print();
+					break;
+		case  7: PrintReport();
+					break;
+		case  8: ProcHistory(false);
+					break;
+		case 31: ShowMonth(-3);
+					break;
+		case 32: ShowMonth(-2);
+					break;
+		case 33: ShowMonth(-1);
+					break;
+		case 34: ShowMonth(0);
+					break;
+		case 35: ShowMonth(1);
+					break;
 	 }
 }
 //---------------------------------------------------------------------------
@@ -271,11 +381,16 @@ void __fastcall TFormDriverRep::ShowMonth(int Shift)
 	if (DT_B != DT_Beg || DT_E != DT_End) {
 		SetButtonCaption(CurMM);
 		SetDates(SelMM, SelYY);
-		ProcRefresh();
+		ProcRefreshPage();
 	}
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormDriverRep::sComboEdit1ButtonClick(TObject *Sender)
+{
+	SelectDriver();
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormDriverRep::SelectDriver()
 {
 	AnsiString Params = IntToStr(DModT->CurEmpID) + ",'" + DModT->ComputerName + "'";
 	int ID = DriverID;
@@ -283,7 +398,7 @@ void __fastcall TFormDriverRep::sComboEdit1ButtonClick(TObject *Sender)
 	if (SimpleSelEhDriverID(this,0,DriverID,0,Params,&SelectResultStr)) {
 		if (ID != DriverID) {
 			sComboEdit1->Text = GetPiece(SelectResultStr,"/",1);
-			ProcRefresh();
+			ProcRefreshPage();
 		}
 	}
 
@@ -316,7 +431,7 @@ void __fastcall TFormDriverRep::sDateEditAcceptDate(TObject *Sender, TDateTime &
 					break;
 	 }
 	 if (Shift) {
-		 ProcRefresh();
+		 ProcRefreshPage();
 	 }
 }
 //---------------------------------------------------------------------------
@@ -434,11 +549,21 @@ void __fastcall TFormDriverRep::SetPage()
 {
 	PageTag = sPageControl1->ActivePage->Tag;
 	WrkGData = &GetGDataRef(sPageControl1->ActivePage);
+	EnableControls();
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormDriverRep::EnableControls()
+{
+	bool En = PageTag == 3;
+	sSpeedButton2->Enabled = En;
+	sSpeedButton3->Enabled = En;
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormDriverRep::sPageControl1Change(TObject *Sender)
 {
 	SetPage();
+	if (!WrkGData->WrkDSet->Active)
+		ProcRefreshStd(*WrkGData,true);
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormDriverRep::ClearSums()
@@ -472,6 +597,72 @@ void __fastcall TFormDriverRep::AddCurrentRow(GridData& GData,int Mul, bool Show
 		}
 	}
 	if (Show) ShowHighFooter(GData.WrkDSet);
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormDriverRep::PrintReport()
+{
+	if (!MemTableEh1-Active) ProcRefreshStd(GDataOrders,true);
+	if (!MemTableEh2-Active) ProcRefreshStd(GDataOutlay,true);
+	frxReport1->ShowReport(true);
+	ProcRefreshPage();
+
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormDriverRep::sCheckBoxClick(TObject *Sender)
+{
+	TsCheckBox* CBox = dynamic_cast<TsCheckBox*>(Sender);
+	if (CBox->Checked) {
+		WrkGData->Flags |= SHOW_SELECTED;
+	}
+	else {
+		WrkGData->Flags ^= SHOW_SELECTED;
+	}
+	PulseFilterStd(*WrkGData);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormDriverRep::frxReport1BeforePrint(TfrxReportComponent *Sender)
+{
+	if (!Sender->Tag) return;
+	AnsiString FName = Sender->Name;
+	if (FName.Pos("Memo")) {
+		TfrxMemoView* MV = dynamic_cast<TfrxMemoView *>(frxReport1->FindObject(FName));
+		if (!MV || !MV->Tag) return;
+		AnsiString S;
+		switch (Sender->Tag) {
+			case  1: S = "Отчет по водителю " + sComboEdit1->Text +
+							  " за период с " + sDateEdit1->Text + " по " + sDateEdit2->Text;
+						if (sCheckBox1->Checked || sCheckBox1->Checked || sCheckBox3->Checked ) {
+							S += "(частичный)";
+						}
+						break;
+			case 21: if (sCheckBox1->Checked) S = "Выборочно";
+						break;
+			case 22: if (sCheckBox2->Checked) S = "Выборочно";
+						break;
+
+		}
+		MV->Text = S;
+		return;
+	}
+	if (FName.Pos("Picture")) {
+		TfrxPictureView* PV = dynamic_cast<TfrxPictureView *>(frxReport1->FindObject(FName));
+		if (!PV || !PV->Tag) return;
+		bool En = false;
+		int IVal;
+		AnsiString S;
+		switch (PV->Tag) {
+			case  1:
+						break;
+		}
+		PV->Visible = En;
+		return;
+	}
+	if (FName.Pos("Line")) {
+		TfrxLineView* Lin = dynamic_cast<TfrxLineView *>(frxReport1->FindObject(FName));
+		if (!Lin || !Lin->Tag) return;
+		Lin->Visible = true;
+	}
 }
 //---------------------------------------------------------------------------
 

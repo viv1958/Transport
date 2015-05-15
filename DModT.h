@@ -10,6 +10,9 @@
 #include <DB.hpp>
 #include <DBTables.hpp>
 #include "sSkinManager.hpp"
+#include "frxClass.hpp"
+#include "frxExportText.hpp"
+#include "frxExportXLS.hpp"
 //---------------------------------------------------------------------------
 class TDModT : public TDataModule
 {
@@ -18,6 +21,8 @@ __published:	// IDE-managed Components
 	TQuery *Query1;
 	TStoredProc *StoredProc1;
 	TsSkinManager *sSkinManager1;
+	TfrxXLSExport *frxXLSExport1;
+	TfrxSimpleTextExport *frxSimpleTextExport1;
 	void __fastcall DataModuleCreate(TObject *Sender);
 	void __fastcall Database1Login(TDatabase *Database, TStrings *LoginParams);
 	void __fastcall DataModuleDestroy(TObject *Sender);

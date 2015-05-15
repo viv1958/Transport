@@ -53,6 +53,7 @@
 #include "sEdit.hpp"
 #include "sButton.hpp"
 #include <Vcl.Menus.hpp>
+#include "sSpinEdit.hpp"
 //---------------------------------------------------------------------------
 struct DrawData {
 	int GraphID;
@@ -673,6 +674,71 @@ __published:	// IDE-managed Components
 	TsSpeedButton *sSpeedButton9;
 	TPopupMenu *PopupMenu1;
 	TMenuItem *N1;
+	TsCheckBox *sCheckBox33;
+	TsSpeedButton *sSpeedButton10;
+	TsSpinEdit *sSpinEdit1;
+	TsSpinEdit *sSpinEdit2;
+	TsSpinEdit *sSpinEdit3;
+	TsSpinEdit *sSpinEdit4;
+	TsSpinEdit *sSpinEdit5;
+	TsSpinEdit *sSpinEdit6;
+	TsSpinEdit *sSpinEdit7;
+	TsSpinEdit *sSpinEdit8;
+	TsSpinEdit *sSpinEdit9;
+	TsSpinEdit *sSpinEdit10;
+	TsSpinEdit *sSpinEdit11;
+	TsSpinEdit *sSpinEdit12;
+	TsSpinEdit *sSpinEdit13;
+	TsSpinEdit *sSpinEdit14;
+	TsSpinEdit *sSpinEdit15;
+	TsSpinEdit *sSpinEdit16;
+	TsSpinEdit *sSpinEdit17;
+	TsSpinEdit *sSpinEdit18;
+	TsSpinEdit *sSpinEdit19;
+	TsSpinEdit *sSpinEdit20;
+	TsSpinEdit *sSpinEdit21;
+	TsSpinEdit *sSpinEdit22;
+	TsSpinEdit *sSpinEdit23;
+	TsSpinEdit *sSpinEdit24;
+	TsSpinEdit *sSpinEdit25;
+	TsSpinEdit *sSpinEdit26;
+	TsSpinEdit *sSpinEdit27;
+	TsSpinEdit *sSpinEdit28;
+	TsSpinEdit *sSpinEdit29;
+	TsSpinEdit *sSpinEdit30;
+	TsSpinEdit *sSpinEdit31;
+	TsSpinEdit *sSpinEdit32;
+	TsSpinEdit *sSpinEdit33;
+	TsSpinEdit *sSpinEdit34;
+	TsSpinEdit *sSpinEdit35;
+	TsSpinEdit *sSpinEdit36;
+	TsSpinEdit *sSpinEdit37;
+	TsSpinEdit *sSpinEdit38;
+	TsSpinEdit *sSpinEdit39;
+	TsSpinEdit *sSpinEdit40;
+	TsSpinEdit *sSpinEdit41;
+	TsSpinEdit *sSpinEdit42;
+	TsSpinEdit *sSpinEdit43;
+	TsSpinEdit *sSpinEdit44;
+	TsSpinEdit *sSpinEdit45;
+	TsSpinEdit *sSpinEdit46;
+	TsSpinEdit *sSpinEdit47;
+	TsSpinEdit *sSpinEdit48;
+	TsSpinEdit *sSpinEdit49;
+	TsSpinEdit *sSpinEdit50;
+	TsSpinEdit *sSpinEdit51;
+	TsSpinEdit *sSpinEdit52;
+	TsSpinEdit *sSpinEdit53;
+	TsSpinEdit *sSpinEdit54;
+	TsLabel *sLabel54;
+	TsLabel *sLabel55;
+	TsLabel *sLabel56;
+	TsLabel *sLabel57;
+	TsLabel *sLabel58;
+	TsLabel *sLabel59;
+	TsLabel *sLabel60;
+	TsLabel *sLabel61;
+	TsLabel *sLabel62;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
@@ -733,6 +799,7 @@ __published:	// IDE-managed Components
 
 private:	// User declarations
 public:		// User declarations
+   bool OldColors;
 	int PageTag;
 	int SelIndex;
 	int SelViewID;
@@ -883,7 +950,7 @@ public:		// User declarations
 	AnsiString __fastcall TFormTrans::TranslateName(AnsiString FldName);
 	AnsiString __fastcall TFormTrans::TransportCanBeChanged();
 
-	void __fastcall TFormTrans::MoveGraphDay(int Shift);
+	void __fastcall TFormTrans::MoveGraphDay(int Shift,bool Refresh = true);
 	void __fastcall TFormTrans::ToggleShowSelected (GridData& GData);
 	void __fastcall TFormTrans::ToggleShowCost(bool Show);
 
@@ -961,6 +1028,9 @@ public:		// User declarations
 	void __fastcall TFormTrans::EditDriverGraph();
    void __fastcall TFormTrans::ClearDriver();
    void __fastcall TFormTrans::GoToCurrentOrder();
+	void __fastcall TFormTrans::AfterScroll(TDataSet *DataSet);
+   void __fastcall TFormTrans::ChangeDatabase();
+   void __fastcall TFormTrans::SetSpinEditValues();
 
 
 /*

@@ -9,6 +9,9 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "sSkinManager"
+#pragma link "frxClass"
+#pragma link "frxExportText"
+#pragma link "frxExportXLS"
 #pragma resource "*.dfm"
 TDModT *DModT;
 int AppTerminate;

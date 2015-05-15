@@ -55,6 +55,7 @@
 #pragma link "PrnDbgeh"
 #pragma link "sEdit"
 #pragma link "sButton"
+#pragma link "sSpinEdit"
 #pragma resource "*.dfm"
 namespace XXX {
 TFormTrans *FormTrans;
@@ -74,6 +75,7 @@ void __fastcall TFormTrans::FormCreate(TObject *Sender)
 	SetFormPosStd(this,Screen->Width,750,0,true);
 //	SetFormPosStd(this,1280,750,0,true);
 	Caption = Caption + " > " +DModT->Database1->AliasName + " < ";
+	SetSpinEditValues();
 	if (ChooseStartPage()) {
 		InitGData();
 		InitCommon();
@@ -784,6 +786,17 @@ void __fastcall TFormTrans::FormKeyDown(TObject *Sender, WORD &Key, TShiftState 
 		}
 	}
 	switch (Key) {
+		case VK_F6 : if (PageTag == 3) {
+							 OldColors = !OldColors;
+							 DBGridEh31->Repaint();
+						 }
+						 break;
+		case VK_ADD:
+		case VK_SUBTRACT:
+						 if (sMemo1->Focused()) {
+							 return;
+						 }
+						 break;
 		case VK_F3:  WriteMemo();
 						 if (PageTag == 3) {
 							 ProcFilter();
@@ -1245,22 +1258,31 @@ void __fastcall TFormTrans::SetEditBitMask(TDataSet *DataSet)
 //---------------------------------------------------------------------------
 void __fastcall TFormTrans::SetAfterScroll(TDataSet *DataSet)
 {
-	switch (DataSet->Tag) {
-		case 21: ShowMemoStd(GDataClient, sMemo3);
-		case 23: SetEditBitMask(DataSet);
-					break;
-		case 31:	SetEditBitMask(DataSet);// SetOrdersBitMask();
-					ShowMemoStd(GDataOrders, sMemo1);
-					CurOrderID    = DataSet->FieldByName("ORDERS_ID")->AsInteger;
-					DBGridEh31->Repaint();
-					break;
-		case 41: PrvGraphID    = CurGraphID;
-					CurGraphID    = DataSet->FieldByName("GRAPH_ID")->AsInteger;
-					break;
-	}
+//	switch (DataSet->Tag) {
+//		case 21: ShowMemoStd(GDataClient, sMemo3);
+//		case 23: SetEditBitMask(DataSet);
+//					break;
+//		case 31:	SetEditBitMask(DataSet);
+//					ShowMemoStd(GDataOrders, sMemo1);
+//					CurOrderID    = DataSet->FieldByName("ORDERS_ID")->AsInteger;
+//					DBGridEh31->Repaint();
+//					break;
+//		case 41: PrvGraphID    = CurGraphID;
+//					CurGraphID    = DataSet->FieldByName("GRAPH_ID")->AsInteger;
+//					break;
+//	}
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormTrans::MemTableEhAfterScroll(TDataSet *DataSet)
+{
+	AfterScroll(DataSet);
+	switch (DataSet->Tag) {
+		case 31: DBGridEh31->Repaint(); break;
+		case 41: DBGridEh41->Repaint(); break;
+	}
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormTrans::AfterScroll(TDataSet *DataSet)
 {
 	AfterScrollStd(GetGDataRef(DataSet));
 	switch (DataSet->Tag) {
@@ -1274,13 +1296,18 @@ void __fastcall TFormTrans::MemTableEhAfterScroll(TDataSet *DataSet)
 					DBGridEh13->Repaint();
 					break;
 		case 21: CurClientID = DataSet->FieldByName("Client_ID")->AsInteger;
-		case 23:
-		case 31:	SetAfterScroll(DataSet);
+					ShowMemoStd(GDataClient, sMemo3);
+					break;
+		case 23: SetEditBitMask(DataSet);
+					break;
+		case 31:	SetEditBitMask(DataSet);
+					ShowMemoStd(GDataOrders, sMemo1);
+					CurOrderID    = DataSet->FieldByName("ORDERS_ID")->AsInteger;
 					break;
 		case 41: SData.Fill(DataSet);
-					SetAfterScroll(DataSet);
+					PrvGraphID    = CurGraphID;
+					CurGraphID    = DataSet->FieldByName("GRAPH_ID")->AsInteger;
 					CurDriverID = DataSet->FieldByName("TRANS_DRIVER_ID")->AsInteger;
-					DBGridEh41->Repaint();
 					break;
 	}
 }
@@ -1362,7 +1389,7 @@ void __fastcall TFormTrans::MemTableEhFilterRecord(TDataSet *DataSet, bool &Acce
 
 		case 43: if (DataSet->FieldByName("FLAG_KIND")->AsInteger == 1) {
 						Accept = DataSet->FieldByName("GRAPH_ID")->AsInteger == MemTableEh41->FieldByName("GRAPH_ID")->AsInteger;
-//						FillHintStructures(DataSet);
+						FillHintStructures(DataSet);
 					}
 					else {
 						 Accept = DataSet->FieldByName("TRANSPORT_ID")->AsInteger == MemTableEh41->FieldByName("TRANSPORT_ID")->AsInteger &&
@@ -1370,7 +1397,7 @@ void __fastcall TFormTrans::MemTableEhFilterRecord(TDataSet *DataSet, bool &Acce
 						 if (!Accept) {
 							 RefreshGraphRow(DataSet);
 						 }
-//						 else FillHintStructures(DataSet);
+						 else FillHintStructures(DataSet);
 					}
 					break;
 		default: Accept = FilterRecordStd(GetGDataRef(DataSet));
@@ -1387,7 +1414,19 @@ void __fastcall TFormTrans::RefreshGraphRow(TDataSet* DSet)
 	MemRec->DataValues["DRIVER_NAME"][dvvValueEh] = DSet->FieldByName("DRIVER_NAME")->Value;
 	std::map<int, Vect>::iterator iter = TransWork.find(GraphID);
 	if (iter != TransWork.end()) {
-		TransWork.erase(iter);
+//		TransWork.erase(iter);
+		int size = iter->second.size();
+		std::vector<int>::iterator it = iter->second.begin();
+		std::vector<int>::iterator end = iter->second.end();
+		while (it != end) {
+			if (*it != 0) {
+				it  = iter->second.erase(it, it+5);
+				end = iter->second.end();
+			}
+			else {
+				it +=5;
+			}
+		}
 	}
 }
 //---------------------------------------------------------------------------
@@ -1781,15 +1820,27 @@ bool __fastcall TFormTrans::RecordNotInSelectCondition()
 		case 2: return false;
 	}
 	DT = MemTableEh31->FieldByName(Fld)->AsDateTime;
-	return (DT < DT_Beg_Ord || DT > DT_End_Ord + !SelIndex - 1);  //??
+	bool bRes = DT < DT_Beg_Ord;
+	bRes = bRes || DT > DT_End_Ord + !SelIndex - 1;
+	return bRes;
 }
 TColor CurrentLineColor = TColor(RGB(250, 235, 215));   // AntiqueWhite
 TColor FocusedLineColor = TColor(RGB(255, 222, 173));   // NavajoWhite
+TColor GetBGC(TsSpinEdit* REdit,TsSpinEdit* GEdit,TsSpinEdit* BEdit)
+{
+	return TColor(RGB(StrToIntDef(REdit->Text,255),StrToIntDef(GEdit->Text,255),StrToIntDef(BEdit->Text,255)));
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormTrans::SetSpinEditValues()
+{
+	sSpinEdit1->Value = 255;
+}
 //---------------------------------------------------------------------------
 void __fastcall TFormTrans::DBGridEhGetCellParams(TObject *Sender, TColumnEh *Column,
 			 TFont *AFont, TColor &Background, TGridDrawStateEh State)
 {
-	bool CurrentRec,NotInSelCondition;
+	bool CurrentRecord,NotInSelCondition;
+	int  DateColorShift,OrderTypeShift;
 	switch(GetComponentTag(Sender)) {
 		case 11: if (CurTransCompID && CurTransCompID == MemTableEh11->FieldByName("Trans_Company_ID")->AsInteger)
 						if (DBGridEh11->Focused()) Background = FocusedLineColor;
@@ -1806,23 +1857,112 @@ void __fastcall TFormTrans::DBGridEhGetCellParams(TObject *Sender, TColumnEh *Co
 					break;
 		case 31: if (!CurOrderID) break;
 					NotInSelCondition = RecordNotInSelectCondition();
+					CurrentRecord     = MemTableEh31->FieldByName(GDataOrders.FieldKey)->AsInteger == CurOrderID;
+					DateColorShift    = OrderTypeShift = 0;
+					if (Column->Tag < 10) {
+						TDateTime DTM = TDateTime(GetDateStr(MemTableEh31->FieldByName("DT_BEG")->AsDateTime));
+						TDateTime DTT = Date();
+						if      (DTM == DTT)
+						    DateColorShift = 1;
+						else if (DTM == DTT+1)
+							 DateColorShift = 2;
+					}
+					if (MemTableEh31->FieldByName("ORDER_TYPE")->AsInteger == 3) {    // Аренда
+						switch(MemTableEh31->FieldByName("ORDER_STATE")->AsInteger) {
+							case 5:  OrderTypeShift = 20; break;
+							case 6:  OrderTypeShift = 0;  break;
+							default: OrderTypeShift = 10; break;
+						}
+					}
+					if (!OldColors)  {
+					if (CurrentRecord) {
+						switch(DateColorShift + OrderTypeShift) {
+							case  0: // nothing special
+										Background = GetBGC(sSpinEdit1,sSpinEdit2,sSpinEdit3);
+										break;
+							case  1: // today
+										break;
+							case  2: // tomorrow
+										Background = GetBGC(sSpinEdit4,sSpinEdit5,sSpinEdit6);
+										break;
+							case 10: // аренда не сверена не сегодня и не завтра
+										Background = GetBGC(sSpinEdit7,sSpinEdit8,sSpinEdit9);
+										break;
+							case 11: // аренда не сверена сегодня
+										Background = GetBGC(sSpinEdit10,sSpinEdit11,sSpinEdit12);
+										break;
+							case 12: // аренда не сверена завтра
+										Background = GetBGC(sSpinEdit13,sSpinEdit14,sSpinEdit15);
+										break;
+							case 20: // аренда сверен И не сегодня и не завтра
+										Background = GetBGC(sSpinEdit16,sSpinEdit17,sSpinEdit18);
+										break;
+							case 21: // аренда сверен И сегодня
+										Background = GetBGC(sSpinEdit19,sSpinEdit20,sSpinEdit21);
+										break;
+							case 22: // аренда сверен И завтра
+										Background = GetBGC(sSpinEdit22,sSpinEdit23,sSpinEdit24);
+										break;
 
-					CurrentRec = false;
+						}
+					}
+					else {
+						switch(DateColorShift + OrderTypeShift) {
+							case  0: // nothing special
+										Background = GetBGC(sSpinEdit25,sSpinEdit26,sSpinEdit27);
+										break;
+							case  1: // today
+										Background = GetBGC(sSpinEdit28,sSpinEdit29,sSpinEdit30);  0,191,155
+										break;
+							case  2: // tomorrow
+										Background = GetBGC(sSpinEdit31,sSpinEdit32,sSpinEdit33);
+										break;
+							case 10: // аренда не сверена не сегодня и не завтра
+										break;
+							case 11: // аренда не сверена сегодня
+										break;
+							case 12: // аренда не сверена завтра
+										break;
+							case 20: // аренда сверен К не сегодня и не завтра
+
+										break;
+							case 21: // аренда сверен К сегодня
+
+										break;
+							case 22: // аренда сверен К завтра
+
+										break;
+
+						}
+					}
+					break;
+					}
+					// ---------old version ------------------
 					if (MemTableEh31->FieldByName(GDataOrders.FieldKey)->AsInteger == CurOrderID) {
 						if (NotInSelCondition) Background =  TColor(RGB(255, 228, 225));   // текущий заказ вне фильтра
 						else                   Background =  FocusedLineColor;             // текущий заказ
-						CurrentRec = true;
+						CurrentRecord = true;
 					}
 					else if (NotInSelCondition)
-						Background = TColor(RGB(255, 239, 213));//clInfoBk;               // вне диапазна выборки
-					if (MemTableEh31->FieldByName("ORDER_TYPE")->AsInteger == 3) {
+						Background = TColor(RGB(255, 239, 213));               // вне диапазна выборки
+					if (MemTableEh31->FieldByName("ORDER_TYPE")->AsInteger == 3) {    // Аренда
 						switch(MemTableEh31->FieldByName("ORDER_STATE")->AsInteger) {
-							case 5:  if (CurrentRec) Background =  TColor(RGB(  0, 191, 255));
-										else            Background =  TColor(RGB(135, 206, 250));
+							case 5:  if (CurrentRecord) Background =  TColor(RGB(  0, 191, 255));   //DeepSkyBlue1
+										else               Background =  TColor(RGB(135, 206, 250));   //LightSkyBlue
 							case 6:  break;
-							default: if (CurrentRec) Background = TColor(RGB(  0, 206, 209));
-										else            Background = TColor(RGB(175, 238, 238));
+							default: if (CurrentRecord) Background = TColor(RGB(  0, 206, 209));    // DarkTurquoise
+										else               Background = TColor(RGB(175, 238, 238));    // PaleTurquoise
 										break;
+						}
+					}
+					if (Column->Tag < 10) {
+						TDateTime DTM = TDateTime(GetDateStr(MemTableEh31->FieldByName("DT_BEG")->AsDateTime));
+						TDateTime DTT = Date();
+						if (DTM == DTT) {
+							 Background = TColor(RGB(175, 238, 238));
+						}
+						else if (DTM == DTT+1) {
+							 Background = TColor(RGB(230, 230, 250));
 						}
 					}
 					break;
@@ -1918,7 +2058,9 @@ void __fastcall TFormTrans::DBGridEhKeyDown(TObject *Sender, WORD &Key, TShiftSt
 		case VK_BACK:     switch(Tag) {
 									case 31:  Col = WrkGData->WrkGrid->Columns->Items[WrkGData->WrkGrid->Col-1]->Tag;
 												 if (Col == 14) {
-													 WrkGData->AddCurParam(ftString,WrkGData->WrkGrid->Columns->Items[WrkGData->WrkGrid->Col-1]->FieldName,Null);
+													Variant V;
+													V.Clear();
+												   WrkGData->AddCurParam(ftString,WrkGData->WrkGrid->Columns->Items[WrkGData->WrkGrid->Col-1]->FieldName,V);
 												 }
 									case 51:  WrkGData->Flags &= ~MULTIPLE_SEL;
 												 SetMultiFlag = true;
@@ -1993,7 +2135,8 @@ void __fastcall TFormTrans::AttachOuterTransport()
 			PulseFilterStd(GDataGraph);
 			GDataGraph.KeyValue = TransportID;
 			RestorePosStd(GDataGraph,false);
-			SetAfterScroll(MemTableEh41);
+			AfterScroll(MemTableEh41);
+//			DBGridEh41->Repaint();      // ???
 		}
 	}
 }
@@ -2708,6 +2851,12 @@ void __fastcall TFormTrans::sCheckBoxAddClick(TObject *Sender)
 					 break;
 		 case 22: ToggleShowCost(sCheckBox22->Checked);
 					 break;
+		 case 33: sDateEdit2->Enabled = sCheckBox33->Checked;
+					 if (sDateEdit2->Date != sDateEdit1->Date + 1) {
+						 sDateEdit2->Date = DT_End_Ord = DT_Beg_Ord + 1;
+						 ProcRefreshPage();
+                }
+		 			 break;
 		 case 41: PulseFilterStd(GDataGraph);
 					 break;
 		 case 42: DBGridEh41->Repaint();
@@ -2747,6 +2896,8 @@ void __fastcall TFormTrans::sSpeedButtonClick(TObject *Sender)
 						break;
 		  case  9:  PopupMenu1->Popup(Left +sSpeedButton9->Left + 4,
 												Top  + sSpeedButton9->Top + sSpeedButton9->Height + 22);
+						break;
+		  case 10: 	ChangeDatabase();
 						break;
 		  // перемещение по датам в заказах
 		  case 31:  ShowOrders(DT_Beg_Ord - 1);      break;
@@ -2795,16 +2946,20 @@ void __fastcall TFormTrans::GoToCurrentOrder()
 						TDateTime DT    = TDateTime(GetDateStr(MemTableEh31->FieldByName("DT_BEG")->AsDateTime));
 						int TransportID = MemTableEh31->FieldByName("TRANSPORT_ID")->AsInteger;
 						sPageControl1->ActivePage = sTabSheet4;
+						MoveGraphDay(DT-DT_Graph,false);
 						ChangePage();
-						MoveGraphDay(DT-DT_Graph);
 						if (TransportID) {
 							if (MemTableEh41->Locate("GRAPH_ID", TransportID, TLocateOptions()) ) {
+								GDataDetail.KeyValue = OrdersID;
 								DBGridEh41->RowDetailPanel->Visible = true;
-								MemTableEh43->Locate("GRAPH_ID",-OrdersID,TLocateOptions());
+//								if (MemTableEh43->Active)
+//									MemTableEh43->Locate("GRAPH_ID",-OrdersID,TLocateOptions());
+//								 else
 							}
 						}
 						else MemTableEh41->Locate("GRAPH_ID",-OrdersID,TLocateOptions());
-						AfterScrollStd(*WrkGData);
+						AfterScroll(WrkGData->WrkDSet);
+						DBGridEh41->Repaint();
 					}
 					break;
 		case 4:	if (DBGridEh41->RowDetailPanel->Visible && DBGridEh43->Focused()) {
@@ -2852,13 +3007,30 @@ void __fastcall TFormTrans::GoToCurrentOrder()
 								if (MemTableEh31->FieldByName("ORDERS_ID")->AsInteger != OrdersID) {
 									OutputMessage("Не удалось найти заказ " + IntToStr(OrdersID));
 								}
+								else break;
 							}
 						}
-						AfterScrollStd(*WrkGData);
+						AfterScroll(WrkGData->WrkDSet);
+						DBGridEh31->Repaint();
 					 }
 					 break;
 
 	}
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormTrans::ChangeDatabase()
+{
+   DModT->Database1->Connected = false;
+	if (DModT->Database1->AliasName == "Trans") {
+		DModT->Database1->AliasName = "Trans_Train";
+		Caption = " Pasвозка > " +DModT->Database1->AliasName + " < ТРЕНИРОВОЧНАЯ ";
+	}
+	else {
+		DModT->Database1->AliasName = "Trans";
+		Caption = " Pasвозка > " +DModT->Database1->AliasName + " < ";
+	}
+	DModT->Start();
+	ProcRefreshPage();
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormTrans::EditDriverGraph()
@@ -2913,7 +3085,7 @@ void __fastcall TFormTrans::FindOrder(int OrdersID)
 					ShowOrders(DT);
 					MemTableEh31->Locate("ORDERS_ID", OrdersID, TLocateOptions());
 					AfterScrollStd(*WrkGData);
-
+					DBGridEh31->Repaint();
 				}
 			}
 		}
@@ -3096,14 +3268,15 @@ void __fastcall TFormTrans::SaveCurrentView()
 	SelCurrentView(true);
 }
 //---------------------------------------------------------------------------
-void __fastcall TFormTrans::MoveGraphDay(int Shift)
+void __fastcall TFormTrans::MoveGraphDay(int Shift, bool Refresh)
 {
 	DT_Graph += Shift;
 	sDateEdit3->Date = DT_Graph;
 	ShowTransVect.clear();
 	CreateGraphColumns();
 	SetGraphLabels();
-	ProcRefreshStd(GDataGraph,true);
+	if (Refresh)
+		ProcRefreshStd(GDataGraph,true);
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormTrans::ProcFilter()
@@ -3123,8 +3296,8 @@ void __fastcall TFormTrans::sDateEditAcceptDate(TObject *Sender, TDateTime &aDat
 		 case 1: Shift = aDate - DT_Beg_Ord;
 					if (Shift) {
 						 DT_Beg_Ord = aDate;
-						 if (DT_Beg_Ord >= DT_End_Ord) {
-							 sDateEdit2->Date = DT_End_Ord = DT_Beg_Ord + 1;
+						 if (DT_Beg_Ord >= DT_End_Ord || !sCheckBox33->Checked) {
+							  sDateEdit2->Date = DT_End_Ord = DT_Beg_Ord + 1;
 						 }
 					}
 					break;
@@ -4300,7 +4473,8 @@ void __fastcall TFormTrans::SaveDetailPanel()
 	sCheckBox21->Checked = false;
 	GDataOrders.AddCurParam(ftString,"CONTACT_PHONE_ADD",sEdit1->Text);
 	WriteDataStd(GDataOrders,   false);
-	SetAfterScroll(MemTableEh31);
+	AfterScroll(MemTableEh31);
+//	DBGridEh31->Repaint();			// ???
 	ResetDetailPanel();
 	DBGridEh31->RowDetailPanel->Visible = true;
 	sCheckBox21->Checked = Chk;

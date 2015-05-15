@@ -41,7 +41,7 @@
 			<PackageImports>fmx;IndySystem;DBXInterBaseDriver;DataSnapClient;DataSnapCommon;DataSnapServer;DataSnapProviderClient;DbxCommonDriver;dbxcds;DBXOracleDriver;CustomIPTransport;dsnap;fmxase;IndyCore;inetdbxpress;IPIndyImpl;bindcompfmx;rtl;dbrtl;DbxClientDriver;bindcomp;inetdb;xmlrtl;ibxpress;IndyProtocols;DBXMySQLDriver;soaprtl;bindengine;DBXInformixDriver;DBXFirebirdDriver;inet;fmxobj;DBXSybaseASADriver;fmxdae;dbexpress;DataSnapIndy10ServerTransport;$(PackageImports)</PackageImports>
 			<ProjectType>CppVCLApplication</ProjectType>
 			<DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
-			<AllPackageLibs>rtl.lib;vcl.lib;dbrtl.lib;bdertl.lib;acntBuilderXE2_R.lib;vclimg.lib;vclx.lib;EhLib160.lib;vcldb.lib;cxLibraryRS16.lib;dxGDIPlusRS16.lib;dxCoreRS16.lib;dxThemeRS16.lib;cxEditorsRS16.lib;cxDataRS16.lib;dxSkinsCoreRS16.lib;cxVerticalGridRS16.lib;cxExportRS16.lib;xmlrtl.lib</AllPackageLibs>
+			<AllPackageLibs>rtl.lib;vcl.lib;dbrtl.lib;bdertl.lib;acntBuilderXE2_R.lib;vclimg.lib;vclx.lib;EhLib160.lib;vcldb.lib;cxLibraryRS16.lib;dxGDIPlusRS16.lib;dxCoreRS16.lib;dxThemeRS16.lib;cxEditorsRS16.lib;cxDataRS16.lib;dxSkinsCoreRS16.lib;cxVerticalGridRS16.lib;cxExportRS16.lib;xmlrtl.lib;frx16.lib;fs16.lib;frxDB16.lib;fsDB16.lib;frxe16.lib</AllPackageLibs>
 			<Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
 			<UsingDelphiRTL>true</UsingDelphiRTL>
 			<IncludePath>D:\Embarcadero\Other\Transport\;$(IncludePath)</IncludePath>

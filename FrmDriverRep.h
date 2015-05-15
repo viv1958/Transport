@@ -34,6 +34,10 @@
 #include <Bde.DBTables.hpp>
 #include <Data.DB.hpp>
 #include "sPageControl.hpp"
+#include "frxClass.hpp"
+#include "frxDBSet.hpp"
+#include "frxDesgn.hpp"
+#include "frxDMPExport.hpp"
 //---------------------------------------------------------------------------
 class TFormDriverRep : public TForm
 {
@@ -45,11 +49,9 @@ __published:	// IDE-managed Components
 	TsSpeedButton *sSpeedButton3;
 	TsSpeedButton *sSpeedButton4;
 	TsSpeedButton *sSpeedButton5;
-	TsSpeedButton *sSpeedButton8;
 	TsSpeedButton *sSpeedButton6;
+	TsSpeedButton *sSpeedButton8;
 	TsSpeedButton *sSpeedButton7;
-	TsSpeedButton *sSpeedButton9;
-	TsCheckBox *sCheckBox6;
 	TsSpeedButton *sSpeedButton31;
 	TsSpeedButton *sSpeedButton32;
 	TsSpeedButton *sSpeedButton33;
@@ -133,6 +135,16 @@ __published:	// IDE-managed Components
 	TStringField *MemTableEh2REG_NUMBER;
 	TStringField *MemTableEh2TRANS_TYPE_NAME;
 	TStringField *MemTableEh2DRIVER_NAME;
+	TfrxReport *frxReport1;
+	TfrxDBDataset *frxDBDataset1;
+	TfrxDBDataset *frxDBDataset2;
+	TfrxDesigner *frxDesigner1;
+	TsPanel *sPanel2;
+	TsCheckBox *sCheckBox1;
+	TsPanel *sPanel3;
+	TsCheckBox *sCheckBox2;
+	TsPanel *sPanel4;
+	TsCheckBox *sCheckBox3;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
@@ -153,6 +165,8 @@ __published:	// IDE-managed Components
 	void __fastcall DBGridEhKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall DBGridEhKeyPress(TObject *Sender, System::WideChar &Key);
 	void __fastcall sPageControl1Change(TObject *Sender);
+	void __fastcall sCheckBoxClick(TObject *Sender);
+	void __fastcall frxReport1BeforePrint(TfrxReportComponent *Sender);
 
 
 private:	// User declarations
@@ -161,6 +175,7 @@ public:		// User declarations
 	int DriverID;
 	int CurMM, CurYY,SelMM;
 	int MaxMM, MaxYY,SelYY;
+
 	TDateTime DT_Beg;
 	TDateTime DT_End;
 	GridData *WrkGData;
@@ -168,14 +183,21 @@ public:		// User declarations
 	GridData GDataOutlay;
 	GridData GDataMonCng;
 	int SumHand, SumPay, SumOutlay;
-	__fastcall TFormDriverRep(TComponent* Owner);
+	__fastcall TFormDriverRep(TComponent* Owner,int DriverID, AnsiString DriverName);
 
 	void __fastcall TFormDriverRep::SetDriver(int DriverID, AnsiString DriverName);
 	void __fastcall TFormDriverRep::InitGData();
 	void __fastcall TFormDriverRep::InitCommon();
+	void __fastcall TFormDriverRep::SelectDriver();
+
+	void __fastcall TFormDriverRep::ProcHistory(bool All);
+	AnsiString __fastcall TFormDriverRep::TranslateName(AnsiString FldName);
+
+
    void __fastcall TFormDriverRep::SetPage();
+   void __fastcall TFormDriverRep::EnableControls();
 	void __fastcall TFormDriverRep::CloseAll();
-	void __fastcall TFormDriverRep::ProcRefresh();
+	void __fastcall TFormDriverRep::ProcRefreshPage();
 	void __fastcall TFormDriverRep::SetButtonCaption(int Mon);
 	void __fastcall TFormDriverRep::SetDates(int MM,int YY);
 
@@ -191,6 +213,7 @@ public:		// User declarations
 	void __fastcall TFormDriverRep::ClearSums();
 	void __fastcall TFormDriverRep::AddCurrentRow(GridData& GData,int Mul, bool Show, bool Clear);
 
+   void __fastcall TFormDriverRep::PrintReport();
 
 //	void __fastcall TFormDriverRep::SetCommonExtParams(GridData& GData);
 

@@ -2218,4 +2218,31 @@ object DModT: TDModT
     Left = 168
     Top = 144
   end
+  object frxXLSExport1: TfrxXLSExport
+    UseFileCache = True
+    ShowProgress = True
+    OverwritePrompt = False
+    DataOnly = False
+    ExportEMF = True
+    AsText = False
+    Background = True
+    FastExport = True
+    PageBreaks = True
+    EmptyLines = True
+    SuppressPageHeadersFooters = False
+    Left = 280
+    Top = 176
+  end
+  object frxSimpleTextExport1: TfrxSimpleTextExport
+    UseFileCache = True
+    ShowProgress = True
+    OverwritePrompt = False
+    DataOnly = False
+    Frames = False
+    EmptyLines = False
+    OEMCodepage = False
+    DeleteEmptyColumns = True
+    Left = 280
+    Top = 232
+  end
 end

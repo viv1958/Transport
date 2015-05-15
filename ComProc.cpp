@@ -1297,7 +1297,7 @@ bool __fastcall RestorePosStd(GridData& GData,bool RestoreChild)
 			if (GDataChild->WrkDSet->Active) {
 				if (bRes)  RestorePosStd(*GDataChild,true);
 				else       GDataChild->KeyValue.Clear();
-			}
+ 			}
 		}
    }
    SetStatusBarStd(GData);
@@ -2643,7 +2643,7 @@ bool __fastcall WriteDataQueryStd(GridData& GData,bool Delete)
                   while (!FilterRecordStd(GData) && !GData.WrkDSet->Bof) {
                      GData.WrkDSet->Prior();
                   }
-                  PulseFilterStd(GData);
+						PulseFilterStd(GData);
                }
                GData.WrkGrid->Repaint();
                return bResult;
