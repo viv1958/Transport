@@ -14,6 +14,7 @@
 #include "FrmOrderCopy.h"
 #include "FrmDriverGraph.h"
 #include "FrmDriverRep.h"
+#include "FrmSelRep.h"
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -56,6 +57,8 @@
 #pragma link "sEdit"
 #pragma link "sButton"
 #pragma link "sSpinEdit"
+#pragma link "frxClass"
+#pragma link "frxDBSet"
 #pragma resource "*.dfm"
 namespace XXX {
 TFormTrans *FormTrans;
@@ -76,6 +79,7 @@ void __fastcall TFormTrans::FormCreate(TObject *Sender)
 //	SetFormPosStd(this,1280,750,0,true);
 	Caption = Caption + " > " +DModT->Database1->AliasName + " < ";
 	SetSpinEditValues();
+	SelColors();
 	if (ChooseStartPage()) {
 		InitGData();
 		InitCommon();
@@ -106,6 +110,8 @@ bool __fastcall TFormTrans::ChooseStartPage()
 //---------------------------------------------------------------------------
 void __fastcall TFormTrans::InitCommon()
 {
+	OldColors = true;
+
 	MaxFrozenCols         = DBGridEh31->FrozenCols;
 	sComboBox1->ItemIndex = SelIndex = 1;
 	sComboEdit1->Text     = "Не выбран";
@@ -203,32 +209,32 @@ void __fastcall TFormTrans::CreateEditList()
 											DBNumberEditEh4,     DBNumberEditEh5,		DBNumberEditEh6,     ComboBox2,
 											DBNumberEditEh7,		DBNumberEditEh8,
 
-											ComboBox3,           DBNumberEditEh9,     ComboBox4,         	ComboBox5,
-											DBNumberEditEh10,    ComboBox6,           ComboBox7,
+											ComboBox3,           DBNumberEditEh9,     sComboEdit12,       	ComboBox5,
+											DBNumberEditEh10,    sComboEdit13,        ComboBox7,
 
 
 											DBNumberEditEh11,		DBDateTimeEditEh7,	DBNumberEditEh12,		DBDateTimeEditEh8,
-											DBNumberEditEh13,	   DBNumberEditEh14,    sMemo2 };
+											DBNumberEditEh13,	   DBNumberEditEh14,    sComboEdit14,        sMemo2 };
 	AllDetailCtrl = sizeof(WCtrlArr)/sizeof(TWinControl*);
 	NumDetailCtrl = AllDetailCtrl;
 	WCtrlVect.insert(WCtrlVect.begin(),WCtrlArr,WCtrlArr+AllDetailCtrl);
 
-	AnsiString FNameArr[] = { 	"CONTACT_NAME",  			"CONTACT_PHONE",   	"TRANS_TYPE_NAME",	"PASS_NEED",
-										"BEG_TOWN_NAME", 			"BEG_STREET_NAME", 	"BEG_ADDR_NAME",
-										"END_TOWN_NAME", 			"END_STREET_NAME", 	"END_ADDR_NAME",     "RET_TO_START",
+	AnsiString FNameArr[] = { 	"CONTACT_NAME",  			"CONTACT_PHONE",   		 	"TRANS_TYPE_NAME",	"PASS_NEED",
+										"BEG_TOWN_NAME", 			"BEG_STREET_NAME", 		 	"BEG_ADDR_NAME",
+										"END_TOWN_NAME", 			"END_STREET_NAME", 		 	"END_ADDR_NAME",     "RET_TO_START",
 
-										"TRANS_COMPANY_NAME", 	"TRANSPORT_NAME",		"REG_NUMBER;PASS_NUMBER;TRANS_COMMENT|Рег.N;Мест;>",  // транспорт
-										"DRIVER_NAME",          "DRIVER_PHONE",      "DRIVER_HAND_MONEY",												// Водитель
+										"TRANS_COMPANY_NAME", 	"TRANSPORT_NAME",		    	"REG_NUMBER;PASS_NUMBER;TRANS_COMMENT|Рег.N;Мест;>",  // транспорт
+										"DRIVER_NAME",          "DRIVER_PHONE",      	 	"DRIVER_HAND_MONEY",												// Водитель
 
-										"TIME_BEF",     			"WRK_DAY",           "TIME_WRK",				"TIME_SUM_STR_F",
-										"HOUR_TAX", 				"DIST_RES",	 		   "DIST_TAX",				"FLAG_CALC_INCOME",
+										"TIME_BEF",     			"WRK_DAY",           	 	"TIME_WRK",				"TIME_SUM_STR_F",
+										"HOUR_TAX", 				"DIST_RES",	 		   	 	"DIST_TAX",				"FLAG_CALC_INCOME",
 										"PAY_CALC",					"PAY_RES",
 
-										"PAY_TYPE",          	"PAY_AVC",           "PAY_AVC_RECEIVER",	"PAY_AVC_STATE",
-										"PAY_REST",          	"PAY_REST_RECEIVER", "PAY_REST_STATE",
+										"PAY_TYPE",          	"PAY_AVC",           	 	"PAY_AVC_RECEIVER_STR",	"PAY_AVC_STATE",
+										"PAY_REST",          	"PAY_REST_RECEIVER_STR", 	"PAY_REST_STATE",
 
-										"EXC_PAY",              "EXC_PAY_DATE",      "MNG_PAY",	  			"MNG_PAY_DATE",
-										"DRV_PAY",              "INCOME",            "COMMENT" };
+										"EXC_PAY",              "EXC_PAY_DATE",      	  	"MNG_PAY",	  			"MNG_PAY_DATE",
+										"DRV_PAY",              "INCOME",            	  	"NDOG_ID_STR",				"COMMENT" };
 	FNameVect.insert(FNameVect.begin(),FNameArr,FNameArr+NumDetailCtrl);
 	DetailEditCng.insert (DetailEditCng.begin(), AllDetailCtrl,false);
 }
@@ -348,7 +354,29 @@ bool __fastcall TFormTrans::GetDriverID(TForm* Frm, int Left,int &ID,TParams*&)
 		case 5: TransCompID = -1; break;
 	}
 	if (!TransCompID) return false;
-	return SimpleSelEhDriverID(Frm,0,ID,TransCompID,Params,&SelectResultStr);;
+	return SimpleSelEhDriverID(Frm,0,ID,TransCompID,Params,&SelectResultStr);
+}
+//---------------------------------------------------------------------------
+bool __fastcall TFormTrans::GetAvcReceiverID(TForm* Frm, int Left,int &ID,TParams*&)
+{
+	AnsiString Params = IntToStr(DModT->CurEmpID) + ",'" + DModT->ComputerName + "'";
+	return SimpleSelEhMoneyReceiverID(Frm,0,ID,Params,&SelectResultStr);
+}
+//---------------------------------------------------------------------------
+bool __fastcall TFormTrans::GetRestReceiverID(TForm* Frm, int Left,int &ID,TParams*&)
+{
+	AnsiString Params = IntToStr(DModT->CurEmpID) + ",'" + DModT->ComputerName + "'";
+	return SimpleSelEhMoneyReceiverID(Frm,0,ID,Params,&SelectResultStr);
+}
+//---------------------------------------------------------------------------
+bool __fastcall TFormTrans::GetNDogID(TForm* Frm, int Left,int &ID,TParams*&)
+{
+	AnsiString Params = IntToStr(DModT->CurEmpID) + ",'" + DModT->ComputerName + "'";
+	TDateTime DTBeg = DT_Beg_Ord - 300;
+	int CurOrderID = MemTableEh31->FieldByName("ORDERS_ID")->AsInteger;
+	if (!CurOrderID)  return false;
+	bool bRes = SimpleSelNDogID(Frm,0,ID,DTBeg,&SelectResultStr);
+	return bRes;
 }
 //---------------------------------------------------------------------------
 bool __fastcall TFormTrans::GetExpenseID(TForm* Frm, int Left,int &ID,TParams*&)
@@ -368,7 +396,7 @@ void __fastcall TFormTrans::InitGData()
 	int Flags = STD_STATUSBAR    | CAN_SEE_DELETED    | INC_SEARCH | FILTER_BY_NAME |
 					UPDATE_IN_MEMORY | DONT_CHECK_KEY_ID;
 // ===== Список поставщиков услуг ==============================================
-	GDataTransComp.Flags         = Flags | PULSE_AFTER_UPDATE;
+	GDataTransComp.Flags         = Flags;// | PULSE_AFTER_UPDATE;
 	GDataTransComp.WrkSBar       = sStatusBar1;
 
 	GDataTransComp.FieldKey      = "TRANS_COMPANY_ID";
@@ -389,7 +417,7 @@ void __fastcall TFormTrans::InitGData()
 	GDataTransComp.FldTranslateMap.insert(pair<AnsiString,AnsiString>("Out_Flag","TRANS_COMPANY_FLAG"));
 	SetCommonExtParams(GDataTransComp);
 // ==== Список типов транспорта ================================================
-	GDataTransType.Flags         = Flags;
+	GDataTransType.Flags         = Flags;// | PULSE_AFTER_UPDATE;
 	GDataTransType.WrkSBar       = sStatusBar1;
 
 	GDataTransType.FieldKey      = "TRANS_TYPE_ID";
@@ -410,7 +438,7 @@ void __fastcall TFormTrans::InitGData()
 	GDataTransType.FunSetSQLOne  = RefreshOneRow;
 	SetCommonExtParams(GDataTransType);
 // ==== Транспортные средства ==================================================
-	GDataTransport.Flags         = Flags;
+	GDataTransport.Flags         = Flags;// | PULSE_AFTER_UPDATE;
 	GDataTransport.WrkSBar       = sStatusBar1;
 
 	GDataTransport.FieldKey      = "TRANSPORT_ID";
@@ -442,7 +470,7 @@ void __fastcall TFormTrans::InitGData()
 	SetCommonExtParams(GDataTransport);
 // =============================================================================
 // ==== список клиентов ========================================================
-	GDataClient.Flags         = Flags;
+	GDataClient.Flags         = Flags | PULSE_AFTER_UPDATE;
 	GDataClient.WrkSBar       = sStatusBar1;
 
 	GDataClient.FieldKey      = "CLIENT_ID";
@@ -536,8 +564,8 @@ void __fastcall TFormTrans::InitGData()
 //																 7    11   15   19   23   27   31   35   39   43   47   51   55
 //                                               8    12   16   20   24   28   32   36   40   44   48   52   56
 //																 |    |    |    |    |    |    |    |    |    |    |    |    |
-	SetBitMask(GDataOrders.EditAllowMask,"0011 1110 0111 1111 1111 1111 1110 1111 1100 1011 1110 1111 1110");
-	SetBitMask(GDataOrders.NullAllowMask,"0011 1110 0111 1111 1111 1111 1110 1111 1100 0011 1110 1111 1100");
+	SetBitMask(GDataOrders.EditAllowMask,"0011 1110 0111 1111 1111 1111 1110 1111 1100 1011 1110 1111 1110 01");
+	SetBitMask(GDataOrders.NullAllowMask,"0011 1110 0111 1111 1111 1111 1110 1111 1100 0011 1110 1111 1100 01");
 
 	GDataOrders.TextEdit      = DBEditEh;
 	GDataOrders.NumbEdit      = DBNumberEditEh;
@@ -571,6 +599,7 @@ void __fastcall TFormTrans::InitGData()
 	GDataOrders.FldTranslateMap.insert(pair<AnsiString,AnsiString>("END_STREET_NAME",      "END_STREET_ID"));
 	GDataOrders.FldTranslateMap.insert(pair<AnsiString,AnsiString>("DRIVER_NAME",          "DRIVER_ID"));
 	GDataOrders.FldTranslateMap.insert(pair<AnsiString,AnsiString>("WORK_TYPE_NAME",       "WORK_TYPE_ID"));
+	GDataOrders.FldTranslateMap.insert(pair<AnsiString,AnsiString>("NDOG_ID_STR",          "NDOG_ID"));
 
 	GDataOrders.FunGetIDMap.insert(pair<AnsiString,FunGetID>(AnsiString("TRANS_TYPE_ID"),      GetTransTypeID));
 	GDataOrders.FunGetIDMap.insert(pair<AnsiString,FunGetID>(AnsiString("TRANSPORT_ID"),       GetTransportID));
@@ -584,6 +613,9 @@ void __fastcall TFormTrans::InitGData()
 	GDataOrders.FunGetIDMap.insert(pair<AnsiString,FunGetID>(AnsiString("END_STREET_ID"),      GetStreetID));
 	GDataOrders.FunGetIDMap.insert(pair<AnsiString,FunGetID>(AnsiString("DRIVER_ID"),          GetDriverID));
 	GDataOrders.FunGetIDMap.insert(pair<AnsiString,FunGetID>(AnsiString("WORK_TYPE_ID"),       GetWorkTypeID));
+	GDataOrders.FunGetIDMap.insert(pair<AnsiString,FunGetID>(AnsiString("PAY_AVC_RECEIVER"),   GetAvcReceiverID));
+	GDataOrders.FunGetIDMap.insert(pair<AnsiString,FunGetID>(AnsiString("PAY_REST_RECEIVER"),  GetRestReceiverID));
+	GDataOrders.FunGetIDMap.insert(pair<AnsiString,FunGetID>(AnsiString("NDOG_ID"),            GetNDogID));
 	SetCommonExtParams(GDataOrders);
 // =============================================================================
 // ==== график =================================================================
@@ -803,7 +835,8 @@ void __fastcall TFormTrans::FormKeyDown(TObject *Sender, WORD &Key, TShiftState 
 							 return;
 						 }
 						 break;
-		case VK_F4:  GoToCurrentOrder();
+		case VK_F4:  WriteMemo();
+						 GoToCurrentOrder();
 						 break;
 		case VK_F5:  WriteMemo();
 						 ProcRefreshPage();
@@ -1208,6 +1241,8 @@ void __fastcall TFormTrans::MemTableEhAfterClose(TDataSet *DataSet)
 void __fastcall TFormTrans::MemTableEhAfterOpen(TDataSet *DataSet)
 {
 	RestorePosStd(GetGDataRef(DataSet),false);
+	if (PageTag == 3)
+		SetDayButtonsColor();
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormTrans::SetEditBitMask(TDataSet *DataSet)
@@ -1226,7 +1261,7 @@ void __fastcall TFormTrans::SetEditBitMask(TDataSet *DataSet)
 //																				    7    11   15   19   23   27   31   35   39   43   47   51
 //                   	         			                      8    12   16   20   24   28   32   36   40   44   48   52
 //																				    |    |    |    |    |    |    |    |    |    |    |    |
-						SetBitMask(GDataOrders.Select_IDMask,"0000 0000 0001 1001 0110 1100 1110 1000 0000 0000 0000 0000 0000");
+						SetBitMask(GDataOrders.Select_IDMask,"0000 0000 0001 1001 0110 1100 1110 1000 0000 0000 0100 1000 0000 01");
 						std::map<AnsiString,AnsiString>::iterator iter1 = GDataOrders.FldTranslateMap.find("CONTACT_NAME");
 						if (iter1 != GDataOrders.FldTranslateMap.end()) {
 							GDataOrders.FldTranslateMap.erase(iter1);
@@ -1240,7 +1275,7 @@ void __fastcall TFormTrans::SetEditBitMask(TDataSet *DataSet)
 //																				    7    11   15   19   23   27   31   35   39   43   47   51
 //                               				                   8    12   16   20   24   28   32   36   40   44   48   52
 //																				    |    |    |    |    |    |    |    |    |    |    |    |
-						SetBitMask(GDataOrders.Select_IDMask,"0000 0000 0001 1101 0110 1100 1110 1000 0000 0000 0000 0000 0000");
+						SetBitMask(GDataOrders.Select_IDMask,"0000 0000 0001 1101 0110 1100 1110 1000 0000 0000 0100 1000 0000 01");
 
 						std::map<AnsiString,AnsiString>::iterator iter1 = GDataOrders.FldTranslateMap.find("CONTACT_NAME");
 						if (iter1 == GDataOrders.FldTranslateMap.end()) {
@@ -1256,27 +1291,14 @@ void __fastcall TFormTrans::SetEditBitMask(TDataSet *DataSet)
 	}
 }
 //---------------------------------------------------------------------------
-void __fastcall TFormTrans::SetAfterScroll(TDataSet *DataSet)
-{
-//	switch (DataSet->Tag) {
-//		case 21: ShowMemoStd(GDataClient, sMemo3);
-//		case 23: SetEditBitMask(DataSet);
-//					break;
-//		case 31:	SetEditBitMask(DataSet);
-//					ShowMemoStd(GDataOrders, sMemo1);
-//					CurOrderID    = DataSet->FieldByName("ORDERS_ID")->AsInteger;
-//					DBGridEh31->Repaint();
-//					break;
-//		case 41: PrvGraphID    = CurGraphID;
-//					CurGraphID    = DataSet->FieldByName("GRAPH_ID")->AsInteger;
-//					break;
-//	}
-}
-//---------------------------------------------------------------------------
 void __fastcall TFormTrans::MemTableEhAfterScroll(TDataSet *DataSet)
 {
 	AfterScroll(DataSet);
 	switch (DataSet->Tag) {
+		case 11: DBGridEh11->Repaint(); break;
+		case 12: DBGridEh12->Repaint(); break;
+		case 13: DBGridEh13->Repaint(); break;
+		case 21: DBGridEh21->Repaint(); break;
 		case 31: DBGridEh31->Repaint(); break;
 		case 41: DBGridEh41->Repaint(); break;
 	}
@@ -1287,13 +1309,10 @@ void __fastcall TFormTrans::AfterScroll(TDataSet *DataSet)
 	AfterScrollStd(GetGDataRef(DataSet));
 	switch (DataSet->Tag) {
 		case 11:	CurTransCompID = DataSet->FieldByName("Trans_Company_ID")->AsInteger;
-					DBGridEh11->Repaint();
 					break;
 		case 12: CurTransTypeID = DataSet->FieldByName("Trans_Type_ID")->AsInteger;
-					DBGridEh12->Repaint();
 					break;
 		case 13: CurTransportID = DataSet->FieldByName("Transport_ID")->AsInteger;
-					DBGridEh13->Repaint();
 					break;
 		case 21: CurClientID = DataSet->FieldByName("Client_ID")->AsInteger;
 					ShowMemoStd(GDataClient, sMemo3);
@@ -1355,7 +1374,8 @@ AnsiString __fastcall GetHintStr(TDataSet *DataSet)
 void __fastcall TFormTrans::MemTableEhFilterRecord(TDataSet *DataSet, bool &Accept)
 {
 	switch (DataSet->Tag) {
-		case 31: Accept = FilterRecordStd(GetGDataRef(DataSet));
+		case 31: Accept = FilterRecordStd(GetGDataRef(DataSet)) &&
+                        !MemTableEh31->FieldByName("ORDERS_ID")->IsNull;
 					if (Accept && OrderFilter.size()) {
 						Accept = CheckOrderFilter();
 					}
@@ -1415,7 +1435,7 @@ void __fastcall TFormTrans::RefreshGraphRow(TDataSet* DSet)
 	std::map<int, Vect>::iterator iter = TransWork.find(GraphID);
 	if (iter != TransWork.end()) {
 //		TransWork.erase(iter);
-		int size = iter->second.size();
+//		int size = iter->second.size();
 		std::vector<int>::iterator it = iter->second.begin();
 		std::vector<int>::iterator end = iter->second.end();
 		while (it != end) {
@@ -1824,17 +1844,75 @@ bool __fastcall TFormTrans::RecordNotInSelectCondition()
 	bRes = bRes || DT > DT_End_Ord + !SelIndex - 1;
 	return bRes;
 }
-TColor CurrentLineColor = TColor(RGB(250, 235, 215));   // AntiqueWhite
-TColor FocusedLineColor = TColor(RGB(255, 222, 173));   // NavajoWhite
+//---------------------------------------------------------------------------
 TColor GetBGC(TsSpinEdit* REdit,TsSpinEdit* GEdit,TsSpinEdit* BEdit)
 {
 	return TColor(RGB(StrToIntDef(REdit->Text,255),StrToIntDef(GEdit->Text,255),StrToIntDef(BEdit->Text,255)));
 }
 //---------------------------------------------------------------------------
+void __fastcall TFormTrans::SelColors()
+{
+	sPanelColor->Visible = !sPanelColor->Visible;
+	sPanelColor->Enabled = !sPanelColor->Enabled;
+	sPanel7->Height = sPanelColor->Enabled ? 250 : 120;
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormTrans::SetSpinEditValues1()
+{
+	sSpinEdit1->Value  = 255;	sSpinEdit2->Value  = 218;	sSpinEdit3->Value  = 185;  //* PeachPuff --- current line ---
+	sSpinEdit4->Value  =   0;	sSpinEdit5->Value  = 238;	sSpinEdit6->Value  = 238;  //* Cyan2          (today current line)
+	sSpinEdit7->Value  = 205;	sSpinEdit8->Value  = 193;	sSpinEdit9->Value  = 197;  //* LavenderBlush3 (tomorrow current line)
+
+	sSpinEdit10->Value = 124;	sSpinEdit11->Value = 205;  sSpinEdit12->Value = 124;
+	sSpinEdit13->Value = 124;	sSpinEdit14->Value = 205;  sSpinEdit15->Value = 124;
+	sSpinEdit16->Value = 124;	sSpinEdit17->Value = 205;  sSpinEdit18->Value = 124;
+
+	sSpinEdit19->Value =   0;	sSpinEdit20->Value = 191;  sSpinEdit21->Value = 255;
+	sSpinEdit22->Value =   0;	sSpinEdit23->Value = 191;  sSpinEdit24->Value = 255;
+	sSpinEdit25->Value =   0;	sSpinEdit26->Value = 191;  sSpinEdit27->Value = 255;
+
+	sSpinEdit28->Value = 255;	sSpinEdit29->Value = 255;  sSpinEdit30->Value = 255; //* белый --- обычная строка ----
+	sSpinEdit31->Value = 224;	sSpinEdit32->Value = 255;  sSpinEdit33->Value = 255; //* LightCyan (today)
+	sSpinEdit34->Value = 230;	sSpinEdit35->Value = 230;  sSpinEdit36->Value = 250; //* Lavender (tomorrow not current)
+
+	sSpinEdit37->Value = 193;	sSpinEdit38->Value = 255;  sSpinEdit39->Value = 193;
+	sSpinEdit40->Value = 180;	sSpinEdit41->Value = 238;  sSpinEdit42->Value = 180;
+	sSpinEdit43->Value = 144;	sSpinEdit44->Value = 238;  sSpinEdit45->Value = 144;
+
+	sSpinEdit46->Value = 212;	sSpinEdit47->Value = 255;  sSpinEdit48->Value = 255;
+	sSpinEdit49->Value = 176;	sSpinEdit50->Value = 225;  sSpinEdit51->Value = 255;
+	sSpinEdit52->Value = 125;	sSpinEdit53->Value = 221;  sSpinEdit54->Value = 255;
+}
+//---------------------------------------------------------------------------
 void __fastcall TFormTrans::SetSpinEditValues()
 {
-	sSpinEdit1->Value = 255;
+	sSpinEdit1->Value  = 255;	sSpinEdit2->Value  = 218;	sSpinEdit3->Value  = 185;  //* PeachPuff --- current line ---
+	sSpinEdit4->Value  =   0;	sSpinEdit5->Value  = 238;	sSpinEdit6->Value  = 238;  //* Cyan2          (today current line)
+	sSpinEdit7->Value  = 205;	sSpinEdit8->Value  = 193;	sSpinEdit9->Value  = 197;  //* LavenderBlush3 (tomorrow current line)
+
+	sSpinEdit10->Value = 124;	sSpinEdit11->Value = 205;  sSpinEdit12->Value = 124;
+	sSpinEdit13->Value = 124;	sSpinEdit14->Value = 205;  sSpinEdit15->Value = 124;
+	sSpinEdit16->Value = 124;	sSpinEdit17->Value = 205;  sSpinEdit18->Value = 124;
+
+	sSpinEdit19->Value =   0;	sSpinEdit20->Value = 191;  sSpinEdit21->Value = 255;
+	sSpinEdit22->Value =   0;	sSpinEdit23->Value = 191;  sSpinEdit24->Value = 255;
+	sSpinEdit25->Value =   0;	sSpinEdit26->Value = 191;  sSpinEdit27->Value = 255;
+
+	sSpinEdit28->Value = 255;	sSpinEdit29->Value = 255;  sSpinEdit30->Value = 255; //* белый --- обычная строка ----
+	sSpinEdit31->Value = 224;	sSpinEdit32->Value = 255;  sSpinEdit33->Value = 255; //* LightCyan (today)
+	sSpinEdit34->Value = 230;	sSpinEdit35->Value = 230;  sSpinEdit36->Value = 250; //* Lavender (tomorrow not current)
+
+	sSpinEdit37->Value = 193;	sSpinEdit38->Value = 255;  sSpinEdit39->Value = 193;
+	sSpinEdit40->Value = 180;	sSpinEdit41->Value = 238;  sSpinEdit42->Value = 180;
+	sSpinEdit43->Value = 144;	sSpinEdit44->Value = 238;  sSpinEdit45->Value = 144;
+
+	sSpinEdit46->Value = 212;	sSpinEdit47->Value = 255;  sSpinEdit48->Value = 255;
+	sSpinEdit49->Value = 176;	sSpinEdit50->Value = 225;  sSpinEdit51->Value = 255;
+	sSpinEdit52->Value = 125;	sSpinEdit53->Value = 221;  sSpinEdit54->Value = 255;
 }
+
+TColor CurrentLineColor = TColor(RGB(255, 245, 238));   // Seashell  //TColor(RGB(250, 235, 215));   // AntiqueWhite
+TColor FocusedLineColor = TColor(RGB(255, 222, 173));   // NavajoWhite
 //---------------------------------------------------------------------------
 void __fastcall TFormTrans::DBGridEhGetCellParams(TObject *Sender, TColumnEh *Column,
 			 TFont *AFont, TColor &Background, TGridDrawStateEh State)
@@ -1844,6 +1922,7 @@ void __fastcall TFormTrans::DBGridEhGetCellParams(TObject *Sender, TColumnEh *Co
 	switch(GetComponentTag(Sender)) {
 		case 11: if (CurTransCompID && CurTransCompID == MemTableEh11->FieldByName("Trans_Company_ID")->AsInteger)
 						if (DBGridEh11->Focused()) Background = FocusedLineColor;
+						else                       Background = CurrentLineColor;
 					break;
 		case 12: if (CurTransTypeID && CurTransTypeID == MemTableEh12->FieldByName("Trans_Type_ID")->AsInteger)
 						if (DBGridEh12->Focused()) Background = FocusedLineColor;
@@ -1859,7 +1938,8 @@ void __fastcall TFormTrans::DBGridEhGetCellParams(TObject *Sender, TColumnEh *Co
 					NotInSelCondition = RecordNotInSelectCondition();
 					CurrentRecord     = MemTableEh31->FieldByName(GDataOrders.FieldKey)->AsInteger == CurOrderID;
 					DateColorShift    = OrderTypeShift = 0;
-					if (Column->Tag < 10) {
+//					if (Column->Tag < 100 || MemTableEh31->FieldByName("ORDER_TYPE")->AsInteger != 3) {
+					{
 						TDateTime DTM = TDateTime(GetDateStr(MemTableEh31->FieldByName("DT_BEG")->AsDateTime));
 						TDateTime DTT = Date();
 						if      (DTM == DTT)
@@ -1881,27 +1961,28 @@ void __fastcall TFormTrans::DBGridEhGetCellParams(TObject *Sender, TColumnEh *Co
 										Background = GetBGC(sSpinEdit1,sSpinEdit2,sSpinEdit3);
 										break;
 							case  1: // today
-										break;
-							case  2: // tomorrow
 										Background = GetBGC(sSpinEdit4,sSpinEdit5,sSpinEdit6);
 										break;
-							case 10: // аренда не сверена не сегодня и не завтра
+							case  2: // tomorrow
 										Background = GetBGC(sSpinEdit7,sSpinEdit8,sSpinEdit9);
 										break;
-							case 11: // аренда не сверена сегодня
+							case 10: // аренда не сверена не сегодня и не завтра
 										Background = GetBGC(sSpinEdit10,sSpinEdit11,sSpinEdit12);
 										break;
-							case 12: // аренда не сверена завтра
+							case 11: // аренда не сверена сегодня
 										Background = GetBGC(sSpinEdit13,sSpinEdit14,sSpinEdit15);
 										break;
-							case 20: // аренда сверен И не сегодня и не завтра
+							case 12: // аренда не сверена завтра
 										Background = GetBGC(sSpinEdit16,sSpinEdit17,sSpinEdit18);
 										break;
-							case 21: // аренда сверен И сегодня
+							case 20: // аренда сверен И не сегодня и не завтра
 										Background = GetBGC(sSpinEdit19,sSpinEdit20,sSpinEdit21);
 										break;
-							case 22: // аренда сверен И завтра
+							case 21: // аренда сверен И сегодня
 										Background = GetBGC(sSpinEdit22,sSpinEdit23,sSpinEdit24);
+										break;
+							case 22: // аренда сверен И завтра
+										Background = GetBGC(sSpinEdit25,sSpinEdit26,sSpinEdit27);
 										break;
 
 						}
@@ -1909,28 +1990,31 @@ void __fastcall TFormTrans::DBGridEhGetCellParams(TObject *Sender, TColumnEh *Co
 					else {
 						switch(DateColorShift + OrderTypeShift) {
 							case  0: // nothing special
-										Background = GetBGC(sSpinEdit25,sSpinEdit26,sSpinEdit27);
+										Background = GetBGC(sSpinEdit28,sSpinEdit29,sSpinEdit30);
 										break;
 							case  1: // today
-										Background = GetBGC(sSpinEdit28,sSpinEdit29,sSpinEdit30);  0,191,155
-										break;
-							case  2: // tomorrow
 										Background = GetBGC(sSpinEdit31,sSpinEdit32,sSpinEdit33);
 										break;
+							case  2: // tomorrow
+										Background = GetBGC(sSpinEdit34,sSpinEdit35,sSpinEdit36);
+										break;
 							case 10: // аренда не сверена не сегодня и не завтра
+										Background = GetBGC(sSpinEdit37,sSpinEdit38,sSpinEdit39);
 										break;
 							case 11: // аренда не сверена сегодня
+										Background = GetBGC(sSpinEdit40,sSpinEdit41,sSpinEdit42);
 										break;
 							case 12: // аренда не сверена завтра
+										Background = GetBGC(sSpinEdit43,sSpinEdit44,sSpinEdit45);
 										break;
 							case 20: // аренда сверен К не сегодня и не завтра
-
+										Background = GetBGC(sSpinEdit46,sSpinEdit47,sSpinEdit48);
 										break;
 							case 21: // аренда сверен К сегодня
-
+										Background = GetBGC(sSpinEdit49,sSpinEdit50,sSpinEdit51);
 										break;
 							case 22: // аренда сверен К завтра
-
+										Background = GetBGC(sSpinEdit52,sSpinEdit53,sSpinEdit54);
 										break;
 
 						}
@@ -2060,7 +2144,7 @@ void __fastcall TFormTrans::DBGridEhKeyDown(TObject *Sender, WORD &Key, TShiftSt
 												 if (Col == 14) {
 													Variant V;
 													V.Clear();
-												   WrkGData->AddCurParam(ftString,WrkGData->WrkGrid->Columns->Items[WrkGData->WrkGrid->Col-1]->FieldName,V);
+													WrkGData->AddCurParam(ftString,WrkGData->WrkGrid->Columns->Items[WrkGData->WrkGrid->Col-1]->FieldName,V);
 												 }
 									case 51:  WrkGData->Flags &= ~MULTIPLE_SEL;
 												 SetMultiFlag = true;
@@ -2081,6 +2165,9 @@ void __fastcall TFormTrans::DBGridEhKeyDown(TObject *Sender, WORD &Key, TShiftSt
 				FillRowDetailPanel();
 			}
 		}
+	}
+	if (Key == VK_INSERT) {
+		MemTableEhAfterScroll(WrkGData->WrkDSet);
 	}
 	if (SetMultiFlag) RestoreMultiFlag();
 	if (RestoreEditMulti && WrkGData->WrkGrid->Focused()) RestoreEditMultiFlag();
@@ -2851,6 +2938,8 @@ void __fastcall TFormTrans::sCheckBoxAddClick(TObject *Sender)
 					 break;
 		 case 22: ToggleShowCost(sCheckBox22->Checked);
 					 break;
+		 case 23: DBGridEh31->AutoFitColWidths = !DBGridEh31->AutoFitColWidths;
+		 			 break;
 		 case 33: sDateEdit2->Enabled = sCheckBox33->Checked;
 					 if (sDateEdit2->Date != sDateEdit1->Date + 1) {
 						 sDateEdit2->Date = DT_End_Ord = DT_Beg_Ord + 1;
@@ -2879,12 +2968,19 @@ void __fastcall TFormTrans::CloseRowDetailPanel()
 //---------------------------------------------------------------------------
 void __fastcall TFormTrans::sSpeedButtonClick(TObject *Sender)
 {
-	 CloseRowDetailPanel();
-	 WriteMemo();
+	 int Tag = GetComponentTag(Sender);
+	 if (Tag != 12) {
+		CloseRowDetailPanel();
+		WriteMemo();
+	 }
 	 switch (GetComponentTag(Sender)) {
 		  case  1:	ProcRefreshPage();        			break;
 		  case  2: 	ProcDeleteStd(*WrkGData); 			break;
-		  case  3: 	ProcInsertStd(*WrkGData); 			break;
+		  case  3: 	ProcInsertStd(*WrkGData);
+						if (PageTag == 3)
+							WrkGData->WrkGrid->Repaint();
+						Refresh();
+						break;
 		  case  4: 	ProcSelAllStd(*WrkGData, NULL);	break;
 		  case  5:  ClearSums();
 						ProcUnsAllStd(*WrkGData, NULL);
@@ -2897,8 +2993,15 @@ void __fastcall TFormTrans::sSpeedButtonClick(TObject *Sender)
 		  case  9:  PopupMenu1->Popup(Left +sSpeedButton9->Left + 4,
 												Top  + sSpeedButton9->Top + sSpeedButton9->Height + 22);
 						break;
-		  case 10: 	ChangeDatabase();
-						break;
+		  case 10: 	ChangeDatabase();                break;
+		  case 11:  SelColors();                     break;
+		  case 12:  GetNewNGogID();                  break;
+		  case 13:  FindNDog();                      break;
+		  case 14:	SaveCurrentView();  					break;
+		  case 15:  CopyOrder();                     break;
+
+		  case 16:  FindOrder();                     break;
+		  case 17:  DublicateOrder();                break;
 		  // перемещение по датам в заказах
 		  case 31:  ShowOrders(DT_Beg_Ord - 1);      break;
 		  case 32:  ShowOrders(Date() - 1);          break;
@@ -2906,11 +3009,6 @@ void __fastcall TFormTrans::sSpeedButtonClick(TObject *Sender)
 		  case 34:  ShowOrders(Date()+1);            break;
 		  case 35:  ShowOrders(DT_Beg_Ord + 1);      break;
 
-		  case 14:	SaveCurrentView();  					break;
-		  case 15:  CopyOrder();                     break;
-
-		  case 16:  FindOrder();                     break;
-		  case 17:  DublicateOrder();                break;
 
 		  // работа с видимыми колонками
 		  case 18:  ShowNextColumn(DBGridEh31,-1);
@@ -2934,6 +3032,35 @@ void __fastcall TFormTrans::sSpeedButtonClick(TObject *Sender)
 		  case 44:  EditDriverGraph();					break;
 		  case 45:  GoToCurrentOrder();              break;
 	 }
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormTrans::FindNDog()
+{
+  int ID = 0;
+  if (SimpleSelNDogID(this,0,ID,DT_Beg_Ord - 300, &SelectResultStr)) {
+	  int OrderID = StrToInt(GetPiece(SelectResultStr,"/",2));
+	  FindOrder(OrderID);
+  }
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormTrans::GetNewNGogID()
+{
+	if (!AskQuestionStd("Вввести новый номер договора ?")) return;
+	AnsiString SQL      = "select Gen_ID(Gen_NDog_ID,1) as NDog_ID,count(*) from Def_Param";
+	Variant V;
+	if (OpenTmpQuery(SQL,"NDog_ID",V,DModT->Database1)) {
+		int NDogID = (int) V;
+		sComboEdit14->Text = "Дог.N " + IntToStr(NDogID);
+		int Tag = sComboEdit14->Tag;
+		int Idx = Tag - 1;
+		AnsiString FName = FNameVect[Idx];
+		AnsiString IName = TranslateName(FName);
+
+		GDataOrders.AddCurParam(ftInteger,"NDOG_ID",NDogID);
+		SetDetailEditColor(sComboEdit14,clAqua);
+		DetailEditCng[Idx] = true;
+		sComboEdit14->SetFocus();
+	}
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormTrans::GoToCurrentOrder()
@@ -3084,8 +3211,7 @@ void __fastcall TFormTrans::FindOrder(int OrdersID)
 					GDataOrders.KeyValue = OrdersID;
 					ShowOrders(DT);
 					MemTableEh31->Locate("ORDERS_ID", OrdersID, TLocateOptions());
-					AfterScrollStd(*WrkGData);
-					DBGridEh31->Repaint();
+					MemTableEhAfterScroll(MemTableEh31);
 				}
 			}
 		}
@@ -3112,6 +3238,8 @@ void __fastcall TFormTrans::DublicateOrder()
 	}
 	if (AskQuestionStd("Показать скопированные заказы ?"))
 		ShowCopiedOrders(OrderID);
+	else
+		ProcRefreshStd(GDataOrders);
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormTrans::CopyOrder()
@@ -3125,6 +3253,8 @@ void __fastcall TFormTrans::CopyOrder()
 	delete Frm;
 	if (NCopy && AskQuestionStd("Показать скопированные заказы ?"))
 		ShowCopiedOrders(OrderID);
+	else
+		ProcRefreshStd(GDataOrders);
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormTrans::ShowCopiedOrders(int OrderID)
@@ -3229,6 +3359,30 @@ void __fastcall TFormTrans::CheckRecordByFilter()
 	}
 }
 //---------------------------------------------------------------------------
+void __fastcall TFormTrans::SetDayButtonColor(TsSpeedButton* SBtn, TDateTime DT)
+{
+	TColor Color = clBlack;
+	if (SelIndex == 1 && DT_Beg_Ord <= DT && DT < DT_End_Ord) {
+		Color = (int(DT_End_Ord - DT_Beg_Ord) == 1) ? clRed : clGreen;
+	}
+	if (SBtn->Font->Color != Color) {
+		SBtn->Font->Color = Color;
+		SBtn->SkinData->CustomColor = Color != clBlack;
+		SBtn->Visible = false;
+		SBtn->Visible = true;
+	}
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormTrans::SetDayButtonsColor()
+{
+	TDateTime DT = Date();
+	SetDayButtonColor(sSpeedButton31,DT - 2);
+	SetDayButtonColor(sSpeedButton32,DT - 1);
+	SetDayButtonColor(sSpeedButton33,DT);
+	SetDayButtonColor(sSpeedButton34,DT + 1);
+	SetDayButtonColor(sSpeedButton35,DT + 2);
+}
+//---------------------------------------------------------------------------
 void __fastcall TFormTrans::ProcRefreshPage()
 {
 //	CheckRecordByFilter();
@@ -3245,7 +3399,7 @@ void __fastcall TFormTrans::ProcRefreshPage()
 					ProcRefreshStd(GDataClientTax,false);
 					break;
 		case 3:  CloseRowDetailPanel();
-		         ProcUnsAllStd(GDataOrders, NULL);
+					ProcUnsAllStd(GDataOrders, NULL);
 					ProcRefreshStd(GDataOrders,true);
 					break;
 		case 4:  ProcRefreshStd(GDataGraph,true);
@@ -3366,6 +3520,10 @@ void __fastcall TFormTrans::DBDateTimeEditEhChange(TObject *Sender)
 void __fastcall TFormTrans::Timer1Timer(TObject *Sender)
 {
 	Timer1->Enabled = false;
+	if (PageTag == 3) {
+		DBGridEh31->Repaint();
+		return;
+	}
 	TWinControl* WCtrl = ActiveControl;
 	DBGridEh41->SetFocus();
 	TDateTime DT1 = DBDateTimeEditEh1->Value;
@@ -3638,8 +3796,8 @@ void __fastcall TFormTrans::sMemoKeyDown(TObject *Sender, WORD &Key, TShiftState
 								 case 3: ShowMemoStd(GDataOrders,  sMemo1); break;
 							 }
 							 break;
-		case VK_RETURN: //WriteMemo();
-	                   break;
+		case VK_RETURN:
+							 break;
 	}
 }
 //---------------------------------------------------------------------------
@@ -3843,7 +4001,7 @@ int __fastcall TFormTrans::GetCurrentID(AnsiString IName, int* BaseID)
 	return ID;
 }
 //---------------------------------------------------------------------------
-void __fastcall TFormTrans::sComboEditDetailButtonClick(TObject *Sender)
+void __fastcall TFormTrans::DetailsComboEditButtonClick(TObject *Sender)
 {
 	int ID;
 	int Tag = GetComponentTag(Sender);
@@ -3881,6 +4039,12 @@ void __fastcall TFormTrans::sComboEditDetailButtonClick(TObject *Sender)
 		case 13: bRes = GetDetailTransportID(ID);
 					break;
 		case 15: bRes = GetDetailDriverID(ID);
+					break;
+		case 30: bRes = GetAvcReceiverID(this,0,ID,GDataOrders.CurParams);
+					break;
+		case 33: bRes = GetRestReceiverID(this,0,ID,GDataOrders.CurParams);
+					break;
+		case 41: bRes = GetNDogID(this,0,ID,GDataOrders.CurParams);
 					break;
 	}
 	if (!bRes) return;
@@ -4172,17 +4336,6 @@ void __fastcall TFormTrans::SetDetailEditText(TObject *Sender,AnsiString Txt)
 		NEdit->Value = StrToIntDef(Txt,0);
 		return;
 	}
-/*
-	TDBDateTimeEditEh* DEdit = dynamic_cast<TDBDateTimeEditEh*>(WCtrl);
-	if (DEdit) {
-		DEdit->Color = Color;
-	}
-	TComboBox* CBox = dynamic_cast<TComboBox*>(WCtrl);
-	if (CBox) {
-		CBox->Color = Color;
-		return;
-	}
-*/
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormTrans::SetDetailEditColor(TObject *Sender,TColor Color)
@@ -4516,8 +4669,6 @@ void __fastcall TFormTrans::DBGridEh41CellClick(TColumnEh *Column)
 	WrkGData = &GDataGraph;
 }
 //---------------------------------------------------------------------------
-
-
 void __fastcall TFormTrans::DBGridEh41ColEnter(TObject *Sender)
 {
 	CurGraphCol = DBGridEh41->Col;
@@ -4527,30 +4678,209 @@ void __fastcall TFormTrans::DBGridEh41ColEnter(TObject *Sender)
 	PrvGraphCol = CurGraphCol;
 }
 //---------------------------------------------------------------------------
-void __fastcall TFormTrans::N1Click(TObject *Sender)
+void __fastcall TFormTrans::MenuItemClick(TObject *Sender)
 {
-	switch (GetComponentTag(Sender)) {
-		case 1: switch (PageTag) {
-					  case 1: ShowDriverReport(MemTableEh13->FieldByName("TRANS_DRIVER_ID")->AsInteger,
-														MemTableEh13->FieldByName("DRIVER_NAME")->AsString);
-								 break;
-					  case 3: ShowDriverReport(MemTableEh31->FieldByName("DRIVER_ID")->AsInteger,
-														MemTableEh31->FieldByName("DRIVER_NAME")->AsString);
-								 break;
-					  case 4: ShowDriverReport(MemTableEh41->FieldByName("DRIVER_ID")->AsInteger,
-														MemTableEh41->FieldByName("DRIVER_NAME")->AsString);
-								 break;
-					  case 5: ShowDriverReport(MemTableEh51->FieldByName("DRIVER_ID")->AsInteger,
-														MemTableEh51->FieldByName("DRIVER_NAME")->AsString);
-								 break;
-					  case 6: ShowDriverReport(MemTableEh61->FieldByName("DRIVER_ID")->AsInteger,
-														MemTableEh61->FieldByName("DRIVER_NAME")->AsString);
-								 break;
-					  default: ShowDriverReport(0,"");
-								 break;
+	TMemTableEh* MemTable = NULL;
+	AnsiString FNameID,FNameStr;
+	int Tag = GetComponentTag(Sender);
+	switch (Tag) {
+		case  1:	FNameID  = "DRIVER_ID";
+					FNameStr = "DRIVER_NAME";
+					switch (PageTag) {
+						case  1:	MemTable = MemTableEh13;
+									FNameID    ="TRANS_DRIVER_ID";
+									break;
+						case  3:	MemTable = MemTableEh31;			break;
+						case  4:	MemTable = MemTableEh41;			break;
+						case  5:	MemTable = MemTableEh51;			break;
+						case  6:	MemTable = MemTableEh63;			break;
 				  }
+				  if (MemTable)
+						ShowDriverReport(MemTable->FieldByName(FNameID)->AsInteger,
+											  MemTable->FieldByName(FNameStr)->AsString);
+				  else
+						ShowDriverReport(0,"");
 				  break;
+		case  2: if (PageTag == 3) {
+					  frxReport31->ShowReport(true);
+					}
+					break;
+		case 10: FNameID  = "CLIENT_ID";
+					FNameStr = "CLIENT_NAME";
+					switch (PageTag) {
+						case 2: MemTable = MemTableEh21;  break;
+						case 3: MemTable = MemTableEh31;  break;
+					}
+					break;
+		case 11: FNameID  = "TRANSPORT_ID";
+					FNameStr = "TRANSPORT_NAME/REG_NUMBER/PASS_NUMBER";
+					switch (PageTag) {
+						case 1: MemTable = MemTableEh13;  break;
+						case 3: MemTable = MemTableEh31;  break;
+						case 4: MemTable = MemTableEh41;  break;
+					}
+					break;
+		case 12: FNameID  = "TRANS_COMPANY_ID";
+					FNameStr = "TRANS_COMPANY_NAME";
+					switch (PageTag) {
+						case 1: MemTable = MemTableEh11;  break;
+						case 3: MemTable = MemTableEh31;  break;
+					}
+					break;
+		case 13: FNameID  = "DRIVER_ID";
+					FNameStr = "DRIVER_NAME";
+					switch (PageTag) {
+						case  1:	MemTable = MemTableEh13;
+									FNameID  ="TRANS_DRIVER_ID";
+									break;
+						case  3:	MemTable = MemTableEh31;			break;
+						case  4:	MemTable = MemTableEh41;			break;
+						case  5:	MemTable = MemTableEh51;			break;
+						case  6:	MemTable = MemTableEh63;			break;
+					}
+					break;
+		case 14: switch (PageTag) {
+						case 3: FNameID  = "PAY_REST_RECEIVER";
+								  FNameStr = "PAY_REST_RECEIVER_STR";
+                          	MemTable = MemTableEh31;
+								  break;
+					}
+					break;
 	}
+
+	switch (Tag) {
+		case 10: case 11: case 12: case 13: case 14:
+			if (MemTable) {
+				AnsiString S;
+				for (int i = 1; i < 4; i++) {
+					AnsiString F = GetPiece(FNameStr,"/",i);
+					if (F == "") break;
+					if (MemTable->FindField(F)) {
+						if (S == "") S = MemTable->FieldByName(F)->AsString;
+						else         S += " -- " + MemTable->FieldByName(F)->AsString;
+					}
+				}
+				ShowSelReport(Tag - 10,MemTable->FieldByName(FNameID)->AsInteger, S);
+			}
+			else
+				ShowSelReport(Tag- 10, 0,"");
+			break;
+	}
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormTrans::sSpinEdit1Change(TObject *Sender)
+{
+  if (PageTag == 3) {
+	  Timer1->Enabled = false;
+	  Timer1->Enabled = true;
+  }
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormTrans::sSpeedButton111Click(TObject *Sender)
+{
+	OldColors = false;
+	SetSpinEditValues1();
+	DBGridEh31->Repaint();
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormTrans::sSpeedButton112Click(TObject *Sender)
+{
+	OldColors = false;
+	SetSpinEditValues();
+	DBGridEh31->Repaint();
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormTrans::frxReport31BeforePrint(TfrxReportComponent *Sender)
+{
+	if (!Sender->Tag) return;
+	AnsiString FName = Sender->Name;
+	if (FName.Pos("Memo")) {
+		TfrxMemoView* MV = dynamic_cast<TfrxMemoView *>(frxReport31->FindObject(FName));
+		if (!MV || !MV->Tag) return;
+		AnsiString S;
+		switch (Sender->Tag) {
+			case  1: S = "Отчет по заказам " + AnsiString(SelIndex ? "принятым " : "исполняемым ") + sComboBox1->Text +
+							  " за период с " + sDateEdit1->Text + " по " + sDateEdit2->Text;
+						break;
+			case  2: S = MemTableEh31->FieldByName("DT_BEG")->AsDateTime.FormatString("dd.mmm")  + " " +
+							 MemTableEh31->FieldByName("TIME_BEG")->AsDateTime.FormatString("hh:nn") + "-";
+						if (!(MemTableEh31->FieldByName("Wrk_Minut")->AsInteger + MemTableEh31->FieldByName("Wrk_Day")->AsInteger)) {
+							S += "???";
+
+						}
+						else {
+							if (MemTableEh31->FieldByName("DT_BEG")->AsDateTime != MemTableEh31->FieldByName("DAY_END")->AsDateTime) {
+								 S += MemTableEh31->FieldByName("DAY_END")->AsDateTime.FormatString("dd.mmm") + " ";
+							}
+							S += MemTableEh31->FieldByName("DT_END")->AsDateTime.FormatString("hh:nn");
+						}
+						S += "\n"+ MemTableEh31->FieldByName("ORDER_STATE_STR")->AsString;
+						break;
+			case  3: S = MemTableEh31->FieldByName("ORDER_TYPE_STR")->AsString +" \n" +
+							 MemTableEh31->FieldByName("WORK_TYPE_NAME")->AsString;
+							 break;
+			case  4: S = MemTableEh31->FieldByName("CLIENT_NAME")->AsString  +" \n" +
+							 MemTableEh31->FieldByName("CONTACT_NAME")->AsString +" \n" +
+							 MemTableEh31->FieldByName("CONTACT_PHONE")->AsString;
+						break;
+			case  5: S = MemTableEh31->FieldByName("TRANS_TYPE_NAME")->AsString  +" " +
+							 MemTableEh31->FieldByName("PASS_NEED")->AsString;
+						break;
+			case  6: S = MemTableEh31->FieldByName("BEG_TOWN_NAME")->AsString   +", "  +
+							 MemTableEh31->FieldByName("BEG_STREET_NAME")->AsString +", "  +
+							 MemTableEh31->FieldByName("BEG_ADDR_NAME")->AsString + "->\n"   +
+							 MemTableEh31->FieldByName("END_TOWN_NAME")->AsString   +", "  +
+							 MemTableEh31->FieldByName("END_STREET_NAME")->AsString +", "  +
+							 MemTableEh31->FieldByName("END_ADDR_NAME")->AsString;
+							 if (MemTableEh31->FieldByName("RET_TO_START")->AsInteger)
+                         S += " и обратно";
+						break;
+			case  7: S = MemTableEh31->FieldByName("TRANS_COMPANY_NAME")->AsString + " "   +
+							 MemTableEh31->FieldByName("REG_NUMBER")->AsString         + "\n " +
+							 MemTableEh31->FieldByName("DRIVER_NAME")->AsString        + " "   +
+							 MemTableEh31->FieldByName("DRIVER_PHONE")->AsString;
+						break;
+
+		}
+		MV->Text = S;
+		return;
+	}
+	if (FName.Pos("Picture")) {
+		TfrxPictureView* PV = dynamic_cast<TfrxPictureView *>(frxReport31->FindObject(FName));
+		if (!PV || !PV->Tag) return;
+		bool En = false;
+		int IVal;
+		AnsiString S;
+		switch (PV->Tag) {
+			case  1:
+						break;
+		}
+		PV->Visible = En;
+		return;
+	}
+	if (FName.Pos("Line")) {
+		TfrxLineView* Lin = dynamic_cast<TfrxLineView *>(frxReport31->FindObject(FName));
+		if (!Lin || !Lin->Tag) return;
+		Lin->Visible = true;
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormTrans::sButton1KeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
+{
+	DBGridEhKeyDown(DBGridEh31,Key,Shift);
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormTrans::sSpeedButton12Click(TObject *Sender)
+{
+	GetNewNGogID();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormTrans::sSpeedButton113Click(TObject *Sender)
+{
+	OldColors = true;
+	DBGridEh31->Repaint();
 }
 //---------------------------------------------------------------------------
 

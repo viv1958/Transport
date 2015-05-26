@@ -86,7 +86,7 @@
 			<UsingDelphiRTL>false</UsingDelphiRTL>
 			<VerInfo_Locale>1033</VerInfo_Locale>
 			<DynamicRTL>false</DynamicRTL>
-			<LinkPackageStatics>rtl.lib;vcl.lib;dbrtl.lib;bdertl.lib;acntBuilderXE2_R.lib;vclimg.lib;vclx.lib;EhLib160.lib;vcldb.lib;cxLibraryRS16.lib;dxGDIPlusRS16.lib;dxCoreRS16.lib;dxThemeRS16.lib;cxEditorsRS16.lib;cxDataRS16.lib;dxSkinsCoreRS16.lib;cxVerticalGridRS16.lib;cxExportRS16.lib;xmlrtl.lib</LinkPackageStatics>
+			<LinkPackageStatics>rtl.lib;vcl.lib;dbrtl.lib;bdertl.lib;acntBuilderXE2_R.lib;vclimg.lib;vclx.lib;EhLib160.lib;vcldb.lib;cxLibraryRS16.lib;dxGDIPlusRS16.lib;dxCoreRS16.lib;dxThemeRS16.lib;cxEditorsRS16.lib;cxDataRS16.lib;dxSkinsCoreRS16.lib;cxVerticalGridRS16.lib;cxExportRS16.lib;xmlrtl.lib;frx16.lib;fs16.lib;frxDB16.lib;fsDB16.lib;frxe16.lib</LinkPackageStatics>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_2)'!=''">
 			<Defines>NDEBUG;$(Defines)</Defines>
@@ -153,6 +153,12 @@
 				<DependentOn>FrmPassWord.h</DependentOn>
 				<BuildOrder>7</BuildOrder>
 			</CppCompile>
+			<CppCompile Include="FrmSelRep.cpp">
+				<Form>FormSelRep</Form>
+				<FormType>dfm</FormType>
+				<DependentOn>FrmSelRep.h</DependentOn>
+				<BuildOrder>14</BuildOrder>
+			</CppCompile>
 			<CppCompile Include="FrmSelSimpleEh.cpp">
 				<Form>FormSelSimpleEh</Form>
 				<DependentOn>FrmSelSimpleEh.h</DependentOn>
@@ -166,12 +172,13 @@
 			<CppCompile Include="Transp.cpp">
 				<BuildOrder>0</BuildOrder>
 			</CppCompile>
+			<FormResources Include="FrmPassWord.dfm"/>
 			<FormResources Include="FrmOrderCopy.dfm"/>
 			<FormResources Include="FrmGetFieldFilter.dfm"/>
-			<FormResources Include="FrmFilter.dfm"/>
-			<FormResources Include="FrmPassWord.dfm"/>
+			<FormResources Include="FrmSelRep.dfm"/>
 			<FormResources Include="FrmTrans.dfm"/>
 			<FormResources Include="FrmSelSimpleEh.dfm"/>
+			<FormResources Include="FrmFilter.dfm"/>
 			<FormResources Include="DModT.dfm"/>
 			<FormResources Include="DModRep.dfm"/>
 			<FormResources Include="FrmDateRange.dfm"/>

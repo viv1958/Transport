@@ -54,6 +54,8 @@
 #include "sButton.hpp"
 #include <Vcl.Menus.hpp>
 #include "sSpinEdit.hpp"
+#include "frxClass.hpp"
+#include "frxDBSet.hpp"
 //---------------------------------------------------------------------------
 struct DrawData {
 	int GraphID;
@@ -354,7 +356,6 @@ __published:	// IDE-managed Components
 	TDBNumberEditEh *DBNumberEditEh8;
 	TDBNumberEditEh *DBNumberEditEh9;
 	TComboBox *ComboBox3;
-	TComboBox *ComboBox4;
 	TDBNumberEditEh *DBNumberEditEh11;
 	TDBDateTimeEditEh *DBDateTimeEditEh7;
 	TDBNumberEditEh *DBNumberEditEh12;
@@ -454,7 +455,6 @@ __published:	// IDE-managed Components
 	TsLabel *sLabel21;
 	TDBNumberEditEh *DBNumberEditEh10;
 	TsLabel *sLabel23;
-	TComboBox *ComboBox6;
 	TsLabel *sLabel40;
 	TComboBox *ComboBox7;
 	TIntegerField *MemTableEh12TRANS_HOUR_TAX;
@@ -676,6 +676,7 @@ __published:	// IDE-managed Components
 	TMenuItem *N1;
 	TsCheckBox *sCheckBox33;
 	TsSpeedButton *sSpeedButton10;
+	TsPanel *sPanelColor;
 	TsSpinEdit *sSpinEdit1;
 	TsSpinEdit *sSpinEdit2;
 	TsSpinEdit *sSpinEdit3;
@@ -739,6 +740,40 @@ __published:	// IDE-managed Components
 	TsLabel *sLabel60;
 	TsLabel *sLabel61;
 	TsLabel *sLabel62;
+	TsSpeedButton *sSpeedButton11;
+	TfrxDBDataset *frxDBDataset31;
+	TfrxReport *frxReport31;
+	TMenuItem *N2;
+	TsComboEdit *sComboEdit12;
+	TsComboEdit *sComboEdit13;
+	TMenuItem *N10;
+	TMenuItem *N11;
+	TMenuItem *N12;
+	TMenuItem *N13;
+	TMenuItem *N14;
+	TMenuItem *N7;
+	TsCheckBox *sCheckBox23;
+	TsLabel *sLabel63;
+	TsLabel *sLabel64;
+	TsLabel *sLabel65;
+	TsLabel *sLabel66;
+	TsLabel *sLabel67;
+	TsLabel *sLabel68;
+	TsLabel *sLabel69;
+	TsLabel *sLabel70;
+	TsLabel *sLabel71;
+	TsSpeedButton *sSpeedButton111;
+	TsSpeedButton *sSpeedButton112;
+	TIntegerField *MemTableEh31FLAG_MES;
+	TsLabel *sLabel72;
+	TsComboEdit *sComboEdit14;
+	TsSpeedButton *sSpeedButton12;
+	TIntegerField *MemTableEh31NDOG_ID;
+	TStringField *MemTableEh31BEG_FULL_ADDR;
+	TStringField *MemTableEh31END_FULL_ADDR;
+	TsSpeedButton *sSpeedButton13;
+	TStringField *MemTableEh31NDOG_ID_STR;
+	TsSpeedButton *sSpeedButton113;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
@@ -779,18 +814,26 @@ __published:	// IDE-managed Components
 			 TMouseButton Button, TShiftState Shift, int X, int Y, bool &Processed);
 	void __fastcall DBGridEhRowDetailPanelHide(TCustomDBGridEh *Sender, bool &CanHide);
 	void __fastcall DBGridEhRowDetailPanelShow(TCustomDBGridEh *Sender, bool &CanShow);
-	void __fastcall sComboEditDetailButtonClick(TObject *Sender);
+	void __fastcall DetailsComboEditButtonClick(TObject *Sender);
 	void __fastcall DetailEditKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall DetailEditExit(TObject *Sender);
 	void __fastcall sButtonClick(TObject *Sender);
 	void __fastcall DetailEditEnter(TObject *Sender);
 	void __fastcall DBGridEhColumnsDataHintShow(TCustomDBGridEh *Sender, TPoint &CursorPos,
 			 TGridCoord &Cell, TPoint &InCellCursorPos, TColumnEh *Column, TDBGridEhDataHintParams *&Params,
-          bool &Processed);
+			 bool &Processed);
 	void __fastcall sPageControl1Exit(TObject *Sender);
 	void __fastcall DBGridEh41CellClick(TColumnEh *Column);
 	void __fastcall DBGridEh41ColEnter(TObject *Sender);
-	void __fastcall N1Click(TObject *Sender);
+	void __fastcall MenuItemClick(TObject *Sender);
+	void __fastcall sSpinEdit1Change(TObject *Sender);
+	void __fastcall sSpeedButton111Click(TObject *Sender);
+	void __fastcall sSpeedButton112Click(TObject *Sender);
+	void __fastcall frxReport31BeforePrint(TfrxReportComponent *Sender);
+	void __fastcall sButton1KeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall sSpeedButton12Click(TObject *Sender);
+	void __fastcall sSpeedButton113Click(TObject *Sender);
+
 
 
 
@@ -909,6 +952,10 @@ public:		// User declarations
    bool __fastcall TFormTrans::GetDriverID(TForm* Frm, int Left,int &ID,TParams*&);
    bool __fastcall TFormTrans::GetExpenseID(TForm* Frm, int Left,int &ID,TParams*&);
    bool __fastcall TFormTrans::GetWorkTypeID(TForm* Frm, int Left,int &ID,TParams*&);
+	bool __fastcall TFormTrans::GetAvcReceiverID(TForm* Frm, int Left,int &ID,TParams*&);
+	bool __fastcall TFormTrans::GetRestReceiverID(TForm* Frm, int Left,int &ID,TParams*&);
+	bool __fastcall TFormTrans::GetNDogID(TForm* Frm, int Left,int &ID,TParams*&);
+
 
 //	void __fastcall TFormTrans::SetOrdersBitMask();
 	void __fastcall TFormTrans::SetEditBitMask(TDataSet *DataSet);
@@ -984,7 +1031,6 @@ public:		// User declarations
 	void __fastcall TFormTrans::CopyOrder();
 	void __fastcall TFormTrans::DublicateOrder();
 	void __fastcall TFormTrans::ShowCopiedOrders(int OrderID);
-	void __fastcall TFormTrans::SetAfterScroll(TDataSet *DataSet);
 	void __fastcall TFormTrans::DrawZone(DrawData& DD,const TRect &Rect, int MinBeg, int MinEnd, TColor Color);
 
 	void __fastcall TFormTrans::DrawColumnCell(const TRect &Rect,int DataCol, TColumnEh *Column, TGridDrawStateEh State);
@@ -1029,8 +1075,15 @@ public:		// User declarations
    void __fastcall TFormTrans::ClearDriver();
    void __fastcall TFormTrans::GoToCurrentOrder();
 	void __fastcall TFormTrans::AfterScroll(TDataSet *DataSet);
-   void __fastcall TFormTrans::ChangeDatabase();
-   void __fastcall TFormTrans::SetSpinEditValues();
+	void __fastcall TFormTrans::ChangeDatabase();
+	void __fastcall TFormTrans::SetSpinEditValues1();
+	void __fastcall TFormTrans::SetSpinEditValues();
+	void __fastcall TFormTrans::SelColors();
+   void __fastcall TFormTrans::SetDayButtonsColor();
+	void __fastcall TFormTrans::SetDayButtonColor(TsSpeedButton* SBtn, TDateTime DT);
+	void __fastcall TFormTrans::GetNewNGogID();
+	void __fastcall TFormTrans::FindNDog();
+
 
 
 /*

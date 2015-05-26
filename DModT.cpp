@@ -12,6 +12,7 @@
 #pragma link "frxClass"
 #pragma link "frxExportText"
 #pragma link "frxExportXLS"
+#pragma link "frxDesgn"
 #pragma resource "*.dfm"
 TDModT *DModT;
 int AppTerminate;

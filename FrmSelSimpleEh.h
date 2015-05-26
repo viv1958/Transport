@@ -186,7 +186,7 @@ bool __fastcall ExecSelEhSimple(TForm* Form,SelParamData& SPData,const AnsiStrin
 bool __fastcall SimpleSelEhTransCompanyID(TForm* Form,int Left, int& TransCompID,int TransTypeID,AnsiString *Res);
 bool __fastcall SimpleSelEhTransTypeID   (TForm* Form,int Left, int& TransTypeID,AnsiString* Name);
 bool __fastcall SimpleSelEhEmployeeID    (TForm* Form,int Left, int& EmployeeID);
-bool __fastcall SimpleSelEhClientID      (TForm* Form,int Left, int& ClientID);
+bool __fastcall SimpleSelEhClientID      (TForm* Form,int Left, int& ClientID,AnsiString* Name = NULL);
 bool __fastcall SimpleSelEhContactID     (TForm* Form,int Left, int& Contact, int ClientID,AnsiString &Params,AnsiString* Name);
 bool __fastcall SimpleSelEhTransportID   (TForm* Form,int Left, int& TransportID, int& TransTypeID, int& TransCompID, AnsiString &Params,AnsiString* Name);
 //bool __fastcall SimpleSelEhTransportID   (TForm* Form,int Left, int& TransportID);
@@ -201,6 +201,9 @@ bool __fastcall SimpleSelFilterID(TForm* Form, int Left, int &ID, AnsiString* Fi
 bool __fastcall SimpleSelHistoryID(TForm* Form, int Left,AnsiString Title,AnsiString TableName,int ID,const AnsiString& FieldNames,const AnsiString &FieldTitles,RestValue& RestoreData);
 bool __fastcall SimpleSelHistoryID(TForm* Form, int Left,AnsiString Title,AnsiString TableName,int ID, TStringList* FieldNames,TStringList* FieldTitles,RestValue& RestoreData);
 bool __fastcall SimpleSelEhWorkTypeID(TForm* Form,int Left,int &ID,int ClientID,AnsiString Params,AnsiString *Res);
+bool __fastcall SimpleSelEhMoneyReceiverID(TForm* Form,int Left, int& ID,AnsiString Params,AnsiString* Res);
+
+bool __fastcall SimpleSelNDogID(TForm* Form,int Left,int &ID, TDateTime DTBeg, AnsiString* Res);
 
 //---------------------------------------------------------------------------
 extern PACKAGE TFormSelSimpleEh *FormSelSimpleEh;

@@ -1077,8 +1077,9 @@ void __fastcall SetStatusBarStd(GridData& GData)
    int i = 1;
    while(true) {
       P = GetPiece(GData.FieldKey,";",i);
-      if (P == "") break;
-      S = SetPiece(S,GData.WrkDSet->FieldByName(P)->AsString,";",i);
+		if (P == "") break;
+		AnsiString XS = GData.WrkDSet->FieldByName(P)->AsString;
+		S = SetPiece(S,GData.WrkDSet->FieldByName(P)->AsString,";",i);
       i++;
    }
    SBar->Panels->Items[0]->Text = S;
@@ -1716,8 +1717,8 @@ int  __fastcall AskQuestionStd(const AnsiString& S,TMsgDlgButtons Btn)
 bool TranslateName(GridData& GData,AnsiString& EditFldName)
 {
    bool bRet = false;
-   GData.CurFun        = NULL;
-   if (GData.FldTranslateMap.size()) {
+	GData.CurFun        = NULL;
+	if (GData.FldTranslateMap.size()) {
       std::map<AnsiString,AnsiString>::iterator iter = GData.FldTranslateMap.find(EditFldName);
       if (iter != GData.FldTranslateMap.end()) {
          EditFldName = iter->second;
@@ -2335,7 +2336,9 @@ bool __fastcall OpenExecQueryStd(GridData& GData)
 			if (Result <= 0) {
 				Rollback(DB);
 				if (Qry->FindField("ERRMSG") && Qry->FieldByName("ERRMSG")->AsString != "") {
-					OutputMessage(MakeSeparateString(Qry->FieldByName("ERRMSG")->AsString));
+					AnsiString S = GetErrMsgStd(GData, Result);
+					if (S != "") S = S + "|";
+					OutputMessage(MakeSeparateString(S + Qry->FieldByName("ERRMSG")->AsString));
 				}
 				else OutErrMsgStd(GData,Result);
 				bRes = false;
@@ -2352,19 +2355,42 @@ bool __fastcall OpenExecQueryStd(GridData& GData)
    return bRes;
 }
 //---------------------------------------------------------------------------
+bool __fastcall ReorderDataStd(GridData& GData, bool Delete)
+{
+	bool Reorder = false;
+	if (GData.Flags & UPDATE_IN_MEMORY && !(GData.Flags & PULSE_AFTER_UPDATE) && !Delete) {
+		TMemTableEh* MemTbl = dynamic_cast<TMemTableEh*>(GData.WrkDSet);
+		if (!MemTbl) return Reorder;
+		if (GData.EditFld) {
+			AnsiString S = "," + GData.EditFld->FieldName.UpperCase() + ",";
+			AnsiString X = "," + MemTbl->SortOrder.UpperCase() + ",";
+			Reorder = X.Pos(S);
+		}
+		else Reorder = GData.CurKeyPressed = VK_INSERT;
+		if (Reorder) {
+			GData.WrkGrid->DataSource->Enabled = false;
+			AnsiString X = MemTbl->SortOrder;
+			MemTbl->SortOrder = "";
+			MemTbl->SortOrder = X;
+			GData.WrkGrid->DataSource->Enabled = true;
+		}
+	}
+	return Reorder;
+}
+//---------------------------------------------------------------------------
 bool __fastcall WriteDataStd(GridData& GData,bool Delete)
 {
-   bool bRes = true;
-   GData.DoneArray.clear();
-   bRes = WriteDataObjStd(GData,Delete);
-   GData.ActionTag = 0;
-   if (bRes) {
-      if (!GData.Flags & SAVE_SELECTION)
-         ClearArrStd(GData);
-   }
-   else GData.DoneArray.clear();
-   GData.ClearCurParams();
-   return bRes;
+	bool bRes = true;
+	GData.DoneArray.clear();
+	bRes = WriteDataObjStd(GData,Delete);
+	GData.ActionTag = 0;
+	if (bRes) {
+		if (!GData.Flags & SAVE_SELECTION)
+			ClearArrStd(GData);
+	}
+	else GData.DoneArray.clear();
+	GData.ClearCurParams();
+	return bRes;
 }
 //---------------------------------------------------------------------------
 void _fastcall RefreshRecordStd(GridData& GData,bool bRes)
@@ -2514,17 +2540,25 @@ bool __fastcall WriteDataObjStd(GridData& GData,bool Delete)
 				if (UpdateInMemory) {
 					if (GData.CurKeyPressed == VK_INSERT) {
 						GData.KeyValue = GData.Result;
-						RestorePosStd(GData,false);
+//						RestorePosStd(GData,false);
 					}
 					GData.ClearCurParams();
-//               bool bPulse = GData.Flags & PULSE_AFTER_UPDATE || !FilterRecordStd(GData);
 					bool bPulse = GData.Flags & PULSE_AFTER_UPDATE || (Delete && !GData.SeeDeleted);
-               if (bPulse) {
-                  while (!FilterRecordStd(GData) && !GData.WrkDSet->Bof) {
-                     GData.WrkDSet->Prior();
-                  }
-                  PulseFilterStd(GData);
-               }
+					if (bPulse) {
+						if (GData.CurKeyPressed == VK_INSERT) {
+							RestorePosStd(GData,false);
+						}
+						while (!FilterRecordStd(GData) && !GData.WrkDSet->Bof) {
+							GData.WrkDSet->Prior();
+						}
+						PulseFilterStd(GData);
+					}
+					else {
+						if (GData.CurKeyPressed == VK_INSERT || GData.CurKeyPressed == VK_RETURN) {
+							if (ReorderDataStd(GData,Delete) || GData.CurKeyPressed == VK_INSERT)
+								RestorePosStd(GData,false);
+						}
+					}
                GData.WrkGrid->Repaint();
                return bResult;
             }
@@ -2660,34 +2694,40 @@ bool __fastcall WriteDataQueryStd(GridData& GData,bool Delete)
    return bResult;
 }
 //---------------------------------------------------------------------------
-bool __fastcall OutErrMsgStd(GridData& GData,int Result)
+AnsiString __fastcall GetErrMsgStd(GridData& GData,int Result)
 {
   AnsiString S;
   if (GData.GetErrMsg) S = GData.GetErrMsg(GData,Result);
   if (S == "") {
-     switch (Result) {
-        case    0: S = "Запись отсутсвует в базе или поле 'DateChange' записи пусто"; break;
-        case   -1: S = "Данные изменены другим пользователем\n"
-                       "Повторите предыдущее действие";
-                   break;
-        case   -2: S = "Запись удалена другим пользователем";
-                   if (GData.Flags & CAN_SEE_DELETED) GData.SeeDeleted = true;
-                   break;
-        default:   S = "Ошибка ("+ IntToStr(Result)+ ") ";
-                   TStoredProc* WrkSProc = GData.WrkSProc;
-                   if (WrkSProc) {
-                      S += "хранимой процедуры "+ WrkSProc->StoredProcName +"\n";
-                      S += GetSProcParamValues(WrkSProc);
-                   }
-                   else {
-                      TQuery* WrkQuery = GData.WrkQuery;
-                      if (WrkQuery) {
-                         S += "запроса\n";
+	  switch (Result) {
+		  case    0: S = "Запись отсутсвует в базе или поле 'DateChange' записи пусто"; break;
+		  case   -1: S = "Данные изменены другим пользователем\n"
+							  "Повторите предыдущее действие";
+						 break;
+		  case   -2: S = "Запись удалена другим пользователем";
+						 if (GData.Flags & CAN_SEE_DELETED) GData.SeeDeleted = true;
+						 break;
+		  default:   S = "Ошибка ("+ IntToStr(Result)+ ") ";
+						 TStoredProc* WrkSProc = GData.WrkSProc;
+						 if (WrkSProc) {
+							 S += "хранимой процедуры "+ WrkSProc->StoredProcName +"\n";
+							 S += GetSProcParamValues(WrkSProc);
+						 }
+						 else {
+							 TQuery* WrkQuery = GData.WrkQuery;
+							 if (WrkQuery) {
+								 S += "запроса\n";
 								 S += GetDSetText(WrkQuery);
-                      }
-                   }
-     }
+							 }
+						 }
+	  }
   }
+  return S;
+}
+//---------------------------------------------------------------------------
+bool __fastcall OutErrMsgStd(GridData& GData,int Result)
+{
+  AnsiString S = GetErrMsgStd(GData,Result);
   OutputMessage(S);
   return false;
 }
@@ -3380,6 +3420,9 @@ bool __fastcall EditKeyDownStd(GridData& GData,TObject *Sender, WORD &Key,TShift
 							 GData.WrkGrid->Repaint();
 							 HighlightEditRow(GData,false);
 							 break;
+		case VK_INSERT: if (!GData.DateEdit->CalendarVisible)
+							    GData.DateEdit->DropDown();
+							 break;
 	}
 	return bRes;
 }
@@ -3389,7 +3432,7 @@ void __fastcall EditExitStd(TObject* Sender)
 	TWinControl* Edit = dynamic_cast<TWinControl*>(Sender);
 	if (Edit) {
 		Edit->Visible = false;
-      Edit->Enabled = false;
+		Edit->Enabled = false;
    }
 }
 //---------------------------------------------------------------------------

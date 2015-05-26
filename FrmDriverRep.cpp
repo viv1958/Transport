@@ -35,42 +35,47 @@
 #pragma link "frxDBSet"
 #pragma link "frxDesgn"
 #pragma link "frxDMPExport"
+#pragma link "sMemo"
+#pragma link "DBCtrlsEh"
 #pragma resource "*.dfm"
 void ShowDriverReport(int DriverID, AnsiString DriverName)
 {
 	TFormDriverRep* Form = new TFormDriverRep(Application, DriverID, DriverName);
-	Form->ShowModal();
+	Form->Show();
 }
 //---------------------------------------------------------------------------
 __fastcall TFormDriverRep::TFormDriverRep(TComponent* Owner,int DriverID, AnsiString DriverName)
 	: TForm(Owner)
 {
-
+	 this->DriverID   = DriverID;
+	 this->DriverName = DriverName;
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormDriverRep::SetDriver(int DriverID, AnsiString DriverName)
 {
-	if (DriverID != this->DriverID) {
+	if (DriverID != this->DriverID || !WrkGData->WrkDSet->Active) {
 		this->DriverID = DriverID;
-		sComboEdit1->Text = DriverName;
 		ProcRefreshPage();
 	}
+	sComboEdit1->Text = DriverName;
+	GDataMonInp.AddExtParam(ftInteger, "INDEX_ID_TAG", DriverID);
+	GDataMonOut.AddExtParam(ftInteger, "INDEX_ID_SRC", DriverID);
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormDriverRep::FormCreate(TObject *Sender)
 {
-   sPageControl1->ActivePage = sTabSheet1;
+	sPageControl1->ActivePage = sTabSheet1;
 	InitCommon();
 	InitGData();
 	SetPage();
 	if (!DriverID) {
 	  SelectDriver();
 	}
+	else SetDriver(DriverID,DriverName);
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormDriverRep::InitCommon()
 {
-//	SetFormPosStd(this,Screen->Width,750,0,true);
 	SetFormPosStd(this,1330,750,0,true);
 
 	TDateTime DT = Date();
@@ -78,6 +83,8 @@ void __fastcall TFormDriverRep::InitCommon()
 	SelMM = MaxMM = CurMM = StrToInt(DT.FormatString("m"));
 	SetDates(CurMM, CurYY);
 	SetButtonCaption(CurMM);
+	sMemo1->Text = "";
+	sMemo2->Text = "";
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormDriverRep::SetDates(int MM,int YY)
@@ -122,46 +129,112 @@ void __fastcall TFormDriverRep::InitGData()
 
 	GDataOutlay.FieldKey      = "Outlay_ID";
 	GDataOutlay.SetSQL        = SetSQL;
-//	GDataOutlay.GetErrMsg     = GetErrMsg;
 	GDataOutlay.FunAddRow     = AddCurrentRow;
-//	GDataOutlay.FunSetSQLOne  = RefreshOneRow;
 
 
 	GDataOutlay.SrcDSet       = Query2;
 	GDataOutlay.WrkGrid       = DBGridEh2;
 	GDataOutlay.WrkDBase      = DModT->Database1;
-//	SetBitMask(GDataOutlay.EditAllowMask,"0001 1111 111");
-//	SetBitMask(GDataOutlay.NullAllowMask,"0000 0011 111");
-//	SetBitMask(GDataOutlay.Select_IDMask,"0000 1000 111");
 	GDataOutlay.FilterFldMask =  0x0F70;
-//	GDataOutlay.TextEdit      = DBEditEh;
-//	GDataOutlay.NumbEdit   	  = DBNumberEditEh;
-//	GDataOutlay.DateEdit      = DBDateTimeEditEh;
-//	GDataOutlay.ListEdit      = ComboBox;
+// ==== полученные деньги ======================================================
+	GDataMonInp.Flags         =  STD_STATUSBAR | FILTER_BY_NAME | MULTIPLE_SEL | MOVE_DOWN_AFTER_SEL | CAN_SEE_DELETED;
+										 UPDATE_ONLY_CURRENT;
+	GDataMonInp.WrkSBar       = sStatusBar1;
 
-//	GDataOutlay.WrkQuery      = Query5;
+	GDataMonInp.FieldKey      = "Money_Move_ID";
+	GDataMonInp.SetSQL        = SetSQL;
+	GDataMonInp.FunAddRow     = AddCurrentRow;
+	GDataMonInp.FunSetSQLOne  = RefreshOneRow;
 
-//	GDataOutlay.AddSelParam(ftInteger,"EXPENSE_ID",Null);
-/*
-	GDataOutlay.FldTranslateMap.insert(pair<AnsiString,AnsiString>("DRIVER_NAME",           "DRIVER_ID"));
-	GDataOutlay.FldTranslateMap.insert(pair<AnsiString,AnsiString>("OUTLAY_TYPE_STR",       "OUTLAY_TYPE"));
-	GDataOutlay.FldTranslateMap.insert(pair<AnsiString,AnsiString>("TRANS_TYPE_NAME",       "TRANSPORT_ID"));
-	GDataOutlay.FldTranslateMap.insert(pair<AnsiString,AnsiString>("REG_NUMBER",            "TRANSPORT_ID"));
-	GDataOutlay.FldTranslateMap.insert(pair<AnsiString,AnsiString>("TRANSPORT_NAME",        "TRANSPORT_ID"));
-	GDataOutlay.FldTranslateMap.insert(pair<AnsiString,AnsiString>("EXPENSE_NAME",          "EXPENSE_ID"));
 
-	GDataOutlay.FunGetIDMap.insert(pair<AnsiString,FunGetID>(AnsiString("DRIVER_ID"),       GetDriverID));
-	GDataOutlay.FunGetIDMap.insert(pair<AnsiString,FunGetID>(AnsiString("TRANSPORT_ID"),    GetTransportID));
-	GDataOutlay.FunGetIDMap.insert(pair<AnsiString,FunGetID>(AnsiString("EXPENSE_ID"),      GetExpenseID));
+	GDataMonInp.SrcDSet       = Query3;
+	GDataMonInp.WrkGrid       = DBGridEh3;
+	GDataMonInp.WrkDBase      = DModT->Database1;
+	GDataMonInp.EditAllowMask = 0x001F;
+	GDataMonInp.NullAllowMask = 0x001B;
+	GDataMonInp.FilterFldMask = 0x0012;
+	GDataMonInp.Select_IDMask = 0x0003;
 
-	SetCommonExtParams(GDataOutlay);
-*/
+	GDataMonInp.TextEdit      = DBEditEh;
+	GDataMonInp.NumbEdit   	  = DBNumberEditEh;
+	GDataMonInp.DateEdit      = DBDateTimeEditEh;
+	GDataMonInp.ListEdit      = ComboBox;
+
+	GDataMonInp.WrkQuery      = Query5;
+
+	GDataMonInp.FldTranslateMap.insert(pair<AnsiString,AnsiString>("NAME_TYPE_SRC", "OBJECT_ID_SRC"));
+	GDataMonInp.FldTranslateMap.insert(pair<AnsiString,AnsiString>("NAME_SRC", "OBJECT_ID_SRC"));
+	GDataMonInp.FunGetIDMap.insert(pair<AnsiString,FunGetID>(AnsiString("OBJECT_ID_SRC"), GetObjectID));
+
+	SetCommonExtParams(GDataMonInp);
+// ==== переданные деньги ======================================================
+	GDataMonOut.Flags         =  STD_STATUSBAR | FILTER_BY_NAME | MULTIPLE_SEL | MOVE_DOWN_AFTER_SEL | CAN_SEE_DELETED;
+										 UPDATE_ONLY_CURRENT;
+	GDataMonOut.WrkSBar       = sStatusBar1;
+
+	GDataMonOut.FieldKey      = "Money_Move_ID";
+	GDataMonOut.SetSQL        = SetSQL;
+	GDataMonOut.FunAddRow     = AddCurrentRow;
+	GDataMonOut.FunSetSQLOne  = RefreshOneRow;
+
+
+	GDataMonOut.SrcDSet       = Query4;
+	GDataMonOut.WrkGrid       = DBGridEh4;
+	GDataMonOut.WrkDBase      = DModT->Database1;
+	GDataMonOut.EditAllowMask = 0x001F;
+	GDataMonOut.NullAllowMask = 0x001B;
+	GDataMonOut.FilterFldMask = 0x0012;
+	GDataMonOut.Select_IDMask = 0x0003;
+
+	GDataMonOut.TextEdit      = DBEditEh;
+	GDataMonOut.NumbEdit   	  = DBNumberEditEh;
+	GDataMonOut.DateEdit      = DBDateTimeEditEh;
+	GDataMonOut.ListEdit      = ComboBox;
+
+	GDataMonOut.WrkQuery      = Query6;
+
+	GDataMonOut.FldTranslateMap.insert(pair<AnsiString,AnsiString>("NAME_TYPE_TAG", "OBJECT_ID_TAG"));
+	GDataMonOut.FldTranslateMap.insert(pair<AnsiString,AnsiString>("NAME_TAG", "OBJECT_ID_TAG"));
+	GDataMonOut.FunGetIDMap.insert(pair<AnsiString,FunGetID>(AnsiString("OBJECT_ID_TAG"), GetObjectID));
+
+	SetCommonExtParams(GDataMonOut);
+
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormDriverRep::WriteMemo()
+{
+	switch (PageTag) {
+		case 3:  WriteMemoStd(GDataMonInp,sMemo1); break;
+		case 4:	WriteMemoStd(GDataMonOut,sMemo2); break;
+	}
+}
+//---------------------------------------------------------------------------
+bool __fastcall TFormDriverRep::GetObjectID(TForm* Frm, int Left,int &ID,TParams*&)
+{
+	AnsiString Params = IntToStr(DModT->CurEmpID) + ",'" + DModT->ComputerName + "'";
+	AnsiString SelectResultStr;
+	bool bRes = SimpleSelEhMoneyReceiverID(Frm,0,ID,Params,&SelectResultStr);
+	if (bRes) {
+		switch (PageTag) {
+			case 3: GDataMonInp.AddCurParam(ftInteger,"OBJECT_TYPE_SRC",StrToIntDef(GetPiece(SelectResultStr,"/",2),0));
+					  GDataMonInp.AddCurParam(ftInteger,"INDEX_ID_SRC",   StrToIntDef(GetPiece(SelectResultStr,"/",3),0));
+					  break;
+			case 4: GDataMonInp.AddCurParam(ftInteger,"OBJECT_TYPE_TAG",StrToIntDef(GetPiece(SelectResultStr,"/",2),0));
+					  GDataMonInp.AddCurParam(ftInteger,"INDEX_ID_TAG",   StrToIntDef(GetPiece(SelectResultStr,"/",3),0));
+					  break;
+		}
+	}
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormDriverRep::SetCommonExtParams(GridData& GData)
+{
+	GData.AddExtParam(ftInteger, "USER_ID",     DModT->CurEmpID);
+	GData.AddExtParam(ftString,  "COMP_NAME",   DModT->ComputerName);
 }
 //---------------------------------------------------------------------------
 bool __fastcall TFormDriverRep::SetSQL(TDataSet* DSet)
 {
 	AnsiString SQL, Tail;
-//	if (Printing) Tail = " where Flag_Mes = 0
 	switch (DSet->Tag) {
 		case 1:  SQL = "select * from Sel_Orders_Driver("  + IntToStr(DriverID) + ",'" +
 							GetDateStr(DT_Beg) + "','" + GetDateStr(DT_End) + "')";
@@ -171,8 +244,33 @@ bool __fastcall TFormDriverRep::SetSQL(TDataSet* DSet)
 							GetDateStr(DT_Beg) + "','" + GetDateStr(DT_End) + "')";
 					Query2->SQL->Text = SQL;
 					break;
+		case 3:  SQL = "select * from Sel_Money_Move(0,'" + GetDateStr(DT_Beg) + "','" +
+							 GetDateStr(DT_End) + "'," + IntToStr(Drv_Object_ID) +")";
+					Query3->SQL->Text = SQL;
+					break;
+		case 4:  SQL = "select * from Sel_Money_Move(1,'" + GetDateStr(DT_Beg) + "','" +
+							 GetDateStr(DT_End) + "'," + IntToStr(Drv_Object_ID) +")";
+					Query4->SQL->Text = SQL;
+					break;
 	}
 	return true;
+}
+//---------------------------------------------------------------------------
+bool __fastcall TFormDriverRep::RefreshOneRow(GridData& GData,TDataSet* DSet)
+{
+	bool bRes = true;
+	AnsiString SQL;
+	int IVal;
+	int Result;
+	switch (GData.WrkDSet->Tag) {
+		case 3:	SQL = "select * from Sel_Money_Move(99,null,null," + GData.WrkQuery->FieldByName("RESULT")->AsString + ")";
+					break;
+		case 4: 	SQL = "select * from Sel_Money_Move(99,null,null," + GData.WrkQuery->FieldByName("RESULT")->AsString + ")";
+					break;
+	}
+	TQuery* Qry = dynamic_cast<TQuery*>(DSet);
+	Qry->SQL->Text = SQL;
+	return bRes;
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormDriverRep::CloseAll()
@@ -180,10 +278,12 @@ void __fastcall TFormDriverRep::CloseAll()
 	MemTableEh1->Active = false;
 	MemTableEh2->Active = false;
 	MemTableEh3->Active = false;
+	MemTableEh4->Active = false;
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormDriverRep::ProcRefreshPage()
 {
+	SavePosStd(*WrkGData);
 	CloseAll();
 	ProcRefreshStd(*WrkGData,true);
 }
@@ -196,20 +296,30 @@ void __fastcall TFormDriverRep::FormKeyDown(TObject *Sender, WORD &Key, TShiftSt
 			case '1': NewSheet = sTabSheet1; break;
 			case '2': NewSheet = sTabSheet2; break;
 			case '3': NewSheet = sTabSheet3; break;
+			case '4': NewSheet = sTabSheet4; break;
 		}
 		if (NewSheet && NewSheet != sPageControl1->ActivePage) {
+			WriteMemo();
 			sPageControl1->ActivePage = NewSheet;
 			SetPage();
 		}
 	}
 	switch (Key) {
-		case VK_F3:  ProcFilterStd(*WrkGData);
+		case VK_ADD:
+		case VK_SUBTRACT:
+						 if (sMemo1->Focused() || sMemo2->Focused()) {
+							 return;
+						 }
 						 break;
-		case VK_F5:  ProcRefreshPage();
+		case VK_F3:  WriteMemo();
+						 break;
+		case VK_F5:  WriteMemo();
+						 ProcRefreshPage();
 						 break;
 		case VK_F11: ProcHistory(Shift.Contains(ssCtrl));
 						 break;
 	}
+	FormKeyDownStd(*WrkGData,Key,Shift);
 }
 //---------------------------------------------------------------------------
 AnsiString __fastcall TFormDriverRep::TranslateName(AnsiString FldName)
@@ -239,10 +349,6 @@ void __fastcall TFormDriverRep::ProcHistory(bool All)
 	if (All) {
 		TDBGridColumnsEh* Columns = Grid->Columns;
 		int Cnt = Columns->Count;
-//		if (Grid->Tag == 1) {
-//			FieldNames = ",CLIENT_TAX_ID,DOG_TAX";
-//			TitleNames = ",ID Таблицы тарифов,Сумма по договору";
-//		}
 		AnsiString S;
 		bool KeyIncduded = true;
 		for (int i = 0; i < Cnt; i++) {
@@ -307,33 +413,29 @@ void __fastcall TFormDriverRep::ProcHistory(bool All)
 //---------------------------------------------------------------------------
 void __fastcall TFormDriverRep::FormClose(TObject *Sender, TCloseAction &Action)
 {
-//
+	WriteMemo();
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormDriverRep::sSpeedButtonClick(TObject *Sender)
 {
+ 	WriteMemo();
 	switch (GetComponentTag(Sender)) {
-		case  1:	ProcRefreshPage();                   break;
+		case  1:	ProcRefreshPage();               break;
+		case  2:	ProcDeleteStd(*WrkGData); 			break;
+		case  3: ProcInsertStd(*WrkGData);        break;
+
 		case  4: ProcSelAllStd(*WrkGData, NULL);	break;
 		case  5: ClearSums();
 					ProcUnsAllStd(*WrkGData, NULL);
 					break;
-		case  6: frxReport1->Print();
-					break;
-		case  7: PrintReport();
-					break;
-		case  8: ProcHistory(false);
-					break;
-		case 31: ShowMonth(-3);
-					break;
-		case 32: ShowMonth(-2);
-					break;
-		case 33: ShowMonth(-1);
-					break;
-		case 34: ShowMonth(0);
-					break;
-		case 35: ShowMonth(1);
-					break;
+		case  6: frxReport1->Print();					break;
+		case  7: PrintReport();      					break;
+		case  8: ProcHistory(false); 					break;
+		case 31: ShowMonth(-3);      					break;
+		case 32: ShowMonth(-2);      					break;
+		case 33: ShowMonth(-1);      					break;
+		case 34: ShowMonth(0);       					break;
+		case 35: ShowMonth(1);       					break;
 	 }
 }
 //---------------------------------------------------------------------------
@@ -392,16 +494,22 @@ void __fastcall TFormDriverRep::sComboEdit1ButtonClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TFormDriverRep::SelectDriver()
 {
+	WriteMemo();
 	AnsiString Params = IntToStr(DModT->CurEmpID) + ",'" + DModT->ComputerName + "'";
 	int ID = DriverID;
 	AnsiString SelectResultStr;
-	if (SimpleSelEhDriverID(this,0,DriverID,0,Params,&SelectResultStr)) {
-		if (ID != DriverID) {
-			sComboEdit1->Text = GetPiece(SelectResultStr,"/",1);
-			ProcRefreshPage();
+	if (SimpleSelEhDriverID(this,0,ID,0,Params,&SelectResultStr)) {
+		Drv_Object_ID = StrToIntDef(GetPiece(SelectResultStr,"/",3),-1);
+		if (Drv_Object_ID != -1) {
+			GDataMonInp.AddExtParam(ftInteger, "OBJECT_ID_TAG", Drv_Object_ID);
+			GDataMonOut.AddExtParam(ftInteger, "OBJECT_ID_SRC", Drv_Object_ID);
 		}
+		else {
+			GDataMonInp.ClearExtParams();
+			GDataMonOut.ClearExtParams();
+		}
+		SetDriver(ID, GetPiece(SelectResultStr,"/",1));
 	}
-
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormDriverRep::sDateEditAcceptDate(TObject *Sender, TDateTime &aDate,
@@ -441,7 +549,8 @@ GridData& __fastcall TFormDriverRep::GetGDataRef(TObject* Sender)
 	switch (GetComponentTag(Sender)) {
 		case 1: Ref = &GDataOrders; 	break;
 		case 2: Ref = &GDataOutlay; 	break;
-		case 3: Ref = &GDataMonCng; 	break;
+		case 3: Ref = &GDataMonInp; 	break;
+		case 4: Ref = &GDataMonOut; 	break;
 	}
 	return *Ref;
 }
@@ -473,6 +582,14 @@ void __fastcall TFormDriverRep::DBGridEhGetCellParams(TObject *Sender, TColumnEh
 //---------------------------------------------------------------------------
 void __fastcall TFormDriverRep::DBGridEhKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 {
+	if (PageTag > 2 && Key == VK_INSERT) {
+		TDateTime DateSet = Date();
+		if (DateSet < DT_Beg)
+			DateSet = DT_Beg;
+		else if (DateSet > DT_End)
+			DateSet = DT_End;
+		WrkGData->AddCurParam(ftDateTime,"DATESET",DateSet);
+	}
 	ProcKeyDownStd(GetGDataRef(Sender),Key);
 }
 //---------------------------------------------------------------------------
@@ -485,6 +602,10 @@ void __fastcall TFormDriverRep::MemTableEh1AfterClose(TDataSet *DataSet)
 {
 	AfterCloseStd(GetGDataRef(DataSet));
 	ProcUnsAllStd(GetGDataRef(DataSet), NULL);
+	switch (DataSet->Tag) {
+		case 3: sMemo1->Text = ""; break;
+		case 4: sMemo2->Text = ""; break;
+	}
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormDriverRep::MemTableEh1AfterOpen(TDataSet *DataSet)
@@ -495,6 +616,10 @@ void __fastcall TFormDriverRep::MemTableEh1AfterOpen(TDataSet *DataSet)
 void __fastcall TFormDriverRep::MemTableEh1AfterScroll(TDataSet *DataSet)
 {
 	AfterScrollStd(GetGDataRef(DataSet));
+	switch (DataSet->Tag) {
+		case 3: ShowMemoStd(GDataMonInp,sMemo1); break;
+		case 4: ShowMemoStd(GDataMonOut,sMemo2); break;
+	}
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormDriverRep::MemTableEh1BeforeScroll(TDataSet *DataSet)
@@ -507,7 +632,7 @@ void __fastcall TFormDriverRep::MemTableEhFilterRecord(TDataSet *DataSet, bool &
 	Accept = FilterRecordStd(GetGDataRef(DataSet));
 	if (Accept) {
 		switch (DataSet->Tag) {
-			case 1: case 2:
+			case 1: case 2:  case 3: case 4:
 					  Accept = !DataSet->FieldByName("FLAG_MES")->AsInteger;
 					  if (!Accept) {
 						  ShowLowFooter(DataSet);
@@ -531,6 +656,10 @@ void __fastcall TFormDriverRep::ShowLowFooter(TDataSet *DataSet)
 				  break;
 		case 2: ShowLowFooter(DBGridEh2, DataSet, 7);
 				  break;
+		case 3: ShowLowFooter(DBGridEh3, DataSet, 2);
+				  break;
+		case 4: ShowLowFooter(DBGridEh4, DataSet, 2);
+				  break;
 	}
 }
 //---------------------------------------------------------------------------
@@ -541,6 +670,10 @@ void __fastcall TFormDriverRep::ShowHighFooter(TDataSet *DataSet)
 				  DBGridEh1->Columns->Items[10]->Footers->Items[0]->Value = IntToStr(SumPay);
 				  break;
 		case 2: DBGridEh2->Columns->Items[7]->Footers->Items[0]->Value = IntToStr(SumOutlay);
+				  break;
+		case 3: DBGridEh3->Columns->Items[2]->Footers->Items[0]->Value = IntToStr(SumMonInp);
+				  break;
+		case 4: DBGridEh4->Columns->Items[2]->Footers->Items[0]->Value = IntToStr(SumMonOut);
 				  break;
 	}
 }
@@ -554,7 +687,7 @@ void __fastcall TFormDriverRep::SetPage()
 //---------------------------------------------------------------------------
 void __fastcall TFormDriverRep::EnableControls()
 {
-	bool En = PageTag == 3;
+	bool En = PageTag > 2;
 	sSpeedButton2->Enabled = En;
 	sSpeedButton3->Enabled = En;
 }
@@ -566,6 +699,15 @@ void __fastcall TFormDriverRep::sPageControl1Change(TObject *Sender)
 		ProcRefreshStd(*WrkGData,true);
 }
 //---------------------------------------------------------------------------
+void __fastcall TFormDriverRep::sPageControl1Changing(TObject *Sender, bool &AllowChange)
+{
+	 switch (PageTag) {
+		 case 3:
+		 case 4: WriteMemo();
+					break;
+	 }
+}
+//---------------------------------------------------------------------------
 void __fastcall TFormDriverRep::ClearSums()
 {
 	switch (PageTag) {
@@ -574,6 +716,12 @@ void __fastcall TFormDriverRep::ClearSums()
 				  break;
 		case 2: SumOutlay = 0;
 				  ShowHighFooter(MemTableEh2);
+				  break;
+		case 3: SumMonInp = 0;
+				  ShowHighFooter(MemTableEh3);
+				  break;
+		case 4: SumMonOut = 0;
+				  ShowHighFooter(MemTableEh4);
 				  break;
 	}
 }
@@ -593,6 +741,10 @@ void __fastcall TFormDriverRep::AddCurrentRow(GridData& GData,int Mul, bool Show
 						break;
 			case 2:	SumOutlay += Mul*DSet->FieldByName("OUTLAY_VALUE")->AsInteger;
 						break;
+			case 3:	SumMonInp += Mul*DSet->FieldByName("MONEY_VALUE")->AsInteger;
+						break;
+			case 4:	SumMonOut += Mul*DSet->FieldByName("MONEY_VALUE")->AsInteger;
+						break;
 			default: return;
 		}
 	}
@@ -603,6 +755,8 @@ void __fastcall TFormDriverRep::PrintReport()
 {
 	if (!MemTableEh1-Active) ProcRefreshStd(GDataOrders,true);
 	if (!MemTableEh2-Active) ProcRefreshStd(GDataOutlay,true);
+	if (!MemTableEh3-Active) ProcRefreshStd(GDataMonInp,true);
+	if (!MemTableEh4-Active) ProcRefreshStd(GDataMonOut,true);
 	frxReport1->ShowReport(true);
 	ProcRefreshPage();
 
@@ -620,7 +774,6 @@ void __fastcall TFormDriverRep::sCheckBoxClick(TObject *Sender)
 	PulseFilterStd(*WrkGData);
 }
 //---------------------------------------------------------------------------
-
 void __fastcall TFormDriverRep::frxReport1BeforePrint(TfrxReportComponent *Sender)
 {
 	if (!Sender->Tag) return;
@@ -663,6 +816,43 @@ void __fastcall TFormDriverRep::frxReport1BeforePrint(TfrxReportComponent *Sende
 		if (!Lin || !Lin->Tag) return;
 		Lin->Visible = true;
 	}
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormDriverRep::DBEditExit(TObject *Sender)
+{
+	EditExitStd(*WrkGData,Sender);
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormDriverRep::DBEditEhKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
+{
+	if (Key == VK_RETURN) {
+		if (DBDateTimeEditEh->Visible) {
+			DBDateTimeEditEh->CloseUp(true);
+			TDateTime DateSet = DBDateTimeEditEh->Value;
+			if (DateSet < DT_Beg || DateSet > DT_End) {
+				OutputMessage("Дата должна находится в диапазоне " + sDateEdit1->Text + " - " + sDateEdit2->Text);
+				DBDateTimeEditEh->DropDown();
+				return;
+         }
+		}
+	}
+	EditKeyDownStd(*WrkGData,Sender,Key,Shift);
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormDriverRep::sMemoKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
+{
+	switch(Key) {
+		case VK_ESCAPE: switch (PageTag) {
+								 case 3: ShowMemoStd(GDataMonInp,  sMemo1); break;
+								 case 4: ShowMemoStd(GDataMonOut,  sMemo2); break;
+							 }
+							 break;
+	}
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormDriverRep::sMemoExit(TObject *Sender)
+{
+	WriteMemo();
 }
 //---------------------------------------------------------------------------
 

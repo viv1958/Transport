@@ -150,7 +150,8 @@ void  __fastcall AfterCreateSpecViewTrans(GridData& GData)
 	}
 }
 //---------------------------------------------------------------------------
-bool __fastcall SimpleSelEhTransportID(TForm* Form,int Left, int& TransportID,  int& TransTypeID,int& TransCompID, AnsiString &Params,AnsiString* ResFldList)
+bool __fastcall SimpleSelEhTransportID(TForm* Form,int Left, int& TransportID,  int& TransTypeID,int& TransCompID,
+													AnsiString &Params,AnsiString* ResFldList)
 {
 	SelParamData SPData(Form);
 	SPData.FieldOut = SPData.DefFieldFlt = "REG_NUMBER";
@@ -230,7 +231,7 @@ bool __fastcall SimpleSelEhContactID(TForm* Form,int Left, int& ContactID,int Cl
 	return ExecSelEhSimple(Form,SPData,"Contact_ID/Contact_Name/Contact_Phone",&ContactID,Res);
 }
 //---------------------------------------------------------------------------
-bool __fastcall SimpleSelEhClientID(TForm* Form,int Left, int& ClientID)
+bool __fastcall SimpleSelEhClientID(TForm* Form,int Left, int& ClientID,AnsiString* Res)
 {
 	SelParamData SPData(Form);
 	SPData.FieldOut = SPData.DefFieldFlt = "Client_Name";
@@ -240,7 +241,27 @@ bool __fastcall SimpleSelEhClientID(TForm* Form,int Left, int& ClientID)
 	" order by Client_Name",
 	"Client_ID",  "Client_Name",
 	"ФИО","Client_Name","300");
-	return ExecSelEhSimple(Form,SPData,"Client_ID",&ClientID);
+	AnsiString X;
+	if (!Res) Res = &X;
+	return ExecSelEhSimple(Form,SPData,"Client_ID/Client_Name",&ClientID,Res);
+}
+//---------------------------------------------------------------------------
+bool __fastcall SimpleSelEhMoneyReceiverID(TForm* Form,int Left, int& ID,AnsiString Params,AnsiString* Res)
+{
+	SelParamData SPData(Form);
+	SPData.FieldOut = SPData.DefFieldFlt = "Object_Name";
+	SPData.EditAllowMask = 2;
+
+	SPData.Flags |= FILTER_BY_NAME;
+	SPData.EditQuerySQL = "Select * from EDIT_OBJECTS (:OBJECTS_ID,:OBJECT_NAME,2,null,0,null," + Params + ",:DATECHANGE,:STATUS)";
+	PrepSelEhSimple(SPData,ID,Left,
+	"Выбор получателя денег","Select * from SEL_OBJECT_MONEY_RECEIVER "
+	" order by Flag_Mes,SO,Object_Name",
+	"Objects_ID",  "Object_Name",
+	"Тип получателя/Получатель/Доп.информация","Object_Type_Name/Object_Name/Info_Fld","300/300/400");
+	AnsiString X;
+	if (!Res) Res = &X;
+	return ExecSelEhSimple(Form,SPData,"Objects_ID/Object_Name/Object_Type/Index_ID",&ID,Res);
 }
 //---------------------------------------------------------------------------
 bool __fastcall SimpleSelEhTownID(TForm* Form,int Left,int &ID,AnsiString Params,AnsiString *Res)
@@ -307,7 +328,7 @@ bool __fastcall SimpleSelEhDriverID(TForm* Form,int Left,int &ID, int TransCompI
 	"Выбор водителя",SQL,
 	"Driver_ID",  "Driver_Name",
 	"ФИО волителя/Телефон","Driver_Name/Driver_Phone","300/300");
-	return ExecSelEhSimple(Form,SPData,"Driver_ID/Driver_Name/Driver_Phone",&ID,Res);
+	return ExecSelEhSimple(Form,SPData,"Driver_ID/Driver_Name/Driver_Phone/Objects_ID",&ID,Res);
 
 }
 //---------------------------------------------------------------------------
@@ -324,6 +345,20 @@ bool __fastcall SimpleSelEhExpenseID(TForm* Form,int Left,int &ID,AnsiString Par
 	"Expense_ID",  "Expense_Name",
 	"Наименование","Expense_Name","300");
 	return ExecSelEhSimple(Form,SPData,"Expense_ID",&ID);
+}
+//---------------------------------------------------------------------------
+bool __fastcall SimpleSelNDogID(TForm* Form,int Left,int &ID, TDateTime DTBeg, AnsiString* Res)
+{
+	SelParamData SPData(Form);
+	SPData.Flags     = STD_STATUSBAR | INS_IF_NOT_FOUND | FILTER_BY_NAME | CAN_SEE_DELETED;
+	SPData.FormatList = "//dd.mmm.yy hh:nn/dd.mmm.yy hh:nn";
+	PrepSelEhSimple(SPData,ID,Left,
+	"Выбор Номера договора","Select * from Sel_Orders(4,'"+GetDateStr(DTBeg)+"',null,null) where Orders_id is not null order by NDog_ID,DT_Beg,Orders_ID",
+	"NDog_ID",  "",
+	"Номер|договора/Номер|заказа/Начало/Окончание/Контакт|Контактное лицо/Контакт|Номер телефона/Оправной пункт/Конечный пункт/По расчету/Окончательно",
+	"NDog_ID_STR/Orders_ID/Time_Beg/DT_End/Contact_Name/Contact_Phone/Beg_Full_Addr/End_Full_Addr/Pay_Calc/Pay_Res",
+	"75/75/120/120/150/150/150/150/80/80");
+	return ExecSelEhSimple(Form,SPData,"NDog_ID/NDog_ID_Str/Orders_ID/DT_Beg",&ID,Res);
 }
 //---------------------------------------------------------------------------
 void  __fastcall AfterCreateSpecView(GridData& GData)

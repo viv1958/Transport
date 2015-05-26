@@ -2,7 +2,7 @@ object FormTrans: TFormTrans
   Left = 0
   Top = 0
   Caption = #1056#1072#1079#1074#1086#1079#1082#1072
-  ClientHeight = 855
+  ClientHeight = 896
   ClientWidth = 1892
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -26,7 +26,6 @@ object FormTrans: TFormTrans
     Align = alTop
     TabOrder = 0
     SkinData.SkinSection = 'PANEL'
-    ExplicitWidth = 1292
     object sSpeedButton1: TsSpeedButton
       Tag = 1
       Left = 15
@@ -530,7 +529,6 @@ object FormTrans: TFormTrans
       BoundLabel.MaxWidth = 0
       BoundLabel.UseSkinColor = True
       SkinData.SkinSection = 'EDIT'
-      ExplicitWidth = 359
     end
     object sCheckBox6: TsCheckBox
       Tag = 21
@@ -550,7 +548,7 @@ object FormTrans: TFormTrans
     Left = 0
     Top = 64
     Width = 1892
-    Height = 772
+    Height = 813
     ActivePage = sTabSheet3
     Align = alClient
     TabOrder = 1
@@ -558,13 +556,11 @@ object FormTrans: TFormTrans
     OnChanging = sPageControl1Changing
     OnExit = sPageControl1Exit
     SkinData.SkinSection = 'PAGECONTROL'
-    ExplicitWidth = 1292
     object sTabSheet1: TsTabSheet
       Tag = 1
       Caption = '1. '#1058#1088#1072#1085#1089#1087#1086#1088#1090
       SkinData.CustomColor = False
       SkinData.CustomFont = False
-      ExplicitWidth = 1284
       object sSplitter1: TsSplitter
         Left = 0
         Top = 270
@@ -584,7 +580,6 @@ object FormTrans: TFormTrans
         Caption = 'sPanel5'
         TabOrder = 0
         SkinData.SkinSection = 'PANEL'
-        ExplicitWidth = 1284
         object sSplitter5: TsSplitter
           Left = 807
           Top = 1
@@ -765,7 +760,7 @@ object FormTrans: TFormTrans
         Left = 0
         Top = 273
         Width = 1884
-        Height = 471
+        Height = 512
         Align = alClient
         DataSource = DataSource13
         DynProps = <>
@@ -930,12 +925,11 @@ object FormTrans: TFormTrans
       Caption = '2. '#1050#1083#1080#1077#1085#1090#1099
       SkinData.CustomColor = False
       SkinData.CustomFont = False
-      ExplicitWidth = 1284
       object sSplitter2: TsSplitter
         Left = 1381
         Top = 0
         Width = 3
-        Height = 744
+        Height = 785
         Align = alRight
         SkinData.SkinSection = 'SPLITTER'
         ExplicitLeft = 636
@@ -945,12 +939,11 @@ object FormTrans: TFormTrans
         Left = 1384
         Top = 0
         Width = 500
-        Height = 744
+        Height = 785
         Align = alRight
         Caption = 'sPanel3'
         TabOrder = 0
         SkinData.SkinSection = 'PANEL'
-        ExplicitLeft = 784
         object sSplitter8: TsSplitter
           Left = 1
           Top = 265
@@ -1014,7 +1007,7 @@ object FormTrans: TFormTrans
           Left = 1
           Top = 271
           Width = 498
-          Height = 472
+          Height = 513
           Align = alClient
           DataSource = DataSource23
           DynProps = <>
@@ -1127,18 +1120,17 @@ object FormTrans: TFormTrans
         Left = 0
         Top = 0
         Width = 1381
-        Height = 744
+        Height = 785
         Align = alClient
         Caption = 'sPanel8'
         TabOrder = 1
         SkinData.SkinSection = 'PANEL'
-        ExplicitWidth = 781
         object DBGridEh21: TDBGridEh
           Tag = 21
           Left = 1
           Top = 1
           Width = 1379
-          Height = 675
+          Height = 716
           Align = alClient
           AutoFitColWidths = True
           DataSource = DataSource21
@@ -1232,7 +1224,7 @@ object FormTrans: TFormTrans
         object sMemo3: TsMemo
           Tag = 3
           Left = 1
-          Top = 676
+          Top = 717
           Width = 1379
           Height = 67
           Align = alBottom
@@ -1259,7 +1251,6 @@ object FormTrans: TFormTrans
           BoundLabel.MaxWidth = 0
           BoundLabel.UseSkinColor = True
           SkinData.SkinSection = 'EDIT'
-          ExplicitWidth = 779
         end
       end
     end
@@ -1268,13 +1259,12 @@ object FormTrans: TFormTrans
       Caption = '3. '#1047#1072#1082#1072#1079#1099
       SkinData.CustomColor = False
       SkinData.CustomFont = False
-      ExplicitWidth = 1284
       object DBGridEh31: TDBGridEh
         Tag = 31
         Left = 0
-        Top = 233
+        Top = 250
         Width = 1884
-        Height = 511
+        Height = 535
         Align = alClient
         DataSource = DataSource31
         DynProps = <>
@@ -1825,12 +1815,6 @@ object FormTrans: TFormTrans
             EditButtons = <>
             FieldName = 'PAY_AVC_RECEIVER_STR'
             Footers = <>
-            PickList.Strings = (
-              '-'
-              #1057#1095#1077#1090
-              #1052#1077#1085#1077#1076#1078#1077#1088
-              #1044#1080#1089#1087#1077#1090#1095#1077#1088
-              #1042#1086#1076#1080#1090#1077#1083#1100)
             Title.Caption = #1054#1087#1083#1072#1090#1072'|'#1055#1086#1083#1091#1095#1072#1090#1077#1083#1100
             Title.TitleButton = True
             Title.ToolTips = True
@@ -1869,12 +1853,6 @@ object FormTrans: TFormTrans
             EditButtons = <>
             FieldName = 'PAY_REST_RECEIVER_STR'
             Footers = <>
-            PickList.Strings = (
-              '-'
-              #1057#1095#1077#1090
-              #1052#1077#1085#1077#1076#1078#1077#1088
-              #1044#1080#1089#1087#1077#1090#1095#1077#1088
-              #1042#1086#1076#1080#1090#1077#1083#1100)
             Title.Caption = #1054#1087#1083#1072#1090#1072'|'#1055#1086#1083#1091#1095#1072#1090#1077#1083#1100
             Title.TitleButton = True
             Title.ToolTips = True
@@ -1977,6 +1955,14 @@ object FormTrans: TFormTrans
             Title.TitleButton = True
             Title.ToolTips = True
             ToolTips = True
+            Width = 87
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'NDOG_ID_STR'
+            Footers = <>
+            Title.Caption = #1044#1086#1075#1086#1074#1086#1088
           end>
         object RowDetailData: TRowDetailPanelControlEh
           DesignSize = (
@@ -2061,6 +2047,64 @@ object FormTrans: TFormTrans
             Font.Name = 'Tahoma'
             Font.Style = [fsBold]
           end
+          object sLabel72: TsLabel
+            Left = 904
+            Top = 164
+            Width = 67
+            Height = 13
+            Caption = 'N '#1076#1086#1075#1086#1074#1086#1088#1072
+            ParentFont = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+          end
+          object sSpeedButton12: TsSpeedButton
+            Tag = 12
+            Left = 1118
+            Top = 161
+            Width = 23
+            Height = 22
+            Hint = #1042#1074#1077#1089#1090#1080' '#1085#1086#1074#1099#1081' '#1085#1086#1084#1077#1088' '#1076#1086#1075#1086#1074#1086#1088#1072
+            Glyph.Data = {
+              36040000424D3604000000000000360000002800000010000000100000000100
+              2000000000000004000000000000000000000000000000000000000000000000
+              000000000000000000000000000A000000250000003300000033000000330000
+              0033000000250000000A00000000000000000000000000000000000000000000
+              00000000000000000022001D105C006738C9008C4BFF008B4AFF008B4AFF008C
+              4BFF006738C9001D105C0000001E000000000000000000000000000000000000
+              00000000001E005E33BB009050FF01A169FF00AA76FF00AB77FF00AB77FF00AA
+              76FF01A169FF009050FF00532DAA0000001E0000000000000000000000000000
+              000A00532DAA009152FF02AC77FF00C38CFF00D699FF18DEA8FF18DEA8FF00D6
+              99FF00C38CFF01AB76FF009253FF00532DAA0000000A0000000000000000001C
+              1051009051FF0FB483FF02D299FF00D69BFF00D193FFFFFFFFFFFFFFFFFF00D1
+              93FF00D69BFF00D198FF01AB76FF009050FF001D105100000000000000000067
+              36C916AB78FF11C997FF00D49AFF00D297FF00CD8EFFFFFFFFFFFFFFFFFF00CD
+              8EFF00D297FF00D59BFF00C18CFF01A169FF006838C90000000000000000008A
+              48FF38C49CFF00D198FF00CD92FF00CB8EFF00C787FFFFFFFFFFFFFFFFFF00C7
+              87FF00CB8EFF00CE93FF00D09AFF00AB76FF008C4BFF00000000000000000089
+              46FF51D2AFFF12D4A3FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFF00CF97FF00AD78FF008B4AFF00000000000000000088
+              45FF66DDBEFF10D0A2FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFF00CD97FF00AD78FF008B4AFF00000000000000000088
+              46FF76E0C5FF00CA98FF00C590FF00C48EFF00C187FFFFFFFFFFFFFFFFFF00C1
+              87FF00C48EFF00C793FF00CB99FF00AB76FF008C4BFF00000000000000000065
+              34BE59C9A4FF49DEBCFF00C794FF00C794FF00C38EFFFFFFFFFFFFFFFFFF00C3
+              8EFF00C896FF00CB9AFF06C190FF00A168FF006838BF0000000000000000001C
+              0F330A9458FFADF8E9FF18D0A7FF00C494FF00C290FFFFFFFFFFFFFFFFFF00C3
+              91FF00C799FF05C89BFF18B787FF009050FF001C0F3300000000000000000000
+              0000005C30AA199C63FFBCFFF7FF5DE4C9FF00C397FF00BF90FF00C091FF00C4
+              98FF22CAA2FF31C297FF039355FF00522C950000000000000000000000000000
+              00000000000000512A950E9659FF74D5B6FF9FF3E0FF92EFDAFF79E5CAFF5DD6
+              B5FF2EB586FF039152FF005D33AA000000000000000000000000000000000000
+              00000000000000000000001C0F33006433BB008744FF008743FF008744FF0089
+              46FF006636BB001C0F3300000000000000000000000000000000000000000000
+              0000000000000000000000000000000000000000000000000000000000000000
+              0000000000000000000000000000000000000000000000000000}
+            OnClick = sSpeedButton12Click
+            SkinData.SkinSection = 'SPEEDBUTTON'
+          end
           object sComboEdit3: TsComboEdit
             Tag = 1
             Left = 72
@@ -2090,7 +2134,7 @@ object FormTrans: TFormTrans
             BoundLabel.UseSkinColor = True
             SkinData.CustomColor = True
             SkinData.SkinSection = 'EDIT'
-            OnButtonClick = sComboEditDetailButtonClick
+            OnButtonClick = DetailsComboEditButtonClick
             ClickKey = 45
             GlyphMode.Blend = 0
             GlyphMode.Grayed = False
@@ -2154,7 +2198,7 @@ object FormTrans: TFormTrans
             BoundLabel.UseSkinColor = True
             SkinData.CustomColor = True
             SkinData.SkinSection = 'EDIT'
-            OnButtonClick = sComboEditDetailButtonClick
+            OnButtonClick = DetailsComboEditButtonClick
             ClickKey = 45
             GlyphMode.Blend = 0
             GlyphMode.Grayed = False
@@ -2261,7 +2305,7 @@ object FormTrans: TFormTrans
               BoundLabel.UseSkinColor = True
               SkinData.CustomColor = True
               SkinData.SkinSection = 'EDIT'
-              OnButtonClick = sComboEditDetailButtonClick
+              OnButtonClick = DetailsComboEditButtonClick
               ClickKey = 45
               GlyphMode.Blend = 0
               GlyphMode.Grayed = False
@@ -2296,7 +2340,7 @@ object FormTrans: TFormTrans
               BoundLabel.UseSkinColor = True
               SkinData.CustomColor = True
               SkinData.SkinSection = 'EDIT'
-              OnButtonClick = sComboEditDetailButtonClick
+              OnButtonClick = DetailsComboEditButtonClick
               ClickKey = 45
               GlyphMode.Blend = 0
               GlyphMode.Grayed = False
@@ -2416,7 +2460,7 @@ object FormTrans: TFormTrans
               BoundLabel.UseSkinColor = True
               SkinData.CustomColor = True
               SkinData.SkinSection = 'EDIT'
-              OnButtonClick = sComboEditDetailButtonClick
+              OnButtonClick = DetailsComboEditButtonClick
               ClickKey = 45
               GlyphMode.Blend = 0
               GlyphMode.Grayed = False
@@ -2451,7 +2495,7 @@ object FormTrans: TFormTrans
               BoundLabel.UseSkinColor = True
               SkinData.CustomColor = True
               SkinData.SkinSection = 'EDIT'
-              OnButtonClick = sComboEditDetailButtonClick
+              OnButtonClick = DetailsComboEditButtonClick
               ClickKey = 45
               GlyphMode.Blend = 0
               GlyphMode.Grayed = False
@@ -2558,7 +2602,7 @@ object FormTrans: TFormTrans
               BoundLabel.UseSkinColor = True
               SkinData.CustomColor = True
               SkinData.SkinSection = 'EDIT'
-              OnButtonClick = sComboEditDetailButtonClick
+              OnButtonClick = DetailsComboEditButtonClick
               ClickKey = 45
               GlyphMode.Blend = 0
               GlyphMode.Grayed = False
@@ -2593,7 +2637,7 @@ object FormTrans: TFormTrans
               BoundLabel.UseSkinColor = True
               SkinData.CustomColor = True
               SkinData.SkinSection = 'EDIT'
-              OnButtonClick = sComboEditDetailButtonClick
+              OnButtonClick = DetailsComboEditButtonClick
               ClickKey = 45
               GlyphMode.Blend = 0
               GlyphMode.Grayed = False
@@ -3172,30 +3216,6 @@ object FormTrans: TFormTrans
                 #1053#1072#1083#1080#1095#1085#1099#1077
                 #1057#1084#1077#1096#1072#1085#1085#1072#1103)
             end
-            object ComboBox4: TComboBox
-              Tag = 30
-              Left = 207
-              Top = 79
-              Width = 143
-              Height = 21
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -11
-              Font.Name = 'Tahoma'
-              Font.Style = [fsBold]
-              ParentFont = False
-              TabOrder = 12
-              Text = 'ComboBox4'
-              OnEnter = DetailEditEnter
-              OnExit = DetailEditExit
-              OnKeyDown = DetailEditKeyDown
-              Items.Strings = (
-                '-'
-                #1057#1095#1077#1090
-                #1052#1077#1085#1077#1076#1078#1077#1088
-                #1044#1080#1089#1087#1077#1090#1095#1077#1088
-                #1042#1086#1076#1080#1090#1077#1083#1100)
-            end
             object ComboBox5: TComboBox
               Tag = 31
               Left = 377
@@ -3238,30 +3258,6 @@ object FormTrans: TFormTrans
               OnEnter = DetailEditEnter
               OnExit = DetailEditExit
               OnKeyDown = DetailEditKeyDown
-            end
-            object ComboBox6: TComboBox
-              Tag = 33
-              Left = 525
-              Top = 79
-              Width = 178
-              Height = 21
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -11
-              Font.Name = 'Tahoma'
-              Font.Style = [fsBold]
-              ParentFont = False
-              TabOrder = 15
-              Text = 'ComboBox6'
-              OnEnter = DetailEditEnter
-              OnExit = DetailEditExit
-              OnKeyDown = DetailEditKeyDown
-              Items.Strings = (
-                '-'
-                #1057#1095#1077#1090
-                #1052#1077#1085#1077#1076#1078#1077#1088
-                #1044#1080#1089#1087#1077#1090#1095#1077#1088
-                #1042#1086#1076#1080#1090#1077#1083#1100)
             end
             object ComboBox7: TComboBox
               Tag = 34
@@ -3306,6 +3302,73 @@ object FormTrans: TFormTrans
                 #1057' '#1091#1095#1077#1090#1086#1084' '#1084#1080#1085'. '#1074#1088#1077#1084#1077#1085#1080
                 #1041#1077#1079' '#1091#1095#1077#1090#1072' '#1084#1080#1085'. '#1074#1088#1077#1084#1077#1085#1080
                 #1055#1086' '#1076#1086#1075#1086#1074#1086#1088#1091' '#1079#1072' 1 '#1087#1086#1077#1079#1076#1082#1091)
+            end
+            object sComboEdit12: TsComboEdit
+              Tag = 30
+              Left = 203
+              Top = 79
+              Width = 162
+              Height = 21
+              AutoSize = False
+              Color = clWhite
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clBlack
+              Font.Height = -11
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
+              ParentFont = False
+              TabOrder = 12
+              OnEnter = DetailEditEnter
+              OnExit = DetailEditExit
+              OnKeyDown = DetailEditKeyDown
+              BoundLabel.Indent = 0
+              BoundLabel.Font.Charset = DEFAULT_CHARSET
+              BoundLabel.Font.Color = clWindowText
+              BoundLabel.Font.Height = -11
+              BoundLabel.Font.Name = 'Tahoma'
+              BoundLabel.Font.Style = []
+              BoundLabel.Layout = sclLeft
+              BoundLabel.MaxWidth = 0
+              BoundLabel.UseSkinColor = True
+              SkinData.SkinSection = 'EDIT'
+              OnButtonClick = DetailsComboEditButtonClick
+              ClickKey = 45
+              GlyphMode.Blend = 0
+              GlyphMode.Grayed = False
+              DirectInput = False
+            end
+            object sComboEdit13: TsComboEdit
+              Tag = 33
+              Left = 528
+              Top = 79
+              Width = 176
+              Height = 21
+              AutoSize = False
+              Color = clWhite
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clBlack
+              Font.Height = -11
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
+              ParentFont = False
+              TabOrder = 15
+              OnEnter = DetailEditEnter
+              OnExit = DetailEditExit
+              OnKeyDown = DetailEditKeyDown
+              BoundLabel.Indent = 0
+              BoundLabel.Font.Charset = DEFAULT_CHARSET
+              BoundLabel.Font.Color = clWindowText
+              BoundLabel.Font.Height = -11
+              BoundLabel.Font.Name = 'Tahoma'
+              BoundLabel.Font.Style = []
+              BoundLabel.Layout = sclLeft
+              BoundLabel.MaxWidth = 0
+              BoundLabel.UseSkinColor = True
+              SkinData.SkinSection = 'EDIT'
+              OnButtonClick = DetailsComboEditButtonClick
+              GlyphMode.Blend = 0
+              GlyphMode.Grayed = False
+              DirectInput = False
             end
           end
           object sGroupBox7: TsGroupBox
@@ -3556,8 +3619,9 @@ object FormTrans: TFormTrans
             Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100
             ParentShowHint = False
             ShowHint = True
-            TabOrder = 12
+            TabOrder = 13
             OnClick = sButtonClick
+            OnKeyDown = sButton1KeyDown
             SkinData.SkinSection = 'BUTTON'
           end
           object sButton2: TsButton
@@ -3570,12 +3634,13 @@ object FormTrans: TFormTrans
             Caption = #1054#1090#1084#1077#1085#1080#1090#1100
             ParentShowHint = False
             ShowHint = True
-            TabOrder = 13
+            TabOrder = 14
             OnClick = sButtonClick
+            OnKeyDown = sButton1KeyDown
             SkinData.SkinSection = 'BUTTON'
           end
           object sMemo2: TsMemo
-            Tag = 41
+            Tag = 42
             Left = 900
             Top = 192
             Width = 722
@@ -3590,7 +3655,7 @@ object FormTrans: TFormTrans
             Lines.Strings = (
               'sMemo2')
             ParentFont = False
-            TabOrder = 11
+            TabOrder = 12
             OnEnter = DetailEditEnter
             OnExit = DetailEditExit
             OnKeyDown = DetailEditKeyDown
@@ -3605,7 +3670,6 @@ object FormTrans: TFormTrans
             BoundLabel.MaxWidth = 0
             BoundLabel.UseSkinColor = True
             SkinData.SkinSection = 'EDIT'
-            ExplicitWidth = 122
           end
           object sGroupBox2: TsGroupBox
             Left = 11
@@ -3690,7 +3754,7 @@ object FormTrans: TFormTrans
               BoundLabel.UseSkinColor = True
               SkinData.CustomColor = True
               SkinData.SkinSection = 'EDIT'
-              OnButtonClick = sComboEditDetailButtonClick
+              OnButtonClick = DetailsComboEditButtonClick
               ClickKey = 45
               GlyphMode.Blend = 0
               GlyphMode.Grayed = False
@@ -3698,8 +3762,8 @@ object FormTrans: TFormTrans
             end
             object sEdit5: TsEdit
               Tag = 16
-              Left = 337
-              Top = 20
+              Left = 338
+              Top = 24
               Width = 236
               Height = 21
               TabStop = False
@@ -3751,13 +3815,49 @@ object FormTrans: TFormTrans
               OnKeyDown = DetailEditKeyDown
             end
           end
+          object sComboEdit14: TsComboEdit
+            Tag = 41
+            Left = 976
+            Top = 161
+            Width = 121
+            Height = 21
+            ParentCustomHint = False
+            AutoSize = False
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 11
+            OnEnter = DetailEditEnter
+            OnExit = DetailEditExit
+            OnKeyDown = DetailEditKeyDown
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            SkinData.CustomColor = True
+            SkinData.SkinSection = 'EDIT'
+            OnButtonClick = DetailsComboEditButtonClick
+            ClickKey = 45
+            GlyphMode.Blend = 0
+            GlyphMode.Grayed = False
+            DirectInput = False
+          end
         end
       end
       object sPanel7: TsPanel
         Left = 0
         Top = 0
         Width = 1884
-        Height = 233
+        Height = 250
         Align = alTop
         TabOrder = 1
         SkinData.SkinSection = 'PANEL'
@@ -3894,6 +3994,8 @@ object FormTrans: TFormTrans
           ParentShowHint = False
           ShowHint = True
           OnClick = sSpeedButtonClick
+          SkinData.CustomColor = True
+          SkinData.CustomFont = True
           SkinData.SkinSection = 'SPEEDBUTTON'
         end
         object sSpeedButton33: TsSpeedButton
@@ -3907,6 +4009,8 @@ object FormTrans: TFormTrans
           ParentShowHint = False
           ShowHint = True
           OnClick = sSpeedButtonClick
+          SkinData.CustomColor = True
+          SkinData.CustomFont = True
           SkinData.SkinSection = 'SPEEDBUTTON'
         end
         object sSpeedButton34: TsSpeedButton
@@ -3918,6 +4022,8 @@ object FormTrans: TFormTrans
           Hint = #1047#1072#1082#1072#1079#1099', '#1080#1089#1087#1086#1083#1085#1103#1077#1084#1099#1077' '#1079#1072#1074#1090#1088#1072
           Caption = #1047#1072#1074#1090#1088#1072
           OnClick = sSpeedButtonClick
+          SkinData.CustomColor = True
+          SkinData.CustomFont = True
           SkinData.SkinSection = 'SPEEDBUTTON'
         end
         object sSpeedButton35: TsSpeedButton
@@ -4091,7 +4197,7 @@ object FormTrans: TFormTrans
           Tag = 16
           Left = 822
           Top = 33
-          Width = 95
+          Width = 96
           Height = 22
           Hint = #1055#1086#1080#1089#1082' '#1087#1086' '#1085#1086#1084#1077#1088#1091' '#1079#1072#1082#1072#1079#1072
           Caption = #1055#1086#1080#1089#1082
@@ -4513,8 +4619,8 @@ object FormTrans: TFormTrans
         end
         object sSpeedButton_45: TsSpeedButton
           Tag = 45
-          Left = 1096
-          Top = 70
+          Left = 585
+          Top = 61
           Width = 90
           Height = 22
           Hint = #1055#1077#1088#1077#1093#1086#1076' '#1082' '#1079#1072#1082#1072#1079#1091' '#1074' '#1075#1088#1072#1092#1080#1082#1077' (F4)'
@@ -4559,122 +4665,99 @@ object FormTrans: TFormTrans
           OnClick = sSpeedButtonClick
           SkinData.SkinSection = 'SPEEDBUTTON'
         end
-        object sLabel54: TsLabel
-          Left = 1208
-          Top = 8
-          Width = 31
-          Height = 13
-          Caption = 'Usual'
-          ParentFont = False
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
+        object sSpeedButton11: TsSpeedButton
+          Tag = 11
+          Left = 823
+          Top = 61
+          Width = 95
+          Height = 22
+          Hint = #1053#1072#1089#1090#1088#1086#1081#1082#1072' '#1094#1074#1077#1090#1086#1074
+          Caption = #1062#1074#1077#1090#1072
+          Glyph.Data = {
+            36040000424D3604000000000000360000002800000010000000100000000100
+            2000000000000004000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0033000000330000003300000033000000000000003300000033000000330000
+            00330000000000000033000000330000003300000033000000000000000003D2
+            FFFF01D1FFFF00D4FFFF00E1FFFF00000000263DDAFF253FDAFF253ED9FF2635
+            D7FF0000000025A9FFFF24A7FFFF24A7FFFF25A8FFFF000000000000000000D1
+            FFFF39DBFFFF39DDFFFF00E0FFFF00000000253DD9FF364BE7FF3649E6FF2434
+            D6FF0000000024A8FFFF39B4FFFF39B4FFFF24A7FFFF000000000000000000D1
+            FFFF9BECFFFF9BEFFFFF00E0FFFF00000000243CD9FF5461FFFF5460FEFF2433
+            D6FF0000000023A8FFFF5DCBFEFF5DCBFEFF23A6FFFF000000000000000000D2
+            FFFF00D1FFFF00D4FFFF00E1FFFF00000000233DDCFF213EDCFF213DDBFF2235
+            D9FF0000000021ABFFFF20A9FFFF20A9FFFF21AAFFFF00000000000000000000
+            0033000000330000003300000033000000000000003300000033000000330000
+            003300000000000000330000003300000033000000330000000000000000FFA6
+            1AFFFFA619FFFFA819FFFFB21AFF00000000E0492CFFDF4A2CFFDF4A2AFFDD4D
+            22FF00000000FF00A8FFFF00A5FFFF00A5FFFF00A6FF0000000000000000FFA9
+            2BFFFFB93EFFFFBA3EFFFFB32AFF00000000CF473AFFE25D45FFE25E44FFCB4F
+            2EFF00000000FF00AEFFFF2FBEFFFF2FBEFFFF00ACFF0000000000000000FFA9
+            2EFFFFD564FFFFD764FFFFB32CFF00000000CC463CFFFF815EFFFF825DFFC84F
+            2FFF00000000FF00AFFFFE90E1FFFE90E1FFFF00ADFF0000000000000000FFAD
+            2CFFFFAB2AFFFFAD2AFFFFB62BFF00000000D1453BFFD0453AFFCF4639FFCC4F
+            30FF00000000FF00B2FFFF00AFFFFF00AFFFFF00B1FF00000000000000000000
+            0033000000330000003300000033000000000000003300000033000000330000
+            003300000000000000330000003300000033000000330000000000000000DD0B
+            FFFFDD08FFFFE006FFFFEF01FFFF0000000000CC77FF00CA77FF00CA78FF00CC
+            7EFF0000000046EA00FF43EA00FF43EA00FF44EA00FF0000000000000000E014
+            F0FFDC66F0FFE063F2FFF604FCFF0000000000C270FF0FCE85FF0ECE86FF00BE
+            7DFF0000000053D700FF6DE223FF6DE223FF52D700FF0000000000000000E016
+            EDFFDB93EDFFDF90EFFFF805FAFF0000000000C06FFF35E3A5FF34E2A7FF00BB
+            7DFF0000000055D300FF9EF26CFF9EF26CFF54D200FF0000000000000000E019
+            EDFFE016EDFFE413EFFFF808FAFF0000000000C170FF00BD70FF00BD72FF00BC
+            7EFF0000000057D400FF53D200FF53D200FF55D300FF00000000}
+          OnClick = sSpeedButtonClick
+          SkinData.SkinSection = 'SPEEDBUTTON'
         end
-        object sLabel55: TsLabel
-          Left = 1271
-          Top = 8
-          Width = 35
-          Height = 13
-          Caption = 'Today'
-          ParentFont = False
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-        end
-        object sLabel56: TsLabel
-          Left = 1334
-          Top = 8
-          Width = 58
-          Height = 13
-          Caption = 'Tomorrow'
-          ParentFont = False
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-        end
-        object sLabel57: TsLabel
-          Left = 1424
-          Top = 8
-          Width = 45
-          Height = 26
-          Caption = 'Usual'#13#10#1040#1088#1077#1085#1076#1072
-          ParentFont = False
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-        end
-        object sLabel58: TsLabel
-          Left = 1487
-          Top = 8
-          Width = 45
-          Height = 26
-          Caption = 'Today'#13#10#1040#1088#1077#1085#1076#1072
-          ParentFont = False
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-        end
-        object sLabel59: TsLabel
-          Left = 1550
-          Top = 8
-          Width = 58
-          Height = 26
-          Caption = 'Tomorrow'#13#10#1040#1088#1077#1085#1076#1072
-          ParentFont = False
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-        end
-        object sLabel60: TsLabel
-          Left = 1632
-          Top = 9
-          Width = 55
-          Height = 26
-          Caption = 'Usual'#13#10#1040#1088#1077#1085#1076#1072' K'
-          ParentFont = False
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-        end
-        object sLabel61: TsLabel
-          Left = 1695
-          Top = 9
-          Width = 55
-          Height = 26
-          Caption = 'Today'#13#10#1040#1088#1077#1085#1076#1072' K'
-          ParentFont = False
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-        end
-        object sLabel62: TsLabel
-          Left = 1758
-          Top = 9
-          Width = 58
-          Height = 26
-          Caption = 'Tomorrow'#13#10#1040#1088#1077#1085#1076#1072' '#1050
-          ParentFont = False
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
+        object sSpeedButton13: TsSpeedButton
+          Tag = 13
+          Left = 701
+          Top = 61
+          Width = 95
+          Height = 22
+          Hint = #1057#1086#1093#1088#1072#1085#1080#1090#1100' '#1090#1077#1082#1091#1097#1077#1077' '#1089#1086#1089#1090#1086#1103#1085#1080#1077' '#1082#1072#1082' '#1074#1080#1076
+          Caption = #1044#1086#1075#1086#1074#1086#1088#1072
+          Glyph.Data = {
+            36040000424D3604000000000000360000002800000010000000100000000100
+            2000000000000004000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000000000000000000000000003300000033000000230000000F0000
+            0032000000330000003300000033000000330000003300000033000000320000
+            000D0000000000000000000000334A80AAFF4B7FA9FF2D729FC0321B056FA454
+            0DFBA7520AFFA7520AFFA75209FFA95309FFAC5308FFAE5407FFAC5306FA3016
+            006900000033000000334381B0FF1EA0FCFF31B7FFFF4791C4FFB15F16FFD797
+            5AFFE3A76DFFE2A66CFFE5A76CFFEAA869FFAB8C6FFF74767BFF6E747BFF7073
+            79FF747374FF7B7470FF76A1C0FF27B4FFFFC7F6FFFF4293C9FFC07633FFE8B9
+            8DFFE09F5DFFE19E5AFFDF9C59FF817970FF91969BFFD6DBE0FFE3E8EDFFE3E8
+            EDFFD8DBDDFF989594FF847B76FFEBF9FEFF348ECAFF00000000CC8648FFEDCB
+            AAFFE9AE6CFFEFB475FFB7B7BAFF94979AFFE9EAEAFFF6C98EFFFCBF71FFFCBE
+            70FFF5C78EFFEAEAE9FF999796FF8C8681FF1C1B1A2B00000000D49558FFF4DF
+            CDFFF7C07EFFFFF8E6FF78787AFFE0E3E6FFE9BF87FFE9B978FFEECB85FFF8E4
+            9CFFF3CD83FFE9BE87FFE2E5E7FF7B7776FF0000000000000000C07D3BEAEAC4
+            9FFFFFEDD7FFB2DDF5FF757170FFF6F9FEFFD69E55FFF1D7B5FFF1D79DFFFAE7
+            9FFFFAE69DFFD69E58FFF7FAFFFF7A7776FF0000000000000000000000009360
+            2EA7F0AB66FFB9C5BFFF7A7675FFFDFFFFFFC38E46FFFBECDCFFF4DEB9FFF3D8
+            9EFFF2CF87FFC38F4BFFFEFFFFFF7D7C7BFF0000000000000000000000000000
+            00000506072879AFC9FF817F7CFFF4F5F7FFC5A06DFFDEC9ACFFFDEDDDFFF5DA
+            B7FFCEA366FFC5A171FFF4F7FBFF82807EFF0000000000000000000000000000
+            0000001D3EA699E4FFFF85A6B4FFADA8A5FFFFFFFFFFBC9969FFA37231FFA374
+            33FFBC9B6CFFFFFFFFFFACADADFF464443830000000000000000000000000000
+            0000063465FFAFF8FFFF93DBFEFF8B9190FFB3AFACFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFB0B0B0FF7D7B78E8000000000000000000000000000000000000
+            00000E3F6FFF226191FF5388B4FF78AED2FF73899BFF8A8783FF8C8986FF8887
+            85FF898785FF4847468300000000000000000000000000000000000000000000
+            0000124675FF307DAFFF4E8EBDFF5080ADFF264876FF00265CFF000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000E335BD42577A9FF3C88BAFF3B7AA9FF204875FF092954D2000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000020910230F3E6AE81A588AFF195182FF103966E802091023000000000000
+            0000000000000000000000000000000000000000000000000000}
+          ParentShowHint = False
+          ShowHint = True
+          OnClick = sSpeedButtonClick
+          SkinData.SkinSection = 'SPEEDBUTTON'
         end
         object sCheckBox20: TsCheckBox
           Tag = 20
@@ -4690,9 +4773,9 @@ object FormTrans: TFormTrans
           ImgUnchecked = 0
         end
         object sCheckBox22: TsCheckBox
-          Tag = 22
+          Tag = 23
           Left = 942
-          Top = 72
+          Top = 76
           Width = 136
           Height = 20
           Caption = #1055#1086#1082#1072#1079#1072#1090#1100' '#1082#1086#1087#1077#1081#1082#1080
@@ -4707,9 +4790,9 @@ object FormTrans: TFormTrans
         end
         object sGroupBox1: TsGroupBox
           Left = 15
-          Top = 56
-          Width = 901
-          Height = 31
+          Top = 82
+          Width = 868
+          Height = 32
           TabOrder = 2
           SkinData.SkinSection = 'GROUPBOX'
           object sLabel5: TsLabel
@@ -4891,8 +4974,7 @@ object FormTrans: TFormTrans
           OnKeyDown = sComboBox1KeyDown
           Items.Strings = (
             #1055#1086' '#1076#1072#1090#1077' '#1087#1088#1080#1077#1084#1082#1080
-            #1055#1086' '#1076#1072#1090#1077' '#1074#1099#1087#1086#1083#1085#1077#1085#1080#1103
-            #1055#1086' '#1076#1072#1090#1077' '#1080#1079#1084#1077#1085#1077#1085#1080#1103)
+            #1055#1086' '#1076#1072#1090#1077' '#1074#1099#1087#1086#1083#1085#1077#1085#1080#1103)
         end
         object sDateEdit1: TsDateEdit
           Tag = 1
@@ -5035,1463 +5117,1801 @@ object FormTrans: TFormTrans
           ImgChecked = 0
           ImgUnchecked = 0
         end
-        object sSpinEdit1: TsSpinEdit
-          Left = 1208
-          Top = 41
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
+        object sPanelColor: TsPanel
+          Left = 1
+          Top = 119
+          Width = 1882
+          Height = 130
+          Align = alBottom
           TabOrder = 9
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
+          SkinData.SkinSection = 'PANEL'
+          object sLabel54: TsLabel
+            Left = 29
+            Top = 8
+            Width = 42
+            Height = 13
+            Caption = #1055#1088#1086#1095#1080#1077
+            ParentFont = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+          end
+          object sLabel55: TsLabel
+            Left = 92
+            Top = 8
+            Width = 50
+            Height = 13
+            Caption = #1057#1077#1075#1086#1076#1085#1103
+            ParentFont = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+          end
+          object sLabel56: TsLabel
+            Left = 155
+            Top = 8
+            Width = 42
+            Height = 13
+            Caption = #1047#1072#1074#1090#1088#1072
+            ParentFont = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+          end
+          object sLabel57: TsLabel
+            Left = 245
+            Top = 8
+            Width = 45
+            Height = 26
+            Caption = #1055#1088#1086#1095#1080#1077#13#10#1040#1088#1077#1085#1076#1072
+            ParentFont = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+          end
+          object sLabel58: TsLabel
+            Left = 308
+            Top = 8
+            Width = 50
+            Height = 26
+            Caption = #1057#1077#1075#1086#1076#1085#1103#13#10#1040#1088#1077#1085#1076#1072
+            ParentFont = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+          end
+          object sLabel59: TsLabel
+            Left = 371
+            Top = 8
+            Width = 45
+            Height = 26
+            Caption = #1047#1072#1074#1080#1088#1072#13#10#1040#1088#1077#1085#1076#1072
+            ParentFont = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+          end
+          object sLabel60: TsLabel
+            Left = 453
+            Top = 9
+            Width = 56
+            Height = 26
+            Caption = #1055#1088#1086#1095#1080#1077#13#10#1040#1088#1077#1085#1076#1072' '#1048
+            ParentFont = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+          end
+          object sLabel61: TsLabel
+            Left = 517
+            Top = 9
+            Width = 56
+            Height = 26
+            Caption = #1057#1077#1075#1086#1076#1085#1103#13#10#1040#1088#1077#1085#1076#1072' '#1048
+            ParentFont = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+          end
+          object sLabel62: TsLabel
+            Left = 579
+            Top = 9
+            Width = 56
+            Height = 26
+            Caption = #1047#1072#1074#1080#1088#1072#13#10#1040#1088#1077#1085#1076#1072' '#1048
+            ParentFont = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+          end
+          object sLabel63: TsLabel
+            Left = 669
+            Top = 8
+            Width = 42
+            Height = 13
+            Caption = #1055#1088#1086#1095#1080#1077
+            ParentFont = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+          end
+          object sLabel64: TsLabel
+            Left = 732
+            Top = 8
+            Width = 50
+            Height = 13
+            Caption = #1057#1077#1075#1086#1076#1085#1103
+            ParentFont = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+          end
+          object sLabel65: TsLabel
+            Left = 795
+            Top = 8
+            Width = 42
+            Height = 13
+            Caption = #1047#1072#1074#1090#1088#1072
+            ParentFont = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+          end
+          object sLabel66: TsLabel
+            Left = 885
+            Top = 8
+            Width = 45
+            Height = 26
+            Caption = #1055#1088#1086#1095#1080#1077#13#10#1040#1088#1077#1085#1076#1072
+            ParentFont = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+          end
+          object sLabel67: TsLabel
+            Left = 948
+            Top = 8
+            Width = 50
+            Height = 26
+            Caption = #1057#1077#1075#1086#1076#1085#1103#13#10#1040#1088#1077#1085#1076#1072
+            ParentFont = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+          end
+          object sLabel68: TsLabel
+            Left = 1011
+            Top = 8
+            Width = 45
+            Height = 26
+            Caption = #1047#1072#1074#1080#1088#1072#13#10#1040#1088#1077#1085#1076#1072
+            ParentFont = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+          end
+          object sLabel69: TsLabel
+            Left = 1093
+            Top = 9
+            Width = 56
+            Height = 26
+            Caption = #1055#1088#1086#1095#1080#1077#13#10#1040#1088#1077#1085#1076#1072' '#1048
+            ParentFont = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+          end
+          object sLabel70: TsLabel
+            Left = 1157
+            Top = 9
+            Width = 56
+            Height = 26
+            Caption = #1057#1077#1075#1086#1076#1085#1103#13#10#1040#1088#1077#1085#1076#1072' '#1048
+            ParentFont = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+          end
+          object sLabel71: TsLabel
+            Left = 1219
+            Top = 9
+            Width = 56
+            Height = 26
+            Caption = #1047#1072#1074#1080#1088#1072#13#10#1040#1088#1077#1085#1076#1072' '#1048
+            ParentFont = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+          end
+          object sSpeedButton111: TsSpeedButton
+            Left = 1282
+            Top = 67
+            Width = 68
+            Height = 24
+            Caption = '1 '#1042#1072#1088#1080#1072#1085#1090
+            OnClick = sSpeedButton111Click
+            SkinData.SkinSection = 'SPEEDBUTTON'
+          end
+          object sSpeedButton112: TsSpeedButton
+            Left = 1282
+            Top = 95
+            Width = 68
+            Height = 22
+            Caption = '2 '#1042#1072#1088#1080#1072#1085#1090
+            OnClick = sSpeedButton112Click
+            SkinData.SkinSection = 'SPEEDBUTTON'
+          end
+          object sSpeedButton113: TsSpeedButton
+            Left = 1282
+            Top = 37
+            Width = 68
+            Height = 24
+            Caption = #1057#1090#1072#1088#1099#1081
+            OnClick = sSpeedButton113Click
+            SkinData.SkinSection = 'SPEEDBUTTON'
+          end
+          object sSpinEdit1: TsSpinEdit
+            Left = 29
+            Top = 41
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 0
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit2: TsSpinEdit
+            Left = 29
+            Top = 68
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 1
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit3: TsSpinEdit
+            Left = 29
+            Top = 95
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 2
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit4: TsSpinEdit
+            Left = 92
+            Top = 41
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 3
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit5: TsSpinEdit
+            Left = 92
+            Top = 68
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 4
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit6: TsSpinEdit
+            Left = 92
+            Top = 95
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 5
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit7: TsSpinEdit
+            Left = 155
+            Top = 41
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 6
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit8: TsSpinEdit
+            Left = 155
+            Top = 68
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 7
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit9: TsSpinEdit
+            Left = 155
+            Top = 95
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 8
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit10: TsSpinEdit
+            Left = 245
+            Top = 41
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 9
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit11: TsSpinEdit
+            Left = 245
+            Top = 68
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 10
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit12: TsSpinEdit
+            Left = 245
+            Top = 95
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 11
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit13: TsSpinEdit
+            Left = 308
+            Top = 41
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 12
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit14: TsSpinEdit
+            Left = 308
+            Top = 68
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 13
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit15: TsSpinEdit
+            Left = 308
+            Top = 95
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 14
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit16: TsSpinEdit
+            Left = 371
+            Top = 41
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 15
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit17: TsSpinEdit
+            Left = 371
+            Top = 68
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 16
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit18: TsSpinEdit
+            Left = 371
+            Top = 95
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 17
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit19: TsSpinEdit
+            Left = 453
+            Top = 41
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 18
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit20: TsSpinEdit
+            Left = 453
+            Top = 68
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 19
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit21: TsSpinEdit
+            Left = 453
+            Top = 95
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 20
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit22: TsSpinEdit
+            Left = 516
+            Top = 41
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 21
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit23: TsSpinEdit
+            Left = 516
+            Top = 68
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 22
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit24: TsSpinEdit
+            Left = 516
+            Top = 95
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 23
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit25: TsSpinEdit
+            Left = 579
+            Top = 41
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 24
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit26: TsSpinEdit
+            Left = 579
+            Top = 68
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 25
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit27: TsSpinEdit
+            Left = 579
+            Top = 95
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 26
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit28: TsSpinEdit
+            Left = 669
+            Top = 41
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 27
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit29: TsSpinEdit
+            Left = 669
+            Top = 68
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 28
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit30: TsSpinEdit
+            Left = 669
+            Top = 95
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 29
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit31: TsSpinEdit
+            Left = 732
+            Top = 41
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 30
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit32: TsSpinEdit
+            Left = 732
+            Top = 68
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 31
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit33: TsSpinEdit
+            Left = 732
+            Top = 95
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 32
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit34: TsSpinEdit
+            Left = 795
+            Top = 41
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 33
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit35: TsSpinEdit
+            Left = 795
+            Top = 68
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 34
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit36: TsSpinEdit
+            Left = 795
+            Top = 95
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 35
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit37: TsSpinEdit
+            Left = 885
+            Top = 41
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 36
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit38: TsSpinEdit
+            Left = 885
+            Top = 68
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 37
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit39: TsSpinEdit
+            Left = 885
+            Top = 95
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 38
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit40: TsSpinEdit
+            Left = 948
+            Top = 41
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 39
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit41: TsSpinEdit
+            Left = 948
+            Top = 68
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 40
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit42: TsSpinEdit
+            Left = 948
+            Top = 95
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 41
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit43: TsSpinEdit
+            Left = 1011
+            Top = 41
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 42
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit44: TsSpinEdit
+            Left = 1011
+            Top = 68
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 43
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit45: TsSpinEdit
+            Left = 1011
+            Top = 95
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 44
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit46: TsSpinEdit
+            Left = 1093
+            Top = 41
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 45
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit47: TsSpinEdit
+            Left = 1093
+            Top = 68
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 46
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit48: TsSpinEdit
+            Left = 1093
+            Top = 95
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 47
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit49: TsSpinEdit
+            Left = 1156
+            Top = 41
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 48
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit50: TsSpinEdit
+            Left = 1156
+            Top = 68
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 49
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit51: TsSpinEdit
+            Left = 1156
+            Top = 95
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 50
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit52: TsSpinEdit
+            Left = 1219
+            Top = 41
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 51
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit53: TsSpinEdit
+            Left = 1219
+            Top = 68
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 52
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
+          object sSpinEdit54: TsSpinEdit
+            Left = 1219
+            Top = 95
+            Width = 57
+            Height = 21
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 53
+            OnChange = sSpinEdit1Change
+            SkinData.SkinSection = 'EDIT'
+            BoundLabel.Indent = 0
+            BoundLabel.Font.Charset = DEFAULT_CHARSET
+            BoundLabel.Font.Color = clWindowText
+            BoundLabel.Font.Height = -11
+            BoundLabel.Font.Name = 'Tahoma'
+            BoundLabel.Font.Style = []
+            BoundLabel.Layout = sclLeft
+            BoundLabel.MaxWidth = 0
+            BoundLabel.UseSkinColor = True
+            MaxValue = 0
+            MinValue = 0
+            Value = 0
+          end
         end
-        object sSpinEdit2: TsSpinEdit
-          Left = 1208
-          Top = 68
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
+        object sCheckBox23: TsCheckBox
+          Tag = 23
+          Left = 942
+          Top = 97
+          Width = 221
+          Height = 20
+          Caption = #1059#1084#1077#1089#1090#1080#1090#1100' '#1074#1089#1077' '#1082#1086#1083#1086#1085#1082#1080' '#1085#1072' '#1101#1082#1088#1072#1085#1077
           TabOrder = 10
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit3: TsSpinEdit
-          Left = 1208
-          Top = 95
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 11
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit4: TsSpinEdit
-          Left = 1271
-          Top = 41
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 12
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit5: TsSpinEdit
-          Left = 1271
-          Top = 68
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 13
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit6: TsSpinEdit
-          Left = 1271
-          Top = 95
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 14
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit7: TsSpinEdit
-          Left = 1334
-          Top = 41
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 15
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit8: TsSpinEdit
-          Left = 1334
-          Top = 68
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 16
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit9: TsSpinEdit
-          Left = 1334
-          Top = 95
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 17
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit10: TsSpinEdit
-          Left = 1424
-          Top = 41
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 18
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit11: TsSpinEdit
-          Left = 1424
-          Top = 68
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 19
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit12: TsSpinEdit
-          Left = 1424
-          Top = 95
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 20
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit13: TsSpinEdit
-          Left = 1487
-          Top = 41
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 21
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit14: TsSpinEdit
-          Left = 1487
-          Top = 68
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 22
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit15: TsSpinEdit
-          Left = 1487
-          Top = 95
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 23
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit16: TsSpinEdit
-          Left = 1550
-          Top = 41
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 24
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit17: TsSpinEdit
-          Left = 1550
-          Top = 68
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 25
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit18: TsSpinEdit
-          Left = 1550
-          Top = 95
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 26
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit19: TsSpinEdit
-          Left = 1632
-          Top = 41
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 27
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit20: TsSpinEdit
-          Left = 1632
-          Top = 68
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 28
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit21: TsSpinEdit
-          Left = 1632
-          Top = 95
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 29
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit22: TsSpinEdit
-          Left = 1695
-          Top = 41
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 30
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit23: TsSpinEdit
-          Left = 1695
-          Top = 68
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 31
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit24: TsSpinEdit
-          Left = 1695
-          Top = 95
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 32
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit25: TsSpinEdit
-          Left = 1758
-          Top = 41
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 33
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit26: TsSpinEdit
-          Left = 1758
-          Top = 68
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 34
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit27: TsSpinEdit
-          Left = 1758
-          Top = 95
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 35
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit28: TsSpinEdit
-          Left = 1208
-          Top = 129
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 36
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit29: TsSpinEdit
-          Left = 1208
-          Top = 156
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 37
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit30: TsSpinEdit
-          Left = 1208
-          Top = 183
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 38
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit31: TsSpinEdit
-          Left = 1271
-          Top = 129
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 39
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit32: TsSpinEdit
-          Left = 1271
-          Top = 156
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 40
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit33: TsSpinEdit
-          Left = 1271
-          Top = 183
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 41
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit34: TsSpinEdit
-          Left = 1334
-          Top = 129
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 42
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit35: TsSpinEdit
-          Left = 1334
-          Top = 156
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 43
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit36: TsSpinEdit
-          Left = 1334
-          Top = 183
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 44
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit37: TsSpinEdit
-          Left = 1424
-          Top = 129
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 45
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit38: TsSpinEdit
-          Left = 1424
-          Top = 156
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 46
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit39: TsSpinEdit
-          Left = 1424
-          Top = 183
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 47
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit40: TsSpinEdit
-          Left = 1487
-          Top = 129
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 48
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit41: TsSpinEdit
-          Left = 1487
-          Top = 156
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 49
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit42: TsSpinEdit
-          Left = 1487
-          Top = 183
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 50
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit43: TsSpinEdit
-          Left = 1550
-          Top = 129
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 51
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit44: TsSpinEdit
-          Left = 1550
-          Top = 156
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 52
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit45: TsSpinEdit
-          Left = 1550
-          Top = 183
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 53
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit46: TsSpinEdit
-          Left = 1632
-          Top = 129
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 54
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit47: TsSpinEdit
-          Left = 1632
-          Top = 156
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 55
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit48: TsSpinEdit
-          Left = 1632
-          Top = 183
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 56
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit49: TsSpinEdit
-          Left = 1695
-          Top = 129
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 57
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit50: TsSpinEdit
-          Left = 1695
-          Top = 156
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 58
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit51: TsSpinEdit
-          Left = 1695
-          Top = 183
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 59
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit52: TsSpinEdit
-          Left = 1758
-          Top = 129
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 60
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit53: TsSpinEdit
-          Left = 1758
-          Top = 156
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 61
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
-        end
-        object sSpinEdit54: TsSpinEdit
-          Left = 1758
-          Top = 183
-          Width = 57
-          Height = 21
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          TabOrder = 62
-          SkinData.SkinSection = 'EDIT'
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          MaxValue = 0
-          MinValue = 0
-          Value = 0
+          OnClick = sCheckBoxAddClick
+          SkinData.SkinSection = 'CHECKBOX'
+          ImgChecked = 0
+          ImgUnchecked = 0
+          ShowFocus = False
         end
       end
     end
@@ -6500,7 +6920,6 @@ object FormTrans: TFormTrans
       Caption = '4. '#1043#1088#1072#1092#1080#1082
       SkinData.CustomColor = False
       SkinData.CustomFont = False
-      ExplicitWidth = 1284
       object sPanel6: TsPanel
         Left = 0
         Top = 0
@@ -6509,7 +6928,6 @@ object FormTrans: TFormTrans
         Align = alTop
         TabOrder = 0
         SkinData.SkinSection = 'PANEL'
-        ExplicitWidth = 1284
         object sLabelGraphBeg: TsLabel
           Left = 801
           Top = 15
@@ -6896,7 +7314,7 @@ object FormTrans: TFormTrans
         Left = 3
         Top = 49
         Width = 1878
-        Height = 692
+        Height = 733
         Align = alClient
         DataSource = DataSource41
         DynProps = <>
@@ -7077,13 +7495,12 @@ object FormTrans: TFormTrans
       Caption = '5.'#1056#1072#1089#1093#1086#1076#1099' '
       SkinData.CustomColor = False
       SkinData.CustomFont = False
-      ExplicitWidth = 1284
       object DBGridEh51: TDBGridEh
         Tag = 51
         Left = 0
         Top = 41
         Width = 1884
-        Height = 703
+        Height = 744
         Align = alClient
         DataSource = DataSource51
         DynProps = <>
@@ -7268,7 +7685,6 @@ object FormTrans: TFormTrans
         Align = alTop
         TabOrder = 1
         SkinData.SkinSection = 'PANEL'
-        ExplicitWidth = 1284
         object sLabel51: TsLabel
           Left = 16
           Top = 13
@@ -7392,12 +7808,11 @@ object FormTrans: TFormTrans
       Caption = '6. '#1057#1087#1088#1072#1074#1086#1095#1085#1080#1082#1080' '
       SkinData.CustomColor = False
       SkinData.CustomFont = False
-      ExplicitWidth = 1284
       object sSplitter3: TsSplitter
         Left = 320
         Top = 0
         Width = 3
-        Height = 744
+        Height = 785
         SkinData.SkinSection = 'SPLITTER'
         ExplicitHeight = 664
       end
@@ -7406,7 +7821,7 @@ object FormTrans: TFormTrans
         Left = 0
         Top = 0
         Width = 320
-        Height = 744
+        Height = 785
         Align = alLeft
         AutoFitColWidths = True
         DataSource = DataSource61
@@ -7440,17 +7855,16 @@ object FormTrans: TFormTrans
         Left = 323
         Top = 0
         Width = 1561
-        Height = 744
+        Height = 785
         Align = alClient
         Caption = 'sPanel2'
         TabOrder = 1
         SkinData.SkinSection = 'PANEL'
-        ExplicitWidth = 961
         object sSplitter4: TsSplitter
           Left = 321
           Top = 1
           Width = 3
-          Height = 742
+          Height = 783
           SkinData.SkinSection = 'SPLITTER'
           ExplicitHeight = 662
         end
@@ -7459,7 +7873,7 @@ object FormTrans: TFormTrans
           Left = 1
           Top = 1
           Width = 320
-          Height = 742
+          Height = 783
           Align = alLeft
           DataSource = DataSource62
           DynProps = <>
@@ -7493,7 +7907,7 @@ object FormTrans: TFormTrans
           Left = 324
           Top = 1
           Width = 1236
-          Height = 742
+          Height = 783
           Align = alClient
           AutoFitColWidths = True
           DataSource = DataSource63
@@ -7552,13 +7966,12 @@ object FormTrans: TFormTrans
       Caption = '7. '#1055#1086#1083#1100#1079#1086#1074#1072#1090#1077#1083#1080
       SkinData.CustomColor = False
       SkinData.CustomFont = False
-      ExplicitWidth = 1284
       object DBGridEh71: TDBGridEh
         Tag = 71
         Left = 0
         Top = 0
         Width = 1884
-        Height = 744
+        Height = 785
         Align = alClient
         DataSource = DataSource71
         DynProps = <>
@@ -7716,7 +8129,7 @@ object FormTrans: TFormTrans
   end
   object sStatusBar1: TsStatusBar
     Left = 0
-    Top = 836
+    Top = 877
     Width = 1892
     Height = 19
     Panels = <
@@ -7736,11 +8149,11 @@ object FormTrans: TFormTrans
         Width = 2000
       end>
     SkinData.SkinSection = 'STATUSBAR'
-    ExplicitWidth = 1292
   end
   object MemTableEh11: TMemTableEh
     Tag = 11
     Filtered = True
+    FetchAllOnOpen = True
     Params = <>
     DataDriver = DataSetDriverEh11
     SortOrder = 'Trans_Company_Flag,Trans_Company_Name'
@@ -7781,6 +8194,7 @@ object FormTrans: TFormTrans
   object MemTableEh12: TMemTableEh
     Tag = 12
     Filtered = True
+    FetchAllOnOpen = True
     Params = <>
     DataDriver = DataSetDriverEh12
     SortOrder = 'Trans_Type_Name'
@@ -7821,6 +8235,7 @@ object FormTrans: TFormTrans
   object MemTableEh13: TMemTableEh
     Tag = 13
     Filtered = True
+    FetchAllOnOpen = True
     Params = <>
     DataDriver = DataSetDriverEh13
     SortOrder = 
@@ -8144,6 +8559,7 @@ object FormTrans: TFormTrans
   object MemTableEh21: TMemTableEh
     Tag = 21
     Filtered = True
+    FetchAllOnOpen = True
     Params = <>
     DataDriver = DataSetDriverEh21
     SortOrder = 'Client_Name'
@@ -8428,6 +8844,7 @@ object FormTrans: TFormTrans
   object MemTableEh61: TMemTableEh
     Tag = 61
     Filtered = True
+    FetchAllOnOpen = True
     Params = <>
     DataDriver = DataSetDriverEh61
     SortOrder = 'Town_Name'
@@ -8475,6 +8892,7 @@ object FormTrans: TFormTrans
     Tag = 62
     DetailFields = 'TOWN_ID'
     Filtered = True
+    FetchAllOnOpen = True
     MasterDetailSide = mdsOnProviderEh
     MasterFields = 'TOWN_ID'
     MasterSource = DataSource61
@@ -8535,6 +8953,7 @@ object FormTrans: TFormTrans
   object MemTableEh63: TMemTableEh
     Tag = 63
     Filtered = True
+    FetchAllOnOpen = True
     Params = <>
     DataDriver = DataSetDriverEh63
     SortOrder = 'Trans_Company_Flag,Trans_Company_Name,Driver_Name'
@@ -8596,6 +9015,7 @@ object FormTrans: TFormTrans
   object MemTableEh71: TMemTableEh
     Tag = 71
     Filtered = True
+    FetchAllOnOpen = True
     Params = <>
     DataDriver = DataSetDriverEh71
     SortOrder = 'Full_Name'
@@ -8951,7 +9371,6 @@ object FormTrans: TFormTrans
     FetchAllOnOpen = True
     Params = <>
     DataDriver = DataSetDriverEh31
-    Options = [mtoTextFieldsCaseInsensitive]
     SortOrder = 'DT_Beg,Time_Beg'
     AfterOpen = MemTableEhAfterOpen
     AfterClose = MemTableEhAfterClose
@@ -9276,6 +9695,24 @@ object FormTrans: TFormTrans
       FieldName = 'TRANS_COMMENT'
       Size = 255
     end
+    object MemTableEh31FLAG_MES: TIntegerField
+      FieldName = 'FLAG_MES'
+    end
+    object MemTableEh31NDOG_ID: TIntegerField
+      FieldName = 'NDOG_ID'
+    end
+    object MemTableEh31BEG_FULL_ADDR: TStringField
+      FieldName = 'BEG_FULL_ADDR'
+      Size = 255
+    end
+    object MemTableEh31END_FULL_ADDR: TStringField
+      FieldName = 'END_FULL_ADDR'
+      Size = 255
+    end
+    object MemTableEh31NDOG_ID_STR: TStringField
+      FieldName = 'NDOG_ID_STR'
+      Size = 24
+    end
   end
   object DataSetDriverEh31: TDataSetDriverEh
     ProviderDataSet = Query31
@@ -9342,6 +9779,7 @@ object FormTrans: TFormTrans
       ':MNG_PAY_DATE,'
       ':DRV_PAY,'
       ':MANAGER_ID,'
+      ':NDOG_ID,'
       ':COMMENT,'
       ':FLAG_CALC_INCOME,'
       ':USER_ID,'
@@ -9591,6 +10029,11 @@ object FormTrans: TFormTrans
         ParamType = ptInput
       end
       item
+        DataType = ftUnknown
+        Name = 'NDOG_ID'
+        ParamType = ptUnknown
+      end
+      item
         DataType = ftString
         Name = 'COMMENT'
         ParamType = ptInput
@@ -9634,6 +10077,7 @@ object FormTrans: TFormTrans
   object MemTableEh41: TMemTableEh
     Tag = 41
     Filtered = True
+    FetchAllOnOpen = True
     Params = <>
     DataDriver = DataSetDriverEh41
     AfterOpen = MemTableEhAfterOpen
@@ -9855,6 +10299,7 @@ object FormTrans: TFormTrans
   object MemTableEh51: TMemTableEh
     Tag = 51
     Filtered = True
+    FetchAllOnOpen = True
     Params = <>
     DataDriver = DataSetDriverEh51
     SortOrder = 'DateMake,OutLay_ID'
@@ -10097,12 +10542,13 @@ object FormTrans: TFormTrans
   object MemTableEh43: TMemTableEh
     Tag = 43
     Filtered = True
+    FetchAllOnOpen = True
     Params = <>
     DataDriver = DataSetDriverEh43
     AfterOpen = MemTableEhAfterOpen
     OnFilterRecord = MemTableEhFilterRecord
     Left = 456
-    Top = 576
+    Top = 504
     object MemTableEh43SORT_ORDER: TIntegerField
       FieldName = 'SORT_ORDER'
     end
@@ -10459,8 +10905,652 @@ object FormTrans: TFormTrans
     Top = 32
     object N1: TMenuItem
       Tag = 1
-      Caption = #1054#1090#1095#1077#1090' '#1087#1086' '#1074#1086#1076#1080#1090#1077#1083#1102
-      OnClick = N1Click
+      Caption = #1057#1074#1086#1076#1085#1099#1081' '#1086#1090#1095#1077#1090' '#1087#1086' '#1087#1086' '#1074#1086#1076#1080#1090#1077#1083#1102
+      OnClick = MenuItemClick
+    end
+    object N2: TMenuItem
+      Tag = 2
+      Caption = 'C'#1074#1086#1076#1082#1072' '#1087#1086' '#1090#1077#1082#1091#1097#1080#1084' '#1079#1072#1082#1072#1079#1072#1084
+      OnClick = MenuItemClick
+    end
+    object N7: TMenuItem
+      Caption = '-'
+    end
+    object N10: TMenuItem
+      Tag = 10
+      Caption = #1054#1090#1095#1077#1090' '#1087#1086' '#1079#1072#1082#1072#1079#1072#1084' '#1082#1083#1080#1077#1085#1090#1072' '#1079#1072' '#1087#1077#1088#1080#1086#1076
+      OnClick = MenuItemClick
+    end
+    object N11: TMenuItem
+      Tag = 11
+      Caption = #1054#1090#1095#1077#1090' '#1087#1086' '#1079#1072#1082#1072#1079#1072#1084' '#1058#1057' '#1079#1072' '#1087#1077#1088#1080#1086#1076
+      OnClick = MenuItemClick
+    end
+    object N12: TMenuItem
+      Tag = 12
+      Caption = #1054#1090#1095#1077#1090' '#1087#1086' '#1079#1072#1082#1072#1079#1072#1084' '#1087#1077#1088#1077#1074#1086#1079#1095#1080#1082#1072' '#1079#1072' '#1087#1077#1088#1080#1086#1076
+      OnClick = MenuItemClick
+    end
+    object N13: TMenuItem
+      Tag = 13
+      Caption = #1054#1090#1095#1077#1090' '#1087#1086' '#1079#1072#1082#1072#1079#1072#1084' '#1074#1086#1076#1080#1090#1077#1083#1103' '#1079#1072' '#1087#1077#1088#1080#1086#1076
+      OnClick = MenuItemClick
+    end
+    object N14: TMenuItem
+      Tag = 14
+      Caption = #1054#1090#1095#1077#1090' '#1087#1086' '#1079#1072#1082#1072#1079#1072#1084' '#1080' '#1087#1086#1083#1091#1095#1072#1090#1077#1083#1103#1084' '#1076#1077#1085#1077#1075' '#1079#1072' '#1087#1077#1088#1080#1086#1076
+      OnClick = MenuItemClick
+    end
+  end
+  object frxDBDataset31: TfrxDBDataset
+    UserName = 'Ord'
+    CloseDataSource = False
+    FieldAliases.Strings = (
+      'ORDERS_ID=ORDERS_ID'
+      'DT_MAKE=DT_MAKE'
+      'DT_BEG=DT_BEG'
+      'TIME_BEG=TIME_BEG'
+      'BEF_MINUT=BEF_MINUT'
+      'TIME_BEF=TIME_BEF'
+      'WRK_DAY=WRK_DAY'
+      'WRK_MINUT=WRK_MINUT'
+      'TIME_WRK=TIME_WRK'
+      'DAY_END=DAY_END'
+      'DT_END=DT_END'
+      'DAY_SUM=DAY_SUM'
+      'TIME_SUM=TIME_SUM'
+      'TIME_SUM_STR=TIME_SUM_STR'
+      'TIME_SUM_STR_F=TIME_SUM_STR_F'
+      'ORDER_STATE=ORDER_STATE'
+      'ORDER_STATE_STR=ORDER_STATE_STR'
+      'ORDER_TYPE=ORDER_TYPE'
+      'ORDER_TYPE_STR=ORDER_TYPE_STR'
+      'CLIENT_ID=CLIENT_ID'
+      'CLIENT_NAME=CLIENT_NAME'
+      'WORK_TYPE_ID=WORK_TYPE_ID'
+      'WORK_TYPE_NAME=WORK_TYPE_NAME'
+      'CONTACT_ID=CONTACT_ID'
+      'CONTACT_NAME=CONTACT_NAME'
+      'CONTACT_PHONE=CONTACT_PHONE'
+      'TRANS_TYPE_ID=TRANS_TYPE_ID'
+      'TRANS_TYPE_NAME=TRANS_TYPE_NAME'
+      'PASS_NEED=PASS_NEED'
+      'TRANSPORT_ID=TRANSPORT_ID'
+      'TRANSPORT_NAME=TRANSPORT_NAME'
+      'REG_NUMBER=REG_NUMBER'
+      'PASS_NUMBER=PASS_NUMBER'
+      'DRIVER_ID=DRIVER_ID'
+      'DRIVER_NAME=DRIVER_NAME'
+      'DRIVER_PHONE=DRIVER_PHONE'
+      'DRIVER_HAND_MONEY=DRIVER_HAND_MONEY'
+      'BEG_TOWN_ID=BEG_TOWN_ID'
+      'END_TOWN_ID=END_TOWN_ID'
+      'BEG_STREET_ID=BEG_STREET_ID'
+      'END_STREET_ID=END_STREET_ID'
+      'BEG_ADDR_NAME=BEG_ADDR_NAME'
+      'END_ADDR_NAME=END_ADDR_NAME'
+      'RET_TO_START=RET_TO_START'
+      'RET_TO_START_STR=RET_TO_START_STR'
+      'CLIENT_TAX_ID=CLIENT_TAX_ID'
+      'TIME_ADD=TIME_ADD'
+      'TIME_MIN=TIME_MIN'
+      'HOUR_TAX=HOUR_TAX'
+      'DIST_TAX=DIST_TAX'
+      'DOG_TAX=DOG_TAX'
+      'DIST_RES=DIST_RES'
+      'PAY_CALC=PAY_CALC'
+      'PAY_RES=PAY_RES'
+      'PAY_TYPE=PAY_TYPE'
+      'PAY_TYPE_STR=PAY_TYPE_STR'
+      'PAY_AVC=PAY_AVC'
+      'PAY_AVC_STATE=PAY_AVC_STATE'
+      'PAY_AVC_STATE_STR=PAY_AVC_STATE_STR'
+      'PAY_AVC_RECEIVER=PAY_AVC_RECEIVER'
+      'PAY_AVC_RECEIVER_STR=PAY_AVC_RECEIVER_STR'
+      'PAY_REST=PAY_REST'
+      'PAY_REST_STATE=PAY_REST_STATE'
+      'PAY_REST_STATE_STR=PAY_REST_STATE_STR'
+      'PAY_REST_RECEIVER=PAY_REST_RECEIVER'
+      'PAY_REST_RECEIVER_STR=PAY_REST_RECEIVER_STR'
+      'ORDER_FLAG=ORDER_FLAG'
+      'EXC_PAY=EXC_PAY'
+      'EXC_PAY_DATE=EXC_PAY_DATE'
+      'MNG_PAY=MNG_PAY'
+      'MNG_PAY_DATE=MNG_PAY_DATE'
+      'DRV_PAY=DRV_PAY'
+      'MANAGER_ID=MANAGER_ID'
+      'COMMENT=COMMENT'
+      'DATECHANGE=DATECHANGE'
+      'STATUS=STATUS'
+      'TRANS_TIME_MIN=TRANS_TIME_MIN'
+      'TRANS_TIME_ADD=TRANS_TIME_ADD'
+      'TRANS_HOUR_TAX=TRANS_HOUR_TAX'
+      'TRANS_DIST_TAX=TRANS_DIST_TAX'
+      'BEG_STREET_NAME=BEG_STREET_NAME'
+      'BEG_TOWN_NAME=BEG_TOWN_NAME'
+      'END_STREET_NAME=END_STREET_NAME'
+      'END_TOWN_NAME=END_TOWN_NAME'
+      'FULL_NAME=FULL_NAME'
+      'TRANS_COMPANY_ID=TRANS_COMPANY_ID'
+      'TRANS_COMPANY_NAME=TRANS_COMPANY_NAME'
+      'TRANS_COMPANY_FLAG=TRANS_COMPANY_FLAG'
+      'SUM_MINUT=SUM_MINUT'
+      'INCOME=INCOME'
+      'SRC_ORDER_ID=SRC_ORDER_ID'
+      'FLAG_CALC_INCOME=FLAG_CALC_INCOME'
+      'FLAG_CALC_INCOME_STR=FLAG_CALC_INCOME_STR'
+      'TAX_TAKE_STR=TAX_TAKE_STR'
+      'TRANS_COMMENT=TRANS_COMMENT')
+    DataSet = MemTableEh31
+    BCDToCurrency = False
+    Left = 432
+    Top = 696
+  end
+  object frxReport31: TfrxReport
+    Tag = 31
+    Version = '4.13.1'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = #1055#1086' '#1091#1084#1086#1083#1095#1072#1085#1080#1102
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 42146.797132858800000000
+    ReportOptions.LastChange = 42146.797132858800000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      'begin'
+      ''
+      'end.')
+    OnBeforePrint = frxReport31BeforePrint
+    Left = 512
+    Top = 696
+    Datasets = <
+      item
+        DataSet = frxDBDataset31
+        DataSetName = 'Ord'
+      end>
+    Variables = <>
+    Style = <>
+    object Data: TfrxDataPage
+      Height = 1000.000000000000000000
+      Width = 1000.000000000000000000
+    end
+    object Page1: TfrxReportPage
+      Orientation = poLandscape
+      PaperWidth = 297.000000000000000000
+      PaperHeight = 210.000000000000000000
+      PaperSize = 9
+      LeftMargin = 5.000000000000000000
+      RightMargin = 5.000000000000000000
+      TopMargin = 5.000000000000000000
+      BottomMargin = 5.000000000000000000
+      object PageHeader1: TfrxPageHeader
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        Height = 37.795275590000000000
+        ParentFont = False
+        Top = 60.472480000000000000
+        Width = 1084.725110000000000000
+        object Memo8: TfrxMemoView
+          Align = baLeft
+          Width = 102.047244090000000000
+          Height = 37.795275590000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDouble
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            #1042#1088#1077#1084#1103' '#1074#1099#1087#1086#1083#1085#1077#1085#1080#1103)
+          ParentFont = False
+        end
+        object Memo9: TfrxMemoView
+          Align = baLeft
+          Left = 102.047244090000000000
+          Width = 75.590551180000000000
+          Height = 37.795275590000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDouble
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            #1058#1080#1087' '#1079#1072#1082#1072#1079#1072' '#1080' '#1088#1072#1073#1086#1090#1099)
+          ParentFont = False
+        end
+        object Memo10: TfrxMemoView
+          Align = baLeft
+          Left = 177.637795270000000000
+          Width = 113.385826770000000000
+          Height = 37.795275590000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDouble
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            #1050#1083#1080#1077#1085#1090' '#1080' '#1082#1086#1085#1090#1072#1082#1090)
+          ParentFont = False
+        end
+        object Memo11: TfrxMemoView
+          Align = baLeft
+          Left = 291.023622040000000000
+          Width = 75.590551180000000000
+          Height = 37.795275590000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDouble
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            #1058#1080#1087' '#1090#1088#1072#1085#1089'.'
+            #1080' '#1084#1077#1089#1090)
+          ParentFont = False
+        end
+        object Memo12: TfrxMemoView
+          Align = baLeft
+          Left = 366.614173220000000000
+          Width = 170.078740157480300000
+          Height = 37.795275590000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDouble
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            #1054#1090#1082#1091#1076#1072' '#1080' '#1082#1091#1076#1072)
+          ParentFont = False
+        end
+        object Memo13: TfrxMemoView
+          Align = baLeft
+          Left = 536.692913377480300000
+          Width = 151.181102360000000000
+          Height = 37.795275590000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDouble
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            #1058#1088#1072#1085#1089#1087#1086#1088#1090' '#1080' '#1074#1086#1076#1080#1090#1077#1083#1100)
+          ParentFont = False
+        end
+        object Memo14: TfrxMemoView
+          Align = baLeft
+          Left = 687.874015737480300000
+          Width = 37.795275590000000000
+          Height = 37.795275590000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDouble
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            #1053#1072' '#1088#1091#1082#1080)
+          ParentFont = False
+        end
+        object Memo15: TfrxMemoView
+          Align = baLeft
+          Left = 725.669291327480300000
+          Width = 37.795275590000000000
+          Height = 37.795275590000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDouble
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            #1047#1072' 1 '
+            #1095#1072#1089)
+          ParentFont = False
+        end
+        object Memo16: TfrxMemoView
+          Align = baLeft
+          Left = 763.464566917480300000
+          Width = 37.795275590000000000
+          Height = 37.795275590000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDouble
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            #1056#1072#1089'-'#1095#1077#1090)
+          ParentFont = False
+        end
+        object Memo17: TfrxMemoView
+          Align = baLeft
+          Left = 801.259842507480300000
+          Width = 37.795275590000000000
+          Height = 37.795275590000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDouble
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            #1057#1091#1084'-'#1084#1072)
+          ParentFont = False
+        end
+        object Memo19: TfrxMemoView
+          Align = baLeft
+          Left = 839.055118097480300000
+          Width = 37.795275590000000000
+          Height = 37.795275590000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDouble
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            #1058#1080#1087
+            #1086#1087#1083#1072#1090#1099)
+          ParentFont = False
+        end
+        object Memo18: TfrxMemoView
+          Align = baLeft
+          Left = 876.850393687480300000
+          Width = 207.874125590000000000
+          Height = 37.795275590000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDouble
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            #1055#1088#1080#1084#1077#1095#1072#1085#1080#1077)
+          ParentFont = False
+        end
+      end
+      object ReportTitle1: TfrxReportTitle
+        Height = 18.897637800000000000
+        Top = 18.897650000000000000
+        Width = 1084.725110000000000000
+        object Memo1: TfrxMemoView
+          Tag = 1
+          Width = 1084.725110000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          StretchMode = smMaxHeight
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haCenter
+          ParentFont = False
+        end
+      end
+      object MasterData1: TfrxMasterData
+        Height = 18.897637800000000000
+        Top = 158.740260000000000000
+        Width = 1084.725110000000000000
+        DataSet = frxDBDataset31
+        DataSetName = 'Ord'
+        RowCount = 0
+        Stretched = True
+        object Memo2: TfrxMemoView
+          Tag = 2
+          Align = baLeft
+          Width = 102.047244090000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          StretchMode = smMaxHeight
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftBottom]
+          ParentFont = False
+        end
+        object Memo3: TfrxMemoView
+          Tag = 3
+          Align = baLeft
+          Left = 102.047244090000000000
+          Width = 75.590551180000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          StretchMode = smMaxHeight
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftRight, ftBottom]
+          ParentFont = False
+        end
+        object Memo4: TfrxMemoView
+          Tag = 4
+          Align = baLeft
+          Left = 177.637795270000000000
+          Width = 113.385826770000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          StretchMode = smMaxHeight
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftRight, ftBottom]
+          ParentFont = False
+        end
+        object Memo5: TfrxMemoView
+          Tag = 5
+          Align = baLeft
+          Left = 291.023622040000000000
+          Width = 75.590551181102400000
+          Height = 18.897650000000000000
+          ShowHint = False
+          StretchMode = smMaxHeight
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftRight, ftBottom]
+          ParentFont = False
+        end
+        object Memo6: TfrxMemoView
+          Tag = 6
+          Align = baLeft
+          Left = 366.614173221102400000
+          Width = 170.078740160000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          StretchMode = smMaxHeight
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftRight, ftBottom]
+          ParentFont = False
+        end
+        object Memo7: TfrxMemoView
+          Tag = 7
+          Align = baLeft
+          Left = 536.692913381102400000
+          Width = 151.181102362204700000
+          Height = 18.897650000000000000
+          ShowHint = False
+          StretchMode = smMaxHeight
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftRight, ftBottom]
+          ParentFont = False
+        end
+        object OrdDRIVER_HAND_MONEY: TfrxMemoView
+          Align = baLeft
+          Left = 687.874015743307100000
+          Width = 37.795275590000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          StretchMode = smMaxHeight
+          DataField = 'DRIVER_HAND_MONEY'
+          DataSet = frxDBDataset31
+          DataSetName = 'Ord'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftRight, ftBottom]
+          HAlign = haRight
+          Memo.UTF8W = (
+            '[Ord."DRIVER_HAND_MONEY"]')
+          ParentFont = False
+        end
+        object OrdHOUR_TAX: TfrxMemoView
+          Align = baLeft
+          Left = 725.669291333307100000
+          Width = 37.795275590000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          StretchMode = smMaxHeight
+          DataField = 'HOUR_TAX'
+          DataSet = frxDBDataset31
+          DataSetName = 'Ord'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftRight, ftBottom]
+          HAlign = haRight
+          Memo.UTF8W = (
+            '[Ord."HOUR_TAX"]')
+          ParentFont = False
+        end
+        object OrdPAY_CALC: TfrxMemoView
+          Align = baLeft
+          Left = 763.464566923307100000
+          Width = 37.795275590000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          StretchMode = smMaxHeight
+          DataField = 'PAY_CALC'
+          DataSet = frxDBDataset31
+          DataSetName = 'Ord'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftRight, ftBottom]
+          HAlign = haRight
+          Memo.UTF8W = (
+            '[Ord."PAY_CALC"]')
+          ParentFont = False
+        end
+        object OrdPAY_RES: TfrxMemoView
+          Align = baLeft
+          Left = 801.259842513307100000
+          Width = 37.795275590000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          StretchMode = smMaxHeight
+          DataField = 'PAY_RES'
+          DataSet = frxDBDataset31
+          DataSetName = 'Ord'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftRight, ftBottom]
+          HAlign = haRight
+          Memo.UTF8W = (
+            '[Ord."PAY_RES"]')
+          ParentFont = False
+        end
+        object OrdPAY_TYPE_STR: TfrxMemoView
+          Align = baLeft
+          Left = 839.055118103307100000
+          Width = 37.795275590000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          StretchMode = smMaxHeight
+          DataField = 'PAY_TYPE_STR'
+          DataSet = frxDBDataset31
+          DataSetName = 'Ord'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftRight, ftBottom]
+          HAlign = haRight
+          Memo.UTF8W = (
+            '[Ord."PAY_TYPE_STR"]')
+          ParentFont = False
+        end
+        object OrdCOMMENT: TfrxMemoView
+          Align = baLeft
+          Left = 876.850393693307100000
+          Width = 207.874027950000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          StretchMode = smMaxHeight
+          DataField = 'COMMENT'
+          DataSet = frxDBDataset31
+          DataSetName = 'Ord'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftRight, ftBottom]
+          Memo.UTF8W = (
+            '[Ord."COMMENT"]')
+          ParentFont = False
+        end
+      end
     end
   end
 end

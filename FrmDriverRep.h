@@ -38,6 +38,8 @@
 #include "frxDBSet.hpp"
 #include "frxDesgn.hpp"
 #include "frxDMPExport.hpp"
+#include "sMemo.hpp"
+#include "DBCtrlsEh.hpp"
 //---------------------------------------------------------------------------
 class TFormDriverRep : public TForm
 {
@@ -80,10 +82,7 @@ __published:	// IDE-managed Components
 	TsTabSheet *sTabSheet2;
 	TsTabSheet *sTabSheet3;
 	TDBGridEh *DBGridEh1;
-	TDBGridEh *DBGridEh3;
 	TDBGridEh *DBGridEh2;
-	TQuery *Query4;
-	TQuery *Query5;
 	TIntegerField *MemTableEh1FLAG_MES;
 	TIntegerField *MemTableEh1ORDERS_ID;
 	TDateTimeField *MemTableEh1DT_MAKE;
@@ -138,13 +137,71 @@ __published:	// IDE-managed Components
 	TfrxReport *frxReport1;
 	TfrxDBDataset *frxDBDataset1;
 	TfrxDBDataset *frxDBDataset2;
-	TfrxDesigner *frxDesigner1;
 	TsPanel *sPanel2;
 	TsCheckBox *sCheckBox1;
 	TsPanel *sPanel3;
 	TsCheckBox *sCheckBox2;
+	TQuery *Query6;
+	TDataSetDriverEh *DataSetDriverEh4;
+	TMemTableEh *MemTableEh4;
+	TDataSource *DataSource4;
+	TsTabSheet *sTabSheet4;
+	TsMemo *sMemo2;
 	TsPanel *sPanel4;
 	TsCheckBox *sCheckBox3;
+	TDBGridEh *DBGridEh4;
+	TsMemo *sMemo1;
+	TsPanel *sPanel7;
+	TsCheckBox *sCheckBox4;
+	TDBGridEh *DBGridEh3;
+	TDBEditEh *DBEditEh;
+	TDBDateTimeEditEh *DBDateTimeEditEh;
+	TComboBox *ComboBox;
+	TDBNumberEditEh *DBNumberEditEh;
+	TQuery *Query4;
+	TQuery *Query5;
+	TfrxDBDataset *frxDBDataset3;
+	TfrxDBDataset *frxDBDataset4;
+	TIntegerField *MemTableEh3FLAG_MES;
+	TIntegerField *MemTableEh3MONEY_MOVE_ID;
+	TIntegerField *MemTableEh3OBJECT_ID_SRC;
+	TStringField *MemTableEh3NAME_SRC;
+	TStringField *MemTableEh3NAME_TYPE_SRC;
+	TIntegerField *MemTableEh3INDEX_ID_SRC;
+	TIntegerField *MemTableEh3OBJECT_TYPE_SRC;
+	TDateTimeField *MemTableEh3DATESET;
+	TIntegerField *MemTableEh3OBJECT_ID_TAG;
+	TIntegerField *MemTableEh3INDEX_ID_TAG;
+	TStringField *MemTableEh3NAME_TAG;
+	TIntegerField *MemTableEh3OBJECT_TYPE_TAG;
+	TStringField *MemTableEh3NAME_TYPE_TAG;
+	TIntegerField *MemTableEh3MONEY_VALUE;
+	TIntegerField *MemTableEh3EMPLOYEE_ID;
+	TStringField *MemTableEh3FULL_NAME;
+	TDateTimeField *MemTableEh3DATE_CONFIRM;
+	TStringField *MemTableEh3COMMENT;
+	TDateTimeField *MemTableEh3DATECHANGE;
+	TIntegerField *MemTableEh3STATUS;
+	TIntegerField *MemTableEh4FLAG_MES;
+	TIntegerField *MemTableEh4MONEY_MOVE_ID;
+	TIntegerField *MemTableEh4OBJECT_ID_SRC;
+	TStringField *MemTableEh4NAME_SRC;
+	TStringField *MemTableEh4NAME_TYPE_SRC;
+	TIntegerField *MemTableEh4INDEX_ID_SRC;
+	TIntegerField *MemTableEh4OBJECT_TYPE_SRC;
+	TDateTimeField *MemTableEh4DATESET;
+	TIntegerField *MemTableEh4OBJECT_ID_TAG;
+	TIntegerField *MemTableEh4INDEX_ID_TAG;
+	TStringField *MemTableEh4NAME_TAG;
+	TIntegerField *MemTableEh4OBJECT_TYPE_TAG;
+	TStringField *MemTableEh4NAME_TYPE_TAG;
+	TIntegerField *MemTableEh4MONEY_VALUE;
+	TIntegerField *MemTableEh4EMPLOYEE_ID;
+	TStringField *MemTableEh4FULL_NAME;
+	TDateTimeField *MemTableEh4DATE_CONFIRM;
+	TStringField *MemTableEh4COMMENT;
+	TDateTimeField *MemTableEh4DATECHANGE;
+	TIntegerField *MemTableEh4STATUS;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
@@ -167,12 +224,19 @@ __published:	// IDE-managed Components
 	void __fastcall sPageControl1Change(TObject *Sender);
 	void __fastcall sCheckBoxClick(TObject *Sender);
 	void __fastcall frxReport1BeforePrint(TfrxReportComponent *Sender);
+	void __fastcall DBEditExit(TObject *Sender);
+	void __fastcall DBEditEhKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall sPageControl1Changing(TObject *Sender, bool &AllowChange);
+	void __fastcall sMemoKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall sMemoExit(TObject *Sender);
+
 
 
 private:	// User declarations
 public:		// User declarations
-   int PageTag;
+	int PageTag;
 	int DriverID;
+	int Drv_Object_ID;
 	int CurMM, CurYY,SelMM;
 	int MaxMM, MaxYY,SelYY;
 
@@ -181,8 +245,12 @@ public:		// User declarations
 	GridData *WrkGData;
 	GridData GDataOrders;
 	GridData GDataOutlay;
-	GridData GDataMonCng;
-	int SumHand, SumPay, SumOutlay;
+	GridData GDataMonInp;
+	GridData GDataMonOut;
+
+	int SumHand, SumPay, SumOutlay, SumMonInp, SumMonOut;
+
+	AnsiString DriverName;
 	__fastcall TFormDriverRep(TComponent* Owner,int DriverID, AnsiString DriverName);
 
 	void __fastcall TFormDriverRep::SetDriver(int DriverID, AnsiString DriverName);
@@ -191,11 +259,15 @@ public:		// User declarations
 	void __fastcall TFormDriverRep::SelectDriver();
 
 	void __fastcall TFormDriverRep::ProcHistory(bool All);
+
 	AnsiString __fastcall TFormDriverRep::TranslateName(AnsiString FldName);
 
+	bool __fastcall TFormDriverRep::RefreshOneRow(GridData& GData,TDataSet* DSet);
+	void __fastcall TFormDriverRep::SetCommonExtParams(GridData& GData);
+   bool __fastcall TFormDriverRep::GetObjectID(TForm* Frm, int Left,int &ID,TParams*&);
 
-   void __fastcall TFormDriverRep::SetPage();
-   void __fastcall TFormDriverRep::EnableControls();
+	void __fastcall TFormDriverRep::SetPage();
+	void __fastcall TFormDriverRep::EnableControls();
 	void __fastcall TFormDriverRep::CloseAll();
 	void __fastcall TFormDriverRep::ProcRefreshPage();
 	void __fastcall TFormDriverRep::SetButtonCaption(int Mon);
@@ -206,14 +278,15 @@ public:		// User declarations
 
 	GridData& __fastcall TFormDriverRep::GetGDataRef(TObject* Sender);
 
-   void __fastcall TFormDriverRep::ShowLowFooter(TDataSet *DataSet);
+	void __fastcall TFormDriverRep::ShowLowFooter(TDataSet *DataSet);
 	void __fastcall TFormDriverRep::ShowLowFooter(TDBGridEh* Grid,TDataSet *DataSet, int Item);
-   void __fastcall TFormDriverRep::ShowHighFooter(TDataSet *DataSet);
+	void __fastcall TFormDriverRep::ShowHighFooter(TDataSet *DataSet);
 
 	void __fastcall TFormDriverRep::ClearSums();
 	void __fastcall TFormDriverRep::AddCurrentRow(GridData& GData,int Mul, bool Show, bool Clear);
+	void __fastcall TFormDriverRep::WriteMemo();
 
-   void __fastcall TFormDriverRep::PrintReport();
+	void __fastcall TFormDriverRep::PrintReport();
 
 //	void __fastcall TFormDriverRep::SetCommonExtParams(GridData& GData);
 

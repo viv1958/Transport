@@ -694,10 +694,11 @@ object FormDriverRep: TFormDriverRep
     Top = 63
     Width = 1292
     Height = 491
-    ActivePage = sTabSheet1
+    ActivePage = sTabSheet4
     Align = alClient
     TabOrder = 2
     OnChange = sPageControl1Change
+    OnChanging = sPageControl1Changing
     SkinData.SkinSection = 'PAGECONTROL'
     object sTabSheet1: TsTabSheet
       Tag = 1
@@ -1125,30 +1126,243 @@ object FormDriverRep: TFormDriverRep
     end
     object sTabSheet3: TsTabSheet
       Tag = 3
-      Caption = '3. '#1044#1077#1085#1100#1075#1080
+      Caption = '3. '#1055#1086#1083#1091#1095#1080#1083
       SkinData.CustomColor = False
       SkinData.CustomFont = False
+      object sMemo1: TsMemo
+        Left = 0
+        Top = 401
+        Width = 1284
+        Height = 62
+        Align = alBottom
+        Color = clWhite
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        Lines.Strings = (
+          'sMemo1')
+        ParentFont = False
+        TabOrder = 0
+        OnExit = sMemoExit
+        OnKeyDown = sMemoKeyDown
+        Text = 'sMemo1'
+        BoundLabel.Indent = 0
+        BoundLabel.Font.Charset = DEFAULT_CHARSET
+        BoundLabel.Font.Color = clWindowText
+        BoundLabel.Font.Height = -11
+        BoundLabel.Font.Name = 'Tahoma'
+        BoundLabel.Font.Style = []
+        BoundLabel.Layout = sclLeft
+        BoundLabel.MaxWidth = 0
+        BoundLabel.UseSkinColor = True
+        SkinData.SkinSection = 'EDIT'
+      end
+      object sPanel7: TsPanel
+        Left = 0
+        Top = 0
+        Width = 1284
+        Height = 36
+        Align = alTop
+        TabOrder = 1
+        SkinData.SkinSection = 'PANEL'
+        object sCheckBox4: TsCheckBox
+          Tag = 3
+          Left = 13
+          Top = 8
+          Width = 246
+          Height = 20
+          Caption = #1055#1086#1082#1072#1079#1072#1090#1100' '#1090#1086#1083#1100#1082#1086' '#1074#1099#1073#1088#1072#1085#1085#1099#1077' '#1089#1090#1088#1086#1082#1080
+          TabOrder = 0
+          OnClick = sCheckBoxClick
+          SkinData.SkinSection = 'CHECKBOX'
+          ImgChecked = 0
+          ImgUnchecked = 0
+        end
+      end
       object DBGridEh3: TDBGridEh
         Tag = 3
         Left = 0
-        Top = 34
+        Top = 36
         Width = 1284
-        Height = 429
+        Height = 365
         Align = alClient
         DataSource = DataSource3
         DynProps = <>
+        FooterRowCount = 2
+        FooterParams.Color = clMoneyGreen
         IndicatorOptions = [gioShowRowIndicatorEh]
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
         OptionsEh = [dghFixed3D, dghClearSelection, dghDialogFind, dghColumnResize, dghColumnMove, dghExtendVertLines]
-        TabOrder = 0
+        TabOrder = 2
+        TitleParams.MultiTitle = True
         OnDrawColumnCell = DBGridEhDrawColumnCell
         OnEnter = DBGridEhEnter
         OnExit = DBGridEhExit
         OnGetCellParams = DBGridEhGetCellParams
         OnKeyDown = DBGridEhKeyDown
         OnKeyPress = DBGridEhKeyPress
+        Columns = <
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'NAME_TYPE_SRC'
+            Footers = <
+              item
+                Value = #1042#1099#1073#1088#1072#1085#1086':'
+                ValueType = fvtStaticText
+              end
+              item
+                Value = #1042#1089#1077#1075#1086': '
+                ValueType = fvtStaticText
+              end>
+            PickList.Strings = (
+              #1048#1079' '#1050#1072#1089#1089#1099
+              #1054#1090' '#1074#1086#1076#1080#1090#1077#1083#1103
+              #1054#1090' '#1089#1086#1090#1088#1091#1076#1085#1080#1082#1072
+              #1054#1090' '#1080#1089#1087#1086#1083#1085#1080#1090#1077#1083#1103
+              #1054#1090' '#1082#1083#1080#1077#1085#1090#1072)
+            Title.Caption = #1048#1089#1090#1086#1095#1085#1080#1082'|'#1058#1080#1087' '
+            Width = 124
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'NAME_SRC'
+            Footers = <>
+            Title.Caption = #1048#1089#1090#1086#1095#1085#1080#1082'|'#1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077' '
+            Width = 210
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'MONEY_VALUE'
+            Footers = <
+              item
+                ValueType = fvtStaticText
+              end
+              item
+                ValueType = fvtStaticText
+              end>
+            Title.Caption = #1057#1091#1084#1084#1072
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'DATESET'
+            Footers = <>
+            Title.Caption = #1044#1072#1090#1072' '#1087#1086#1083#1091#1095#1077#1085#1080#1103
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'COMMENT'
+            Footers = <>
+            Title.Caption = #1055#1088#1080#1084#1077#1095#1072#1085#1080#1077
+            Width = 702
+          end>
         object RowDetailData: TRowDetailPanelControlEh
         end
+      end
+      object DBEditEh: TDBEditEh
+        Left = 765
+        Top = 147
+        Width = 121
+        Height = 19
+        Ctl3D = False
+        DynProps = <>
+        EditButtons = <>
+        Enabled = False
+        ParentCtl3D = False
+        TabOrder = 3
+        Text = 'DBEditEh'
+        Visible = False
+        WordWrap = True
+        OnExit = DBEditExit
+        OnKeyDown = DBEditEhKeyDown
+      end
+      object DBDateTimeEditEh: TDBDateTimeEditEh
+        Left = 789
+        Top = 172
+        Width = 119
+        Height = 19
+        Ctl3D = False
+        DynProps = <>
+        Enabled = False
+        EditButtons = <>
+        ParentCtl3D = False
+        TabOrder = 4
+        Visible = False
+        OnExit = DBEditExit
+        OnKeyDown = DBEditEhKeyDown
+        EditFormat = 'dd.mm.yy'
+      end
+      object ComboBox: TComboBox
+        Left = 773
+        Top = 226
+        Width = 145
+        Height = 21
+        Enabled = False
+        TabOrder = 5
+        Text = 'ComboBox'
+        Visible = False
+        OnExit = DBEditExit
+        OnKeyDown = DBEditEhKeyDown
+      end
+      object DBNumberEditEh: TDBNumberEditEh
+        Left = 781
+        Top = 284
+        Width = 121
+        Height = 19
+        Ctl3D = False
+        DecimalPlaces = 0
+        DynProps = <>
+        Enabled = False
+        EditButtons = <>
+        ParentCtl3D = False
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 6
+        Visible = False
+        OnExit = DBEditExit
+        OnKeyDown = DBEditEhKeyDown
+      end
+    end
+    object sTabSheet4: TsTabSheet
+      Tag = 4
+      Caption = '4. '#1055#1077#1088#1077#1076#1072#1083
+      SkinData.CustomColor = False
+      SkinData.CustomFont = False
+      object sMemo2: TsMemo
+        Left = 0
+        Top = 424
+        Width = 1284
+        Height = 39
+        Align = alBottom
+        Color = clWhite
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        Lines.Strings = (
+          'sMemo2')
+        ParentFont = False
+        TabOrder = 0
+        OnExit = sMemoExit
+        OnKeyDown = sMemoKeyDown
+        Text = 'sMemo2'
+        BoundLabel.Indent = 0
+        BoundLabel.Font.Charset = DEFAULT_CHARSET
+        BoundLabel.Font.Color = clWindowText
+        BoundLabel.Font.Height = -11
+        BoundLabel.Font.Name = 'Tahoma'
+        BoundLabel.Font.Style = []
+        BoundLabel.Layout = sclLeft
+        BoundLabel.MaxWidth = 0
+        BoundLabel.UseSkinColor = True
+        SkinData.SkinSection = 'EDIT'
       end
       object sPanel4: TsPanel
         Left = 0
@@ -1160,7 +1374,7 @@ object FormDriverRep: TFormDriverRep
         SkinData.SkinSection = 'PANEL'
         object sCheckBox3: TsCheckBox
           Tag = 3
-          Left = 19
+          Left = 13
           Top = 7
           Width = 246
           Height = 20
@@ -1170,6 +1384,83 @@ object FormDriverRep: TFormDriverRep
           SkinData.SkinSection = 'CHECKBOX'
           ImgChecked = 0
           ImgUnchecked = 0
+        end
+      end
+      object DBGridEh4: TDBGridEh
+        Tag = 4
+        Left = 0
+        Top = 34
+        Width = 1284
+        Height = 390
+        Align = alClient
+        DataSource = DataSource4
+        DynProps = <>
+        FooterRowCount = 2
+        FooterParams.Color = clMoneyGreen
+        IndicatorOptions = [gioShowRowIndicatorEh]
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
+        OptionsEh = [dghFixed3D, dghClearSelection, dghDialogFind, dghColumnResize, dghColumnMove, dghExtendVertLines]
+        TabOrder = 2
+        TitleParams.MultiTitle = True
+        OnDrawColumnCell = DBGridEhDrawColumnCell
+        OnEnter = DBGridEhEnter
+        OnExit = DBGridEhExit
+        OnGetCellParams = DBGridEhGetCellParams
+        OnKeyDown = DBGridEhKeyDown
+        OnKeyPress = DBGridEhKeyPress
+        Columns = <
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'NAME_TYPE_TAG'
+            Footers = <>
+            PickList.Strings = (
+              #1042' '#1050#1072#1089#1089#1091
+              #1042#1086#1076#1080#1090#1077#1083#1102
+              #1057#1086#1090#1088#1091#1076#1085#1080#1082#1091
+              #1048#1089#1087#1086#1083#1085#1080#1090#1077#1083#1102
+              '')
+            Title.Caption = #1055#1086#1083#1091#1095#1072#1090#1077#1083#1100'|'#1058#1080#1087' '
+            Width = 124
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'NAME_TAG'
+            Footers = <>
+            Title.Caption = #1055#1086#1083#1091#1095#1072#1090#1077#1083#1100'|'#1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077'  '
+            Width = 193
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'MONEY_VALUE'
+            Footers = <
+              item
+                ValueType = fvtStaticText
+              end
+              item
+                ValueType = fvtStaticText
+              end>
+            Title.Caption = #1057#1091#1084#1084#1072
+          end
+          item
+            DisplayFormat = 'dd.mmm.yy'
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'DATESET'
+            Footers = <>
+            Title.Caption = #1044#1072#1090#1072' '#1055#1077#1088#1077#1076#1072#1095#1080
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'COMMENT'
+            Footers = <>
+            Title.Caption = #1055#1088#1080#1084#1077#1095#1072#1085#1080#1077
+            Width = 714
+          end>
+        object RowDetailData: TRowDetailPanelControlEh
         end
       end
     end
@@ -1193,6 +1484,8 @@ object FormDriverRep: TFormDriverRep
   object Query3: TQuery
     Tag = 3
     DatabaseName = 'TransDB'
+    SQL.Strings = (
+      'select * from sel_money_move(0,'#39'1.1.15'#39','#39'2.1.15'#39',1000)')
     Left = 384
     Top = 184
   end
@@ -1414,6 +1707,7 @@ object FormDriverRep: TFormDriverRep
     Filtered = True
     Params = <>
     DataDriver = DataSetDriverEh3
+    SortOrder = 'DateSet,Name_Tag '
     AfterOpen = MemTableEh1AfterOpen
     AfterClose = MemTableEh1AfterClose
     BeforeScroll = MemTableEh1BeforeScroll
@@ -1421,6 +1715,72 @@ object FormDriverRep: TFormDriverRep
     OnFilterRecord = MemTableEhFilterRecord
     Left = 380
     Top = 289
+    object MemTableEh3FLAG_MES: TIntegerField
+      FieldName = 'FLAG_MES'
+    end
+    object MemTableEh3MONEY_MOVE_ID: TIntegerField
+      FieldName = 'MONEY_MOVE_ID'
+    end
+    object MemTableEh3OBJECT_ID_SRC: TIntegerField
+      FieldName = 'OBJECT_ID_SRC'
+    end
+    object MemTableEh3NAME_SRC: TStringField
+      FieldName = 'NAME_SRC'
+      Size = 64
+    end
+    object MemTableEh3NAME_TYPE_SRC: TStringField
+      FieldName = 'NAME_TYPE_SRC'
+      Size = 32
+    end
+    object MemTableEh3INDEX_ID_SRC: TIntegerField
+      FieldName = 'INDEX_ID_SRC'
+    end
+    object MemTableEh3OBJECT_TYPE_SRC: TIntegerField
+      FieldName = 'OBJECT_TYPE_SRC'
+    end
+    object MemTableEh3DATESET: TDateTimeField
+      FieldName = 'DATESET'
+    end
+    object MemTableEh3OBJECT_ID_TAG: TIntegerField
+      FieldName = 'OBJECT_ID_TAG'
+    end
+    object MemTableEh3INDEX_ID_TAG: TIntegerField
+      FieldName = 'INDEX_ID_TAG'
+    end
+    object MemTableEh3NAME_TAG: TStringField
+      FieldName = 'NAME_TAG'
+      Size = 64
+    end
+    object MemTableEh3OBJECT_TYPE_TAG: TIntegerField
+      FieldName = 'OBJECT_TYPE_TAG'
+    end
+    object MemTableEh3NAME_TYPE_TAG: TStringField
+      FieldName = 'NAME_TYPE_TAG'
+      Size = 32
+    end
+    object MemTableEh3MONEY_VALUE: TIntegerField
+      FieldName = 'MONEY_VALUE'
+    end
+    object MemTableEh3EMPLOYEE_ID: TIntegerField
+      FieldName = 'EMPLOYEE_ID'
+    end
+    object MemTableEh3FULL_NAME: TStringField
+      FieldName = 'FULL_NAME'
+      Size = 64
+    end
+    object MemTableEh3DATE_CONFIRM: TDateTimeField
+      FieldName = 'DATE_CONFIRM'
+    end
+    object MemTableEh3COMMENT: TStringField
+      FieldName = 'COMMENT'
+      Size = 255
+    end
+    object MemTableEh3DATECHANGE: TDateTimeField
+      FieldName = 'DATECHANGE'
+    end
+    object MemTableEh3STATUS: TIntegerField
+      FieldName = 'STATUS'
+    end
   end
   object DataSetDriverEh1: TDataSetDriverEh
     ProviderDataSet = Query1
@@ -1436,14 +1796,6 @@ object FormDriverRep: TFormDriverRep
     ProviderDataSet = Query3
     Left = 383
     Top = 236
-  end
-  object Query4: TQuery
-    Left = 192
-    Top = 192
-  end
-  object Query5: TQuery
-    Left = 312
-    Top = 192
   end
   object frxReport1: TfrxReport
     Version = '4.13.1'
@@ -1461,9 +1813,17 @@ object FormDriverRep: TFormDriverRep
       ''
       'end.')
     OnBeforePrint = frxReport1BeforePrint
-    Left = 224
-    Top = 432
+    Left = 656
+    Top = 272
     Datasets = <
+      item
+        DataSet = frxDBDataset3
+        DataSetName = 'MI'
+      end
+      item
+        DataSet = frxDBDataset4
+        DataSetName = 'MO'
+      end
       item
         DataSet = frxDBDataset1
         DataSetName = 'Ord'
@@ -1487,55 +1847,6 @@ object FormDriverRep: TFormDriverRep
       RightMargin = 7.000000000000000000
       TopMargin = 10.000000000000000000
       BottomMargin = 10.000000000000000000
-      object PageHeader1: TfrxPageHeader
-        Height = 18.897637800000000000
-        Top = 60.472480000000000000
-        Width = 1077.166050000000000000
-        object SysMemo1: TfrxSysMemoView
-          Left = 937.323440000000000000
-          Width = 94.488250000000000000
-          Height = 18.897650000000000000
-          ShowHint = False
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = []
-          HAlign = haCenter
-          Memo.UTF8W = (
-            '[PAGE#] '#1080#1079' [TOTALPAGES#]')
-          ParentFont = False
-        end
-        object SysMemo5: TfrxSysMemoView
-          Left = 30.236240000000000000
-          Width = 94.488250000000000000
-          Height = 18.897650000000000000
-          ShowHint = False
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = []
-          HAlign = haRight
-          Memo.UTF8W = (
-            '[DATE]')
-          ParentFont = False
-        end
-        object SysMemo6: TfrxSysMemoView
-          Left = 137.063080000000000000
-          Width = 94.488250000000000000
-          Height = 18.897650000000000000
-          ShowHint = False
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = []
-          Memo.UTF8W = (
-            '[TIME]')
-          ParentFont = False
-        end
-      end
       object ReportTitle1: TfrxReportTitle
         Height = 18.897637800000000000
         Top = 18.897650000000000000
@@ -1556,7 +1867,7 @@ object FormDriverRep: TFormDriverRep
       end
       object GroupHeader1: TfrxGroupHeader
         Height = 18.897637800000000000
-        Top = 139.842610000000000000
+        Top = 98.267780000000000000
         Width = 1077.166050000000000000
         Condition = 'Ord."FLAG_MES"'
         object Memo2: TfrxMemoView
@@ -1567,7 +1878,7 @@ object FormDriverRep: TFormDriverRep
           Font.Color = clBlack
           Font.Height = -13
           Font.Name = 'Arial'
-          Font.Style = []
+          Font.Style = [fsBold]
           Frame.Style = fsDouble
           Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
           HAlign = haCenter
@@ -1585,7 +1896,7 @@ object FormDriverRep: TFormDriverRep
           Font.Color = clBlack
           Font.Height = -13
           Font.Name = 'Arial'
-          Font.Style = []
+          Font.Style = [fsBold]
           Frame.Style = fsDouble
           Frame.Typ = [ftRight, ftTop, ftBottom]
           HAlign = haCenter
@@ -1603,7 +1914,7 @@ object FormDriverRep: TFormDriverRep
           Font.Color = clBlack
           Font.Height = -13
           Font.Name = 'Arial'
-          Font.Style = []
+          Font.Style = [fsBold]
           Frame.Style = fsDouble
           Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
           HAlign = haRight
@@ -1621,7 +1932,7 @@ object FormDriverRep: TFormDriverRep
           Font.Color = clBlack
           Font.Height = -13
           Font.Name = 'Arial'
-          Font.Style = []
+          Font.Style = [fsBold]
           Frame.Style = fsDouble
           Frame.Typ = [ftRight, ftTop, ftBottom]
           HAlign = haCenter
@@ -1639,7 +1950,7 @@ object FormDriverRep: TFormDriverRep
           Font.Color = clBlack
           Font.Height = -13
           Font.Name = 'Arial'
-          Font.Style = []
+          Font.Style = [fsBold]
           Frame.Style = fsDouble
           Frame.Typ = [ftRight, ftTop, ftBottom]
           HAlign = haCenter
@@ -1650,14 +1961,14 @@ object FormDriverRep: TFormDriverRep
         object Memo7: TfrxMemoView
           Align = baLeft
           Left = 510.236220480000000000
-          Width = 151.181102362204700000
+          Width = 151.181102360000000000
           Height = 18.897650000000000000
           ShowHint = False
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
           Font.Name = 'Arial'
-          Font.Style = []
+          Font.Style = [fsBold]
           Frame.Style = fsDouble
           Frame.Typ = [ftRight, ftTop, ftBottom]
           HAlign = haCenter
@@ -1667,7 +1978,7 @@ object FormDriverRep: TFormDriverRep
         end
         object Memo8: TfrxMemoView
           Align = baLeft
-          Left = 661.417322842204700000
+          Left = 661.417322840000000000
           Width = 151.181102360000000000
           Height = 18.897650000000000000
           ShowHint = False
@@ -1675,7 +1986,7 @@ object FormDriverRep: TFormDriverRep
           Font.Color = clBlack
           Font.Height = -13
           Font.Name = 'Arial'
-          Font.Style = []
+          Font.Style = [fsBold]
           Frame.Style = fsDouble
           Frame.Typ = [ftRight, ftTop, ftBottom]
           HAlign = haCenter
@@ -1685,15 +1996,15 @@ object FormDriverRep: TFormDriverRep
         end
         object Memo9: TfrxMemoView
           Align = baLeft
-          Left = 812.598425202204700000
-          Width = 94.488250000000000000
+          Left = 812.598425200000000000
+          Width = 132.283464566929100000
           Height = 18.897650000000000000
           ShowHint = False
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
           Font.Name = 'Arial'
-          Font.Style = []
+          Font.Style = [fsBold]
           Frame.Style = fsDouble
           Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
           HAlign = haCenter
@@ -1701,27 +2012,9 @@ object FormDriverRep: TFormDriverRep
             #1058#1088#1072#1085#1089#1087#1086#1088#1090)
           ParentFont = False
         end
-        object Memo11: TfrxMemoView
-          Align = baLeft
-          Left = 907.086675202204700000
-          Width = 56.692913390000000000
-          Height = 18.897650000000000000
-          ShowHint = False
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Style = fsDouble
-          Frame.Typ = [ftRight, ftTop, ftBottom]
-          HAlign = haCenter
-          Memo.UTF8W = (
-            #1056#1077#1075#1080#1089'.N')
-          ParentFont = False
-        end
         object Memo12: TfrxMemoView
           Align = baLeft
-          Left = 963.779588592204700000
+          Left = 944.881889766929100000
           Width = 56.692913390000000000
           Height = 18.897650000000000000
           ShowHint = False
@@ -1729,7 +2022,7 @@ object FormDriverRep: TFormDriverRep
           Font.Color = clBlack
           Font.Height = -13
           Font.Name = 'Arial'
-          Font.Style = []
+          Font.Style = [fsBold]
           Frame.Style = fsDouble
           Frame.Typ = [ftRight, ftTop, ftBottom]
           Memo.UTF8W = (
@@ -1738,7 +2031,7 @@ object FormDriverRep: TFormDriverRep
         end
         object Memo13: TfrxMemoView
           Align = baLeft
-          Left = 1020.472501982205000000
+          Left = 1001.574803156929000000
           Width = 56.692913390000000000
           Height = 18.897650000000000000
           ShowHint = False
@@ -1746,7 +2039,7 @@ object FormDriverRep: TFormDriverRep
           Font.Color = clBlack
           Font.Height = -13
           Font.Name = 'Arial'
-          Font.Style = []
+          Font.Style = [fsBold]
           Frame.Style = fsDouble
           Frame.Typ = [ftRight, ftTop, ftBottom]
           Memo.UTF8W = (
@@ -1756,15 +2049,17 @@ object FormDriverRep: TFormDriverRep
       end
       object MasterData1: TfrxMasterData
         Height = 18.897637800000000000
-        Top = 181.417440000000000000
+        Top = 139.842610000000000000
         Width = 1077.166050000000000000
         DataSet = frxDBDataset1
         DataSetName = 'Ord'
         RowCount = 0
+        Stretched = True
         object OrdORDERS_ID: TfrxMemoView
           Width = 37.795275590000000000
           Height = 18.897650000000000000
           ShowHint = False
+          StretchMode = smMaxHeight
           DataField = 'ORDERS_ID'
           DataSet = frxDBDataset1
           DataSetName = 'Ord'
@@ -1785,6 +2080,7 @@ object FormDriverRep: TFormDriverRep
           Width = 94.488188980000000000
           Height = 18.897650000000000000
           ShowHint = False
+          StretchMode = smMaxHeight
           DataField = 'DT_BEG'
           DataSet = frxDBDataset1
           DataSetName = 'Ord'
@@ -1804,9 +2100,10 @@ object FormDriverRep: TFormDriverRep
         object OrdDT_END: TfrxMemoView
           Align = baLeft
           Left = 132.283464570000000000
-          Width = 94.488188976377950000
+          Width = 94.488188980000000000
           Height = 18.897650000000000000
           ShowHint = False
+          StretchMode = smMaxHeight
           DataField = 'DT_END'
           DataSet = frxDBDataset1
           DataSetName = 'Ord'
@@ -1825,10 +2122,11 @@ object FormDriverRep: TFormDriverRep
         end
         object OrdCLIENT_NAME: TfrxMemoView
           Align = baLeft
-          Left = 226.771653546378000000
-          Width = 170.078740157480300000
+          Left = 226.771653550000000000
+          Width = 170.078740160000000000
           Height = 18.897650000000000000
           ShowHint = False
+          StretchMode = smMaxHeight
           DataField = 'CLIENT_NAME'
           DataSet = frxDBDataset1
           DataSetName = 'Ord'
@@ -1844,10 +2142,11 @@ object FormDriverRep: TFormDriverRep
         end
         object OrdWORK_TYPE_NAME: TfrxMemoView
           Align = baLeft
-          Left = 396.850393703858300000
+          Left = 396.850393710000000000
           Width = 113.385826770000000000
           Height = 18.897650000000000000
           ShowHint = False
+          StretchMode = smMaxHeight
           DataField = 'WORK_TYPE_NAME'
           DataSet = frxDBDataset1
           DataSetName = 'Ord'
@@ -1863,10 +2162,11 @@ object FormDriverRep: TFormDriverRep
         end
         object OrdBEG_ADDR_NAME: TfrxMemoView
           Align = baLeft
-          Left = 510.236220473858300000
-          Width = 151.181102362204700000
+          Left = 510.236220480000000000
+          Width = 151.181102360000000000
           Height = 18.897650000000000000
           ShowHint = False
+          StretchMode = smMaxHeight
           DataField = 'BEG_ADDR_NAME'
           DataSet = frxDBDataset1
           DataSetName = 'Ord'
@@ -1882,10 +2182,11 @@ object FormDriverRep: TFormDriverRep
         end
         object OrdEND_ADDR_NAME: TfrxMemoView
           Align = baLeft
-          Left = 661.417322836063000000
-          Width = 151.181102362204700000
+          Left = 661.417322840000000000
+          Width = 151.181102360000000000
           Height = 18.897650000000000000
           ShowHint = False
+          StretchMode = smMaxHeight
           DataField = 'END_ADDR_NAME'
           DataSet = frxDBDataset1
           DataSetName = 'Ord'
@@ -1901,11 +2202,11 @@ object FormDriverRep: TFormDriverRep
         end
         object OrdTRANSPORT_NAME: TfrxMemoView
           Align = baLeft
-          Left = 812.598425198267700000
-          Width = 94.488250000000000000
+          Left = 812.598425200000000000
+          Width = 132.283464566929100000
           Height = 18.897650000000000000
           ShowHint = False
-          DataField = 'TRANSPORT_NAME'
+          StretchMode = smMaxHeight
           DataSet = frxDBDataset1
           DataSetName = 'Ord'
           Font.Charset = DEFAULT_CHARSET
@@ -1916,14 +2217,16 @@ object FormDriverRep: TFormDriverRep
           Frame.Typ = [ftRight, ftBottom]
           HAlign = haCenter
           Memo.UTF8W = (
-            '[Ord."TRANSPORT_NAME"]')
+            '[Ord."TRANSPORT_NAME"] [Ord."REG_NUMBER"]')
           ParentFont = False
         end
         object OrdDRV_PAY: TfrxMemoView
-          Left = 1020.472501978268000000
+          Align = baLeft
+          Left = 1001.574803156929000000
           Width = 56.692913390000000000
           Height = 18.897650000000000000
           ShowHint = False
+          StretchMode = smMaxHeight
           DataField = 'DRV_PAY'
           DataSet = frxDBDataset1
           DataSetName = 'Ord'
@@ -1939,10 +2242,12 @@ object FormDriverRep: TFormDriverRep
           ParentFont = False
         end
         object OrdDRIVER_HAND_MONEY: TfrxMemoView
-          Left = 963.779527560000000000
+          Align = baLeft
+          Left = 944.881889766929100000
           Width = 56.692913390000000000
           Height = 18.897650000000000000
           ShowHint = False
+          StretchMode = smMaxHeight
           DataField = 'DRIVER_HAND_MONEY'
           DataSet = frxDBDataset1
           DataSetName = 'Ord'
@@ -1957,28 +2262,16 @@ object FormDriverRep: TFormDriverRep
             '[Ord."DRIVER_HAND_MONEY"]')
           ParentFont = False
         end
-        object OrdREG_NUMBER: TfrxMemoView
-          Left = 907.086614170000000000
-          Width = 56.692913390000000000
-          Height = 18.897650000000000000
-          ShowHint = False
-          DataField = 'REG_NUMBER'
-          DataSet = frxDBDataset1
-          DataSetName = 'Ord'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = [ftRight, ftBottom]
-          Memo.UTF8W = (
-            '[Ord."REG_NUMBER"]')
-          ParentFont = False
-        end
       end
       object GroupFooter1: TfrxGroupFooter
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
         Height = 18.897637800000000000
-        Top = 222.992270000000000000
+        ParentFont = False
+        Top = 181.417440000000000000
         Width = 1077.166050000000000000
         object Memo10: TfrxMemoView
           Left = 812.598425200000000000
@@ -1989,14 +2282,14 @@ object FormDriverRep: TFormDriverRep
           Font.Color = clBlack
           Font.Height = -13
           Font.Name = 'Arial'
-          Font.Style = []
+          Font.Style = [fsBold]
           Frame.Typ = [ftLeft, ftBottom]
           Memo.UTF8W = (
             #1048#1090#1086#1075#1086)
           ParentFont = False
         end
         object SysMemo2: TfrxSysMemoView
-          Left = 963.780150000000000000
+          Left = 944.881889766929100000
           Width = 56.692913390000000000
           Height = 18.897650000000000000
           ShowHint = False
@@ -2004,7 +2297,7 @@ object FormDriverRep: TFormDriverRep
           Font.Color = clBlack
           Font.Height = -13
           Font.Name = 'Arial'
-          Font.Style = []
+          Font.Style = [fsBold]
           Frame.Typ = [ftLeft, ftRight, ftBottom]
           HAlign = haRight
           Memo.UTF8W = (
@@ -2012,7 +2305,8 @@ object FormDriverRep: TFormDriverRep
           ParentFont = False
         end
         object SysMemo3: TfrxSysMemoView
-          Left = 1020.472501980000000000
+          Align = baLeft
+          Left = 1001.574803156929000000
           Width = 56.692913390000000000
           Height = 18.897650000000000000
           ShowHint = False
@@ -2056,23 +2350,25 @@ object FormDriverRep: TFormDriverRep
       end
       object MasterData2: TfrxMasterData
         Height = 18.897637800000000000
-        Top = 343.937230000000000000
+        Top = 302.362400000000000000
         Width = 1077.166050000000000000
         DataSet = frxDBDataset2
         DataSetName = 'Out'
         RowCount = 0
+        Stretched = True
         object OutEXPENSE_NAME: TfrxMemoView
           Align = baLeft
           Left = 132.283464570000000000
           Width = 264.566929130000000000
           Height = 18.897650000000000000
           ShowHint = False
+          StretchMode = smMaxHeight
           DataField = 'EXPENSE_NAME'
           DataSet = frxDBDataset2
           DataSetName = 'Out'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -13
+          Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
           Frame.Typ = [ftRight, ftBottom]
@@ -2085,6 +2381,7 @@ object FormDriverRep: TFormDriverRep
           Width = 94.488188980000000000
           Height = 18.897650000000000000
           ShowHint = False
+          StretchMode = smMaxHeight
           DataField = 'DATEMAKE'
           DataSet = frxDBDataset2
           DataSetName = 'Out'
@@ -2092,7 +2389,7 @@ object FormDriverRep: TFormDriverRep
           DisplayFormat.Kind = fkDateTime
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -13
+          Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
           Frame.Typ = [ftLeft, ftRight, ftBottom]
@@ -2106,12 +2403,13 @@ object FormDriverRep: TFormDriverRep
           Width = 264.566929130000000000
           Height = 18.897650000000000000
           ShowHint = False
+          StretchMode = smMaxHeight
           DataField = 'OUTLAY_NAME'
           DataSet = frxDBDataset2
           DataSetName = 'Out'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -13
+          Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
           Frame.Typ = [ftRight, ftBottom]
@@ -2125,12 +2423,13 @@ object FormDriverRep: TFormDriverRep
           Width = 151.181102360000000000
           Height = 18.897650000000000000
           ShowHint = False
+          StretchMode = smMaxHeight
           DataField = 'OUTLAY_TYPE_STR'
           DataSet = frxDBDataset2
           DataSetName = 'Out'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -13
+          Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
           Frame.Typ = [ftRight, ftBottom]
@@ -2144,12 +2443,13 @@ object FormDriverRep: TFormDriverRep
           Width = 207.874150000000000000
           Height = 18.897650000000000000
           ShowHint = False
+          StretchMode = smMaxHeight
           DataField = 'OUTLAY_VALUE'
           DataSet = frxDBDataset2
           DataSetName = 'Out'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -13
+          Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
           Frame.Typ = [ftRight, ftBottom]
@@ -2160,13 +2460,13 @@ object FormDriverRep: TFormDriverRep
         end
       end
       object GroupHeader2: TfrxGroupHeader
-        Height = 56.692913385826770000
-        Top = 264.567100000000000000
+        Height = 56.692913390000000000
+        Top = 222.992270000000000000
         Width = 1077.166050000000000000
         Condition = 'Out."FLAG_MES"'
         object Memo15: TfrxMemoView
           Left = 37.795275590000000000
-          Top = 37.795275590551180000
+          Top = 37.795275590000000000
           Width = 94.488188980000000000
           Height = 18.897650000000000000
           ShowHint = False
@@ -2174,7 +2474,7 @@ object FormDriverRep: TFormDriverRep
           Font.Color = clBlack
           Font.Height = -13
           Font.Name = 'Arial'
-          Font.Style = []
+          Font.Style = [fsBold]
           Frame.Style = fsDouble
           Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
           HAlign = haCenter
@@ -2184,7 +2484,7 @@ object FormDriverRep: TFormDriverRep
         end
         object Memo16: TfrxMemoView
           Left = 132.283464570000000000
-          Top = 37.795275590551180000
+          Top = 37.795275590000000000
           Width = 264.566929130000000000
           Height = 18.897650000000000000
           ShowHint = False
@@ -2192,7 +2492,7 @@ object FormDriverRep: TFormDriverRep
           Font.Color = clBlack
           Font.Height = -13
           Font.Name = 'Arial'
-          Font.Style = []
+          Font.Style = [fsBold]
           Frame.Style = fsDouble
           Frame.Typ = [ftRight, ftTop, ftBottom]
           Memo.UTF8W = (
@@ -2201,7 +2501,7 @@ object FormDriverRep: TFormDriverRep
         end
         object Memo17: TfrxMemoView
           Left = 396.850393700000000000
-          Top = 37.795275590551180000
+          Top = 37.795275590000000000
           Width = 264.566929130000000000
           Height = 18.897650000000000000
           ShowHint = False
@@ -2209,7 +2509,7 @@ object FormDriverRep: TFormDriverRep
           Font.Color = clBlack
           Font.Height = -13
           Font.Name = 'Arial'
-          Font.Style = []
+          Font.Style = [fsBold]
           Frame.Style = fsDouble
           Frame.Typ = [ftRight, ftTop, ftBottom]
           Memo.UTF8W = (
@@ -2219,7 +2519,7 @@ object FormDriverRep: TFormDriverRep
         object Memo18: TfrxMemoView
           Align = baLeft
           Left = 661.417322830000000000
-          Top = 37.795275590551180000
+          Top = 37.795275590000000000
           Width = 151.181102360000000000
           Height = 18.897650000000000000
           ShowHint = False
@@ -2227,7 +2527,7 @@ object FormDriverRep: TFormDriverRep
           Font.Color = clBlack
           Font.Height = -13
           Font.Name = 'Arial'
-          Font.Style = []
+          Font.Style = [fsBold]
           Frame.Style = fsDouble
           Frame.Typ = [ftRight, ftTop, ftBottom]
           Memo.UTF8W = (
@@ -2237,7 +2537,7 @@ object FormDriverRep: TFormDriverRep
         object Memo19: TfrxMemoView
           Align = baLeft
           Left = 812.598425190000000000
-          Top = 37.795275590551180000
+          Top = 37.795275590000000000
           Width = 207.874150000000000000
           Height = 18.897650000000000000
           ShowHint = False
@@ -2245,7 +2545,7 @@ object FormDriverRep: TFormDriverRep
           Font.Color = clBlack
           Font.Height = -13
           Font.Name = 'Arial'
-          Font.Style = []
+          Font.Style = [fsBold]
           Frame.Style = fsDouble
           Frame.Typ = [ftRight, ftTop, ftBottom]
           HAlign = haRight
@@ -2253,14 +2553,32 @@ object FormDriverRep: TFormDriverRep
             #1057#1091#1084#1084#1072)
           ParentFont = False
         end
+        object Memo30: TfrxMemoView
+          Left = 37.795300000000000000
+          Top = 18.897650000000000000
+          Width = 982.677800000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftRight, ftBottom]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            
+              '========================================================== '#1056#1072#1089#1093#1086 +
+              #1076#1099' =======================================================')
+          ParentFont = False
+        end
       end
       object GroupFooter2: TfrxGroupFooter
-        Height = 22.677180000000000000
-        Top = 385.512060000000000000
+        Height = 18.897637795275590000
+        Top = 343.937230000000000000
         Width = 1077.166050000000000000
         object Memo20: TfrxMemoView
           Left = 812.598425190000000000
-          Top = 3.779530000000000000
           Width = 94.488250000000000000
           Height = 18.897650000000000000
           ShowHint = False
@@ -2268,8 +2586,8 @@ object FormDriverRep: TFormDriverRep
           Font.Color = clBlack
           Font.Height = -13
           Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = [ftLeft, ftBottom]
+          Font.Style = [fsBold]
+          Frame.Typ = [ftLeft, ftRight, ftBottom]
           Memo.UTF8W = (
             #1048#1090#1086#1075#1086)
           ParentFont = False
@@ -2277,7 +2595,6 @@ object FormDriverRep: TFormDriverRep
         object SysMemo4: TfrxSysMemoView
           Align = baLeft
           Left = 907.086675190000000000
-          Top = 3.779530000000000000
           Width = 113.385826770000000000
           Height = 18.897650000000000000
           ShowHint = False
@@ -2285,7 +2602,7 @@ object FormDriverRep: TFormDriverRep
           Font.Color = clBlack
           Font.Height = -13
           Font.Name = 'Arial'
-          Font.Style = []
+          Font.Style = [fsBold]
           Frame.Typ = [ftRight, ftBottom]
           HAlign = haRight
           Memo.UTF8W = (
@@ -2303,6 +2620,580 @@ object FormDriverRep: TFormDriverRep
           Font.Height = -13
           Font.Name = 'Arial'
           Font.Style = []
+          ParentFont = False
+        end
+      end
+      object PageFooter1: TfrxPageFooter
+        Height = 18.897637800000000000
+        Top = 755.906000000000000000
+        Width = 1077.166050000000000000
+        object SysMemo1: TfrxSysMemoView
+          Left = 944.882500000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8W = (
+            '[PAGE#] '#1080#1079' [TOTALPAGES#]')
+          ParentFont = False
+        end
+        object SysMemo5: TfrxSysMemoView
+          Left = 37.795300000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haRight
+          Memo.UTF8W = (
+            '[DATE]')
+          ParentFont = False
+        end
+        object SysMemo6: TfrxSysMemoView
+          Left = 144.622140000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          Memo.UTF8W = (
+            '[TIME]')
+          ParentFont = False
+        end
+      end
+      object GroupHeader3: TfrxGroupHeader
+        Height = 56.692913390000000000
+        Top = 385.512060000000000000
+        Width = 1077.166050000000000000
+        Condition = 'MI."Flag_Mes"'
+        object Memo23: TfrxMemoView
+          Left = 37.795300000000000000
+          Top = 37.795275590000000000
+          Width = 94.488188980000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDouble
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            #1044#1072#1090#1072)
+          ParentFont = False
+        end
+        object Memo24: TfrxMemoView
+          Align = baLeft
+          Left = 132.283488980000000000
+          Top = 37.795300000000000000
+          Width = 94.488188980000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDouble
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            #1048#1089#1090#1086#1095#1085#1080#1082)
+          ParentFont = False
+        end
+        object Memo25: TfrxMemoView
+          Align = baLeft
+          Left = 226.771677960000000000
+          Top = 37.795300000000000000
+          Width = 170.078740160000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDouble
+          Frame.Typ = [ftRight, ftTop, ftBottom]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            #1054#1090' '#1082#1086#1075#1086)
+          ParentFont = False
+        end
+        object Memo26: TfrxMemoView
+          Align = baLeft
+          Left = 396.850418120000000000
+          Top = 37.795300000000000000
+          Width = 113.385826770000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDouble
+          Frame.Typ = [ftRight, ftTop, ftBottom]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            #1057#1091#1084#1084#1072)
+          ParentFont = False
+        end
+        object Memo27: TfrxMemoView
+          Align = baLeft
+          Left = 510.236244890000000000
+          Top = 37.795300000000000000
+          Width = 566.929402360000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDouble
+          Frame.Typ = [ftRight, ftTop, ftBottom]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            #1055#1088#1080#1084#1077#1095#1072#1085#1080#1077)
+          ParentFont = False
+        end
+        object Memo31: TfrxMemoView
+          Left = 37.795300000000000000
+          Top = 18.897650000000000000
+          Width = 982.677800000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftRight, ftBottom]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            
+              '==============================================='#1055#1086#1083#1091#1095#1077#1085#1086' '#1080#1079' '#1088#1072#1079#1083#1080 +
+              #1095#1085#1099#1093' '#1080#1089#1090#1086#1095#1085#1080#1082#1086#1074' ===========================================')
+          ParentFont = False
+        end
+      end
+      object MasterData3: TfrxMasterData
+        Height = 18.897637800000000000
+        Top = 464.882190000000000000
+        Width = 1077.166050000000000000
+        DataSet = frxDBDataset3
+        DataSetName = 'MI'
+        RowCount = 0
+        Stretched = True
+        object Memo28: TfrxMemoView
+          Left = 37.795300000000000000
+          Width = 94.488188980000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          StretchMode = smMaxHeight
+          DataField = 'DATESET'
+          DataSet = frxDBDataset3
+          DataSetName = 'MI'
+          DisplayFormat.FormatStr = 'dd mmm yyyy'
+          DisplayFormat.Kind = fkDateTime
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftBottom]
+          Memo.UTF8W = (
+            '[MI."DATESET"]')
+          ParentFont = False
+        end
+        object MIFLAG_INFO_STR: TfrxMemoView
+          Align = baLeft
+          Left = 132.283488980000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'NAME_TYPE_SRC'
+          DataSet = frxDBDataset3
+          DataSetName = 'MI'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftRight, ftBottom]
+          Memo.UTF8W = (
+            '[MI."NAME_TYPE_SRC"]')
+          ParentFont = False
+        end
+        object MIINFO_ID_STR: TfrxMemoView
+          Left = 226.771800000000000000
+          Width = 170.078850000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'NAME_SRC'
+          DataSet = frxDBDataset3
+          DataSetName = 'MI'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftRight, ftBottom]
+          Memo.UTF8W = (
+            '[MI."NAME_SRC"]')
+          ParentFont = False
+        end
+        object MIMONEY_VALUE: TfrxMemoView
+          Align = baLeft
+          Left = 396.850650000000000000
+          Width = 113.385900000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'MONEY_VALUE'
+          DataSet = frxDBDataset3
+          DataSetName = 'MI'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftRight, ftBottom]
+          HAlign = haRight
+          Memo.UTF8W = (
+            '[MI."MONEY_VALUE"]')
+          ParentFont = False
+        end
+        object MICOMMENT: TfrxMemoView
+          Align = baLeft
+          Left = 510.236550000000000000
+          Width = 566.929500000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'COMMENT'
+          DataSet = frxDBDataset3
+          DataSetName = 'MI'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftRight, ftBottom]
+          Memo.UTF8W = (
+            '[MI."COMMENT"]')
+          ParentFont = False
+        end
+      end
+      object GroupFooter3: TfrxGroupFooter
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        Height = 18.897637800000000000
+        ParentFont = False
+        Top = 506.457020000000000000
+        Width = 1077.166050000000000000
+        object Memo29: TfrxMemoView
+          Left = 226.771800000000000000
+          Width = 170.078850000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftLeft, ftRight, ftBottom]
+          Memo.UTF8W = (
+            #1048#1090#1086#1075#1086)
+          ParentFont = False
+        end
+        object SysMemo7: TfrxSysMemoView
+          Align = baLeft
+          Left = 396.850650000000000000
+          Width = 113.385900000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftRight, ftBottom]
+          HAlign = haRight
+          Memo.UTF8W = (
+            '[SUM(<MI."MONEY_VALUE">,MasterData3)]')
+          ParentFont = False
+        end
+      end
+      object GroupHeader4: TfrxGroupHeader
+        Height = 56.692913390000000000
+        Top = 548.031850000000000000
+        Width = 1077.166050000000000000
+        Condition = 'MO."FLAG_MES"'
+        object Memo32: TfrxMemoView
+          Left = 37.795300000000000000
+          Top = 37.795275590000000000
+          Width = 94.488188980000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDouble
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            #1044#1072#1090#1072)
+          ParentFont = False
+        end
+        object Memo33: TfrxMemoView
+          Align = baLeft
+          Left = 132.283488980000000000
+          Top = 37.795300000000000000
+          Width = 94.488188980000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDouble
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            #1055#1086#1083#1091#1095#1072#1090#1077#1083#1100)
+          ParentFont = False
+        end
+        object Memo34: TfrxMemoView
+          Align = baLeft
+          Left = 226.771677960000000000
+          Top = 37.795300000000000000
+          Width = 170.078740160000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDouble
+          Frame.Typ = [ftRight, ftTop, ftBottom]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            #1050#1086#1084#1091)
+          ParentFont = False
+        end
+        object Memo35: TfrxMemoView
+          Align = baLeft
+          Left = 396.850418120000000000
+          Top = 37.795300000000000000
+          Width = 113.385826770000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDouble
+          Frame.Typ = [ftRight, ftTop, ftBottom]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            #1057#1091#1084#1084#1072)
+          ParentFont = False
+        end
+        object Memo36: TfrxMemoView
+          Align = baLeft
+          Left = 510.236244890000000000
+          Top = 37.795300000000000000
+          Width = 566.929402360000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDouble
+          Frame.Typ = [ftRight, ftTop, ftBottom]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            #1055#1088#1080#1084#1077#1095#1072#1085#1080#1077)
+          ParentFont = False
+        end
+        object Memo37: TfrxMemoView
+          Left = 37.795300000000000000
+          Top = 18.897650000000000000
+          Width = 982.677800000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftRight, ftBottom]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            
+              '==============================================='#1055#1077#1088#1077#1076#1072#1085#1086' '#1088#1072#1079#1083#1080#1095#1085#1099 +
+              #1084' '#1087#1086#1083#1091#1095#1072#1090#1077#1083#1103#1084' ===========================================')
+          ParentFont = False
+        end
+      end
+      object MasterData4: TfrxMasterData
+        Height = 22.677180000000000000
+        Top = 627.401980000000000000
+        Width = 1077.166050000000000000
+        DataSet = frxDBDataset4
+        DataSetName = 'MO'
+        RowCount = 0
+        Stretched = True
+        object MODATESET: TfrxMemoView
+          Left = 37.795300000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'DATESET'
+          DataSet = frxDBDataset4
+          DataSetName = 'MO'
+          DisplayFormat.FormatStr = 'dd mmm yyyy'
+          DisplayFormat.Kind = fkDateTime
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          Memo.UTF8W = (
+            '[MO."DATESET"]')
+          ParentFont = False
+        end
+        object MOFLAG_INFO_STR: TfrxMemoView
+          Align = baLeft
+          Left = 132.283550000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'OBJECT_TYPE_TAG'
+          DataSet = frxDBDataset4
+          DataSetName = 'MO'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          Memo.UTF8W = (
+            '[MO."OBJECT_TYPE_TAG"]')
+          ParentFont = False
+        end
+        object MOINFO_ID_STR: TfrxMemoView
+          Align = baLeft
+          Left = 226.771800000000000000
+          Width = 170.078850000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'NAME_TAG'
+          DataSet = frxDBDataset4
+          DataSetName = 'MO'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          Memo.UTF8W = (
+            '[MO."NAME_TAG"]')
+          ParentFont = False
+        end
+        object MOMONEY_VALUE: TfrxMemoView
+          Align = baLeft
+          Left = 396.850650000000000000
+          Width = 113.385900000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'MONEY_VALUE'
+          DataSet = frxDBDataset4
+          DataSetName = 'MO'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haRight
+          Memo.UTF8W = (
+            '[MO."MONEY_VALUE"]')
+          ParentFont = False
+        end
+        object MOCOMMENT: TfrxMemoView
+          Align = baLeft
+          Left = 510.236550000000000000
+          Width = 566.929500000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'COMMENT'
+          DataSet = frxDBDataset4
+          DataSetName = 'MO'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          Memo.UTF8W = (
+            '[MO."COMMENT"]')
+          ParentFont = False
+        end
+      end
+      object GroupFooter4: TfrxGroupFooter
+        Height = 22.677180000000000000
+        Top = 672.756340000000000000
+        Width = 1077.166050000000000000
+        object Memo38: TfrxMemoView
+          Left = 226.771800000000000000
+          Width = 170.078850000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftLeft, ftRight, ftBottom]
+          Memo.UTF8W = (
+            #1048#1090#1086#1075#1086)
+          ParentFont = False
+        end
+        object SysMemo8: TfrxSysMemoView
+          Align = baLeft
+          Left = 396.850650000000000000
+          Width = 113.385900000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftRight, ftBottom]
+          HAlign = haRight
+          Memo.UTF8W = (
+            '[SUM(<MO."MONEY_VALUE">,MasterData4)]')
           ParentFont = False
         end
       end
@@ -2346,8 +3237,8 @@ object FormDriverRep: TFormDriverRep
       'END_TOWN_NAME=END_TOWN_NAME')
     DataSet = MemTableEh1
     BCDToCurrency = False
-    Left = 104
-    Top = 424
+    Left = 136
+    Top = 408
   end
   object frxDBDataset2: TfrxDBDataset
     UserName = 'Out'
@@ -2374,29 +3265,364 @@ object FormDriverRep: TFormDriverRep
       'DRIVER_NAME=DRIVER_NAME')
     DataSet = MemTableEh2
     BCDToCurrency = False
-    Left = 104
-    Top = 488
+    Left = 256
+    Top = 400
   end
-  object frxDesigner1: TfrxDesigner
-    DefaultScriptLanguage = 'PascalScript'
-    DefaultFont.Charset = DEFAULT_CHARSET
-    DefaultFont.Color = clWindowText
-    DefaultFont.Height = -13
-    DefaultFont.Name = 'Arial'
-    DefaultFont.Style = []
-    DefaultLeftMargin = 10.000000000000000000
-    DefaultRightMargin = 10.000000000000000000
-    DefaultTopMargin = 10.000000000000000000
-    DefaultBottomMargin = 10.000000000000000000
-    DefaultPaperSize = 9
-    DefaultOrientation = poPortrait
-    GradientEnd = 11982554
-    GradientStart = clWindow
-    TemplatesExt = 'fr3'
-    Restrictions = []
-    RTLLanguage = False
-    MemoParentFont = False
-    Left = 296
-    Top = 432
+  object Query6: TQuery
+    Tag = 4
+    DatabaseName = 'TransDB'
+    SQL.Strings = (
+      'select * from EDIT_MONEY_MOVE ('
+      ':MONEY_MOVE_ID,'
+      ':OBJECT_ID_SRC,'
+      ':INDEX_ID_SRC,'
+      '1001,'
+      ':DATESET,'
+      ':OBJECT_ID_TAG,'
+      ':INDEX_ID_TAG,'
+      ':OBJECT_TYPE_TAG,'
+      ':MONEY_VALUE,'
+      ':EMPLOYEE_ID,'
+      ':DATE_CONFIRM,'
+      ':COMMENT,'
+      ':USER_ID,'
+      ':COMP_NAME,'
+      ':DATECHANGE,'
+      ':STATUS)'
+      '')
+    Left = 560
+    Top = 184
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'MONEY_MOVE_ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'OBJECT_ID_SRC'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'INDEX_ID_SRC'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDateTime
+        Name = 'DATESET'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'OBJECT_ID_TAG'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'INDEX_ID_TAG'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'OBJECT_TYPE_TAG'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'MONEY_VALUE'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'EMPLOYEE_ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDateTime
+        Name = 'DATE_CONFIRM'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'COMMENT'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'USER_ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'COMP_NAME'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDateTime
+        Name = 'DATECHANGE'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'STATUS'
+        ParamType = ptInput
+      end>
+  end
+  object DataSetDriverEh4: TDataSetDriverEh
+    ProviderDataSet = Query4
+    Left = 447
+    Top = 236
+  end
+  object MemTableEh4: TMemTableEh
+    Tag = 4
+    Filtered = True
+    Params = <>
+    DataDriver = DataSetDriverEh4
+    SortOrder = 'DateSet,Name_Src'
+    AfterOpen = MemTableEh1AfterOpen
+    AfterClose = MemTableEh1AfterClose
+    BeforeScroll = MemTableEh1BeforeScroll
+    AfterScroll = MemTableEh1AfterScroll
+    OnFilterRecord = MemTableEhFilterRecord
+    Left = 452
+    Top = 281
+    object MemTableEh4FLAG_MES: TIntegerField
+      FieldName = 'FLAG_MES'
+    end
+    object MemTableEh4MONEY_MOVE_ID: TIntegerField
+      FieldName = 'MONEY_MOVE_ID'
+    end
+    object MemTableEh4OBJECT_ID_SRC: TIntegerField
+      FieldName = 'OBJECT_ID_SRC'
+    end
+    object MemTableEh4NAME_SRC: TStringField
+      FieldName = 'NAME_SRC'
+      Size = 64
+    end
+    object MemTableEh4NAME_TYPE_SRC: TStringField
+      FieldName = 'NAME_TYPE_SRC'
+      Size = 32
+    end
+    object MemTableEh4INDEX_ID_SRC: TIntegerField
+      FieldName = 'INDEX_ID_SRC'
+    end
+    object MemTableEh4OBJECT_TYPE_SRC: TIntegerField
+      FieldName = 'OBJECT_TYPE_SRC'
+    end
+    object MemTableEh4DATESET: TDateTimeField
+      FieldName = 'DATESET'
+    end
+    object MemTableEh4OBJECT_ID_TAG: TIntegerField
+      FieldName = 'OBJECT_ID_TAG'
+    end
+    object MemTableEh4INDEX_ID_TAG: TIntegerField
+      FieldName = 'INDEX_ID_TAG'
+    end
+    object MemTableEh4NAME_TAG: TStringField
+      FieldName = 'NAME_TAG'
+      Size = 64
+    end
+    object MemTableEh4OBJECT_TYPE_TAG: TIntegerField
+      FieldName = 'OBJECT_TYPE_TAG'
+    end
+    object MemTableEh4NAME_TYPE_TAG: TStringField
+      FieldName = 'NAME_TYPE_TAG'
+      Size = 32
+    end
+    object MemTableEh4MONEY_VALUE: TIntegerField
+      FieldName = 'MONEY_VALUE'
+    end
+    object MemTableEh4EMPLOYEE_ID: TIntegerField
+      FieldName = 'EMPLOYEE_ID'
+    end
+    object MemTableEh4FULL_NAME: TStringField
+      FieldName = 'FULL_NAME'
+      Size = 64
+    end
+    object MemTableEh4DATE_CONFIRM: TDateTimeField
+      FieldName = 'DATE_CONFIRM'
+    end
+    object MemTableEh4COMMENT: TStringField
+      FieldName = 'COMMENT'
+      Size = 255
+    end
+    object MemTableEh4DATECHANGE: TDateTimeField
+      FieldName = 'DATECHANGE'
+    end
+    object MemTableEh4STATUS: TIntegerField
+      FieldName = 'STATUS'
+    end
+  end
+  object DataSource4: TDataSource
+    DataSet = MemTableEh4
+    Left = 452
+    Top = 339
+  end
+  object Query4: TQuery
+    Tag = 4
+    DatabaseName = 'TransDB'
+    SQL.Strings = (
+      'select * from sel_money_move(1,'#39'1.1.15'#39','#39'2.1.15'#39',1000)')
+    Left = 448
+    Top = 184
+  end
+  object Query5: TQuery
+    Tag = 3
+    DatabaseName = 'TransDB'
+    SQL.Strings = (
+      'select * from EDIT_MONEY_MOVE ('
+      ':MONEY_MOVE_ID,'
+      ':OBJECT_ID_SRC,'
+      ':INDEX_ID_SRC,'
+      ':OBJECT_TYPE_SRC,'
+      ':DATESET,'
+      ':OBJECT_ID_TAG,'
+      ':INDEX_ID_TAG,'
+      '1001,'
+      ':MONEY_VALUE,'
+      ':EMPLOYEE_ID,'
+      ':DATE_CONFIRM,'
+      ':COMMENT,'
+      ':USER_ID,'
+      ':COMP_NAME,'
+      ':DATECHANGE,'
+      ':STATUS)')
+    Left = 512
+    Top = 184
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'MONEY_MOVE_ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'OBJECT_ID_SRC'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'INDEX_ID_SRC'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'OBJECT_TYPE_SRC'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDateTime
+        Name = 'DATESET'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'OBJECT_ID_TAG'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'INDEX_ID_TAG'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'MONEY_VALUE'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'EMPLOYEE_ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDateTime
+        Name = 'DATE_CONFIRM'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'COMMENT'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'USER_ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'COMP_NAME'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDateTime
+        Name = 'DATECHANGE'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'STATUS'
+        ParamType = ptInput
+      end>
+  end
+  object frxDBDataset3: TfrxDBDataset
+    UserName = 'MI'
+    CloseDataSource = False
+    FieldAliases.Strings = (
+      'FLAG_MES=FLAG_MES'
+      'MONEY_MOVE_ID=MONEY_MOVE_ID'
+      'OBJECT_ID_SRC=OBJECT_ID_SRC'
+      'NAME_SRC=NAME_SRC'
+      'NAME_TYPE_SRC=NAME_TYPE_SRC'
+      'INDEX_ID_SRC=INDEX_ID_SRC'
+      'OBJECT_TYPE_SRC=OBJECT_TYPE_SRC'
+      'DATESET=DATESET'
+      'OBJECT_ID_TAG=OBJECT_ID_TAG'
+      'INDEX_ID_TAG=INDEX_ID_TAG'
+      'NAME_TAG=NAME_TAG'
+      'OBJECT_TYPE_TAG=OBJECT_TYPE_TAG'
+      'NAME_TYPE_TAG=NAME_TYPE_TAG'
+      'MONEY_VALUE=MONEY_VALUE'
+      'EMPLOYEE_ID=EMPLOYEE_ID'
+      'FULL_NAME=FULL_NAME'
+      'DATE_CONFIRM=DATE_CONFIRM'
+      'COMMENT=COMMENT'
+      'DATECHANGE=DATECHANGE'
+      'STATUS=STATUS')
+    DataSet = MemTableEh3
+    BCDToCurrency = False
+    Left = 376
+    Top = 408
+  end
+  object frxDBDataset4: TfrxDBDataset
+    UserName = 'MO'
+    CloseDataSource = False
+    FieldAliases.Strings = (
+      'FLAG_MES=FLAG_MES'
+      'MONEY_MOVE_ID=MONEY_MOVE_ID'
+      'OBJECT_ID_SRC=OBJECT_ID_SRC'
+      'NAME_SRC=NAME_SRC'
+      'NAME_TYPE_SRC=NAME_TYPE_SRC'
+      'INDEX_ID_SRC=INDEX_ID_SRC'
+      'OBJECT_TYPE_SRC=OBJECT_TYPE_SRC'
+      'DATESET=DATESET'
+      'OBJECT_ID_TAG=OBJECT_ID_TAG'
+      'INDEX_ID_TAG=INDEX_ID_TAG'
+      'NAME_TAG=NAME_TAG'
+      'OBJECT_TYPE_TAG=OBJECT_TYPE_TAG'
+      'NAME_TYPE_TAG=NAME_TYPE_TAG'
+      'MONEY_VALUE=MONEY_VALUE'
+      'EMPLOYEE_ID=EMPLOYEE_ID'
+      'FULL_NAME=FULL_NAME'
+      'DATE_CONFIRM=DATE_CONFIRM'
+      'COMMENT=COMMENT'
+      'DATECHANGE=DATECHANGE'
+      'STATUS=STATUS')
+    DataSet = MemTableEh4
+    BCDToCurrency = False
+    Left = 456
+    Top = 400
   end
 end

@@ -342,11 +342,13 @@ TModalResult __fastcall EditSearchKeyDownStd(GridData& GData,WORD &Key, TShiftSt
         bool __fastcall Rollback(TDatabase* DB);
         bool __fastcall PrepSProcStd(GridData& GData,bool Delete);
         bool __fastcall PrepQueryStd(GridData& GData,bool Delete);
-        bool __fastcall WriteDataStd(GridData& GData,bool Delete);
+        bool __fastcall ReorderDataStd(GridData& GData, bool Delete);
+		  bool __fastcall WriteDataStd(GridData& GData,bool Delete);
 //        bool __fastcall WriteDataSProcStd(GridData& GData,bool Delete);
 		  bool __fastcall WriteDataQueryStd(GridData& GData,bool Delete);
 		  bool __fastcall WriteDataObjStd(GridData& GData,bool Delete);
-        bool __fastcall OutErrMsgStd(GridData& GData,int Result);
+		  bool __fastcall OutErrMsgStd(GridData& GData,int Result);
+		  AnsiString __fastcall GetErrMsgStd(GridData& GData,int Result);
 // ==== Show and write comment in Memo =========================================
         void __fastcall ShowMemoStd(GridData& GData,TMemo* Memo,AnsiString* CommentFieldName = NULL);
         void __fastcall WriteMemoStd(GridData& GData,TMemo* Memo);

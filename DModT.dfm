@@ -2230,8 +2230,8 @@ object DModT: TDModT
     PageBreaks = True
     EmptyLines = True
     SuppressPageHeadersFooters = False
-    Left = 280
-    Top = 176
+    Left = 272
+    Top = 72
   end
   object frxSimpleTextExport1: TfrxSimpleTextExport
     UseFileCache = True
@@ -2242,7 +2242,29 @@ object DModT: TDModT
     EmptyLines = False
     OEMCodepage = False
     DeleteEmptyColumns = True
-    Left = 280
-    Top = 232
+    Left = 264
+    Top = 128
+  end
+  object frxDesigner1: TfrxDesigner
+    DefaultScriptLanguage = 'PascalScript'
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = -13
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    DefaultLeftMargin = 10.000000000000000000
+    DefaultRightMargin = 10.000000000000000000
+    DefaultTopMargin = 10.000000000000000000
+    DefaultBottomMargin = 10.000000000000000000
+    DefaultPaperSize = 9
+    DefaultOrientation = poPortrait
+    GradientEnd = 11982554
+    GradientStart = clWindow
+    TemplatesExt = 'fr3'
+    Restrictions = []
+    RTLLanguage = False
+    MemoParentFont = False
+    Left = 208
+    Top = 16
   end
 end

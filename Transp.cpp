@@ -7,18 +7,19 @@
 
 
 
-USEFORM("FrmPassWord.cpp", FormPassWord);
 USEFORM("FrmOrderCopy.cpp", FormOrderCopy);
 USEFORM("FrmGetFieldFilter.cpp", FormGetFieldFilter);
+USEFORM("FrmFilter.cpp", FormFilter);
+USEFORM("FrmPassWord.cpp", FormPassWord);
 USEFORMNS("FrmTrans.cpp",XXX, FormTrans);
 USEFORM("FrmSelSimpleEh.cpp", FormSelSimpleEh);
-USEFORM("FrmFilter.cpp", FormFilter);
+USEFORM("FrmDriverRep.cpp", FormDriverRep);
 USEFORM("DModT.cpp", DModT); /* TDataModule: File Type */
 USEFORM("DModRep.cpp", DModReport); /* TDataModule: File Type */
+USEFORM("FrmSelRep.cpp", FormSelRep);
 USEFORM("FrmDriverGraphDay.cpp", FormDriverGraphDay);
 USEFORM("FrmDriverGraph.cpp", FormDriverGraph);
 USEFORM("FrmDateRange.cpp", FormDateRange);
-USEFORM("FrmDriverRep.cpp", FormDriverRep);
 //---------------------------------------------------------------------------
 extern int AppTerminate;
 //---------------------------------------------------------------------------
@@ -30,10 +31,9 @@ WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->MainFormOnTaskBar = true;
 		Application->CreateForm(__classid(TDModT), &DModT);
 		if (!AppTerminate) {
-			Application->CreateForm(__classid(TDModReport), &DModReport);
 			Application->CreateForm(__classid(TFormTrans), &FormTrans);
 		   Application->Run();
-      }
+		}
 	}
 	catch (Exception &exception)
 	{

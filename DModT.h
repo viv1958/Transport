@@ -13,6 +13,7 @@
 #include "frxClass.hpp"
 #include "frxExportText.hpp"
 #include "frxExportXLS.hpp"
+#include "frxDesgn.hpp"
 //---------------------------------------------------------------------------
 class TDModT : public TDataModule
 {
@@ -23,6 +24,7 @@ __published:	// IDE-managed Components
 	TsSkinManager *sSkinManager1;
 	TfrxXLSExport *frxXLSExport1;
 	TfrxSimpleTextExport *frxSimpleTextExport1;
+	TfrxDesigner *frxDesigner1;
 	void __fastcall DataModuleCreate(TObject *Sender);
 	void __fastcall Database1Login(TDatabase *Database, TStrings *LoginParams);
 	void __fastcall DataModuleDestroy(TObject *Sender);
