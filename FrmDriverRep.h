@@ -287,6 +287,7 @@ public:		// User declarations
 	void __fastcall TFormDriverRep::WriteMemo();
 
 	void __fastcall TFormDriverRep::PrintReport();
+   void __fastcall TFormDriverRep::GetDrvObjectID();
 
 //	void __fastcall TFormDriverRep::SetCommonExtParams(GridData& GData);
 

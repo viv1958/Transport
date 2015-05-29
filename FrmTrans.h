@@ -908,7 +908,7 @@ public:		// User declarations
 
 	FilterCols OrderFilter;
 
-	int SumPayCalc,SumPayRes, SumPayAvc, SumPayRest, SumPayExc,SumPayMng,SumPayDrv,SumIncCalc,SumOutlay;
+	int SumPayCalc,SumPayRes, SumPayAvc, SumPayRest, SumPayExc,SumPayMng,SumPayDrv,SumIncCalc,SumOutlay, SumHand;
 	__fastcall TFormTrans(TComponent* Owner);
 	bool __fastcall TFormTrans::ChooseStartPage();
 	void __fastcall TFormTrans::InitGData();
@@ -1013,7 +1013,7 @@ public:		// User declarations
 	bool __fastcall TFormTrans::FillHintStructures(TDataSet *DataSet);
 
 
-	void __fastcall TFormTrans::ProcFilter();
+	void __fastcall TFormTrans::ProcFilter(bool Ctrl);
 	void __fastcall TFormTrans::AttachOuterTransport();
 	void __fastcall TFormTrans::DetachOuterTransport();
 	bool __fastcall TFormTrans::CheckOrderFilter();

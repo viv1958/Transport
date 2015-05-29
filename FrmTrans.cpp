@@ -566,6 +566,7 @@ void __fastcall TFormTrans::InitGData()
 //																 |    |    |    |    |    |    |    |    |    |    |    |    |
 	SetBitMask(GDataOrders.EditAllowMask,"0011 1110 0111 1111 1111 1111 1110 1111 1100 1011 1110 1111 1110 01");
 	SetBitMask(GDataOrders.NullAllowMask,"0011 1110 0111 1111 1111 1111 1110 1111 1100 0011 1110 1111 1100 01");
+   GDataOrders.FilterFldMask = -1;
 
 	GDataOrders.TextEdit      = DBEditEh;
 	GDataOrders.NumbEdit      = DBNumberEditEh;
@@ -831,7 +832,7 @@ void __fastcall TFormTrans::FormKeyDown(TObject *Sender, WORD &Key, TShiftState 
 						 break;
 		case VK_F3:  WriteMemo();
 						 if (PageTag == 3) {
-							 ProcFilter();
+							 ProcFilter(Shift.Contains(ssCtrl));
 							 return;
 						 }
 						 break;
@@ -984,7 +985,7 @@ int __fastcall TFormTrans::FindRestColumn(TDBGridColumnsEh* Columns,RestValue& R
 void __fastcall TFormTrans::ClearSums()
 {
 	switch (PageTag) {
-		case 3: SumPayCalc = SumPayRes = SumPayAvc = SumPayRest = SumPayExc = SumPayMng = SumPayDrv = SumIncCalc = 0;
+		case 3: SumPayCalc = SumPayRes = SumPayAvc = SumPayRest = SumPayExc = SumPayMng = SumPayDrv = SumIncCalc = SumHand = 0;
 				  ShowSummary(DBGridEh31);
 				  break;
 		case 4: DrawMap.clear();
@@ -1732,7 +1733,6 @@ void __fastcall TFormTrans::DrawZone(DrawData& DD,const TRect &Rect, int MinBeg,
 //---------------------------------------------------------------------------
 void __fastcall TFormTrans::DrawColumnCell(const TRect &Rect,int DataCol, TColumnEh *Column, TGridDrawStateEh State)
 {
-
 	bool Focused = State.Contains(Gridseh::gdFocused);
 	int Y = State.ToInt();
 	bool T =  Y  & 0x0001;
@@ -1749,6 +1749,7 @@ void __fastcall TFormTrans::DrawColumnCell(const TRect &Rect,int DataCol, TColum
 //	int OrderID  = SData.OrderID;
 //	int TimeWrk  = SData.TimeWrk;
 	int FlagKind = MemTableEh41->FieldByName("FLAG_KIND")->AsInteger;
+	int FlagTran = MemTableEh41->FieldByName("TRANS_COMPANY_FLAG")->AsInteger;
 
 	TRect RcFill, RcCross, RcZone;
 	int MinBeg = DataCol * 60;  // сдвиг в мин от начала диапазона
@@ -1757,8 +1758,13 @@ void __fastcall TFormTrans::DrawColumnCell(const TRect &Rect,int DataCol, TColum
 // ==== рисуем зеленую зону для текущего заказа ================================
 	Grid->Canvas->Brush->Color = (Focused) ? clRed   :
 										  (CurGraphID == GraphID) ?
-										  (FlagKind) ? TColor(RGB(173, 216, 230)) : ColorPeachPuff1 :
-										  (FlagKind) ? ColorLavender : clWindow;
+										  (FlagKind) ? TColor(RGB(  0, 191, 255))  :
+										  (FlagTran) ? TColor(RGB(  0, 206, 209))  :  ColorPeachPuff1 :
+										  // невыделенные
+										  (FlagKind) ? TColor(RGB(135, 206, 235))  :                       // заказы
+										  (FlagTran) ? TColor(RGB(175, 238, 238))  : clWindow;             // перевозчик
+
+
 	Grid->Canvas->FillRect(Rect);
 	DrawZone(SData,Rect, MinBeg, MinEnd,ColorSpringGreen);
 	for (std::map<int,DrawData>::iterator iter = DrawMap.begin(); iter != DrawMap.end(); ++iter) {
@@ -2051,10 +2057,14 @@ void __fastcall TFormTrans::DBGridEhGetCellParams(TObject *Sender, TColumnEh *Co
 					}
 					break;
 		case 41: if (CurGraphID && CurGraphID == MemTableEh41->FieldByName(GDataGraph.FieldKey)->AsInteger) {
-						Background = MemTableEh41->FieldByName("FLAG_KIND")->AsInteger	? TColor(RGB(173, 216, 230)) : TColor(RGB(255, 218, 185));
+						Background = MemTableEh41->FieldByName("FLAG_KIND")->AsInteger	         ? TColor(RGB(  0, 191, 255)) :  // заказы
+										 MemTableEh41->FieldByName("TRANS_COMPANY_FLAG")->AsInteger ? TColor(RGB(  0, 206, 209)) :  // перевозчик
+																														  TColor(RGB(255, 218, 185));
 					}
 					else {
-						Background = MemTableEh41->FieldByName("FLAG_KIND")->AsInteger	? TColor(RGB(230, 230, 250)) : clWindow;
+						Background = MemTableEh41->FieldByName("FLAG_KIND")->AsInteger	?          TColor(RGB(135, 206, 235)) :  // заказы
+										 MemTableEh41->FieldByName("TRANS_COMPANY_FLAG")->AsInteger ? TColor(RGB(175, 238, 238)) :  // перевозчик
+										 clWindow;
 					}
 					break;
 
@@ -2577,6 +2587,7 @@ void __fastcall TFormTrans::AddCurrentRow(GridData& GData,int Mul, bool Show, bo
 						SumPayExc  += Mul*DSet->FieldByName("EXC_PAY")->AsInteger;
 						SumPayMng  += Mul*DSet->FieldByName("MNG_PAY")->AsInteger;
 						SumPayDrv  += Mul*DSet->FieldByName("DRV_PAY")->AsInteger;
+ 						SumHand    += Mul*DSet->FieldByName("DRIVER_HAND_MONEY")->AsInteger;
 						SumIncCalc += Mul*DSet->FieldByName("INCOME")->AsInteger;
 						break;
 			case 4:  ID = MemTableEh41->FieldByName("GRAPH_ID")->AsInteger;
@@ -2619,7 +2630,8 @@ void __fastcall TFormTrans::ShowSummary(TDBGridEh* Grid)
 	int Size;
 	AnsiString Empty;
 	switch (Grid->Tag) {
-		case 31: Grid->Columns->Items[37]->Footer->Value = IntToStr(SumPayCalc);
+		case 31: Grid->Columns->Items[30]->Footer->Value = IntToStr(SumHand);
+					Grid->Columns->Items[37]->Footer->Value = IntToStr(SumPayCalc);
 					Grid->Columns->Items[38]->Footer->Value = IntToStr(SumPayRes);
 					Grid->Columns->Items[40]->Footer->Value = IntToStr(SumPayAvc);
 					Grid->Columns->Items[43]->Footer->Value = IntToStr(SumPayRest);
@@ -2987,7 +2999,7 @@ void __fastcall TFormTrans::sSpeedButtonClick(TObject *Sender)
 						break;
 		  case  6:  PrintGrid();        					break;
 		  case  7:  ProcHistory(false);              break;
-		  case  8:  if (PageTag == 3)	ProcFilter();
+		  case  8:  if (PageTag == 3)	ProcFilter(true);
 						else 				   ProcFilterStd(*WrkGData);
 						break;
 		  case  9:  PopupMenu1->Popup(Left +sSpeedButton9->Left + 4,
@@ -3239,7 +3251,7 @@ void __fastcall TFormTrans::DublicateOrder()
 	if (AskQuestionStd("Показать скопированные заказы ?"))
 		ShowCopiedOrders(OrderID);
 	else
-		ProcRefreshStd(GDataOrders);
+		ProcRefreshStd(GDataOrders,true);
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormTrans::CopyOrder()
@@ -3254,7 +3266,7 @@ void __fastcall TFormTrans::CopyOrder()
 	if (NCopy && AskQuestionStd("Показать скопированные заказы ?"))
 		ShowCopiedOrders(OrderID);
 	else
-		ProcRefreshStd(GDataOrders);
+		ProcRefreshStd(GDataOrders, true);
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormTrans::ShowCopiedOrders(int OrderID)
@@ -3433,12 +3445,17 @@ void __fastcall TFormTrans::MoveGraphDay(int Shift, bool Refresh)
 		ProcRefreshStd(GDataGraph,true);
 }
 //---------------------------------------------------------------------------
-void __fastcall TFormTrans::ProcFilter()
+void __fastcall TFormTrans::ProcFilter(bool Ctrl)
 {
-	 if (GetFilter(OrderFilter,DBGridEh31,SelFilterID,FilterName)) {
-		 sComboEdit2->Text = FilterName;
-		 PulseFilterStd(GDataOrders);
-	 }
+	if (Ctrl) {
+		if (GetFilter(OrderFilter,DBGridEh31,SelFilterID,FilterName)) {
+			sComboEdit2->Text = FilterName;
+			PulseFilterStd(GDataOrders);
+		}
+	}
+	else  {
+		ProcFilterStd(*WrkGData);
+	}
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormTrans::sDateEditAcceptDate(TObject *Sender, TDateTime &aDate,
@@ -3568,9 +3585,8 @@ void __fastcall TFormTrans::sComboEditButtonClick(TObject *Sender)
 {
 	 switch(GetComponentTag(Sender)) {
 		 case 1:	SelCurrentView(false);	break;
-		 case 2: ProcFilter();           break;
+		 case 2: ProcFilter(true);       break;
 	 }
-
 }
 //---------------------------------------------------------------------------
 bool __fastcall TFormTrans::SelCurrentView(bool SaveCurState)
@@ -4673,7 +4689,7 @@ void __fastcall TFormTrans::DBGridEh41ColEnter(TObject *Sender)
 {
 	CurGraphCol = DBGridEh41->Col;
 	if ((CurGraphCol > 6 && PrvGraphCol <= 6) || (CurGraphCol <= 6 && PrvGraphCol > 6)){
-//      DBGridEh41->Repaint();
+      DBGridEh41->Repaint();
 	}
 	PrvGraphCol = CurGraphCol;
 }
@@ -4802,7 +4818,7 @@ void __fastcall TFormTrans::frxReport31BeforePrint(TfrxReportComponent *Sender)
 			case  1: S = "Отчет по заказам " + AnsiString(SelIndex ? "принятым " : "исполняемым ") + sComboBox1->Text +
 							  " за период с " + sDateEdit1->Text + " по " + sDateEdit2->Text;
 						break;
-			case  2: S = MemTableEh31->FieldByName("DT_BEG")->AsDateTime.FormatString("dd.mmm")  + " " +
+			case  2: S = "<b>" + MemTableEh31->FieldByName("DT_BEG")->AsDateTime.FormatString("dd.mmm")  + "</b> " +
 							 MemTableEh31->FieldByName("TIME_BEG")->AsDateTime.FormatString("hh:nn") + "-";
 						if (!(MemTableEh31->FieldByName("Wrk_Minut")->AsInteger + MemTableEh31->FieldByName("Wrk_Day")->AsInteger)) {
 							S += "???";
@@ -4819,7 +4835,7 @@ void __fastcall TFormTrans::frxReport31BeforePrint(TfrxReportComponent *Sender)
 			case  3: S = MemTableEh31->FieldByName("ORDER_TYPE_STR")->AsString +" \n" +
 							 MemTableEh31->FieldByName("WORK_TYPE_NAME")->AsString;
 							 break;
-			case  4: S = MemTableEh31->FieldByName("CLIENT_NAME")->AsString  +" \n" +
+			case  4: S = "<b>"+MemTableEh31->FieldByName("CLIENT_NAME")->AsString  +"</b> \n" +
 							 MemTableEh31->FieldByName("CONTACT_NAME")->AsString +" \n" +
 							 MemTableEh31->FieldByName("CONTACT_PHONE")->AsString;
 						break;
@@ -4835,9 +4851,9 @@ void __fastcall TFormTrans::frxReport31BeforePrint(TfrxReportComponent *Sender)
 							 if (MemTableEh31->FieldByName("RET_TO_START")->AsInteger)
                          S += " и обратно";
 						break;
-			case  7: S = MemTableEh31->FieldByName("TRANS_COMPANY_NAME")->AsString + " "   +
+			case  7: S = MemTableEh31->FieldByName("TRANS_COMPANY_NAME")->AsString + "<b> "   +
 							 MemTableEh31->FieldByName("REG_NUMBER")->AsString         + "\n " +
-							 MemTableEh31->FieldByName("DRIVER_NAME")->AsString        + " "   +
+							 MemTableEh31->FieldByName("DRIVER_NAME")->AsString        + "</b> "   +
 							 MemTableEh31->FieldByName("DRIVER_PHONE")->AsString;
 						break;
 

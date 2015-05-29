@@ -1400,6 +1400,8 @@ object FormDriverRep: TFormDriverRep
         IndicatorOptions = [gioShowRowIndicatorEh]
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
         OptionsEh = [dghFixed3D, dghClearSelection, dghDialogFind, dghColumnResize, dghColumnMove, dghExtendVertLines]
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 2
         TitleParams.MultiTitle = True
         OnDrawColumnCell = DBGridEhDrawColumnCell
@@ -1421,6 +1423,9 @@ object FormDriverRep: TFormDriverRep
               #1048#1089#1087#1086#1083#1085#1080#1090#1077#1083#1102
               '')
             Title.Caption = #1055#1086#1083#1091#1095#1072#1090#1077#1083#1100'|'#1058#1080#1087' '
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
             Width = 124
           end
           item
@@ -1429,6 +1434,9 @@ object FormDriverRep: TFormDriverRep
             FieldName = 'NAME_TAG'
             Footers = <>
             Title.Caption = #1055#1086#1083#1091#1095#1072#1090#1077#1083#1100'|'#1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077'  '
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
             Width = 193
           end
           item
@@ -1443,6 +1451,9 @@ object FormDriverRep: TFormDriverRep
                 ValueType = fvtStaticText
               end>
             Title.Caption = #1057#1091#1084#1084#1072
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
           end
           item
             DisplayFormat = 'dd.mmm.yy'
@@ -1451,6 +1462,9 @@ object FormDriverRep: TFormDriverRep
             FieldName = 'DATESET'
             Footers = <>
             Title.Caption = #1044#1072#1090#1072' '#1055#1077#1088#1077#1076#1072#1095#1080
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
           end
           item
             DynProps = <>
@@ -1458,6 +1472,9 @@ object FormDriverRep: TFormDriverRep
             FieldName = 'COMMENT'
             Footers = <>
             Title.Caption = #1055#1088#1080#1084#1077#1095#1072#1085#1080#1077
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
             Width = 714
           end>
         object RowDetailData: TRowDetailPanelControlEh
@@ -1507,6 +1524,7 @@ object FormDriverRep: TFormDriverRep
   object MemTableEh1: TMemTableEh
     Tag = 1
     Filtered = True
+    FetchAllOnOpen = True
     Params = <>
     DataDriver = DataSetDriverEh1
     SortOrder = 'DT_Beg'
@@ -1628,6 +1646,7 @@ object FormDriverRep: TFormDriverRep
   object MemTableEh2: TMemTableEh
     Tag = 2
     Filtered = True
+    FetchAllOnOpen = True
     Params = <>
     DataDriver = DataSetDriverEh2
     AfterOpen = MemTableEh1AfterOpen
@@ -1705,6 +1724,7 @@ object FormDriverRep: TFormDriverRep
   object MemTableEh3: TMemTableEh
     Tag = 3
     Filtered = True
+    FetchAllOnOpen = True
     Params = <>
     DataDriver = DataSetDriverEh3
     SortOrder = 'DateSet,Name_Tag '
@@ -1806,7 +1826,7 @@ object FormDriverRep: TFormDriverRep
     PrintOptions.Printer = #1055#1086' '#1091#1084#1086#1083#1095#1072#1085#1080#1102
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 42136.834601261600000000
-    ReportOptions.LastChange = 42137.734781226850000000
+    ReportOptions.LastChange = 42137.734781226800000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -1842,11 +1862,11 @@ object FormDriverRep: TFormDriverRep
       Orientation = poLandscape
       PaperWidth = 297.000000000000000000
       PaperHeight = 210.000000000000000000
-      PaperSize = 9
+      PaperSize = 256
       LeftMargin = 5.000000000000000000
       RightMargin = 7.000000000000000000
-      TopMargin = 10.000000000000000000
-      BottomMargin = 10.000000000000000000
+      TopMargin = 5.000000000000000000
+      BottomMargin = 5.000000000000000000
       object ReportTitle1: TfrxReportTitle
         Height = 18.897637800000000000
         Top = 18.897650000000000000
@@ -1997,7 +2017,7 @@ object FormDriverRep: TFormDriverRep
         object Memo9: TfrxMemoView
           Align = baLeft
           Left = 812.598425200000000000
-          Width = 132.283464566929100000
+          Width = 132.283464566929000000
           Height = 18.897650000000000000
           ShowHint = False
           Font.Charset = DEFAULT_CHARSET
@@ -2014,7 +2034,7 @@ object FormDriverRep: TFormDriverRep
         end
         object Memo12: TfrxMemoView
           Align = baLeft
-          Left = 944.881889766929100000
+          Left = 944.881889766929000000
           Width = 56.692913390000000000
           Height = 18.897650000000000000
           ShowHint = False
@@ -2203,7 +2223,7 @@ object FormDriverRep: TFormDriverRep
         object OrdTRANSPORT_NAME: TfrxMemoView
           Align = baLeft
           Left = 812.598425200000000000
-          Width = 132.283464566929100000
+          Width = 132.283464566929000000
           Height = 18.897650000000000000
           ShowHint = False
           StretchMode = smMaxHeight
@@ -2243,7 +2263,7 @@ object FormDriverRep: TFormDriverRep
         end
         object OrdDRIVER_HAND_MONEY: TfrxMemoView
           Align = baLeft
-          Left = 944.881889766929100000
+          Left = 944.881889766929000000
           Width = 56.692913390000000000
           Height = 18.897650000000000000
           ShowHint = False
@@ -2289,7 +2309,7 @@ object FormDriverRep: TFormDriverRep
           ParentFont = False
         end
         object SysMemo2: TfrxSysMemoView
-          Left = 944.881889766929100000
+          Left = 944.881889766929000000
           Width = 56.692913390000000000
           Height = 18.897650000000000000
           ShowHint = False
@@ -2350,7 +2370,7 @@ object FormDriverRep: TFormDriverRep
       end
       object MasterData2: TfrxMasterData
         Height = 18.897637800000000000
-        Top = 302.362400000000000000
+        Top = 283.464750000000000000
         Width = 1077.166050000000000000
         DataSet = frxDBDataset2
         DataSetName = 'Out'
@@ -2460,13 +2480,13 @@ object FormDriverRep: TFormDriverRep
         end
       end
       object GroupHeader2: TfrxGroupHeader
-        Height = 56.692913390000000000
+        Height = 37.795275590000000000
         Top = 222.992270000000000000
         Width = 1077.166050000000000000
         Condition = 'Out."FLAG_MES"'
         object Memo15: TfrxMemoView
           Left = 37.795275590000000000
-          Top = 37.795275590000000000
+          Top = 18.897637795275600000
           Width = 94.488188980000000000
           Height = 18.897650000000000000
           ShowHint = False
@@ -2484,7 +2504,7 @@ object FormDriverRep: TFormDriverRep
         end
         object Memo16: TfrxMemoView
           Left = 132.283464570000000000
-          Top = 37.795275590000000000
+          Top = 18.897637795275600000
           Width = 264.566929130000000000
           Height = 18.897650000000000000
           ShowHint = False
@@ -2501,7 +2521,7 @@ object FormDriverRep: TFormDriverRep
         end
         object Memo17: TfrxMemoView
           Left = 396.850393700000000000
-          Top = 37.795275590000000000
+          Top = 18.897637795275600000
           Width = 264.566929130000000000
           Height = 18.897650000000000000
           ShowHint = False
@@ -2519,7 +2539,7 @@ object FormDriverRep: TFormDriverRep
         object Memo18: TfrxMemoView
           Align = baLeft
           Left = 661.417322830000000000
-          Top = 37.795275590000000000
+          Top = 18.897637795275600000
           Width = 151.181102360000000000
           Height = 18.897650000000000000
           ShowHint = False
@@ -2537,7 +2557,7 @@ object FormDriverRep: TFormDriverRep
         object Memo19: TfrxMemoView
           Align = baLeft
           Left = 812.598425190000000000
-          Top = 37.795275590000000000
+          Top = 18.897637795275600000
           Width = 207.874150000000000000
           Height = 18.897650000000000000
           ShowHint = False
@@ -2555,7 +2575,6 @@ object FormDriverRep: TFormDriverRep
         end
         object Memo30: TfrxMemoView
           Left = 37.795300000000000000
-          Top = 18.897650000000000000
           Width = 982.677800000000000000
           Height = 18.897650000000000000
           ShowHint = False
@@ -2574,8 +2593,8 @@ object FormDriverRep: TFormDriverRep
         end
       end
       object GroupFooter2: TfrxGroupFooter
-        Height = 18.897637795275590000
-        Top = 343.937230000000000000
+        Height = 18.897637795275600000
+        Top = 325.039580000000000000
         Width = 1077.166050000000000000
         object Memo20: TfrxMemoView
           Left = 812.598425190000000000
@@ -2625,7 +2644,7 @@ object FormDriverRep: TFormDriverRep
       end
       object PageFooter1: TfrxPageFooter
         Height = 18.897637800000000000
-        Top = 755.906000000000000000
+        Top = 1889.765000000000000000
         Width = 1077.166050000000000000
         object SysMemo1: TfrxSysMemoView
           Left = 944.882500000000000000
@@ -2674,7 +2693,7 @@ object FormDriverRep: TFormDriverRep
       end
       object GroupHeader3: TfrxGroupHeader
         Height = 56.692913390000000000
-        Top = 385.512060000000000000
+        Top = 366.614410000000000000
         Width = 1077.166050000000000000
         Condition = 'MI."Flag_Mes"'
         object Memo23: TfrxMemoView
@@ -2793,7 +2812,7 @@ object FormDriverRep: TFormDriverRep
       end
       object MasterData3: TfrxMasterData
         Height = 18.897637800000000000
-        Top = 464.882190000000000000
+        Top = 445.984540000000000000
         Width = 1077.166050000000000000
         DataSet = frxDBDataset3
         DataSetName = 'MI'
@@ -2905,7 +2924,7 @@ object FormDriverRep: TFormDriverRep
         Font.Style = []
         Height = 18.897637800000000000
         ParentFont = False
-        Top = 506.457020000000000000
+        Top = 487.559370000000000000
         Width = 1077.166050000000000000
         object Memo29: TfrxMemoView
           Left = 226.771800000000000000
@@ -2942,7 +2961,7 @@ object FormDriverRep: TFormDriverRep
       end
       object GroupHeader4: TfrxGroupHeader
         Height = 56.692913390000000000
-        Top = 548.031850000000000000
+        Top = 529.134200000000000000
         Width = 1077.166050000000000000
         Condition = 'MO."FLAG_MES"'
         object Memo32: TfrxMemoView
@@ -3061,7 +3080,7 @@ object FormDriverRep: TFormDriverRep
       end
       object MasterData4: TfrxMasterData
         Height = 22.677180000000000000
-        Top = 627.401980000000000000
+        Top = 608.504330000000000000
         Width = 1077.166050000000000000
         DataSet = frxDBDataset4
         DataSetName = 'MO'
@@ -3082,6 +3101,7 @@ object FormDriverRep: TFormDriverRep
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftBottom]
           Memo.UTF8W = (
             '[MO."DATESET"]')
           ParentFont = False
@@ -3100,6 +3120,7 @@ object FormDriverRep: TFormDriverRep
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftBottom]
           Memo.UTF8W = (
             '[MO."OBJECT_TYPE_TAG"]')
           ParentFont = False
@@ -3118,6 +3139,7 @@ object FormDriverRep: TFormDriverRep
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
+          Frame.Typ = [ftRight, ftBottom]
           Memo.UTF8W = (
             '[MO."NAME_TAG"]')
           ParentFont = False
@@ -3136,6 +3158,7 @@ object FormDriverRep: TFormDriverRep
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
+          Frame.Typ = [ftRight, ftBottom]
           HAlign = haRight
           Memo.UTF8W = (
             '[MO."MONEY_VALUE"]')
@@ -3155,14 +3178,15 @@ object FormDriverRep: TFormDriverRep
           Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = []
+          Frame.Typ = [ftRight, ftBottom]
           Memo.UTF8W = (
             '[MO."COMMENT"]')
           ParentFont = False
         end
       end
       object GroupFooter4: TfrxGroupFooter
-        Height = 22.677180000000000000
-        Top = 672.756340000000000000
+        Height = 18.897637795275600000
+        Top = 653.858690000000000000
         Width = 1077.166050000000000000
         object Memo38: TfrxMemoView
           Left = 226.771800000000000000
@@ -3194,6 +3218,299 @@ object FormDriverRep: TFormDriverRep
           HAlign = haRight
           Memo.UTF8W = (
             '[SUM(<MO."MONEY_VALUE">,MasterData4)]')
+          ParentFont = False
+        end
+      end
+      object ReportSummary1: TfrxReportSummary
+        Height = 1133.858267720000000000
+        Top = 733.228820000000000000
+        Width = 1077.166050000000000000
+        object Memo11: TfrxMemoView
+          Left = 415.748031500000000000
+          Top = 19.000000000000000000
+          Width = 226.771653543307000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            #1042#1099#1076#1072#1085#1086' '#1085#1072' '#1088#1091#1082#1080' '#1074#1086#1076#1080#1090#1077#1083#1102':')
+          ParentFont = False
+        end
+        object Memo39: TfrxMemoView
+          Left = 37.795300000000000000
+          Top = 37.897637800000000000
+          Width = 264.566929130000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            #1048#1079#1088#1072#1089#1093#1086#1076#1086#1074#1072#1085#1086':')
+          ParentFont = False
+        end
+        object Memo40: TfrxMemoView
+          Left = 415.748031500000000000
+          Top = 37.897637795275600000
+          Width = 226.771653540000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            #1055#1086#1083#1091#1095#1077#1085#1086' '#1080#1079' '#1088#1072#1079#1085#1099#1093' '#1080#1089#1090#1086#1095#1085#1080#1082#1086#1074':')
+          ParentFont = False
+        end
+        object Memo41: TfrxMemoView
+          Left = 37.795300000000000000
+          Top = 56.795275590000000000
+          Width = 264.566929130000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            #1055#1077#1088#1077#1076#1072#1085#1086' '#1088#1072#1079#1083#1080#1095#1085#1099#1084' '#1087#1086#1083#1091#1095#1072#1090#1077#1083#1103#1084':')
+          ParentFont = False
+        end
+        object Memo42: TfrxMemoView
+          Left = 37.795300000000000000
+          Top = 75.692913390000000000
+          Width = 264.566929130000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            #1048#1090#1086#1075#1086':')
+          ParentFont = False
+        end
+        object Memo43: TfrxMemoView
+          Left = 37.795300000000000000
+          Top = 19.000000000000000000
+          Width = 264.566929130000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            #1047#1072#1088#1072#1073#1086#1090#1072#1085#1086':')
+          ParentFont = False
+        end
+        object Memo44: TfrxMemoView
+          Left = 37.795300000000000000
+          Top = 117.267780000000000000
+          Width = 264.567100000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDouble
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            #1047#1072#1088#1087#1083#1072#1090#1072' '#1074#1099#1076#1072#1095#1072' '#1085#1072' '#1088#1091#1082#1080':')
+          ParentFont = False
+        end
+        object Memo45: TfrxMemoView
+          Left = 415.748300000000000000
+          Top = 75.692950000000000000
+          Width = 226.771653540000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            #1048#1090#1086#1075#1086':')
+          ParentFont = False
+        end
+        object SysMemo9: TfrxSysMemoView
+          Left = 302.362400000000000000
+          Top = 19.000000000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haRight
+          Memo.UTF8W = (
+            '[SUM(<Ord."DRV_PAY">,MasterData1)]')
+          ParentFont = False
+        end
+        object SysMemo10: TfrxSysMemoView
+          Left = 302.362400000000000000
+          Top = 37.897650000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haRight
+          Memo.UTF8W = (
+            '[SUM(<Out."OUTLAY_VALUE">,MasterData2)]')
+          ParentFont = False
+        end
+        object SysMemo11: TfrxSysMemoView
+          Left = 302.362400000000000000
+          Top = 56.795300000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haRight
+          Memo.UTF8W = (
+            '[SUM(<MO."MONEY_VALUE">,MasterData4)]')
+          ParentFont = False
+        end
+        object SysMemo12: TfrxSysMemoView
+          Left = 642.520100000000000000
+          Top = 19.000000000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haRight
+          Memo.UTF8W = (
+            '[SUM(<Ord."DRIVER_HAND_MONEY">,MasterData1)]')
+          ParentFont = False
+        end
+        object SysMemo13: TfrxSysMemoView
+          Left = 642.520100000000000000
+          Top = 37.897650000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haRight
+          Memo.UTF8W = (
+            '[SUM(<MI."MONEY_VALUE">,MasterData3)]')
+          ParentFont = False
+        end
+        object SysMemo14: TfrxSysMemoView
+          Left = 302.362400000000000000
+          Top = 75.692950000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haRight
+          Memo.UTF8W = (
+            
+              '[(SUM(<Ord."DRV_PAY">,MasterData1) + SUM(<Out."OUTLAY_VALUE">,Ma' +
+              'sterData2) + SUM(<MO."MONEY_VALUE">,MasterData4) )]')
+          ParentFont = False
+        end
+        object SysMemo15: TfrxSysMemoView
+          Left = 642.520100000000000000
+          Top = 75.692950000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haRight
+          Memo.UTF8W = (
+            
+              '[(SUM(<Ord."DRIVER_HAND_MONEY">,MasterData1) +  SUM(<MI."MONEY_V' +
+              'ALUE">,MasterData3))]')
+          ParentFont = False
+        end
+        object SysMemo16: TfrxSysMemoView
+          Left = 302.362400000000000000
+          Top = 117.267780000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDouble
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haRight
+          Memo.UTF8W = (
+            
+              '[(SUM(<Ord."DRV_PAY">,MasterData1) + SUM(<Out."OUTLAY_VALUE">,Ma' +
+              'sterData2) + SUM(<MO."MONEY_VALUE">,MasterData4) )-SUM(<Ord."DRI' +
+              'VER_HAND_MONEY">,MasterData1)- SUM(<MI."MONEY_VALUE">,MasterData' +
+              '3)]')
+          ParentFont = False
+        end
+        object Memo46: TfrxMemoView
+          Left = 415.748300000000000000
+          Top = 56.795300000000000000
+          Width = 321.260050000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
           ParentFont = False
         end
       end
@@ -3377,6 +3694,7 @@ object FormDriverRep: TFormDriverRep
   object MemTableEh4: TMemTableEh
     Tag = 4
     Filtered = True
+    FetchAllOnOpen = True
     Params = <>
     DataDriver = DataSetDriverEh4
     SortOrder = 'DateSet,Name_Src'

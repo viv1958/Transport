@@ -744,9 +744,11 @@ object FormSelRep: TFormSelRep
         IndicatorOptions = [gioShowRowIndicatorEh, gioShowRecNoEh]
         Options = [dgTitles, dgIndicator, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgMultiSelect]
         OptionsEh = [dghFixed3D, dghClearSelection, dghAutoSortMarking, dghMultiSortMarking, dghDialogFind, dghShowRecNo, dghColumnResize, dghExtendVertLines]
+        ParentShowHint = False
         RowDetailPanel.Height = 510
         SearchPanel.Enabled = True
         SearchPanel.FilterOnTyping = True
+        ShowHint = True
         SortLocal = True
         STFilter.Local = True
         TabOrder = 0
@@ -821,6 +823,9 @@ object FormSelRep: TFormSelRep
             FieldName = 'CLIENT_NAME'
             Footers = <>
             Title.Caption = #1050#1083#1080#1077#1085#1090
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
             Width = 204
           end
           item
@@ -853,6 +858,9 @@ object FormSelRep: TFormSelRep
             FieldName = 'TRANS_COMPANY_NAME'
             Footers = <>
             Title.Caption = #1055#1077#1088#1077#1074#1086#1079#1095#1080#1082
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
             Width = 107
           end
           item
@@ -873,6 +881,9 @@ object FormSelRep: TFormSelRep
             FieldName = 'DRIVER_NAME'
             Footers = <>
             Title.Caption = #1042#1086#1076#1080#1090#1077#1083#1100
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
             Width = 139
           end
           item
@@ -893,6 +904,9 @@ object FormSelRep: TFormSelRep
             FieldName = 'FLAG_CALC_INCOME_STR'
             Footers = <>
             Title.Caption = #1056#1072#1089#1095#1077#1090' '#1086#1087#1083#1072#1090#1099'|'#1057#1087#1086#1089#1086#1073' '#1088#1072#1089#1095#1077#1090#1072
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
           end
           item
             DynProps = <>
@@ -935,6 +949,9 @@ object FormSelRep: TFormSelRep
             FieldName = 'PAY_TYPE_STR'
             Footers = <>
             Title.Caption = #1054#1087#1083#1072#1090#1072'|'#1058#1080#1087' '
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
             Width = 50
           end
           item
@@ -949,6 +966,9 @@ object FormSelRep: TFormSelRep
                 ValueType = fvtStaticText
               end>
             Title.Caption = #1054#1087#1083#1072#1090#1072'|'#1040#1074#1072#1085#1089
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
             Width = 70
           end
           item
@@ -957,6 +977,9 @@ object FormSelRep: TFormSelRep
             FieldName = 'PAY_AVC_RECEIVER_STR'
             Footers = <>
             Title.Caption = #1054#1087#1083#1072#1090#1072'|'#1055#1086#1083#1091#1095#1072#1090#1077#1083#1100
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
             Width = 95
           end
           item
@@ -965,6 +988,9 @@ object FormSelRep: TFormSelRep
             FieldName = 'PAY_AVC_STATE_STR'
             Footers = <>
             Title.Caption = #1054#1087#1083#1072#1090#1072'|'#1057#1086#1089#1090#1086#1103#1085#1080#1077
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
             Width = 95
           end
           item
@@ -979,6 +1005,9 @@ object FormSelRep: TFormSelRep
                 ValueType = fvtStaticText
               end>
             Title.Caption = #1054#1087#1083#1072#1090#1072'|'#1044#1086#1087#1083#1072#1090#1080#1090#1100
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
             Width = 70
           end
           item
@@ -987,6 +1016,9 @@ object FormSelRep: TFormSelRep
             FieldName = 'PAY_REST_RECEIVER_STR'
             Footers = <>
             Title.Caption = #1054#1087#1083#1072#1090#1072'|'#1055#1086#1083#1091#1095#1072#1090#1077#1083#1100
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
             Width = 95
           end
           item
@@ -995,6 +1027,9 @@ object FormSelRep: TFormSelRep
             FieldName = 'PAY_REST_STATE_STR'
             Footers = <>
             Title.Caption = #1054#1087#1083#1072#1090#1072'|'#1057#1086#1089#1090#1086#1103#1085#1080#1077
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
             Width = 95
           end
           item
@@ -1009,6 +1044,9 @@ object FormSelRep: TFormSelRep
                 ValueType = fvtStaticText
               end>
             Title.Caption = #1055#1088#1080#1073#1099#1083#1100
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
             Width = 62
           end>
         object RowDetailData: TRowDetailPanelControlEh
@@ -1080,6 +1118,7 @@ object FormSelRep: TFormSelRep
   object MemTableEh1: TMemTableEh
     Tag = 1
     Filtered = True
+    FetchAllOnOpen = True
     Params = <>
     DataDriver = DataSetDriverEh1
     SortOrder = 'DT_Beg'

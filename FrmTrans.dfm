@@ -549,7 +549,7 @@ object FormTrans: TFormTrans
     Top = 64
     Width = 1892
     Height = 813
-    ActivePage = sTabSheet3
+    ActivePage = sTabSheet4
     Align = alClient
     TabOrder = 1
     OnChange = sPageControl1Change
@@ -1963,6 +1963,9 @@ object FormTrans: TFormTrans
             FieldName = 'NDOG_ID_STR'
             Footers = <>
             Title.Caption = #1044#1086#1075#1086#1074#1086#1088
+            Title.TitleButton = True
+            Title.ToolTips = True
+            ToolTips = True
           end>
         object RowDetailData: TRowDetailPanelControlEh
           DesignSize = (
@@ -11166,7 +11169,7 @@ object FormTrans: TFormTrans
         object Memo12: TfrxMemoView
           Align = baLeft
           Left = 366.614173220000000000
-          Width = 170.078740157480300000
+          Width = 170.078740157480000000
           Height = 37.795275590000000000
           ShowHint = False
           Font.Charset = DEFAULT_CHARSET
@@ -11182,7 +11185,7 @@ object FormTrans: TFormTrans
         end
         object Memo13: TfrxMemoView
           Align = baLeft
-          Left = 536.692913377480300000
+          Left = 536.692913377480000000
           Width = 151.181102360000000000
           Height = 37.795275590000000000
           ShowHint = False
@@ -11199,7 +11202,7 @@ object FormTrans: TFormTrans
         end
         object Memo14: TfrxMemoView
           Align = baLeft
-          Left = 687.874015737480300000
+          Left = 687.874015737480000000
           Width = 37.795275590000000000
           Height = 37.795275590000000000
           ShowHint = False
@@ -11216,7 +11219,7 @@ object FormTrans: TFormTrans
         end
         object Memo15: TfrxMemoView
           Align = baLeft
-          Left = 725.669291327480300000
+          Left = 725.669291327480000000
           Width = 37.795275590000000000
           Height = 37.795275590000000000
           ShowHint = False
@@ -11234,7 +11237,7 @@ object FormTrans: TFormTrans
         end
         object Memo16: TfrxMemoView
           Align = baLeft
-          Left = 763.464566917480300000
+          Left = 763.464566917480000000
           Width = 37.795275590000000000
           Height = 37.795275590000000000
           ShowHint = False
@@ -11251,7 +11254,7 @@ object FormTrans: TFormTrans
         end
         object Memo17: TfrxMemoView
           Align = baLeft
-          Left = 801.259842507480300000
+          Left = 801.259842507480000000
           Width = 37.795275590000000000
           Height = 37.795275590000000000
           ShowHint = False
@@ -11268,7 +11271,7 @@ object FormTrans: TFormTrans
         end
         object Memo19: TfrxMemoView
           Align = baLeft
-          Left = 839.055118097480300000
+          Left = 839.055118097480000000
           Width = 37.795275590000000000
           Height = 37.795275590000000000
           ShowHint = False
@@ -11286,7 +11289,7 @@ object FormTrans: TFormTrans
         end
         object Memo18: TfrxMemoView
           Align = baLeft
-          Left = 876.850393687480300000
+          Left = 876.850393687480000000
           Width = 207.874125590000000000
           Height = 37.795275590000000000
           ShowHint = False
@@ -11337,6 +11340,7 @@ object FormTrans: TFormTrans
           Height = 18.897650000000000000
           ShowHint = False
           StretchMode = smMaxHeight
+          AllowHTMLTags = True
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -11369,6 +11373,7 @@ object FormTrans: TFormTrans
           Height = 18.897650000000000000
           ShowHint = False
           StretchMode = smMaxHeight
+          AllowHTMLTags = True
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -11413,10 +11418,11 @@ object FormTrans: TFormTrans
           Tag = 7
           Align = baLeft
           Left = 536.692913381102400000
-          Width = 151.181102362204700000
+          Width = 151.181102360000000000
           Height = 18.897650000000000000
           ShowHint = False
           StretchMode = smMaxHeight
+          AllowHTMLTags = True
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -11427,7 +11433,7 @@ object FormTrans: TFormTrans
         end
         object OrdDRIVER_HAND_MONEY: TfrxMemoView
           Align = baLeft
-          Left = 687.874015743307100000
+          Left = 687.874015741102400000
           Width = 37.795275590000000000
           Height = 18.897650000000000000
           ShowHint = False
@@ -11448,7 +11454,7 @@ object FormTrans: TFormTrans
         end
         object OrdHOUR_TAX: TfrxMemoView
           Align = baLeft
-          Left = 725.669291333307100000
+          Left = 725.669291331102400000
           Width = 37.795275590000000000
           Height = 18.897650000000000000
           ShowHint = False
@@ -11469,7 +11475,7 @@ object FormTrans: TFormTrans
         end
         object OrdPAY_CALC: TfrxMemoView
           Align = baLeft
-          Left = 763.464566923307100000
+          Left = 763.464566921102400000
           Width = 37.795275590000000000
           Height = 18.897650000000000000
           ShowHint = False
@@ -11490,7 +11496,7 @@ object FormTrans: TFormTrans
         end
         object OrdPAY_RES: TfrxMemoView
           Align = baLeft
-          Left = 801.259842513307100000
+          Left = 801.259842511102400000
           Width = 37.795275590000000000
           Height = 18.897650000000000000
           ShowHint = False
@@ -11511,7 +11517,7 @@ object FormTrans: TFormTrans
         end
         object OrdPAY_TYPE_STR: TfrxMemoView
           Align = baLeft
-          Left = 839.055118103307100000
+          Left = 839.055118101102400000
           Width = 37.795275590000000000
           Height = 18.897650000000000000
           ShowHint = False
@@ -11532,7 +11538,7 @@ object FormTrans: TFormTrans
         end
         object OrdCOMMENT: TfrxMemoView
           Align = baLeft
-          Left = 876.850393693307100000
+          Left = 876.850393691102400000
           Width = 207.874027950000000000
           Height = 18.897650000000000000
           ShowHint = False
@@ -11542,7 +11548,7 @@ object FormTrans: TFormTrans
           DataSetName = 'Ord'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
-          Font.Height = -11
+          Font.Height = -8
           Font.Name = 'Arial'
           Font.Style = []
           Frame.Typ = [ftRight, ftBottom]

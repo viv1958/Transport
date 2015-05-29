@@ -76,7 +76,7 @@ void __fastcall TFormDriverRep::FormCreate(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TFormDriverRep::InitCommon()
 {
-	SetFormPosStd(this,1330,750,0,true);
+	SetFormPosStd(this,Screen->Width,750,0,true);
 
 	TDateTime DT = Date();
 	SelYY = MaxYY = CurYY = StrToInt(DT.FormatString("yy"));
@@ -224,6 +224,7 @@ bool __fastcall TFormDriverRep::GetObjectID(TForm* Frm, int Left,int &ID,TParams
 					  break;
 		}
 	}
+	return bRes;
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormDriverRep::SetCommonExtParams(GridData& GData)
@@ -232,9 +233,22 @@ void __fastcall TFormDriverRep::SetCommonExtParams(GridData& GData)
 	GData.AddExtParam(ftString,  "COMP_NAME",   DModT->ComputerName);
 }
 //---------------------------------------------------------------------------
+void __fastcall TFormDriverRep::GetDrvObjectID()
+{
+	if (!DriverID) return;
+	AnsiString SQL = "select Objects_ID from Driver where Driver_ID = " + IntToStr(DriverID);
+	Variant V;
+	if (OpenTmpQuery(SQL,"Objects_ID",V,DModT->Database1)) {
+		Drv_Object_ID = V;
+   }
+}
+//---------------------------------------------------------------------------
 bool __fastcall TFormDriverRep::SetSQL(TDataSet* DSet)
 {
 	AnsiString SQL, Tail;
+	if (!Drv_Object_ID) {
+		GetDrvObjectID();
+	}
 	switch (DSet->Tag) {
 		case 1:  SQL = "select * from Sel_Orders_Driver("  + IntToStr(DriverID) + ",'" +
 							GetDateStr(DT_Beg) + "','" + GetDateStr(DT_End) + "')";
