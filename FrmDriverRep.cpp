@@ -152,7 +152,7 @@ void __fastcall TFormDriverRep::InitGData()
 	GDataMonInp.WrkDBase      = DModT->Database1;
 	GDataMonInp.EditAllowMask = 0x001F;
 	GDataMonInp.NullAllowMask = 0x001B;
-	GDataMonInp.FilterFldMask = 0x0012;
+//	GDataMonInp.FilterFldMask = 0x0012;
 	GDataMonInp.Select_IDMask = 0x0003;
 
 	GDataMonInp.TextEdit      = DBEditEh;
@@ -160,7 +160,7 @@ void __fastcall TFormDriverRep::InitGData()
 	GDataMonInp.DateEdit      = DBDateTimeEditEh;
 	GDataMonInp.ListEdit      = ComboBox;
 
-	GDataMonInp.WrkQuery      = Query5;
+	GDataMonInp.WrkQuery      = Query51;
 
 	GDataMonInp.FldTranslateMap.insert(pair<AnsiString,AnsiString>("NAME_TYPE_SRC", "OBJECT_ID_SRC"));
 	GDataMonInp.FldTranslateMap.insert(pair<AnsiString,AnsiString>("NAME_SRC", "OBJECT_ID_SRC"));
@@ -191,14 +191,28 @@ void __fastcall TFormDriverRep::InitGData()
 	GDataMonOut.DateEdit      = DBDateTimeEditEh;
 	GDataMonOut.ListEdit      = ComboBox;
 
-	GDataMonOut.WrkQuery      = Query6;
+	GDataMonOut.WrkQuery      = Query61;
 
 	GDataMonOut.FldTranslateMap.insert(pair<AnsiString,AnsiString>("NAME_TYPE_TAG", "OBJECT_ID_TAG"));
 	GDataMonOut.FldTranslateMap.insert(pair<AnsiString,AnsiString>("NAME_TAG", "OBJECT_ID_TAG"));
 	GDataMonOut.FunGetIDMap.insert(pair<AnsiString,FunGetID>(AnsiString("OBJECT_ID_TAG"), GetObjectID));
 
 	SetCommonExtParams(GDataMonOut);
+// ==== переданные деньги ======================================================
 
+	GDataSalary.Flags     =  STD_STATUSBAR | FILTER_BY_NAME | MULTIPLE_SEL | MOVE_DOWN_AFTER_SEL;
+	GDataSalary.WrkSBar   = sStatusBar1;
+	GDataSalary.FieldKey  = "Driver_ID";
+	GDataSalary.DefFieldFlt   = "TRANS_COMPANY_NAME";
+	GDataSalary.FilterFldMask = 0x0003;
+
+
+	GDataSalary.SetSQL        = SetSQL;
+	GDataSalary.FunAddRow     = AddCurrentRow;
+
+	GDataSalary.SrcDSet       = Query5;
+	GDataSalary.WrkGrid       = DBGridEh5;
+	GDataSalary.WrkDBase      = DModT->Database1;
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormDriverRep::WriteMemo()
@@ -250,8 +264,8 @@ bool __fastcall TFormDriverRep::SetSQL(TDataSet* DSet)
 		GetDrvObjectID();
 	}
 	switch (DSet->Tag) {
-		case 1:  SQL = "select * from Sel_Orders_Driver("  + IntToStr(DriverID) + ",'" +
-							GetDateStr(DT_Beg) + "','" + GetDateStr(DT_End) + "')";
+		case 1:  SQL = "select * from Sel_Orders(13,'" +
+							GetDateStr(DT_Beg) + "','" + GetDateStr(DT_End+1) + "'," + IntToStr(DriverID) + ")";
 					Query1->SQL->Text = SQL;
 					break;
 		case 2:  SQL = "select * from Sel_Outlay_Driver("  + IntToStr(DriverID) + ",'" +
@@ -265,6 +279,10 @@ bool __fastcall TFormDriverRep::SetSQL(TDataSet* DSet)
 		case 4:  SQL = "select * from Sel_Money_Move(1,'" + GetDateStr(DT_Beg) + "','" +
 							 GetDateStr(DT_End) + "'," + IntToStr(Drv_Object_ID) +")";
 					Query4->SQL->Text = SQL;
+					break;
+		case 5:  SQL = "select * from Sel_Driver_Period('" + GetDateStr(DT_Beg) + "','" +
+							 GetDateStr(DT_End)+"')";
+					Query5->SQL->Text = SQL;
 					break;
 	}
 	return true;
@@ -311,6 +329,8 @@ void __fastcall TFormDriverRep::FormKeyDown(TObject *Sender, WORD &Key, TShiftSt
 			case '2': NewSheet = sTabSheet2; break;
 			case '3': NewSheet = sTabSheet3; break;
 			case '4': NewSheet = sTabSheet4; break;
+			case '5': NewSheet = sTabSheet5; break;
+			case '6': NewSheet = sTabSheet6; break;
 		}
 		if (NewSheet && NewSheet != sPageControl1->ActivePage) {
 			WriteMemo();
@@ -565,6 +585,7 @@ GridData& __fastcall TFormDriverRep::GetGDataRef(TObject* Sender)
 		case 2: Ref = &GDataOutlay; 	break;
 		case 3: Ref = &GDataMonInp; 	break;
 		case 4: Ref = &GDataMonOut; 	break;
+		case 5: Ref = &GDataSalary; 	break;
 	}
 	return *Ref;
 }
@@ -596,7 +617,7 @@ void __fastcall TFormDriverRep::DBGridEhGetCellParams(TObject *Sender, TColumnEh
 //---------------------------------------------------------------------------
 void __fastcall TFormDriverRep::DBGridEhKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 {
-	if (PageTag > 2 && Key == VK_INSERT) {
+	if ((PageTag == 3 || PageTag == 4) && Key == VK_INSERT) {
 		TDateTime DateSet = Date();
 		if (DateSet < DT_Beg)
 			DateSet = DT_Beg;
@@ -646,7 +667,7 @@ void __fastcall TFormDriverRep::MemTableEhFilterRecord(TDataSet *DataSet, bool &
 	Accept = FilterRecordStd(GetGDataRef(DataSet));
 	if (Accept) {
 		switch (DataSet->Tag) {
-			case 1: case 2:  case 3: case 4:
+			case 1: case 2:  case 3: case 4:  case 5:
 					  Accept = !DataSet->FieldByName("FLAG_MES")->AsInteger;
 					  if (!Accept) {
 						  ShowLowFooter(DataSet);
@@ -674,20 +695,30 @@ void __fastcall TFormDriverRep::ShowLowFooter(TDataSet *DataSet)
 				  break;
 		case 4: ShowLowFooter(DBGridEh4, DataSet, 2);
 				  break;
+		case 5: ShowLowFooter(DBGridEh5, DataSet, 2);
+				  ShowLowFooter(DBGridEh5, DataSet, 3);
+				  ShowLowFooter(DBGridEh5, DataSet, 6);
+				  ShowLowFooter(DBGridEh5, DataSet, 7);
+				  break;
 	}
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormDriverRep::ShowHighFooter(TDataSet *DataSet)
 {
 	switch (DataSet->Tag) {
-		case 1: DBGridEh1->Columns->Items[9]->Footers->Items[0]->Value = IntToStr(SumHand);
-				  DBGridEh1->Columns->Items[10]->Footers->Items[0]->Value = IntToStr(SumPay);
+		case 1: DBGridEh1->Columns->Items[9]->Footers->Items[0]->Value = IntToStr(SumHand1);
+				  DBGridEh1->Columns->Items[10]->Footers->Items[0]->Value = IntToStr(SumDrvPay1);
 				  break;
-		case 2: DBGridEh2->Columns->Items[7]->Footers->Items[0]->Value = IntToStr(SumOutlay);
+		case 2: DBGridEh2->Columns->Items[7]->Footers->Items[0]->Value = IntToStr(SumOutlay2);
 				  break;
 		case 3: DBGridEh3->Columns->Items[2]->Footers->Items[0]->Value = IntToStr(SumMonInp);
 				  break;
 		case 4: DBGridEh4->Columns->Items[2]->Footers->Items[0]->Value = IntToStr(SumMonOut);
+				  break;
+		case 5: DBGridEh5->Columns->Items[2]->Footers->Items[0]->Value = IntToStr(SumDrvPay5);
+				  DBGridEh5->Columns->Items[3]->Footers->Items[0]->Value = IntToStr(SumOutlay5);
+				  DBGridEh5->Columns->Items[6]->Footers->Items[0]->Value = IntToStr(SumHand5);
+				  DBGridEh5->Columns->Items[7]->Footers->Items[0]->Value = IntToStr(SumSalary);
 				  break;
 	}
 }
@@ -701,9 +732,13 @@ void __fastcall TFormDriverRep::SetPage()
 //---------------------------------------------------------------------------
 void __fastcall TFormDriverRep::EnableControls()
 {
-	bool En = PageTag > 2;
+	bool En = (PageTag == 2) || (PageTag == 3);
 	sSpeedButton2->Enabled = En;
 	sSpeedButton3->Enabled = En;
+	En = PageTag < 5;
+	sLabel1->Visible     = En;
+	sComboEdit1->Enabled = En;
+	sComboEdit1->Visible = En;
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormDriverRep::sPageControl1Change(TObject *Sender)
@@ -725,10 +760,10 @@ void __fastcall TFormDriverRep::sPageControl1Changing(TObject *Sender, bool &All
 void __fastcall TFormDriverRep::ClearSums()
 {
 	switch (PageTag) {
-		case 1: SumHand = SumPay = 0;
+		case 1: SumHand1 = SumDrvPay1 = 0;
 				  ShowHighFooter(MemTableEh1);
 				  break;
-		case 2: SumOutlay = 0;
+		case 2: SumOutlay2 = 0;
 				  ShowHighFooter(MemTableEh2);
 				  break;
 		case 3: SumMonInp = 0;
@@ -736,6 +771,9 @@ void __fastcall TFormDriverRep::ClearSums()
 				  break;
 		case 4: SumMonOut = 0;
 				  ShowHighFooter(MemTableEh4);
+				  break;
+		case 5: SumHand5 = SumDrvPay5 = SumOutlay5 = SumSalary = 0;
+				  ShowHighFooter(MemTableEh5);
 				  break;
 	}
 }
@@ -750,15 +788,21 @@ void __fastcall TFormDriverRep::AddCurrentRow(GridData& GData,int Mul, bool Show
 	else {
 		int ID;
 		switch (PageTag) {
-			case 1:	SumHand   += Mul*DSet->FieldByName("DRIVER_HAND_MONEY")->AsInteger;
-						SumPay    += Mul*DSet->FieldByName("DRV_PAY")->AsInteger;
+			case 1:	SumHand1   += Mul*DSet->FieldByName("DRIVER_HAND_MONEY")->AsInteger;
+						SumDrvPay1 += Mul*DSet->FieldByName("DRV_PAY")->AsInteger;
 						break;
-			case 2:	SumOutlay += Mul*DSet->FieldByName("OUTLAY_VALUE")->AsInteger;
+			case 2:	SumOutlay2  += Mul*DSet->FieldByName("OUTLAY_VALUE")->AsInteger;
 						break;
-			case 3:	SumMonInp += Mul*DSet->FieldByName("MONEY_VALUE")->AsInteger;
+			case 3:	SumMonInp  += Mul*DSet->FieldByName("MONEY_VALUE")->AsInteger;
 						break;
-			case 4:	SumMonOut += Mul*DSet->FieldByName("MONEY_VALUE")->AsInteger;
+			case 4:	SumMonOut  += Mul*DSet->FieldByName("MONEY_VALUE")->AsInteger;
 						break;
+			case 5:	SumHand5   += Mul*DSet->FieldByName("DRIVER_HAND_MONEY")->AsInteger;
+						SumDrvPay5 += Mul*DSet->FieldByName("DRV_PAY")->AsInteger;
+						SumOutlay5 += Mul*DSet->FieldByName("OUTLAY_VALUE")->AsInteger;
+						SumSalary  += Mul*DSet->FieldByName("SALARY")->AsInteger;
+						break;
+
 			default: return;
 		}
 	}

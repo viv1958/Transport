@@ -55,6 +55,7 @@ __fastcall TFormSelRep::TFormSelRep(TComponent* Owner,int SelIndex, int SelID, A
 void __fastcall TFormSelRep::FormCreate(TObject *Sender)
 {
 	sPageControl1->ActivePage = sTabSheet1;
+	FillComboBoxTypeRep();
 	InitCommon();
 	InitGData();
 	SetPage();
@@ -75,8 +76,8 @@ void __fastcall TFormSelRep::SetSelID(int SelID, AnsiString SelName)
 //---------------------------------------------------------------------------
 void __fastcall TFormSelRep::InitCommon()
 {
-	SetFormPosStd(this,1300,750,0,true);
-//	SetFormPosStd(this,Screen->Width,750,0,true);
+//	SetFormPosStd(this,1300,750,0,true);
+	SetFormPosStd(this,Screen->Width,750,0,true);
 	sComboBox1->ItemIndex = SelIndex;
 	TDateTime DT = Date();
 	SelYY = MaxYY = CurYY = StrToInt(DT.FormatString("yy"));
@@ -125,8 +126,9 @@ void __fastcall TFormSelRep::InitGData()
 	GDataOrders.WrkSBar = sStatusBar1;
 	GDataOrders.FieldKey      = "Orders_ID";
 
-	GDataOrders.SetSQL        = SetSQL;
-	GDataOrders.FunAddRow     = AddCurrentRow;
+	GDataOrders.SetSQL         = SetSQL;
+	GDataOrders.FunAddRow      = AddCurrentRow;
+	GDataOrders.FilterFldMask = -1;
 
 	GDataOrders.SrcDSet       = Query1;
 	GDataOrders.WrkGrid       = DBGridEh1;
@@ -168,7 +170,7 @@ bool __fastcall TFormSelRep::SetSQL(TDataSet* DSet)
 	AnsiString SQL, Tail;
 	switch (DSet->Tag) {
 		case 1:  SQL = "select * from Sel_Orders("  + IntToStr(SelIndex + 10) + ",'" +
-							GetDateStr(DT_Beg) + "','" + GetDateStr(DT_End)       + "'," +	IntToStr(SelID) + ")";
+							GetDateStr(DT_Beg) + "','" + GetDateStr(DT_End+1)       + "'," +	IntToStr(SelID) + ")";
 					Query1->SQL->Text = SQL;
 					break;
 	}
@@ -541,10 +543,19 @@ void __fastcall TFormSelRep::AddCurrentRow(GridData& GData,int Mul, bool Show, b
 //---------------------------------------------------------------------------
 void __fastcall TFormSelRep::OutReport(bool Preview)
 {
+	TfrxReport* Rep = frxReport1;
+	switch (SelIndex) {
+		case  0:	switch (sComboBox2->ItemIndex) {
+						case 1: Rep = frxReport2; break;
+						case 2: Rep = frxReport3; break;
+					}
+					break;
+		case 2:  Rep = frxReport4;  break;
+	}
 	if (Preview)
-		frxReport1->ShowReport(true);
+		Rep->ShowReport(true);
 	else
-		frxReport1->Print();
+		Rep->Print();
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormSelRep::sComboBox1KeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
@@ -627,7 +638,89 @@ void __fastcall TFormSelRep::sComboBoxCloseUp(TObject *Sender)
 		 CloseAll();
 		 SetGridColumns();
 		 SelectID();
+		 FillComboBoxTypeRep();;
 	}
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormSelRep::FillComboBoxTypeRep()
+{
+	switch (SelIndex) {
+		case  0: sComboBox2->Enabled = true;
+					sComboBox2->Enabled = true;
+					sComboBox2->AddItem("Полный",NULL);
+					sComboBox2->AddItem("По тарифу", NULL);
+					sComboBox2->AddItem("По договору", NULL);
+					sComboBox2->ItemIndex = 0;
+					break;
+		default: sComboBox2->Enabled = false;
+					sComboBox2->Enabled = false;
+					sComboBox2->Clear();
+					break;
+	}
+}
+//---------------------------------------------------------------------------
+AnsiString __fastcall TFormSelRep::GetReportTitle()
+{
+	AnsiString S,S1;
+	S = "Отчет по ";
+	switch(SelIndex) {
+		case 0: S1 = "клиенту ";                break;
+		case 1: S1 = "транспортному средству "; break;
+		case 2: S1 = "транспортной компании ";  break;
+		case 3: S1 = "водителю ";               break;
+		case 4: S1 = "получателю денег ";       break;
+	}
+	S += S1 + sComboEdit1->Text +
+		  " за период с " + sDateEdit1->Text + " по " + sDateEdit2->Text;
+	if (sCheckBox1->Checked || GDataOrders.Filter != "") {
+		S += "(частичный)";
+	}
+	return S;
+}
+//---------------------------------------------------------------------------
+AnsiString __fastcall TFormSelRep::GetWrkPeriodStr()
+{
+	AnsiString S = MemTableEh1->FieldByName("DT_BEG")->AsDateTime.FormatString("dd.mmm")  + " " +
+						MemTableEh1->FieldByName("TIME_BEG")->AsDateTime.FormatString("hh:nn") + "-";
+	if (!(MemTableEh1->FieldByName("Wrk_Minut")->AsInteger + MemTableEh1->FieldByName("Wrk_Day")->AsInteger)) {
+		S += "???";
+	}
+	else {
+		if (MemTableEh1->FieldByName("DT_BEG")->AsDateTime != MemTableEh1->FieldByName("DAY_END")->AsDateTime) {
+			 S += MemTableEh1->FieldByName("DAY_END")->AsDateTime.FormatString("dd.mmm") + " ";
+		}
+		S += MemTableEh1->FieldByName("DT_END")->AsDateTime.FormatString("hh:nn");
+	}
+	return S;
+}
+//---------------------------------------------------------------------------
+AnsiString __fastcall TFormSelRep::GetFromToStr()
+{
+	AnsiString S, S1;
+
+	S1 = MemTableEh1->FieldByName("BEG_TOWN_NAME")->AsString;
+	if (S1 != "СПб") S = S1 + +", ";
+	S +=  MemTableEh1->FieldByName("BEG_STREET_NAME")->AsString +", "  +
+			MemTableEh1->FieldByName("BEG_ADDR_NAME")->AsString + "->\n";
+	S1 =  MemTableEh1->FieldByName("END_TOWN_NAME")->AsString;
+	if (S1 != "СПб") S += S1 + ", ";
+	S +=  MemTableEh1->FieldByName("END_STREET_NAME")->AsString +", "  +
+			MemTableEh1->FieldByName("END_ADDR_NAME")->AsString;
+	if (MemTableEh1->FieldByName("RET_TO_START")->AsInteger)
+	S += " и обратно";
+	return S;
+}
+//---------------------------------------------------------------------------
+AnsiString __fastcall TFormSelRep::GetDriverNameStr()
+{
+	AnsiString S, S1, S2;
+	S  = MemTableEh1->FieldByName("DRIVER_NAME")->AsString;
+	S1 = GetPiece(S," ",2);
+	if (S1 != "")  S1 = " " + S1.SubString(1,1) + ".";
+	S2 = GetPiece(S," ",3);
+	if (S2 != "")  S2 = S2.SubString(1,1) + ".";;
+	S = GetPiece(S," ",1) + S1 + S2;
+	return S;
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormSelRep::frxReport1BeforePrint(TfrxReportComponent *Sender)
@@ -637,60 +730,22 @@ void __fastcall TFormSelRep::frxReport1BeforePrint(TfrxReportComponent *Sender)
 	if (FName.Pos("Memo")) {
 		TfrxMemoView* MV = dynamic_cast<TfrxMemoView *>(frxReport1->FindObject(FName));
 		if (!MV || !MV->Tag) return;
-		AnsiString S, S1, S2;
+		AnsiString S;
 		switch (Sender->Tag) {
-			case  1: S = "Отчет по ";
-						switch(SelIndex) {
-							case 0: S1 = "клиенту ";                break;
-							case 1: S1 = "транспортному средству "; break;
-							case 2: S1 = "транспортной компании ";  break;
-							case 3: S1 = "водителю ";               break;
-							case 4: S1 = "получателю денег ";       break;
-						}
-						S += S1 + sComboEdit1->Text +
-							  " за период с " + sDateEdit1->Text + " по " + sDateEdit2->Text;
-						if (sCheckBox1->Checked) {
-							S += "(частичный)";
-						}
+			case  1: S = GetReportTitle();
 						break;
-////////////////////
-			case  2: S = MemTableEh1->FieldByName("DT_BEG")->AsDateTime.FormatString("dd.mmm")  + " " +
-							 MemTableEh1->FieldByName("TIME_BEG")->AsDateTime.FormatString("hh:nn") + "-";
-						if (!(MemTableEh1->FieldByName("Wrk_Minut")->AsInteger + MemTableEh1->FieldByName("Wrk_Day")->AsInteger)) {
-							S += "???";
-						}
-						else {
-							if (MemTableEh1->FieldByName("DT_BEG")->AsDateTime != MemTableEh1->FieldByName("DAY_END")->AsDateTime) {
-								 S += MemTableEh1->FieldByName("DAY_END")->AsDateTime.FormatString("dd.mmm") + " ";
-							}
-							S += MemTableEh1->FieldByName("DT_END")->AsDateTime.FormatString("hh:nn");
-						}
-						S += "\n"+ MemTableEh1->FieldByName("ORDER_STATE_STR")->AsString;
+			case  2: S = GetWrkPeriodStr() + "\n"+ MemTableEh1->FieldByName("ORDER_STATE_STR")->AsString;
 						break;
-			case  3: S = MemTableEh1->FieldByName("WORK_TYPE_NAME")->AsString + "\n";
-						S = MemTableEh1->FieldByName("CLIENT_NAME")->AsString;
+			case  3: S = MemTableEh1->FieldByName("WORK_TYPE_NAME")->AsString + "\n" +
+							 MemTableEh1->FieldByName("CLIENT_NAME")->AsString;
 						break;
 			case  4: S = MemTableEh1->FieldByName("TRANS_COMPANY_NAME")->AsString + " " +
 							 MemTableEh1->FieldByName("TRANSPORT_NAME")->AsString     + " " +
 							 MemTableEh1->FieldByName("REG_NUMBER")->AsString;
 						break;
-			case  5: S1 = MemTableEh1->FieldByName("BEG_TOWN_NAME")->AsString;
-						if (S1 != "СПб") S = S1 + +", ";
-						S +=  MemTableEh1->FieldByName("BEG_STREET_NAME")->AsString +", "  +
-								MemTableEh1->FieldByName("BEG_ADDR_NAME")->AsString + "->\n";
-						S1 =  MemTableEh1->FieldByName("END_TOWN_NAME")->AsString;
-						if (S1 != "СПб") S += S1 + ", ";
-						S +=  MemTableEh1->FieldByName("END_STREET_NAME")->AsString +", "  +
-								MemTableEh1->FieldByName("END_ADDR_NAME")->AsString;
-						if (MemTableEh1->FieldByName("RET_TO_START")->AsInteger)
-							S += " и обратно";
+			case  5: S = GetFromToStr();
 						break;
-			case  6: S = MemTableEh1->FieldByName("DRIVER_NAME")->AsString;
-						S1 = GetPiece(S," ",2);
-						if (S1 != "")  S1 = " " + S1.SubString(1,1) + ".";
-						S2 = GetPiece(S," ",3);
-						if (S2 != "")  S2 = S2.SubString(1,1) + ".";;
-						S = GetPiece(S," ",1) + S1 + S2;
+			case  6: S = GetDriverNameStr();
 						break;
 		}
 		MV->Text = S;
@@ -713,6 +768,76 @@ void __fastcall TFormSelRep::frxReport1BeforePrint(TfrxReportComponent *Sender)
 		TfrxLineView* Lin = dynamic_cast<TfrxLineView *>(frxReport1->FindObject(FName));
 		if (!Lin || !Lin->Tag) return;
 		Lin->Visible = true;
+	}
+}
+//---------------------------------------------------------------------------
+AnsiString  __fastcall TFormSelRep::GetReportTextStr(TfrxReportComponent *Sender)
+{
+	AnsiString S;
+	int Min;
+	switch (Sender->Tag) {
+		case  1: S = GetReportTitle();
+					break;
+		case  2: S = GetWrkPeriodStr();
+					break;
+		case  3: S = GetFromToStr();
+					break;
+		case  4: Min = MemTableEh1->FieldByName("WRK_MINUT")->AsInteger +
+							MemTableEh1->FieldByName("Bef_Minut")->AsInteger;
+					if (MemTableEh1->FieldByName("FLAG_CALC_INCOME")->AsInteger == 1) {
+						TDateTime DT = MemTableEh1->FieldByName("TIME_MIN")->AsDateTime;
+						int Min2 = StrToInt(DT.FormatString("h"))*60 + StrToInt(DT.FormatString("n")) +
+									  MemTableEh1->FieldByName("Bef_Minut")->AsInteger;
+						if (Min2 > Min) Min = Min2;
+					}
+					S = FloatToStrF(((Min*1.)/60. + MemTableEh1->FieldByName("WRK_DAY")->AsInteger*24),ffFixed, 13,2);
+					break;
+	}
+	return S;
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormSelRep::frxReport2BeforePrint(TfrxReportComponent *Sender)
+{
+	if (!Sender->Tag) return;
+	AnsiString FName = Sender->Name;
+	if (FName.Pos("Memo")) {
+		TfrxMemoView* MV = dynamic_cast<TfrxMemoView *>(frxReport2->FindObject(FName));
+		if (!MV || !MV->Tag) return;
+		MV->Text = GetReportTextStr(Sender);
+	}
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormSelRep::frxReport3BeforePrint(TfrxReportComponent *Sender)
+{
+	if (!Sender->Tag) return;
+	AnsiString FName = Sender->Name;
+	if (FName.Pos("Memo")) {
+		TfrxMemoView* MV = dynamic_cast<TfrxMemoView *>(frxReport3->FindObject(FName));
+		if (!MV || !MV->Tag) return;
+		MV->Text = GetReportTextStr(Sender);
+	}
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormSelRep::frxReport4BeforePrint(TfrxReportComponent *Sender)
+{
+	if (!Sender->Tag) return;
+	AnsiString FName = Sender->Name;
+	if (FName.Pos("Memo")) {
+		TfrxMemoView* MV = dynamic_cast<TfrxMemoView *>(frxReport4->FindObject(FName));
+		if (!MV || !MV->Tag) return;
+		AnsiString S;
+		switch (Sender->Tag) {
+			case  1: S = GetReportTitle();
+					break;
+			case  2: S = GetWrkPeriodStr();
+						break;
+			case  3: S = GetFromToStr();
+						break;
+			case  4: S = GetDriverNameStr();
+						break;
+		}
+		MV->Text = S;
+		return;
 	}
 }
 //---------------------------------------------------------------------------

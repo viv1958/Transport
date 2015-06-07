@@ -172,6 +172,14 @@ __published:	// IDE-managed Components
 	TsComboBox *sComboBox1;
 	TsCheckBox *sCheckBox2;
 	TsCheckBox *sCheckBox3;
+	TIntegerField *MemTableEh1NDOG_ID;
+	TStringField *MemTableEh1NDOG_ID_STR;
+	TStringField *MemTableEh1BEG_FULL_ADDR;
+	TStringField *MemTableEh1END_FULL_ADDR;
+	TfrxReport *frxReport2;
+	TsComboBox *sComboBox2;
+	TfrxReport *frxReport3;
+	TfrxReport *frxReport4;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
@@ -195,6 +203,9 @@ __published:	// IDE-managed Components
 	void __fastcall sCheckBoxClick(TObject *Sender);
 	void __fastcall sComboBoxCloseUp(TObject *Sender);
 	void __fastcall frxReport1BeforePrint(TfrxReportComponent *Sender);
+	void __fastcall frxReport2BeforePrint(TfrxReportComponent *Sender);
+	void __fastcall frxReport3BeforePrint(TfrxReportComponent *Sender);
+	void __fastcall frxReport4BeforePrint(TfrxReportComponent *Sender);
 
 
 
@@ -240,7 +251,15 @@ public:		// User declarations
 	void __fastcall TFormSelRep::ClearSums();
 	void __fastcall TFormSelRep::AddCurrentRow(GridData& GData,int Mul, bool Show, bool Clear);
 	void __fastcall TFormSelRep::ToggleShowCost(bool Show);
+   void __fastcall TFormSelRep::FillComboBoxTypeRep();
 
+	AnsiString __fastcall TFormSelRep::GetReportTitle();
+	AnsiString __fastcall TFormSelRep::GetWrkPeriodStr();
+	AnsiString __fastcall TFormSelRep::GetFromToStr();
+	AnsiString __fastcall TFormSelRep::GetDriverNameStr();
+
+
+	AnsiString __fastcall TFormSelRep::GetReportTextStr(TfrxReportComponent *Sender);
 
 };
 void ShowSelReport(int SelIndex, int SelID, AnsiString SelName);

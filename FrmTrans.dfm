@@ -549,7 +549,7 @@ object FormTrans: TFormTrans
     Top = 64
     Width = 1892
     Height = 813
-    ActivePage = sTabSheet4
+    ActivePage = sTabSheet3
     Align = alClient
     TabOrder = 1
     OnChange = sPageControl1Change

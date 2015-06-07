@@ -694,7 +694,7 @@ object FormDriverRep: TFormDriverRep
     Top = 63
     Width = 1292
     Height = 491
-    ActivePage = sTabSheet4
+    ActivePage = sTabSheet1
     Align = alClient
     TabOrder = 2
     OnChange = sPageControl1Change
@@ -758,7 +758,7 @@ object FormDriverRep: TFormDriverRep
             DisplayFormat = 'dd.mm.yy hh:nn'
             DynProps = <>
             EditButtons = <>
-            FieldName = 'DT_BEG'
+            FieldName = 'TIME_BEG'
             Footer.ValueType = fvtStaticText
             Footers = <>
             Title.Caption = #1053#1072#1095#1072#1083#1086
@@ -806,7 +806,7 @@ object FormDriverRep: TFormDriverRep
           item
             DynProps = <>
             EditButtons = <>
-            FieldName = 'BEG_ADDR_NAME'
+            FieldName = 'BEG_FULL_ADDR'
             Footer.ValueType = fvtStaticText
             Footers = <>
             Title.Caption = #1054#1090#1087#1088#1072#1074#1085#1086#1081' '#1087#1091#1085#1082#1090
@@ -818,7 +818,7 @@ object FormDriverRep: TFormDriverRep
           item
             DynProps = <>
             EditButtons = <>
-            FieldName = 'END_ADDR_NAME'
+            FieldName = 'END_FULL_ADDR'
             Footer.ValueType = fvtStaticText
             Footers = <>
             Title.Caption = #1055#1091#1085#1082#1090' '#1085#1072#1079#1085#1072#1095#1077#1085#1080#1103
@@ -1481,45 +1481,170 @@ object FormDriverRep: TFormDriverRep
         end
       end
     end
+    object sTabSheet5: TsTabSheet
+      Tag = 5
+      Caption = '5. '#1057#1074#1086#1076#1082#1072' '#1087#1086' '#1074#1086#1076#1080#1090#1077#1083#1103#1084
+      SkinData.CustomColor = False
+      SkinData.CustomFont = False
+      object DBGridEh5: TDBGridEh
+        Tag = 5
+        Left = 0
+        Top = 0
+        Width = 1284
+        Height = 463
+        Align = alClient
+        DataSource = DataSource5
+        DynProps = <>
+        FooterRowCount = 2
+        FooterParams.Color = clMoneyGreen
+        GridLineParams.DataHorzLines = True
+        IndicatorOptions = [gioShowRowIndicatorEh, gioShowRecNoEh]
+        Options = [dgTitles, dgIndicator, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgMultiSelect]
+        OptionsEh = [dghFixed3D, dghClearSelection, dghAutoSortMarking, dghMultiSortMarking, dghDialogFind, dghShowRecNo, dghColumnResize, dghExtendVertLines]
+        RowDetailPanel.Height = 510
+        SearchPanel.Enabled = True
+        SearchPanel.FilterOnTyping = True
+        SortLocal = True
+        STFilter.Local = True
+        TabOrder = 0
+        TitleParams.MultiTitle = True
+        OnDrawColumnCell = DBGridEhDrawColumnCell
+        OnEnter = DBGridEhEnter
+        OnExit = DBGridEhExit
+        OnGetCellParams = DBGridEhGetCellParams
+        OnKeyDown = DBGridEhKeyDown
+        OnKeyPress = DBGridEhKeyPress
+        Columns = <
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'TRANS_COMPANY_NAME'
+            Footers = <>
+            Title.Caption = #1055#1077#1088#1077#1074#1086#1079#1095#1080#1082
+            Width = 204
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'DRIVER_NAME'
+            Footers = <>
+            Title.Caption = #1060#1048#1054' '#1074#1086#1076#1080#1090#1077#1083#1103
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'DRV_PAY'
+            Footers = <
+              item
+                ValueType = fvtStaticText
+              end
+              item
+                ValueType = fvtStaticText
+              end>
+            Title.Caption = #1053#1072#1095#1080#1089#1083#1077#1085#1086
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'OUTLAY_VALUE'
+            Footers = <
+              item
+                ValueType = fvtStaticText
+              end
+              item
+                ValueType = fvtStaticText
+              end>
+            Title.Caption = #1056#1072#1089#1093#1086#1076#1099
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'GIVE_MONEY'
+            Footers = <>
+            Title.Caption = #1055#1077#1088#1077#1076#1072#1083
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'GET_MONEY'
+            Footers = <>
+            Title.Caption = #1055#1086#1083#1091#1095#1080#1083'|'#1044#1086#1087#1086#1083#1085'.'
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'DRIVER_HAND_MONEY'
+            Footers = <
+              item
+                ValueType = fvtStaticText
+              end
+              item
+                ValueType = fvtStaticText
+              end>
+            Title.Caption = #1055#1086#1083#1091#1095#1080#1083'|'#1053#1072' '#1088#1091#1082#1080
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'SALARY'
+            Footers = <
+              item
+                ValueType = fvtStaticText
+              end
+              item
+                ValueType = fvtStaticText
+              end>
+            Title.Caption = #1047#1072#1088#1087#1083#1072#1090#1072' '#1085#1072' '#1088#1091#1082#1080
+          end>
+        object RowDetailData: TRowDetailPanelControlEh
+        end
+      end
+    end
+    object sTabSheet6: TsTabSheet
+      Caption = '6. '#1057#1090#1072#1090#1080#1089#1090#1080#1082#1072
+      TabVisible = False
+      SkinData.CustomColor = False
+      SkinData.CustomFont = False
+    end
   end
   object Query1: TQuery
     Tag = 1
     DatabaseName = 'TransDB'
     SQL.Strings = (
-      'select * from  SEL_ORDERS_DRIVER (1,'#39'1.1.15'#39','#39'1.2.15'#39')')
-    Left = 136
-    Top = 184
+      'select * from  SEL_ORDERS (13,'#39'1.1.15'#39','#39'1.2.15'#39',1)')
+    Left = 51
+    Top = 144
   end
   object Query2: TQuery
     Tag = 2
     DatabaseName = 'TransDB'
     SQL.Strings = (
       'select * from  SEL_OUTLAY_DRIVER (1,'#39'1.1.15'#39','#39'1.2.15'#39')')
-    Left = 256
-    Top = 184
+    Left = 142
+    Top = 144
   end
   object Query3: TQuery
     Tag = 3
     DatabaseName = 'TransDB'
     SQL.Strings = (
       'select * from sel_money_move(0,'#39'1.1.15'#39','#39'2.1.15'#39',1000)')
-    Left = 384
-    Top = 184
+    Left = 233
+    Top = 144
   end
   object DataSource1: TDataSource
     DataSet = MemTableEh1
-    Left = 131
-    Top = 339
+    Left = 51
+    Top = 307
   end
   object DataSource2: TDataSource
     DataSet = MemTableEh2
-    Left = 253
-    Top = 339
+    Left = 142
+    Top = 307
   end
   object DataSource3: TDataSource
     DataSet = MemTableEh3
-    Left = 380
-    Top = 339
+    Left = 233
+    Top = 307
   end
   object MemTableEh1: TMemTableEh
     Tag = 1
@@ -1533,8 +1658,8 @@ object FormDriverRep: TFormDriverRep
     BeforeScroll = MemTableEh1BeforeScroll
     AfterScroll = MemTableEh1AfterScroll
     OnFilterRecord = MemTableEhFilterRecord
-    Left = 133
-    Top = 285
+    Left = 51
+    Top = 249
     object MemTableEh1FLAG_MES: TIntegerField
       FieldName = 'FLAG_MES'
     end
@@ -1549,6 +1674,12 @@ object FormDriverRep: TFormDriverRep
     end
     object MemTableEh1TIME_BEG: TDateTimeField
       FieldName = 'TIME_BEG'
+    end
+    object MemTableEh1BEF_MINUT: TIntegerField
+      FieldName = 'BEF_MINUT'
+    end
+    object MemTableEh1TIME_BEF: TDateTimeField
+      FieldName = 'TIME_BEF'
     end
     object MemTableEh1WRK_DAY: TIntegerField
       FieldName = 'WRK_DAY'
@@ -1568,6 +1699,31 @@ object FormDriverRep: TFormDriverRep
     object MemTableEh1DAY_SUM: TIntegerField
       FieldName = 'DAY_SUM'
     end
+    object MemTableEh1TIME_SUM: TDateTimeField
+      FieldName = 'TIME_SUM'
+    end
+    object MemTableEh1TIME_SUM_STR: TStringField
+      FieldName = 'TIME_SUM_STR'
+      Size = 16
+    end
+    object MemTableEh1TIME_SUM_STR_F: TStringField
+      FieldName = 'TIME_SUM_STR_F'
+      Size = 16
+    end
+    object MemTableEh1ORDER_STATE: TIntegerField
+      FieldName = 'ORDER_STATE'
+    end
+    object MemTableEh1ORDER_STATE_STR: TStringField
+      FieldName = 'ORDER_STATE_STR'
+      Size = 32
+    end
+    object MemTableEh1ORDER_TYPE: TIntegerField
+      FieldName = 'ORDER_TYPE'
+    end
+    object MemTableEh1ORDER_TYPE_STR: TStringField
+      FieldName = 'ORDER_TYPE_STR'
+      Size = 32
+    end
     object MemTableEh1CLIENT_ID: TIntegerField
       FieldName = 'CLIENT_ID'
     end
@@ -1582,6 +1738,27 @@ object FormDriverRep: TFormDriverRep
       FieldName = 'WORK_TYPE_NAME'
       Size = 32
     end
+    object MemTableEh1CONTACT_ID: TIntegerField
+      FieldName = 'CONTACT_ID'
+    end
+    object MemTableEh1CONTACT_NAME: TStringField
+      FieldName = 'CONTACT_NAME'
+      Size = 64
+    end
+    object MemTableEh1CONTACT_PHONE: TStringField
+      FieldName = 'CONTACT_PHONE'
+      Size = 64
+    end
+    object MemTableEh1TRANS_TYPE_ID: TIntegerField
+      FieldName = 'TRANS_TYPE_ID'
+    end
+    object MemTableEh1TRANS_TYPE_NAME: TStringField
+      FieldName = 'TRANS_TYPE_NAME'
+      Size = 64
+    end
+    object MemTableEh1PASS_NEED: TIntegerField
+      FieldName = 'PASS_NEED'
+    end
     object MemTableEh1TRANSPORT_ID: TIntegerField
       FieldName = 'TRANSPORT_ID'
     end
@@ -1593,11 +1770,18 @@ object FormDriverRep: TFormDriverRep
       FieldName = 'REG_NUMBER'
       Size = 16
     end
+    object MemTableEh1PASS_NUMBER: TIntegerField
+      FieldName = 'PASS_NUMBER'
+    end
     object MemTableEh1DRIVER_ID: TIntegerField
       FieldName = 'DRIVER_ID'
     end
     object MemTableEh1DRIVER_NAME: TStringField
       FieldName = 'DRIVER_NAME'
+      Size = 48
+    end
+    object MemTableEh1DRIVER_PHONE: TStringField
+      FieldName = 'DRIVER_PHONE'
       Size = 48
     end
     object MemTableEh1DRIVER_HAND_MONEY: TIntegerField
@@ -1623,8 +1807,126 @@ object FormDriverRep: TFormDriverRep
       FieldName = 'END_ADDR_NAME'
       Size = 255
     end
+    object MemTableEh1RET_TO_START: TIntegerField
+      FieldName = 'RET_TO_START'
+    end
+    object MemTableEh1RET_TO_START_STR: TStringField
+      FieldName = 'RET_TO_START_STR'
+      Size = 10
+    end
+    object MemTableEh1CLIENT_TAX_ID: TIntegerField
+      FieldName = 'CLIENT_TAX_ID'
+    end
+    object MemTableEh1TIME_ADD: TDateTimeField
+      FieldName = 'TIME_ADD'
+    end
+    object MemTableEh1TIME_MIN: TDateTimeField
+      FieldName = 'TIME_MIN'
+    end
+    object MemTableEh1HOUR_TAX: TIntegerField
+      FieldName = 'HOUR_TAX'
+    end
+    object MemTableEh1DIST_TAX: TIntegerField
+      FieldName = 'DIST_TAX'
+    end
+    object MemTableEh1DOG_TAX: TIntegerField
+      FieldName = 'DOG_TAX'
+    end
+    object MemTableEh1DIST_RES: TIntegerField
+      FieldName = 'DIST_RES'
+    end
+    object MemTableEh1PAY_CALC: TFloatField
+      FieldName = 'PAY_CALC'
+    end
+    object MemTableEh1PAY_RES: TFloatField
+      FieldName = 'PAY_RES'
+    end
+    object MemTableEh1PAY_TYPE: TIntegerField
+      FieldName = 'PAY_TYPE'
+    end
+    object MemTableEh1PAY_TYPE_STR: TStringField
+      FieldName = 'PAY_TYPE_STR'
+      Size = 10
+    end
+    object MemTableEh1PAY_AVC: TIntegerField
+      FieldName = 'PAY_AVC'
+    end
+    object MemTableEh1PAY_AVC_STATE: TIntegerField
+      FieldName = 'PAY_AVC_STATE'
+    end
+    object MemTableEh1PAY_AVC_STATE_STR: TStringField
+      FieldName = 'PAY_AVC_STATE_STR'
+      Size = 32
+    end
+    object MemTableEh1PAY_AVC_RECEIVER: TIntegerField
+      FieldName = 'PAY_AVC_RECEIVER'
+    end
+    object MemTableEh1PAY_AVC_RECEIVER_STR: TStringField
+      FieldName = 'PAY_AVC_RECEIVER_STR'
+      Size = 64
+    end
+    object MemTableEh1PAY_REST: TFloatField
+      FieldName = 'PAY_REST'
+    end
+    object MemTableEh1PAY_REST_STATE: TIntegerField
+      FieldName = 'PAY_REST_STATE'
+    end
+    object MemTableEh1PAY_REST_STATE_STR: TStringField
+      FieldName = 'PAY_REST_STATE_STR'
+      Size = 32
+    end
+    object MemTableEh1PAY_REST_RECEIVER: TIntegerField
+      FieldName = 'PAY_REST_RECEIVER'
+    end
+    object MemTableEh1PAY_REST_RECEIVER_STR: TStringField
+      FieldName = 'PAY_REST_RECEIVER_STR'
+      Size = 64
+    end
+    object MemTableEh1ORDER_FLAG: TIntegerField
+      FieldName = 'ORDER_FLAG'
+    end
+    object MemTableEh1EXC_PAY: TIntegerField
+      FieldName = 'EXC_PAY'
+    end
+    object MemTableEh1EXC_PAY_DATE: TDateTimeField
+      FieldName = 'EXC_PAY_DATE'
+    end
+    object MemTableEh1MNG_PAY: TIntegerField
+      FieldName = 'MNG_PAY'
+    end
+    object MemTableEh1MNG_PAY_DATE: TDateTimeField
+      FieldName = 'MNG_PAY_DATE'
+    end
     object MemTableEh1DRV_PAY: TIntegerField
       FieldName = 'DRV_PAY'
+    end
+    object MemTableEh1MANAGER_ID: TIntegerField
+      FieldName = 'MANAGER_ID'
+    end
+    object MemTableEh1NDOG_ID: TIntegerField
+      FieldName = 'NDOG_ID'
+    end
+    object MemTableEh1COMMENT: TStringField
+      FieldName = 'COMMENT'
+      Size = 255
+    end
+    object MemTableEh1DATECHANGE: TDateTimeField
+      FieldName = 'DATECHANGE'
+    end
+    object MemTableEh1STATUS: TIntegerField
+      FieldName = 'STATUS'
+    end
+    object MemTableEh1TRANS_TIME_MIN: TDateTimeField
+      FieldName = 'TRANS_TIME_MIN'
+    end
+    object MemTableEh1TRANS_TIME_ADD: TDateTimeField
+      FieldName = 'TRANS_TIME_ADD'
+    end
+    object MemTableEh1TRANS_HOUR_TAX: TIntegerField
+      FieldName = 'TRANS_HOUR_TAX'
+    end
+    object MemTableEh1TRANS_DIST_TAX: TIntegerField
+      FieldName = 'TRANS_DIST_TAX'
     end
     object MemTableEh1BEG_STREET_NAME: TStringField
       FieldName = 'BEG_STREET_NAME'
@@ -1642,6 +1944,55 @@ object FormDriverRep: TFormDriverRep
       FieldName = 'END_TOWN_NAME'
       Size = 64
     end
+    object MemTableEh1FULL_NAME: TStringField
+      FieldName = 'FULL_NAME'
+      Size = 64
+    end
+    object MemTableEh1TRANS_COMPANY_ID: TIntegerField
+      FieldName = 'TRANS_COMPANY_ID'
+    end
+    object MemTableEh1TRANS_COMPANY_NAME: TStringField
+      FieldName = 'TRANS_COMPANY_NAME'
+      Size = 32
+    end
+    object MemTableEh1TRANS_COMPANY_FLAG: TIntegerField
+      FieldName = 'TRANS_COMPANY_FLAG'
+    end
+    object MemTableEh1SUM_MINUT: TIntegerField
+      FieldName = 'SUM_MINUT'
+    end
+    object MemTableEh1INCOME: TFloatField
+      FieldName = 'INCOME'
+    end
+    object MemTableEh1SRC_ORDER_ID: TIntegerField
+      FieldName = 'SRC_ORDER_ID'
+    end
+    object MemTableEh1FLAG_CALC_INCOME: TIntegerField
+      FieldName = 'FLAG_CALC_INCOME'
+    end
+    object MemTableEh1FLAG_CALC_INCOME_STR: TStringField
+      FieldName = 'FLAG_CALC_INCOME_STR'
+    end
+    object MemTableEh1TAX_TAKE_STR: TStringField
+      FieldName = 'TAX_TAKE_STR'
+      Size = 24
+    end
+    object MemTableEh1NDOG_ID_STR: TStringField
+      FieldName = 'NDOG_ID_STR'
+      Size = 24
+    end
+    object MemTableEh1TRANS_COMMENT: TStringField
+      FieldName = 'TRANS_COMMENT'
+      Size = 255
+    end
+    object MemTableEh1BEG_FULL_ADDR: TStringField
+      FieldName = 'BEG_FULL_ADDR'
+      Size = 255
+    end
+    object MemTableEh1END_FULL_ADDR: TStringField
+      FieldName = 'END_FULL_ADDR'
+      Size = 255
+    end
   end
   object MemTableEh2: TMemTableEh
     Tag = 2
@@ -1649,13 +2000,14 @@ object FormDriverRep: TFormDriverRep
     FetchAllOnOpen = True
     Params = <>
     DataDriver = DataSetDriverEh2
+    SortOrder = 'DateMake,Outlay_Name'
     AfterOpen = MemTableEh1AfterOpen
     AfterClose = MemTableEh1AfterClose
     BeforeScroll = MemTableEh1BeforeScroll
     AfterScroll = MemTableEh1AfterScroll
     OnFilterRecord = MemTableEhFilterRecord
-    Left = 254
-    Top = 287
+    Left = 142
+    Top = 249
     object MemTableEh2FLAG_MES: TIntegerField
       FieldName = 'FLAG_MES'
     end
@@ -1733,8 +2085,8 @@ object FormDriverRep: TFormDriverRep
     BeforeScroll = MemTableEh1BeforeScroll
     AfterScroll = MemTableEh1AfterScroll
     OnFilterRecord = MemTableEhFilterRecord
-    Left = 380
-    Top = 289
+    Left = 233
+    Top = 249
     object MemTableEh3FLAG_MES: TIntegerField
       FieldName = 'FLAG_MES'
     end
@@ -1804,18 +2156,18 @@ object FormDriverRep: TFormDriverRep
   end
   object DataSetDriverEh1: TDataSetDriverEh
     ProviderDataSet = Query1
-    Left = 134
-    Top = 236
+    Left = 51
+    Top = 200
   end
   object DataSetDriverEh2: TDataSetDriverEh
     ProviderDataSet = Query2
-    Left = 255
-    Top = 237
+    Left = 142
+    Top = 200
   end
   object DataSetDriverEh3: TDataSetDriverEh
     ProviderDataSet = Query3
-    Left = 383
-    Top = 236
+    Left = 233
+    Top = 200
   end
   object frxReport1: TfrxReport
     Version = '4.13.1'
@@ -1833,8 +2185,8 @@ object FormDriverRep: TFormDriverRep
       ''
       'end.')
     OnBeforePrint = frxReport1BeforePrint
-    Left = 656
-    Top = 272
+    Left = 672
+    Top = 424
     Datasets = <
       item
         DataSet = frxDBDataset3
@@ -2101,7 +2453,7 @@ object FormDriverRep: TFormDriverRep
           Height = 18.897650000000000000
           ShowHint = False
           StretchMode = smMaxHeight
-          DataField = 'DT_BEG'
+          DataField = 'TIME_BEG'
           DataSet = frxDBDataset1
           DataSetName = 'Ord'
           DisplayFormat.FormatStr = 'dd mm yyyy hh:mm'
@@ -2114,7 +2466,7 @@ object FormDriverRep: TFormDriverRep
           Frame.Typ = [ftRight, ftBottom]
           HAlign = haRight
           Memo.UTF8W = (
-            '[Ord."DT_BEG"]')
+            '[Ord."TIME_BEG"]')
           ParentFont = False
         end
         object OrdDT_END: TfrxMemoView
@@ -2187,7 +2539,7 @@ object FormDriverRep: TFormDriverRep
           Height = 18.897650000000000000
           ShowHint = False
           StretchMode = smMaxHeight
-          DataField = 'BEG_ADDR_NAME'
+          DataField = 'BEG_FULL_ADDR'
           DataSet = frxDBDataset1
           DataSetName = 'Ord'
           Font.Charset = DEFAULT_CHARSET
@@ -2197,7 +2549,7 @@ object FormDriverRep: TFormDriverRep
           Font.Style = []
           Frame.Typ = [ftRight, ftBottom]
           Memo.UTF8W = (
-            '[Ord."BEG_ADDR_NAME"]')
+            '[Ord."BEG_FULL_ADDR"]')
           ParentFont = False
         end
         object OrdEND_ADDR_NAME: TfrxMemoView
@@ -2207,7 +2559,7 @@ object FormDriverRep: TFormDriverRep
           Height = 18.897650000000000000
           ShowHint = False
           StretchMode = smMaxHeight
-          DataField = 'END_ADDR_NAME'
+          DataField = 'END_FULL_ADDR'
           DataSet = frxDBDataset1
           DataSetName = 'Ord'
           Font.Charset = DEFAULT_CHARSET
@@ -2217,13 +2569,13 @@ object FormDriverRep: TFormDriverRep
           Font.Style = []
           Frame.Typ = [ftRight, ftBottom]
           Memo.UTF8W = (
-            '[Ord."END_ADDR_NAME"]')
+            '[Ord."END_FULL_ADDR"]')
           ParentFont = False
         end
         object OrdTRANSPORT_NAME: TfrxMemoView
           Align = baLeft
           Left = 812.598425200000000000
-          Width = 132.283464566929000000
+          Width = 132.283464570000000000
           Height = 18.897650000000000000
           ShowHint = False
           StretchMode = smMaxHeight
@@ -2242,7 +2594,7 @@ object FormDriverRep: TFormDriverRep
         end
         object OrdDRV_PAY: TfrxMemoView
           Align = baLeft
-          Left = 1001.574803156929000000
+          Left = 1001.574803160000000000
           Width = 56.692913390000000000
           Height = 18.897650000000000000
           ShowHint = False
@@ -2263,7 +2615,7 @@ object FormDriverRep: TFormDriverRep
         end
         object OrdDRIVER_HAND_MONEY: TfrxMemoView
           Align = baLeft
-          Left = 944.881889766929000000
+          Left = 944.881889770000000000
           Width = 56.692913390000000000
           Height = 18.897650000000000000
           ShowHint = False
@@ -3525,21 +3877,38 @@ object FormDriverRep: TFormDriverRep
       'DT_MAKE=DT_MAKE'
       'DT_BEG=DT_BEG'
       'TIME_BEG=TIME_BEG'
+      'BEF_MINUT=BEF_MINUT'
+      'TIME_BEF=TIME_BEF'
       'WRK_DAY=WRK_DAY'
       'WRK_MINUT=WRK_MINUT'
       'TIME_WRK=TIME_WRK'
       'DAY_END=DAY_END'
       'DT_END=DT_END'
       'DAY_SUM=DAY_SUM'
+      'TIME_SUM=TIME_SUM'
+      'TIME_SUM_STR=TIME_SUM_STR'
+      'TIME_SUM_STR_F=TIME_SUM_STR_F'
+      'ORDER_STATE=ORDER_STATE'
+      'ORDER_STATE_STR=ORDER_STATE_STR'
+      'ORDER_TYPE=ORDER_TYPE'
+      'ORDER_TYPE_STR=ORDER_TYPE_STR'
       'CLIENT_ID=CLIENT_ID'
       'CLIENT_NAME=CLIENT_NAME'
       'WORK_TYPE_ID=WORK_TYPE_ID'
       'WORK_TYPE_NAME=WORK_TYPE_NAME'
+      'CONTACT_ID=CONTACT_ID'
+      'CONTACT_NAME=CONTACT_NAME'
+      'CONTACT_PHONE=CONTACT_PHONE'
+      'TRANS_TYPE_ID=TRANS_TYPE_ID'
+      'TRANS_TYPE_NAME=TRANS_TYPE_NAME'
+      'PASS_NEED=PASS_NEED'
       'TRANSPORT_ID=TRANSPORT_ID'
       'TRANSPORT_NAME=TRANSPORT_NAME'
       'REG_NUMBER=REG_NUMBER'
+      'PASS_NUMBER=PASS_NUMBER'
       'DRIVER_ID=DRIVER_ID'
       'DRIVER_NAME=DRIVER_NAME'
+      'DRIVER_PHONE=DRIVER_PHONE'
       'DRIVER_HAND_MONEY=DRIVER_HAND_MONEY'
       'BEG_TOWN_ID=BEG_TOWN_ID'
       'END_TOWN_ID=END_TOWN_ID'
@@ -3547,11 +3916,62 @@ object FormDriverRep: TFormDriverRep
       'END_STREET_ID=END_STREET_ID'
       'BEG_ADDR_NAME=BEG_ADDR_NAME'
       'END_ADDR_NAME=END_ADDR_NAME'
+      'RET_TO_START=RET_TO_START'
+      'RET_TO_START_STR=RET_TO_START_STR'
+      'CLIENT_TAX_ID=CLIENT_TAX_ID'
+      'TIME_ADD=TIME_ADD'
+      'TIME_MIN=TIME_MIN'
+      'HOUR_TAX=HOUR_TAX'
+      'DIST_TAX=DIST_TAX'
+      'DOG_TAX=DOG_TAX'
+      'DIST_RES=DIST_RES'
+      'PAY_CALC=PAY_CALC'
+      'PAY_RES=PAY_RES'
+      'PAY_TYPE=PAY_TYPE'
+      'PAY_TYPE_STR=PAY_TYPE_STR'
+      'PAY_AVC=PAY_AVC'
+      'PAY_AVC_STATE=PAY_AVC_STATE'
+      'PAY_AVC_STATE_STR=PAY_AVC_STATE_STR'
+      'PAY_AVC_RECEIVER=PAY_AVC_RECEIVER'
+      'PAY_AVC_RECEIVER_STR=PAY_AVC_RECEIVER_STR'
+      'PAY_REST=PAY_REST'
+      'PAY_REST_STATE=PAY_REST_STATE'
+      'PAY_REST_STATE_STR=PAY_REST_STATE_STR'
+      'PAY_REST_RECEIVER=PAY_REST_RECEIVER'
+      'PAY_REST_RECEIVER_STR=PAY_REST_RECEIVER_STR'
+      'ORDER_FLAG=ORDER_FLAG'
+      'EXC_PAY=EXC_PAY'
+      'EXC_PAY_DATE=EXC_PAY_DATE'
+      'MNG_PAY=MNG_PAY'
+      'MNG_PAY_DATE=MNG_PAY_DATE'
       'DRV_PAY=DRV_PAY'
+      'MANAGER_ID=MANAGER_ID'
+      'NDOG_ID=NDOG_ID'
+      'COMMENT=COMMENT'
+      'DATECHANGE=DATECHANGE'
+      'STATUS=STATUS'
+      'TRANS_TIME_MIN=TRANS_TIME_MIN'
+      'TRANS_TIME_ADD=TRANS_TIME_ADD'
+      'TRANS_HOUR_TAX=TRANS_HOUR_TAX'
+      'TRANS_DIST_TAX=TRANS_DIST_TAX'
       'BEG_STREET_NAME=BEG_STREET_NAME'
       'BEG_TOWN_NAME=BEG_TOWN_NAME'
       'END_STREET_NAME=END_STREET_NAME'
-      'END_TOWN_NAME=END_TOWN_NAME')
+      'END_TOWN_NAME=END_TOWN_NAME'
+      'FULL_NAME=FULL_NAME'
+      'TRANS_COMPANY_ID=TRANS_COMPANY_ID'
+      'TRANS_COMPANY_NAME=TRANS_COMPANY_NAME'
+      'TRANS_COMPANY_FLAG=TRANS_COMPANY_FLAG'
+      'SUM_MINUT=SUM_MINUT'
+      'INCOME=INCOME'
+      'SRC_ORDER_ID=SRC_ORDER_ID'
+      'FLAG_CALC_INCOME=FLAG_CALC_INCOME'
+      'FLAG_CALC_INCOME_STR=FLAG_CALC_INCOME_STR'
+      'TAX_TAKE_STR=TAX_TAKE_STR'
+      'NDOG_ID_STR=NDOG_ID_STR'
+      'TRANS_COMMENT=TRANS_COMMENT'
+      'BEG_FULL_ADDR=BEG_FULL_ADDR'
+      'END_FULL_ADDR=END_FULL_ADDR')
     DataSet = MemTableEh1
     BCDToCurrency = False
     Left = 136
@@ -3585,7 +4005,7 @@ object FormDriverRep: TFormDriverRep
     Left = 256
     Top = 400
   end
-  object Query6: TQuery
+  object Query61: TQuery
     Tag = 4
     DatabaseName = 'TransDB'
     SQL.Strings = (
@@ -3607,8 +4027,8 @@ object FormDriverRep: TFormDriverRep
       ':DATECHANGE,'
       ':STATUS)'
       '')
-    Left = 560
-    Top = 184
+    Left = 434
+    Top = 144
     ParamData = <
       item
         DataType = ftInteger
@@ -3688,8 +4108,8 @@ object FormDriverRep: TFormDriverRep
   end
   object DataSetDriverEh4: TDataSetDriverEh
     ProviderDataSet = Query4
-    Left = 447
-    Top = 236
+    Left = 368
+    Top = 200
   end
   object MemTableEh4: TMemTableEh
     Tag = 4
@@ -3703,8 +4123,8 @@ object FormDriverRep: TFormDriverRep
     BeforeScroll = MemTableEh1BeforeScroll
     AfterScroll = MemTableEh1AfterScroll
     OnFilterRecord = MemTableEhFilterRecord
-    Left = 452
-    Top = 281
+    Left = 368
+    Top = 249
     object MemTableEh4FLAG_MES: TIntegerField
       FieldName = 'FLAG_MES'
     end
@@ -3774,18 +4194,18 @@ object FormDriverRep: TFormDriverRep
   end
   object DataSource4: TDataSource
     DataSet = MemTableEh4
-    Left = 452
-    Top = 339
+    Left = 368
+    Top = 307
   end
   object Query4: TQuery
     Tag = 4
     DatabaseName = 'TransDB'
     SQL.Strings = (
       'select * from sel_money_move(1,'#39'1.1.15'#39','#39'2.1.15'#39',1000)')
-    Left = 448
-    Top = 184
+    Left = 368
+    Top = 144
   end
-  object Query5: TQuery
+  object Query51: TQuery
     Tag = 3
     DatabaseName = 'TransDB'
     SQL.Strings = (
@@ -3806,8 +4226,8 @@ object FormDriverRep: TFormDriverRep
       ':COMP_NAME,'
       ':DATECHANGE,'
       ':STATUS)')
-    Left = 512
-    Top = 184
+    Left = 302
+    Top = 144
     ParamData = <
       item
         DataType = ftInteger
@@ -3942,5 +4362,73 @@ object FormDriverRep: TFormDriverRep
     BCDToCurrency = False
     Left = 456
     Top = 400
+  end
+  object Query5: TQuery
+    Tag = 5
+    DatabaseName = 'TransDB'
+    SQL.Strings = (
+      'select * from sel_Driver_Period('#39'1.1.1'#39','#39'1.1.12'#39')')
+    Left = 496
+    Top = 143
+  end
+  object DataSetDriverEh5: TDataSetDriverEh
+    ProviderDataSet = Query5
+    Left = 496
+    Top = 199
+  end
+  object MemTableEh5: TMemTableEh
+    Tag = 5
+    Filtered = True
+    FetchAllOnOpen = True
+    Params = <>
+    DataDriver = DataSetDriverEh5
+    SortOrder = 'Flag_Mes,Trans_Company_Flag,Trans_Company_Name,Driver_Name'
+    AfterOpen = MemTableEh1AfterOpen
+    AfterClose = MemTableEh1AfterClose
+    BeforeScroll = MemTableEh1BeforeScroll
+    AfterScroll = MemTableEh1AfterScroll
+    OnFilterRecord = MemTableEhFilterRecord
+    Left = 496
+    Top = 248
+    object MemTableEh5FLAG_MES: TIntegerField
+      FieldName = 'FLAG_MES'
+    end
+    object MemTableEh5DRIVER_ID: TIntegerField
+      FieldName = 'DRIVER_ID'
+    end
+    object MemTableEh5DRIVER_NAME: TStringField
+      FieldName = 'DRIVER_NAME'
+      Size = 48
+    end
+    object MemTableEh5DRIVER_HAND_MONEY: TIntegerField
+      FieldName = 'DRIVER_HAND_MONEY'
+    end
+    object MemTableEh5DRV_PAY: TIntegerField
+      FieldName = 'DRV_PAY'
+    end
+    object MemTableEh5OUTLAY_VALUE: TIntegerField
+      FieldName = 'OUTLAY_VALUE'
+    end
+    object MemTableEh5GET_MONEY: TIntegerField
+      FieldName = 'GET_MONEY'
+    end
+    object MemTableEh5GIVE_MONEY: TIntegerField
+      FieldName = 'GIVE_MONEY'
+    end
+    object MemTableEh5SALARY: TIntegerField
+      FieldName = 'SALARY'
+    end
+    object MemTableEh5TRANS_COMPANY_FLAG: TIntegerField
+      FieldName = 'TRANS_COMPANY_FLAG'
+    end
+    object MemTableEh5TRANS_COMPANY_NAME: TStringField
+      FieldName = 'TRANS_COMPANY_NAME'
+      Size = 32
+    end
+  end
+  object DataSource5: TDataSource
+    DataSet = MemTableEh5
+    Left = 496
+    Top = 306
   end
 end
