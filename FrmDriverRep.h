@@ -288,6 +288,7 @@ __published:	// IDE-managed Components
 	TIntegerField *MemTableEh5SALARY;
 	TIntegerField *MemTableEh5TRANS_COMPANY_FLAG;
 	TStringField *MemTableEh5TRANS_COMPANY_NAME;
+	TQuery *Query21;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
@@ -339,7 +340,14 @@ public:		// User declarations
 	int SumHand5,   SumDrvPay5, SumOutlay5, SumSalary;
 
 	AnsiString DriverName;
+   AnsiString SelectResultStr;
+
 	__fastcall TFormDriverRep(TComponent* Owner,int DriverID, AnsiString DriverName);
+
+	AnsiString __fastcall TFormDriverRep::GetSelEditParams();
+
+	bool __fastcall TFormDriverRep::GetTransportID(TForm* Frm, int Left,int &ID,TParams*&);
+	bool __fastcall TFormDriverRep::GetExpenseID(TForm* Frm, int Left,int &ID,TParams*&);
 
 	void __fastcall TFormDriverRep::SetDriver(int DriverID, AnsiString DriverName);
 	void __fastcall TFormDriverRep::InitGData();

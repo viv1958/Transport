@@ -758,10 +758,6 @@ object FormSelRep: TFormSelRep
       Caption = '1. '#1047#1072#1082#1072#1079#1099
       SkinData.CustomColor = False
       SkinData.CustomFont = False
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object DBGridEh1: TDBGridEh
         Tag = 1
         Left = 0
@@ -1168,7 +1164,7 @@ object FormSelRep: TFormSelRep
     FetchAllOnOpen = True
     Params = <>
     DataDriver = DataSetDriverEh1
-    SortOrder = 'DT_Beg'
+    SortOrder = 'DT_Beg,Time_beg'
     AfterOpen = MemTableEh1AfterOpen
     AfterClose = MemTableEh1AfterClose
     BeforeScroll = MemTableEh1BeforeScroll

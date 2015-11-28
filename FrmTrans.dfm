@@ -16,6 +16,7 @@ object FormTrans: TFormTrans
   OnClose = FormClose
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
+  OnKeyUp = FormKeyUp
   PixelsPerInch = 96
   TextHeight = 13
   object sPanel1: TsPanel
@@ -516,6 +517,7 @@ object FormTrans: TFormTrans
         'sMemo1')
       ParentFont = False
       TabOrder = 1
+      OnEnter = sMemo1Enter
       OnExit = sMemoExit
       OnKeyDown = sMemoKeyDown
       Text = 'sMemo1'
@@ -9374,7 +9376,7 @@ object FormTrans: TFormTrans
     FetchAllOnOpen = True
     Params = <>
     DataDriver = DataSetDriverEh31
-    SortOrder = 'DT_Beg,Time_Beg'
+    SortOrder = 'Flag_Mes,DT_Beg,Time_Beg'
     AfterOpen = MemTableEhAfterOpen
     AfterClose = MemTableEhAfterClose
     BeforeScroll = MemTableEhBeforeScroll
@@ -10399,8 +10401,8 @@ object FormTrans: TFormTrans
       ':EXPENSE_ID,'
       ':OUTLAY_NAME,'
       ':DATEMAKE,'
-      ':OUTLAY_TYPE,'
       ':OUTLAY_VALUE,'
+      ':OUTLAY_TYPE,'
       ':TRANSPORT_ID,'
       ':DRIVER_ID,'
       ':USER_ID,'
@@ -10432,12 +10434,12 @@ object FormTrans: TFormTrans
       end
       item
         DataType = ftInteger
-        Name = 'OUTLAY_TYPE'
+        Name = 'OUTLAY_VALUE'
         ParamType = ptInput
       end
       item
         DataType = ftInteger
-        Name = 'OUTLAY_VALUE'
+        Name = 'OUTLAY_TYPE'
         ParamType = ptInput
       end
       item

@@ -694,7 +694,7 @@ object FormDriverRep: TFormDriverRep
     Top = 63
     Width = 1292
     Height = 491
-    ActivePage = sTabSheet1
+    ActivePage = sTabSheet2
     Align = alClient
     TabOrder = 2
     OnChange = sPageControl1Change
@@ -1652,7 +1652,7 @@ object FormDriverRep: TFormDriverRep
     FetchAllOnOpen = True
     Params = <>
     DataDriver = DataSetDriverEh1
-    SortOrder = 'DT_Beg'
+    SortOrder = 'Flag_Mes,DT_Beg,Time_Beg'
     AfterOpen = MemTableEh1AfterOpen
     AfterClose = MemTableEh1AfterClose
     BeforeScroll = MemTableEh1BeforeScroll
@@ -4430,5 +4430,87 @@ object FormDriverRep: TFormDriverRep
     DataSet = MemTableEh5
     Left = 496
     Top = 306
+  end
+  object Query21: TQuery
+    Tag = 2
+    DatabaseName = 'TransDB'
+    SQL.Strings = (
+      'select * from'
+      'EDIT_OUTLAY ('
+      ':OUTLAY_ID,'
+      ':EXPENSE_ID,'
+      ':OUTLAY_NAME,'
+      ':DATEMAKE,'
+      ':OUTLAY_VALUE,'
+      ':OUTLAY_TYPE,'
+      ':TRANSPORT_ID,'
+      ':DRIVER_ID,'
+      ':USER_ID,'
+      ':COMP_NAME,'
+      ':DATECHANGE,'
+      ':STATUS)')
+    Left = 188
+    Top = 145
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'OUTLAY_ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'EXPENSE_ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'OUTLAY_NAME'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDateTime
+        Name = 'DATEMAKE'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'OUTLAY_VALUE'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'OUTLAY_TYPE'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'TRANSPORT_ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'DRIVER_ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'USER_ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'COMP_NAME'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDateTime
+        Name = 'DATECHANGE'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'STATUS'
+        ParamType = ptInput
+      end>
   end
 end

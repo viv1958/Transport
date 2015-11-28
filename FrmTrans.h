@@ -833,6 +833,8 @@ __published:	// IDE-managed Components
 	void __fastcall sButton1KeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall sSpeedButton12Click(TObject *Sender);
 	void __fastcall sSpeedButton113Click(TObject *Sender);
+	void __fastcall sMemo1Enter(TObject *Sender);
+	void __fastcall FormKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
 
 
 
@@ -863,6 +865,7 @@ public:		// User declarations
 	int MaxFrozenCols;
 	int NumDetailCtrl;
 	int AllDetailCtrl;
+	int Win3State;
 	bool RestoreEditMulti;
 //	bool FirstOpenDetail;
 	AnsiString FilterName;

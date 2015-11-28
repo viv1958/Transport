@@ -2280,9 +2280,22 @@ bool __fastcall PrepQueryStd(GridData& GData,bool Delete)
 	  }
 	 if (GData.ExtParams) WrkQuery->Params->AssignValues(GData.ExtParams);
 	 if (GData.FunFillSProc) bRet = GData.FunFillSProc(GData,bRet);
-	 S = GetDSetText(WrkQuery);
+	 S = GetDSetText(WrkQuery).UpperCase();
 	 if (Debug) {
 		 ShowMessage(S);
+	 }
+	 if (bRet && S.Pos("EDIT_ORDERS") && GData.CurKeyPressed != VK_INSERT && ! WrkQuery->ParamByName("ORDERS_ID")->IsNull) {
+		 AnsiString S1 =  WrkQuery->ParamByName("COMMENT")->AsString;
+		 AnsiString S2 =  TakeDSet->FieldByName("COMMENT")->AsString;
+		 if (S1 != S2) {
+			 if (!AskQuestionStd(GData,"ВНИМАНИЕ ! Предыдущий комментарий :\n" + S2 + "\nНовый коммментарий:\n" + S1 +
+									  "\nВы хотите изменить комментарий ?")) {
+				 Variant Value =  TakeDSet->FieldByName("COMMENT")->Value;
+				 WrkQuery->ParamByName("COMMENT")->Value  =  Value;
+				 if (Value.IsNull())
+					  WrkQuery->ParamByName("COMMENT")->DataType =  TakeDSet->FieldByName("COMMENT")->DataType;
+			 }
+		 }
 	 }
 	 return bRet;
 }
