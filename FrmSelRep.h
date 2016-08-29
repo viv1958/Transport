@@ -221,7 +221,7 @@ public:		// User declarations
 	TDateTime DT_End;
 	GridData *WrkGData;
 	GridData GDataOrders;
-	int SumPayCalc, SumPayRes, SumPayAvc, SumPayRest, SumIncome;
+	double SumPayCalc, SumPayRes, SumPayAvc, SumPayRest, SumIncome;
 	AnsiString SelName;
 	__fastcall TFormSelRep::TFormSelRep(TComponent* Owner,int SelIndex, int SelID, AnsiString SelName);
 

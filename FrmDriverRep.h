@@ -289,6 +289,7 @@ __published:	// IDE-managed Components
 	TIntegerField *MemTableEh5TRANS_COMPANY_FLAG;
 	TStringField *MemTableEh5TRANS_COMPANY_NAME;
 	TQuery *Query21;
+	TQuery *Query11;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
@@ -348,6 +349,7 @@ public:		// User declarations
 
 	bool __fastcall TFormDriverRep::GetTransportID(TForm* Frm, int Left,int &ID,TParams*&);
 	bool __fastcall TFormDriverRep::GetExpenseID(TForm* Frm, int Left,int &ID,TParams*&);
+   bool __fastcall TFormDriverRep::RefreshOneRow(GridData& GData,TDataSet* DSet);
 
 	void __fastcall TFormDriverRep::SetDriver(int DriverID, AnsiString DriverName);
 	void __fastcall TFormDriverRep::InitGData();
@@ -358,7 +360,6 @@ public:		// User declarations
 
 	AnsiString __fastcall TFormDriverRep::TranslateName(AnsiString FldName);
 
-	bool __fastcall TFormDriverRep::RefreshOneRow(GridData& GData,TDataSet* DSet);
 	void __fastcall TFormDriverRep::SetCommonExtParams(GridData& GData);
    bool __fastcall TFormDriverRep::GetObjectID(TForm* Frm, int Left,int &ID,TParams*&);
 

@@ -105,11 +105,12 @@ bool __fastcall SimpleSelEhTransCompanyID(TForm* Form,int Left, int& TransCompID
 {
 	SelParamData SPData(Form);
 	SPData.FieldOut = SPData.DefFieldFlt = "Trans_Company_Name";
-	SPData.Flags |= FILTER_BY_NAME;
+	SPData.Flags |= FILTER_BY_NAME | CAN_SEE_DELETED;
 	if (!TransCompID) TransCompID = DModT->DefCompID;
 	PrepSelEhSimple(SPData,TransCompID,Left,
 	"Выбор транспортной компании","Select * from Sel_Trans_Company(" + IntToStr(TransTypeID) +
-	") where " + GetStatusStr("Status") + " order by Trans_Company_Name",
+//) where " + GetStatusStr("Status") + " order by Trans_Company_Name",
+	") order by Trans_Company_Name",
 	"Trans_Company_ID",  "Trans_Company_Name",
 	"Наименование компании","Trans_Company_Name","300");
 	return ExecSelEhSimple(Form,SPData,"Trans_Company_ID/Trans_Company_Name",&TransCompID,Res);
@@ -119,10 +120,9 @@ bool __fastcall SimpleSelEhTransTypeID(TForm* Form,int Left, int& TransTypeID,An
 {
 	SelParamData SPData(Form);
 	SPData.FieldOut = SPData.DefFieldFlt = "Trans_Type_Name";
-	SPData.Flags |= FILTER_BY_NAME;
+	SPData.Flags |= FILTER_BY_NAME | CAN_SEE_DELETED;
 	PrepSelEhSimple(SPData,TransTypeID,Left,
-	"Выбор типа ТС","Select * from Trans_Type where " + GetStatusStr("Status") +
-	" order by Trans_Type_Name",
+	"Выбор типа ТС","Select * from Trans_Type order by Trans_Type_Name",
 	"Trans_Type_ID",  "Trans_Type_Name",
 	"Наименование типа","Trans_Type_Name","300");
 	return ExecSelEhSimple(Form,SPData,"Trans_Type_ID/Trans_Type_Name",&TransTypeID,Res);
@@ -132,10 +132,9 @@ bool __fastcall SimpleSelEhEmployeeID(TForm* Form,int Left, int& EmployeeID)
 {
 	SelParamData SPData(Form);
 	SPData.FieldOut = SPData.DefFieldFlt = "Full_Name";
-	SPData.Flags |= FILTER_BY_NAME;
+	SPData.Flags |= FILTER_BY_NAME | CAN_SEE_DELETED;
 	PrepSelEhSimple(SPData,EmployeeID,Left,
-	"Выбор менеджера","Select * from Employee where " + GetStatusStr("Status") +
-	" order by Full_Name",
+	"Выбор менеджера","Select * from Employee order by Full_Name",
 	"Employee_ID",  "Full_Name",
 	"ФИО","Full_Name","300");
 	return ExecSelEhSimple(Form,SPData,"Employee_ID",&EmployeeID);
@@ -151,11 +150,11 @@ void  __fastcall AfterCreateSpecViewTrans(GridData& GData)
 }
 //---------------------------------------------------------------------------
 bool __fastcall SimpleSelEhTransportID(TForm* Form,int Left, int& TransportID,  int& TransTypeID,int& TransCompID,
-													AnsiString &Params,AnsiString* ResFldList)
+													AnsiString &Params,AnsiString* ResFldList, bool SelDeleted)
 {
 	SelParamData SPData(Form);
 	SPData.FieldOut = SPData.DefFieldFlt = "REG_NUMBER";
-	SPData.Flags |= FILTER_BY_NAME;
+	SPData.Flags |= FILTER_BY_NAME | CAN_SEE_DELETED;
 	SPData.FormatList = "";
 
 	AnsiString        EditQuerySQL  = "Select * from EDIT_TRANSPORT (:TRANSPORT_ID,:TRANSPORT_NAME,";
@@ -182,7 +181,7 @@ bool __fastcall SimpleSelEhTransportID(TForm* Form,int Left, int& TransportID,  
 	SPData.EditQuerySQL = EditQuerySQL +  ":TRANS_TYPE_ID,:REG_NUMBER,:PASS_NUMBER,"
 													  ":TRANS_DRIVER_ID,:TRANS_COMMENT," + Params + ",:DATECHANGE,:STATUS)";
 
-	AnsiString SQL = "Select * from Sel_Transport(NULL) where " + GetStatusStr("Status");
+	AnsiString SQL = "Select * from Sel_Transport(NULL) where Transport_ID > 0";
 	if (TransCompID > 0) {
 		SQL += " and Trans_Company_ID = " + IntToStr(TransCompID);
 	}
@@ -193,6 +192,11 @@ bool __fastcall SimpleSelEhTransportID(TForm* Form,int Left, int& TransportID,  
 		SQL += " and Trans_Type_ID = " + IntToStr(TransTypeID);
 	}
 	SQL += " Order by Trans_Company_Flag,Trans_Company_Name,Transport_Name";
+	if (SelDeleted) {
+		SPData.SPFlags |= SelParamData::CAN_SEL_DELETED;
+		SPData.Flags   |= OK_ON_DELETED;
+	}
+
 	PrepSelEhSimple(SPData,TransportID,Left,
 	"Выбор ТС",SQL,
 	"Transport_ID","REG_NUMBER"  ,
@@ -215,15 +219,16 @@ bool __fastcall SimpleSelEhContactID(TForm* Form,int Left, int& ContactID,int Cl
 	SelParamData SPData(Form);
 	SPData.FieldOut = SPData.DefFieldFlt = "Contact_Name";
 	SPData.Flags |= FILTER_BY_NAME;
-	AnsiString SQL = "Select * from Contact where " + GetStatusStr("Status");
+	AnsiString SQL = "Select * from Contact ";
 	if (ClientID ) {
 		SPData.EditAllowMask = 3;
 		SPData.NullAllowMask = 2;
 		SPData.Flags     = STD_STATUSBAR | INS_IF_NOT_FOUND | FILTER_BY_NAME | CAN_SEE_DELETED;
 		SPData.EditQuerySQL = "Select * from Edit_Contact(" + IntToStr(ClientID) +
 									 " ,:CONTACT_ID,:CONTACT_NAME,:CONTACT_PHONE," + Params + ",:DATECHANGE,:STATUS)";
-		SQL +=  " and Client_ID = " + IntToStr(ClientID);
+		SQL +=  " where Client_ID = " + IntToStr(ClientID);
 	}
+	SQL += " order by Contact_Name";
 	PrepSelEhSimple(SPData,ContactID,Left,
 	"Выбор контактных данных",SQL,
 	"Contact_ID",  "Contact_Name",
@@ -235,10 +240,9 @@ bool __fastcall SimpleSelEhClientID(TForm* Form,int Left, int& ClientID,AnsiStri
 {
 	SelParamData SPData(Form);
 	SPData.FieldOut = SPData.DefFieldFlt = "Client_Name";
-	SPData.Flags |= FILTER_BY_NAME;
+	SPData.Flags |= FILTER_BY_NAME | CAN_SEE_DELETED;
 	PrepSelEhSimple(SPData,ClientID,Left,
-	"Выбор клиента","Select * from Client where " + GetStatusStr("Status") +
-	" order by Client_Name",
+	"Выбор клиента","Select * from Client order by Client_Name",
 	"Client_ID",  "Client_Name",
 	"ФИО","Client_Name","300");
 	AnsiString X;
@@ -252,7 +256,7 @@ bool __fastcall SimpleSelEhMoneyReceiverID(TForm* Form,int Left, int& ID,AnsiStr
 	SPData.FieldOut = SPData.DefFieldFlt = "Object_Name";
 	SPData.EditAllowMask = 2;
 
-	SPData.Flags |= FILTER_BY_NAME;
+	SPData.Flags |= FILTER_BY_NAME | CAN_SEE_DELETED;
 	SPData.EditQuerySQL = "Select * from EDIT_OBJECTS (:OBJECTS_ID,:OBJECT_NAME,2,null,0,null," + Params + ",:DATECHANGE,:STATUS)";
 	PrepSelEhSimple(SPData,ID,Left,
 	"Выбор получателя денег","Select * from SEL_OBJECT_MONEY_RECEIVER "
@@ -272,8 +276,7 @@ bool __fastcall SimpleSelEhTownID(TForm* Form,int Left,int &ID,AnsiString Params
 	SPData.Flags     = STD_STATUSBAR | INS_IF_NOT_FOUND | FILTER_BY_NAME | CAN_SEE_DELETED;
 	if (!ID) ID = DModT->DefTownID;
 	PrepSelEhSimple(SPData,ID,Left,
-	"Выбор населенного пункта","Select * from Town where " + GetStatusStr("Status") +
-	" order by Town_Name",
+	"Выбор населенного пункта","Select * from Town order by Town_Name",
 	"Town_ID",  "Town_Name",
 	"Наименование","Town_Name","300");
 	return ExecSelEhSimple(Form,SPData,"Town_ID/Town_Name",&ID,Res);
@@ -287,8 +290,7 @@ bool __fastcall SimpleSelEhWorkTypeID(TForm* Form,int Left,int &ID,int ClientID,
 	SPData.Flags     = STD_STATUSBAR | INS_IF_NOT_FOUND | FILTER_BY_NAME | CAN_SEE_DELETED;
 
 	PrepSelEhSimple(SPData,ID,Left,
-	"Выбор типа работы","Select * from Work_Type where Client_ID = " +IntToStr(ClientID) + " and " +GetStatusStr("Status") +
-	" order by Work_Type_Name",
+	"Выбор типа работы","Select * from Work_Type where Client_ID = " +IntToStr(ClientID) + " order by Work_Type_Name",
 	"Work_Type_ID",  "Work_Type_Name",
 	"Наименование","Work_Type_Name","300");
 	return ExecSelEhSimple(Form,SPData,"Work_Type_ID/Work_Type_Name",&ID,Res);
@@ -301,29 +303,35 @@ bool __fastcall SimpleSelEhStreetID(TForm* Form,int Left,int &ID,int TownID, Ans
 	SPData.EditAllowMask = 1;
 	SPData.Flags     = STD_STATUSBAR | INS_IF_NOT_FOUND | FILTER_BY_NAME | CAN_SEE_DELETED;
 	PrepSelEhSimple(SPData,ID,Left,
-	"Выбор улицы пункта","Select * from Street where Town_ID = " + IntToStr(TownID) + " and " + GetStatusStr("Status") +
-	" order by Street_Name",
+	"Выбор улицы пункта","Select * from Street where Town_ID = " + IntToStr(TownID) + " order by Street_Name",
 	"Street_ID",  "Street_Name",
 	"Наименование","Street_Name","300");
 	return ExecSelEhSimple(Form,SPData,"Street_ID/Street_Name",&ID,Res);
 }
 //---------------------------------------------------------------------------
-bool __fastcall SimpleSelEhDriverID(TForm* Form,int Left,int &ID, int TransCompID, AnsiString Params, AnsiString* Res)
+bool __fastcall SimpleSelEhDriverID(TForm* Form,int Left,int &ID, int TransCompID, AnsiString Params, AnsiString* Res, bool SelDeleted)
 {
 	SelParamData SPData(Form);
 	AnsiString SQL;
 	if (TransCompID > 0) {
 		SPData.EditQuerySQL = "Select * from Edit_Driver(:Driver_ID,:Driver_Name,:Driver_Phone," +
 										IntToStr(TransCompID) + "," +Params + ",:DATECHANGE,:STATUS)";
-		SQL = "Select * from Driver where Trans_Company_ID = " + IntToStr(TransCompID) + " and  " +
-				GetStatusStr("Status") + " order by Driver_Name";
+		SQL = "Select * from Driver where Trans_Company_ID = " + IntToStr(TransCompID) +
+//				+ " and  " + GetStatusStr("Status") +
+				" order by Driver_Name";
 	}
 	else {
 		SQL = "Select D.* from Driver D inner join Trans_Company C on  D.Trans_Company_ID = C.Trans_Company_ID "
-				"and C.Trans_Company_Flag = 0  and  " + GetStatusStr("D.Status") + " order by Driver_Name";
+				"and C.Trans_Company_Flag = 0 "
+//		"  and  " + GetStatusStr("D.Status") +
+				" order by Driver_Name";
 	}
 	SPData.EditAllowMask = 3;
 	SPData.Flags     = STD_STATUSBAR | INS_IF_NOT_FOUND | FILTER_BY_NAME | CAN_SEE_DELETED;
+	if (SelDeleted) {
+		SPData.SPFlags |= SelParamData::CAN_SEL_DELETED;
+		SPData.Flags   |= OK_ON_DELETED;
+	}
 	PrepSelEhSimple(SPData,ID,Left,
 	"Выбор водителя",SQL,
 	"Driver_ID",  "Driver_Name",
@@ -340,25 +348,31 @@ bool __fastcall SimpleSelEhExpenseID(TForm* Form,int Left,int &ID,AnsiString Par
 	SPData.Flags     = STD_STATUSBAR | INS_IF_NOT_FOUND | FILTER_BY_NAME | CAN_SEE_DELETED;
 
 	PrepSelEhSimple(SPData,ID,Left,
-	"Выбор статьи расхода","Select * from Expense where " + GetStatusStr("Status") +
-	" order by Expense_Name",
+	"Выбор статьи расхода","Select * from Expense order by Expense_Name",
 	"Expense_ID",  "Expense_Name",
 	"Наименование","Expense_Name","300");
 	return ExecSelEhSimple(Form,SPData,"Expense_ID",&ID);
 }
 //---------------------------------------------------------------------------
-bool __fastcall SimpleSelNDogID(TForm* Form,int Left,int &ID, TDateTime DTBeg, AnsiString* Res)
+bool __fastcall SimpleSelNDogID(TForm* Form,int Left,int &ID, int ClientID, TDateTime DTBeg, AnsiString* Res)
 {
 	SelParamData SPData(Form);
 	SPData.Flags     = STD_STATUSBAR | INS_IF_NOT_FOUND | FILTER_BY_NAME | CAN_SEE_DELETED;
-	SPData.FormatList = "//dd.mmm.yy hh:nn/dd.mmm.yy hh:nn";
+	SetBitMask(SPData.FilterFldMask,"000011111");
+	SPData.FormatList = "///dd.mmm.yy hh:nn/dd.mmm.yy hh:nn";
+	AnsiString SQL = "Select * from Sel_Orders(4,null,null,";
+	if (ClientID)
+	    SQL += IntToStr(ClientID);
+	else
+		 SQL += "null";
+	SQL += ") where Orders_id is not null order by Client_name,NDog_ID,DT_Beg,Orders_ID",
 	PrepSelEhSimple(SPData,ID,Left,
-	"Выбор Номера договора","Select * from Sel_Orders(4,'"+GetDateStr(DTBeg)+"',null,null) where Orders_id is not null order by NDog_ID,DT_Beg,Orders_ID",
-	"NDog_ID",  "",
-	"Номер|договора/Номер|заказа/Начало/Окончание/Контакт|Контактное лицо/Контакт|Номер телефона/Оправной пункт/Конечный пункт/По расчету/Окончательно",
-	"NDog_ID_STR/Orders_ID/Time_Beg/DT_End/Contact_Name/Contact_Phone/Beg_Full_Addr/End_Full_Addr/Pay_Calc/Pay_Res",
-	"75/75/120/120/150/150/150/150/80/80");
-	return ExecSelEhSimple(Form,SPData,"NDog_ID/NDog_ID_Str/Orders_ID/DT_Beg",&ID,Res);
+	"Выбор Номера договора",SQL,
+	"Orders_ID",  "NDOG_ID_STR",
+	"Клиент/Номер|заказа/Номер|договора/Начало/Окончание/Контакт|Контактное лицо/Контакт|Номер телефона/Оправной пункт/Конечный пункт/По расчету/Окончательно",
+	"Client_Name/Orders_ID/NDog_ID_STR/Time_Beg/DT_End/Contact_Name/Contact_Phone/Beg_Full_Addr/End_Full_Addr/Pay_Calc/Pay_Res",
+	"150/75/75/120/120/125/150/250/250/80/100");
+	return ExecSelEhSimple(Form,SPData,"Orders_ID/DT_Beg/NDog_ID/NDog_ID_Str",&ID,Res);
 }
 //---------------------------------------------------------------------------
 void  __fastcall AfterCreateSpecView(GridData& GData)
@@ -379,8 +393,7 @@ bool __fastcall SimpleSelSpecViewID(TForm* Form, int Left, int &ID, AnsiString* 
 
 	SPData.AfterCreate = AfterCreateSpecView;
 	PrepSelEhSimple(SPData,ID,Left,
-	"Выбор вида просмотра таблицы","Select * from Sel_Spec_View(" + IntToStr(DModT->CurEmpID) + ") where " + GetStatusStr("Status") +
-	" order by Spec_View_Name,Flag_Common",
+	"Выбор вида просмотра таблицы","Select * from Sel_Spec_View(" + IntToStr(DModT->CurEmpID) + ") order by Spec_View_Name,Flag_Common",
 	"Spec_View_ID",  "Spec_View_Name",
 	"Наименование вида/Общий/Ширина/Владелец/Список","Spec_View_Name/Flag_Common_Str/Screen_Width/Full_Name/Col_Wdt","300/60/60/150/400");
 	AnsiString ResStr;
@@ -405,8 +418,7 @@ bool __fastcall SimpleSelFilterID(TForm* Form, int Left, int &ID, AnsiString* Fi
 	SPData.FldTranslateMap.insert(pair<AnsiString,AnsiString>("FLAG_COMMON_STR", "FLAG_COMMON"));
 
 	PrepSelEhSimple(SPData,ID,Left,
-	"Выбор фильтра для просмотра таблицы","Select * from Sel_Filter(" + IntToStr(DModT->CurEmpID) + ") where " + GetStatusStr("Status") +
-	" order by Filter_Name,Flag_Common desc",
+	"Выбор фильтра для просмотра таблицы","Select * from Sel_Filter(" + IntToStr(DModT->CurEmpID) + ") order by Filter_Name,Flag_Common desc",
 	"Filters_ID",  "Filter_Name",
 	"Наименование фильтра/Общий/Ширина ","Filter_Name/Flag_Common_Str","300/60");
 	AnsiString ResStr;
@@ -441,7 +453,7 @@ bool __fastcall SimpleSelHistoryID(TForm* Form, int Left,AnsiString Title,AnsiSt
 						 "HISTORY_ID",  "",
 		"Изменение|N/Изменение|Группа/Изменяемое поле|Заголовок/Изменяемое поле|В базе/Действие/Предыдущее Значение|Число/Предыдущее Значение|Строка/Новое Значение|Число/Новое Значение|Строка/Изменено|Когда/Изменено|Кем/Изменено|С компьютера",
 		"HISTORY_ID/TRANSACTION_ID/FIELD_TITLE/FIELD_NAME/MSG/OLD_ID_VALUE/OLD_STR_VALUE/NEW_ID_VALUE/NEW_STR_VALUE/DATECHANGE/FIO/COMP_NAME",
-		"45/45/145/140/157/50/125/50/125/150/140/100");
+		"80/80/165/140/157/50/125/50/125/150/140/100");
 	ShowModalForm SMF(Form,&SPData);
 	if (SMF.Execute()) {
 		FillRestoreData(&SMF,&RestData);
@@ -494,6 +506,51 @@ bool __fastcall SimpleSelHistoryID(TForm* Form, int Left,AnsiString Title,AnsiSt
 	return false;
 }
 //---------------------------------------------------------------------------
+void  __fastcall AfterCreateOrdersTemplate(GridData& GData)
+{
+	TFormSelSimpleEh* Form = dynamic_cast<TFormSelSimpleEh*>(GData.WrkForm);
+	if (Form) {
+		GData.FunGetIDMap.insert(pair<AnsiString,FunGetID>(AnsiString("CLIENT_ID"),  Form->GetTransCompanyID));
+	}
+}
+//---------------------------------------------------------------------------
+bool __fastcall SimpleSelOrdersTemplateID(TForm* Form,int Left,int &OrdersID, int Client_ID, AnsiString Params, AnsiString* ResStr)
+{
+	SelParamData SPData(Form);
+	SPData.FieldOut    = "ORDERS_ID";
+	SPData.DefFieldFlt = "ORDER_TEMPLATE_NAME";
+	SPData.Flags |= FILTER_BY_NAME | CAN_SEE_DELETED;
+	SPData.FormatList = "";
+	SPData.EditAllowMask = 8;
+	SPData.NullAllowMask = 8;
+
+//	SPData.SPFlags = SelParamData::EDIT_FORM;
+	SPData.EditQuerySQL  = "Select * from EDIT_ORDER_TEMPLATE (:ORDERS_ID,:CLIENT_ID,:ORDER_TEMPLATE_NAME,"+Params+ ",:DATECHANGE,:STATUS)";;
+	SPData.FieldOut      = "ORDER_TEMPLATE_NAME";
+
+//	SPData.FldTranslateMap.insert(pair<AnsiString,AnsiString>("CLIENT_NAME","CLIENT_ID"));
+
+	SPData.AfterCreate = AfterCreateOrdersTemplate;
+
+	AnsiString SQL = "Select * from SEL_ORDERS_TEMPLATE_SIMPLE order by Client_Name,Order_Template_Name,DateMake";
+
+	PrepSelEhSimple(SPData,OrdersID,Left,
+	"Выбор Шаблона",SQL,
+	"Orders_ID","ORDER_TEMPLATE_NAME"  ,
+	"Дата/N заказа-шаблона/Клиент/Наименование шаблона/Примечание",
+	"DT_BEG/Orders_ID/Client_Name/Order_Template_Name/msg",
+	"90/124/250/250/350");
+	AnsiString FldList = "Orders_ID/ORDER_TEMPLATE_NAME";
+	if (ExecSelEhSimple(Form,SPData,FldList,&OrdersID,ResStr)) {
+//		OrdersID     = StrToIntDef(GetPiece(*ResFldList,"/",1),0);
+//		*ResFldList     = GetSegment(*ResFldList,"/",3,8);
+		return true;
+	}
+	return false;
+
+////////////////////////
+}
+//---------------------------------------------------------------------------
 __fastcall TFormSelSimpleEh::TFormSelSimpleEh(TComponent* Owner,SelParamData* SPData)
 		  : TForm(Owner)
 {
@@ -537,23 +594,23 @@ void __fastcall TFormSelSimpleEh::FormCreate(TObject *Sender)
 	SPData->NumbEdit   = DBNumberEditEh1;
 	SPData->DateEdit   = DBDateTimeEditEh1;
 	SPData->ListEdit   = ComboBox1;
-   if (SPData->Flags & STD_STATUSBAR)
+	if (SPData->Flags & STD_STATUSBAR)
 	  SPData->WrkSBar    = sStatusBar1;
-   if (!(SPData->SPFlags & SelParamData::NO_PANEL))
+	if (!(SPData->SPFlags & SelParamData::NO_PANEL))
 	  SPData->EditSearch = EditSearch;
 
-   if (SPData->SPFlags & SelParamData::NO_PANEL) {
+	if (SPData->SPFlags & SelParamData::NO_PANEL) {
 	  sPanel1->Enabled = false;
 	  sPanel1->Visible = false;
 	  sPanel1->Align   = alNone;
-   }
-   Memo1->Text = "";
-   int SumW    = 0;
-   DBGridEh1->UseMultiTitle = SPData->TitleList.Pos("|") > 0;
-   SBtn1->Visible = SPData->SPFlags & SelParamData::SEL_BTN_VISIBLE;
-   SBtn1->Enabled = SPData->SPFlags & SelParamData::SEL_BTN_VISIBLE;
-   // ---- определяем положение формы ----------------------------
-   int i = 0;
+	}
+	Memo1->Text = "";
+	int SumW    = 0;
+	DBGridEh1->UseMultiTitle = SPData->TitleList.Pos("|") > 0;
+	SBtn1->Visible = SPData->SPFlags & SelParamData::SEL_BTN_VISIBLE;
+	SBtn1->Enabled = SPData->SPFlags & SelParamData::SEL_BTN_VISIBLE;
+	// ---- определяем положение формы ----------------------------
+	int i = 0;
 	while(true) {
 		i++;
 		S = GetPiece(SPData->WidthList,"/",i);
@@ -620,8 +677,12 @@ void __fastcall TFormSelSimpleEh::FormKeyDown(TObject *Sender, WORD &Key,
 	switch (Key) {
 		case VK_F3:  if (Memo1->Visible) ShowMemoStd(*SPData,Memo1);
 						 break;
-		case VK_F4:  if (sCheckBox1->Visible)
+		case VK_F4:  if (sCheckBox1->Visible) {
 							sCheckBox1->Checked = ! sCheckBox1->Checked;
+							if (sCheckBox1->Checked) {
+								DBGridEh1->SetFocus();
+							}
+						 }
 						 break;
 		case VK_F11: ProcHistory(Shift.Contains(ssCtrl));
 	}
@@ -691,7 +752,7 @@ void __fastcall TFormSelSimpleEh::ProcHistory(bool All)
 void __fastcall TFormSelSimpleEh::DBGridEh1DblClick(TObject *Sender)
 {
 	if      (sCheckBox1->Checked || SPData->SPFlags & SelParamData::EDIT_FORM) ProcReturn();
-	else if (!KeyFieldIsNullStd(*SPData) && !RowIsDeleted(WrkQuery)) {
+	else if (!KeyFieldIsNullStd(*SPData) && (!RowIsDeleted(WrkQuery) || (SPData->Flags & OK_ON_DELETED))) {
 	  if (SBtn1->Visible) ProcSelectStd(*SPData);
 	  else                ModalResult = mrOk;
    }
@@ -714,11 +775,11 @@ void __fastcall TFormSelSimpleEh::DBGridEh1GetCellParams(TObject *Sender,
 void __fastcall TFormSelSimpleEh::DBGridEh1KeyDown(TObject *Sender,
 	  WORD &Key, TShiftState Shift)
 {
-   switch(Key) {
+	switch(Key) {
 	  case VK_RETURN: if (Shift.Contains(ssCtrl)  || Shift.Contains(ssAlt) ||
 								 Shift.Contains(ssShift) || sCheckBox1->Checked    ||
 								 SPData->SPFlags & SelParamData::EDIT_FORM) ProcReturn();
-							else if (!KeyFieldIsNullStd(*SPData) && !RowIsDeleted(WrkQuery))
+							else if (!KeyFieldIsNullStd(*SPData) && (!RowIsDeleted(WrkQuery) || (SPData->Flags & OK_ON_DELETED)))
 								 ModalResult = mrOk;
 							break;
 	  default:        ProcKeyDownStd(*SPData,Key);

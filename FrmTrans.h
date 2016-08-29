@@ -33,6 +33,24 @@
 #include "cxLookAndFeelPainters.hpp"
 #include "cxLookAndFeels.hpp"
 #include "cxOI.hpp"
+#include "frxClass.hpp"
+#include "frxDBSet.hpp"
+#include "PrnDbgeh.hpp"
+#include "sButton.hpp"
+#include "sCheckBox.hpp"
+#include "sComboBox.hpp"
+#include "sComboEdit.hpp"
+#include "sCustomComboEdit.hpp"
+#include "sEdit.hpp"
+#include "sGroupBox.hpp"
+#include "sLabel.hpp"
+#include "sMaskEdit.hpp"
+#include "sMemo.hpp"
+#include "sSpeedButton.hpp"
+#include "sSpinEdit.hpp"
+#include "sTooledit.hpp"
+#include <Vcl.Buttons.hpp>
+#include <Vcl.Menus.hpp>                             f
 #include "cxStyles.hpp"
 #include "cxVGrid.hpp"
 #include "dxSkinsCore.hpp"
@@ -766,7 +784,6 @@ __published:	// IDE-managed Components
 	TsSpeedButton *sSpeedButton112;
 	TIntegerField *MemTableEh31FLAG_MES;
 	TsLabel *sLabel72;
-	TsComboEdit *sComboEdit14;
 	TsSpeedButton *sSpeedButton12;
 	TIntegerField *MemTableEh31NDOG_ID;
 	TStringField *MemTableEh31BEG_FULL_ADDR;
@@ -774,6 +791,15 @@ __published:	// IDE-managed Components
 	TsSpeedButton *sSpeedButton13;
 	TStringField *MemTableEh31NDOG_ID_STR;
 	TsSpeedButton *sSpeedButton113;
+	TIntegerField *MemTableEh41STATUS_TRANS;
+	TStringField *MemTableEh31ORDER_TEMPLATE_NAME;
+	TQuery *Query33;
+	TsSpeedButton *sSpeedButton26;
+	TDBNumberEditEh *DBNumberEditEh15;
+	TsSpeedButton *sSpeedButton27;
+	TMenuItem *N3;
+	TMenuItem *N15;
+	TMenuItem *N16;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
@@ -831,10 +857,10 @@ __published:	// IDE-managed Components
 	void __fastcall sSpeedButton112Click(TObject *Sender);
 	void __fastcall frxReport31BeforePrint(TfrxReportComponent *Sender);
 	void __fastcall sButton1KeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
-	void __fastcall sSpeedButton12Click(TObject *Sender);
 	void __fastcall sSpeedButton113Click(TObject *Sender);
 	void __fastcall sMemo1Enter(TObject *Sender);
 	void __fastcall FormKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
+
 
 
 
@@ -911,7 +937,7 @@ public:		// User declarations
 
 	FilterCols OrderFilter;
 
-	int SumPayCalc,SumPayRes, SumPayAvc, SumPayRest, SumPayExc,SumPayMng,SumPayDrv,SumIncCalc,SumOutlay, SumHand;
+	double SumPayCalc,SumPayRes, SumPayAvc, SumPayRest, SumPayExc,SumPayMng,SumPayDrv,SumIncCalc,SumOutlay, SumHand;
 	__fastcall TFormTrans(TComponent* Owner);
 	bool __fastcall TFormTrans::ChooseStartPage();
 	void __fastcall TFormTrans::InitGData();
@@ -952,18 +978,20 @@ public:		// User declarations
 	bool __fastcall TFormTrans::GetContactID(TForm* Frm, int Left,int &ID,TParams*&);
 	bool __fastcall TFormTrans::GetTownID(TForm* Frm, int Left,int &ID,TParams*&);
 	bool __fastcall TFormTrans::GetStreetID(TForm* Frm, int Left,int &ID,TParams*&);
-   bool __fastcall TFormTrans::GetDriverID(TForm* Frm, int Left,int &ID,TParams*&);
-   bool __fastcall TFormTrans::GetExpenseID(TForm* Frm, int Left,int &ID,TParams*&);
-   bool __fastcall TFormTrans::GetWorkTypeID(TForm* Frm, int Left,int &ID,TParams*&);
+	bool __fastcall TFormTrans::GetDriverID(TForm* Frm, int Left,int &ID,TParams*&);
+	bool __fastcall TFormTrans::GetExpenseID(TForm* Frm, int Left,int &ID,TParams*&);
+	bool __fastcall TFormTrans::GetWorkTypeID(TForm* Frm, int Left,int &ID,TParams*&);
 	bool __fastcall TFormTrans::GetAvcReceiverID(TForm* Frm, int Left,int &ID,TParams*&);
 	bool __fastcall TFormTrans::GetRestReceiverID(TForm* Frm, int Left,int &ID,TParams*&);
 	bool __fastcall TFormTrans::GetNDogID(TForm* Frm, int Left,int &ID,TParams*&);
+	bool __fastcall TFormTrans::GetOrdersTemplateID(TForm* Frm, int Left,int &ID,TParams*&);
+   void __fastcall TFormTrans::WriteOrderTemplate(bool Delete);
 
 
 //	void __fastcall TFormTrans::SetOrdersBitMask();
 	void __fastcall TFormTrans::SetEditBitMask(TDataSet *DataSet);
 
-	void __fastcall TFormTrans::RestoreEditMultiFlag();
+	void __fastcall TFormTrans::RestoreEditAllLinesCheckBox();
 
 	TsCheckBox* __fastcall TFormTrans::GetCurrentCBox();
 	void __fastcall TFormTrans::ShowCurColumnGroup(TDBGridEh* Grid);
@@ -1015,8 +1043,9 @@ public:		// User declarations
 //	bool __fastcall TFormTrans::AcceptRecord(TDataSet *DataSet);
 	bool __fastcall TFormTrans::FillHintStructures(TDataSet *DataSet);
 
+	void __fastcall TFormTrans::ProcSpecFilter();
 
-	void __fastcall TFormTrans::ProcFilter(bool Ctrl);
+//	void __fastcall TFormTrans::ProcFilter(TShiftState Shift = TShiftState());
 	void __fastcall TFormTrans::AttachOuterTransport();
 	void __fastcall TFormTrans::DetachOuterTransport();
 	bool __fastcall TFormTrans::CheckOrderFilter();
@@ -1027,13 +1056,14 @@ public:		// User declarations
 	bool __fastcall TFormTrans::CheckTimeValue(TDateTime DT,FieldFilter& FF);
 	void __fastcall TFormTrans::ClearSelView();
 	void __fastcall TFormTrans::ClearFilter();
+   bool __fastcall TFormTrans::CanEditGraph();
 
 	void __fastcall TFormTrans::RestoreValue(RestValue& RestData, bool CurrentCol);
 	int  __fastcall TFormTrans::FindRestColumn(TDBGridColumnsEh* Columns,RestValue& RestData);
 	void __fastcall TFormTrans::ShowOrders(TDateTime DT);
 	void __fastcall TFormTrans::CopyOrder();
-	void __fastcall TFormTrans::DublicateOrder();
-	void __fastcall TFormTrans::ShowCopiedOrders(int OrderID);
+	void __fastcall TFormTrans::DublicateOrder(int OrderID,int CopyType);
+	void __fastcall TFormTrans::ShowCopiedOrders(int OrderID, int CopyType);
 	void __fastcall TFormTrans::DrawZone(DrawData& DD,const TRect &Rect, int MinBeg, int MinEnd, TColor Color);
 
 	void __fastcall TFormTrans::DrawColumnCell(const TRect &Rect,int DataCol, TColumnEh *Column, TGridDrawStateEh State);
@@ -1086,6 +1116,11 @@ public:		// User declarations
 	void __fastcall TFormTrans::SetDayButtonColor(TsSpeedButton* SBtn, TDateTime DT);
 	void __fastcall TFormTrans::GetNewNGogID();
 	void __fastcall TFormTrans::FindNDog();
+	void __fastcall TFormTrans::CreateOrderFromTemplate();
+   void __fastcall TFormTrans::WriteOrdersDetailPanel();
+   void __fastcall TFormTrans::SetNÂogID(int NDogID);
+	void __fastcall TFormTrans::GetNGodIDbyClient();
+
 
 
 

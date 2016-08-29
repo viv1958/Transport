@@ -598,7 +598,7 @@ object FormDriverRep: TFormDriverRep
     object sDateEdit1: TsDateEdit
       Tag = 1
       Left = 687
-      Top = 34
+      Top = 33
       Width = 93
       Height = 21
       AutoSize = False
@@ -694,7 +694,7 @@ object FormDriverRep: TFormDriverRep
     Top = 63
     Width = 1292
     Height = 491
-    ActivePage = sTabSheet2
+    ActivePage = sTabSheet3
     Align = alClient
     TabOrder = 2
     OnChange = sPageControl1Change
@@ -4510,6 +4510,348 @@ object FormDriverRep: TFormDriverRep
       item
         DataType = ftInteger
         Name = 'STATUS'
+        ParamType = ptInput
+      end>
+  end
+  object Query11: TQuery
+    Tag = 1
+    DatabaseName = 'TransDB'
+    SQL.Strings = (
+      'select * from EDIT_ORDERS ('
+      ':ORDERS_ID,'
+      ':DT_BEG,'
+      ':TIME_BEG,'
+      ':TIME_BEF,'
+      ':WRK_DAY,'
+      ':TIME_WRK,'
+      ':ORDER_STATE,'
+      ':ORDER_TYPE,'
+      ':WORK_TYPE_ID,'
+      ':CLIENT_ID,'
+      ':CLIENT_NAME,'
+      ':CONTACT_ID,'
+      ':CONTACT_NAME,'
+      ':CONTACT_PHONE,'
+      ':TRANS_TYPE_ID,'
+      ':PASS_NEED,'
+      ':TRANS_COMPANY_ID,'
+      ':TRANSPORT_ID,'
+      ':DRIVER_ID,'
+      ':DRIVER_NAME,'
+      ':DRIVER_PHONE,'
+      ':DRIVER_HAND_MONEY,'
+      ':BEG_TOWN_ID,'
+      ':END_TOWN_ID,'
+      ':BEG_STREET_ID,'
+      ':END_STREET_ID,'
+      ':BEG_ADDR_NAME,'
+      ':END_ADDR_NAME,'
+      ':RET_TO_START,'
+      ':HOUR_TAX,'
+      ':DIST_TAX,'
+      ':DOG_TAX,'
+      ':DIST_RES,'
+      ':PAY_RES,'
+      ':PAY_TYPE,'
+      ':PAY_AVC,'
+      ':PAY_AVC_STATE,'
+      ':PAY_AVC_RECEIVER,'
+      ':PAY_REST_STATE,'
+      ':PAY_REST_RECEIVER,'
+      ':ORDER_FLAG,'
+      ':EXC_PAY,'
+      ':EXC_PAY_DATE,'
+      ':MNG_PAY,'
+      ':MNG_PAY_DATE,'
+      ':DRV_PAY,'
+      ':MANAGER_ID,'
+      ':NDOG_ID,'
+      ':COMMENT,'
+      ':FLAG_CALC_INCOME,'
+      ':USER_ID,'
+      ':COMP_NAME,'
+      ':DATECHANGE,'
+      ':STATUS,'
+      ':CONTACT_PHONE_ADD)'
+      ''
+      ''
+      '')
+    Left = 91
+    Top = 145
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'ORDERS_ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDateTime
+        Name = 'DT_BEG'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDateTime
+        Name = 'TIME_BEG'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDateTime
+        Name = 'TIME_BEF'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'WRK_DAY'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDateTime
+        Name = 'TIME_WRK'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'ORDER_STATE'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'ORDER_TYPE'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'WORK_TYPE_ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'CLIENT_ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'CLIENT_NAME'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'CONTACT_ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'CONTACT_NAME'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'CONTACT_PHONE'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'TRANS_TYPE_ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'PASS_NEED'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'TRANS_COMPANY_ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'TRANSPORT_ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'DRIVER_ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'DRIVER_NAME'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'DRIVER_PHONE'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'DRIVER_HAND_MONEY'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'BEG_TOWN_ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'END_TOWN_ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'BEG_STREET_ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'END_STREET_ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'BEG_ADDR_NAME'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'END_ADDR_NAME'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'RET_TO_START'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'HOUR_TAX'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'DIST_TAX'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'DOG_TAX'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'DIST_RES'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftFloat
+        Name = 'PAY_RES'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'PAY_TYPE'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'PAY_AVC'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'PAY_AVC_STATE'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'PAY_AVC_RECEIVER'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'PAY_REST_STATE'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'PAY_REST_RECEIVER'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'ORDER_FLAG'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'EXC_PAY'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDate
+        Name = 'EXC_PAY_DATE'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'MNG_PAY'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDate
+        Name = 'MNG_PAY_DATE'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'DRV_PAY'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'Manager_Id'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'NDOG_ID'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftString
+        Name = 'COMMENT'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'FLAG_CALC_INCOME'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'USER_ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'COMP_NAME'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDateTime
+        Name = 'DATECHANGE'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'STATUS'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'CONTACT_PHONE_ADD'
         ParamType = ptInput
       end>
   end

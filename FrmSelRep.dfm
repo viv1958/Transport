@@ -693,7 +693,7 @@ object FormSelRep: TFormSelRep
     end
     object sComboBox2: TsComboBox
       Left = 675
-      Top = 61
+      Top = 60
       Width = 185
       Height = 21
       Alignment = taLeftJustify

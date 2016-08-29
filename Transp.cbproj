@@ -35,6 +35,7 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
+			<BCC_PCHName>__tmp.pch</BCC_PCHName>
 			<ILINK_LibraryPath>D:\Embarcadero\Other\Transport\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
 			<_TCHARMapping>wchar_t</_TCHARMapping>
 			<Multithreaded>true</Multithreaded>
@@ -164,6 +165,12 @@
 				<DependentOn>FrmSelSimpleEh.h</DependentOn>
 				<BuildOrder>8</BuildOrder>
 			</CppCompile>
+			<CppCompile Include="FrmSummaryRep.cpp">
+				<Form>FormSummaryRep</Form>
+				<FormType>dfm</FormType>
+				<DependentOn>FrmSummaryRep.h</DependentOn>
+				<BuildOrder>15</BuildOrder>
+			</CppCompile>
 			<CppCompile Include="FrmTrans.cpp">
 				<Form>FormTrans</Form>
 				<DependentOn>FrmTrans.h</DependentOn>
@@ -173,18 +180,19 @@
 				<BuildOrder>0</BuildOrder>
 			</CppCompile>
 			<FormResources Include="FrmPassWord.dfm"/>
-			<FormResources Include="FrmOrderCopy.dfm"/>
-			<FormResources Include="FrmGetFieldFilter.dfm"/>
 			<FormResources Include="FrmSelRep.dfm"/>
+			<FormResources Include="FrmGetFieldFilter.dfm"/>
+			<FormResources Include="FrmOrderCopy.dfm"/>
 			<FormResources Include="FrmTrans.dfm"/>
 			<FormResources Include="FrmSelSimpleEh.dfm"/>
-			<FormResources Include="FrmFilter.dfm"/>
+			<FormResources Include="FrmSummaryRep.dfm"/>
 			<FormResources Include="DModT.dfm"/>
-			<FormResources Include="DModRep.dfm"/>
 			<FormResources Include="FrmDateRange.dfm"/>
+			<FormResources Include="DModRep.dfm"/>
 			<FormResources Include="FrmDriverRep.dfm"/>
-			<FormResources Include="FrmDriverGraphDay.dfm"/>
+			<FormResources Include="FrmFilter.dfm"/>
 			<FormResources Include="FrmDriverGraph.dfm"/>
+			<FormResources Include="FrmDriverGraphDay.dfm"/>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>
 				<CfgParent>Base</CfgParent>

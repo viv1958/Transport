@@ -93,7 +93,7 @@ void __fastcall TFormDriverGraph::sComboEdit1ButtonClick(TObject *Sender)
 {
 	AnsiString Params = IntToStr(DModT->CurEmpID) + ",'" + DModT->ComputerName + "'";
 	AnsiString S;
-	if (SimpleSelEhDriverID(this,Left,DriverID, 0,Params,&S)) {
+	if (SimpleSelEhDriverID(this,Left,DriverID, 0,Params,&S, false)) {
 		sComboEdit1->Text = GetPiece(S, "/", 1);
 		ProcRefreshStd(GData,true);
 	}

@@ -114,6 +114,8 @@ void __fastcall TFormGetFieldFilter::StringGrid1KeyDown(TObject *Sender, WORD &K
 		 case VK_RETURN: EditCell();  	break;
 		 case VK_BACK:   ClearCell(); 	break;
 		 case VK_DOWN:   AddRowIfNeed(); break;
+ 		 case VK_ESCAPE: ModalResult = mrCancel; break;
+
 	}
 }
 //---------------------------------------------------------------------------

@@ -373,7 +373,7 @@ void __fastcall TFormOrderCopy::CopyOrders()
 bool __fastcall TFormOrderCopy::CopyOrder(TDateTime DT)
 {
 	Query3->SQL->Text = "select * from Copy_Order(" + IntToStr(SrcOrderID)      + ",'" +
-							  GetDateStr(DT) + "',1,"     + IntToStr(DModT->CurEmpID) + ",'" +
+							  GetDateStr(DT) + "',1,0,"     + IntToStr(DModT->CurEmpID) + ",'" +
 							  DModT->ComputerName + "')";
 	bool bRes = ReOpenDSetStd(Query3);
 	if (bRes) {

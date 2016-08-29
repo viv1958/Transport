@@ -6,20 +6,20 @@
 //---------------------------------------------------------------------------
 
 
-
+USEFORM("FrmPassWord.cpp", FormPassWord);
 USEFORM("FrmOrderCopy.cpp", FormOrderCopy);
 USEFORM("FrmGetFieldFilter.cpp", FormGetFieldFilter);
-USEFORM("FrmFilter.cpp", FormFilter);
-USEFORM("FrmPassWord.cpp", FormPassWord);
+USEFORM("FrmSelRep.cpp", FormSelRep);
 USEFORMNS("FrmTrans.cpp",XXX, FormTrans);
 USEFORM("FrmSelSimpleEh.cpp", FormSelSimpleEh);
-USEFORM("FrmDriverRep.cpp", FormDriverRep);
+USEFORM("FrmFilter.cpp", FormFilter);
 USEFORM("DModT.cpp", DModT); /* TDataModule: File Type */
 USEFORM("DModRep.cpp", DModReport); /* TDataModule: File Type */
-USEFORM("FrmSelRep.cpp", FormSelRep);
+USEFORM("FrmDateRange.cpp", FormDateRange);
+USEFORM("FrmDriverRep.cpp", FormDriverRep);
 USEFORM("FrmDriverGraphDay.cpp", FormDriverGraphDay);
 USEFORM("FrmDriverGraph.cpp", FormDriverGraph);
-USEFORM("FrmDateRange.cpp", FormDateRange);
+USEFORM("FrmSummaryRep.cpp", FormSummaryRep);
 //---------------------------------------------------------------------------
 extern int AppTerminate;
 //---------------------------------------------------------------------------
@@ -30,9 +30,9 @@ WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->Initialize();
 		Application->MainFormOnTaskBar = true;
 		Application->CreateForm(__classid(TDModT), &DModT);
-		if (!AppTerminate) {
+		if(!AppTerminate) {
 			Application->CreateForm(__classid(TFormTrans), &FormTrans);
-		   Application->Run();
+			Application->Run();
 		}
 	}
 	catch (Exception &exception)

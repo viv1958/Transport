@@ -34,14 +34,15 @@
 #include "ToolCtrlsEh.hpp"
 class SelParamData : public GridData{
    public:  //enum EntryType {SIMPL = 0};
-				enum ParamData {NO_FLAGS = 0,   NO_PANEL = 0x0001,INC_SEARCH = 0x0002, SEL_BTN_VISIBLE = 0x0004, EDIT_FORM = 0x0080};
-            int Top;
-            int Left;
-            int MaxWidth;
-            int MaxHeight;
+				enum ParamData {NO_FLAGS = 0,   NO_PANEL = 0x0001,INC_SEARCH = 0x0002, SEL_BTN_VISIBLE = 0x0004, EDIT_FORM = 0x0008,
+									 CAN_SEL_DELETED = 0x0010};
+				int Top;
+				int Left;
+				int MaxWidth;
+				int MaxHeight;
 //            ParamData SPFlags;
-            int SPFlags;
-            //EntryType SpecEntry;
+				int SPFlags;
+				//EntryType SpecEntry;
 
 
             AnsiString Caption;
@@ -188,12 +189,12 @@ bool __fastcall SimpleSelEhTransTypeID   (TForm* Form,int Left, int& TransTypeID
 bool __fastcall SimpleSelEhEmployeeID    (TForm* Form,int Left, int& EmployeeID);
 bool __fastcall SimpleSelEhClientID      (TForm* Form,int Left, int& ClientID,AnsiString* Name = NULL);
 bool __fastcall SimpleSelEhContactID     (TForm* Form,int Left, int& Contact, int ClientID,AnsiString &Params,AnsiString* Name);
-bool __fastcall SimpleSelEhTransportID   (TForm* Form,int Left, int& TransportID, int& TransTypeID, int& TransCompID, AnsiString &Params,AnsiString* Name);
+bool __fastcall SimpleSelEhTransportID   (TForm* Form,int Left, int& TransportID, int& TransTypeID, int& TransCompID, AnsiString &Params,AnsiString* Name, bool SelDeleted);
 //bool __fastcall SimpleSelEhTransportID   (TForm* Form,int Left, int& TransportID);
 
 bool __fastcall SimpleSelEhTownID(TForm* Form,int Left,int &ID,AnsiString Params,AnsiString *Res);
 bool __fastcall SimpleSelEhStreetID(TForm* Form,int Left,int &ID,int TownID,AnsiString Params,AnsiString *Res);
-bool __fastcall SimpleSelEhDriverID(TForm* Form,int Left,int &ID,int TC_ID,AnsiString Params,AnsiString *Res);
+bool __fastcall SimpleSelEhDriverID(TForm* Form,int Left,int &ID,int TC_ID,AnsiString Params,AnsiString *Res, bool SelDeleted);
 
 bool __fastcall SimpleSelEhExpenseID(TForm* Form,int Left,int &ID,AnsiString Params);
 bool __fastcall SimpleSelSpecViewID(TForm* Form, int Left, int &ID, AnsiString* ViewName,AnsiString* ResWdt, AnsiString Params);
@@ -203,7 +204,8 @@ bool __fastcall SimpleSelHistoryID(TForm* Form, int Left,AnsiString Title,AnsiSt
 bool __fastcall SimpleSelEhWorkTypeID(TForm* Form,int Left,int &ID,int ClientID,AnsiString Params,AnsiString *Res);
 bool __fastcall SimpleSelEhMoneyReceiverID(TForm* Form,int Left, int& ID,AnsiString Params,AnsiString* Res);
 
-bool __fastcall SimpleSelNDogID(TForm* Form,int Left,int &ID, TDateTime DTBeg, AnsiString* Res);
+bool __fastcall SimpleSelNDogID(TForm* Form,int Left,int &ID, int Client_ID, TDateTime DTBeg, AnsiString* Res);
+bool __fastcall SimpleSelOrdersTemplateID(TForm* Form,int Left,int &OrdersID, int Client_ID, AnsiString Params, AnsiString* Res);
 
 //---------------------------------------------------------------------------
 extern PACKAGE TFormSelSimpleEh *FormSelSimpleEh;

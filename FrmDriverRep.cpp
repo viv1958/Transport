@@ -111,16 +111,29 @@ void __fastcall TFormDriverRep::SetButtonCaption(int Mon)
 void __fastcall TFormDriverRep::InitGData()
 {
 // ==== заказы =================================================================
-	GDataOrders.Flags =  STD_STATUSBAR | FILTER_BY_NAME | MULTIPLE_SEL | MOVE_DOWN_AFTER_SEL;
+//STD_STATUSBAR | FILTER_BY_NAME | MULTIPLE_SEL | MOVE_DOWN_AFTER_SEL;
+	GDataOrders.Flags =	STD_STATUSBAR       | CAN_SEE_DELETED    | INC_SEARCH   | FILTER_BY_NAME      |
+								UPDATE_IN_MEMORY    | DONT_CHECK_KEY_ID  | MULTIPLE_SEL | MOVE_DOWN_AFTER_SEL |
+								UPDATE_ONLY_CURRENT | SAVE_SELECTION;
 	GDataOrders.WrkSBar = sStatusBar1;
 	GDataOrders.FieldKey      = "Orders_ID";
 
 	GDataOrders.SetSQL        = SetSQL;
 	GDataOrders.FunAddRow     = AddCurrentRow;
+	GDataOrders.FunSetSQLOne  = RefreshOneRow;
+
 
 	GDataOrders.SrcDSet       = Query1;
 	GDataOrders.WrkGrid       = DBGridEh1;
 	GDataOrders.WrkDBase      = DModT->Database1;
+
+	SetBitMask(GDataOrders.EditAllowMask,"0000 0000 001");
+	SetBitMask(GDataOrders.NullAllowMask,"0000 0000 001");
+	GDataOrders.FilterFldMask = -1;
+
+	GDataOrders.NumbEdit      = DBNumberEditEh;
+	GDataOrders.WrkQuery      = Query11;
+  	SetCommonExtParams(GDataOrders);
 
 // ==== расходы ================================================================
 	GDataOutlay.Flags         =  CAN_SEE_DELETED  | STD_STATUSBAR | FILTER_BY_NAME | MULTIPLE_SEL | MOVE_DOWN_AFTER_SEL;
@@ -159,7 +172,7 @@ void __fastcall TFormDriverRep::InitGData()
 
 	GDataOutlay.FunGetIDMap.insert(pair<AnsiString,FunGetID>(AnsiString("TRANSPORT_ID"),    GetTransportID));
 	GDataOutlay.FunGetIDMap.insert(pair<AnsiString,FunGetID>(AnsiString("EXPENSE_ID"),      GetExpenseID));
-   SetCommonExtParams(GDataOutlay);
+	SetCommonExtParams(GDataOutlay);
 
 // ==== полученные деньги ======================================================
 	GDataMonInp.Flags         =  STD_STATUSBAR | FILTER_BY_NAME | MULTIPLE_SEL | MOVE_DOWN_AFTER_SEL | CAN_SEE_DELETED;
@@ -276,7 +289,7 @@ bool __fastcall TFormDriverRep::GetTransportID(TForm* Frm, int Left,int &ID,TPar
 	AnsiString Params = GetSelEditParams();
 	int TransTypeID = 0;
 	int TransCompID = 0;
-	return SimpleSelEhTransportID(Frm,0,ID,TransTypeID, TransCompID, Params,&SelectResultStr);
+	return SimpleSelEhTransportID(Frm,0,ID,TransTypeID, TransCompID, Params,&SelectResultStr, false);
 }
 //---------------------------------------------------------------------------
 bool __fastcall TFormDriverRep::GetExpenseID(TForm* Frm, int Left,int &ID,TParams*&)
@@ -339,7 +352,9 @@ bool __fastcall TFormDriverRep::RefreshOneRow(GridData& GData,TDataSet* DSet)
 	int IVal;
 	int Result;
 	switch (GData.WrkDSet->Tag) {
-	  case  2: SQL = "select * from Sel_Outlay(1,NULL,NULL," + GData.WrkQuery->FieldByName("RESULT")->AsString + ")";
+		case 1:  SQL = "select * from Sel_Orders(99,NULL,NULL," + GData.WrkQuery->FieldByName("RESULT")->AsString + ")";
+					break;
+		case  2: SQL = "select * from Sel_Outlay(1,NULL,NULL," + GData.WrkQuery->FieldByName("RESULT")->AsString + ")";
 					break;
 		case 3:	SQL = "select * from Sel_Money_Move(99,null,null," + GData.WrkQuery->FieldByName("RESULT")->AsString + ")";
 					break;
@@ -503,8 +518,10 @@ void __fastcall TFormDriverRep::sSpeedButtonClick(TObject *Sender)
 		case  1:	ProcRefreshPage();               break;
 		case  2:	ProcDeleteStd(*WrkGData); 			break;
 		case  3: ProcInsertStd(*WrkGData);        break;
-
-		case  4: ProcSelAllStd(*WrkGData, NULL);	break;
+		case  4: ClearSums();
+					ProcUnsAllStd(*WrkGData, NULL);
+					ProcSelAllStd(*WrkGData, NULL);
+					break;
 		case  5: ClearSums();
 					ProcUnsAllStd(*WrkGData, NULL);
 					break;
@@ -561,6 +578,8 @@ void __fastcall TFormDriverRep::ShowMonth(int Shift)
 	DT_E = "01."+DT_E.FormatString("mm.yy");
 	--DT_E;
 	if (DT_B != DT_Beg || DT_E != DT_End) {
+		ClearSums();
+		ProcUnsAllStd(*WrkGData, NULL);
 		SetButtonCaption(CurMM);
 		SetDates(SelMM, SelYY);
 		ProcRefreshPage();
@@ -578,7 +597,7 @@ void __fastcall TFormDriverRep::SelectDriver()
 	AnsiString Params = IntToStr(DModT->CurEmpID) + ",'" + DModT->ComputerName + "'";
 	int ID = DriverID;
 	AnsiString SelectResultStr;
-	if (SimpleSelEhDriverID(this,0,ID,0,Params,&SelectResultStr)) {
+	if (SimpleSelEhDriverID(this,0,ID,0,Params,&SelectResultStr, true)) {
 		Drv_Object_ID = StrToIntDef(GetPiece(SelectResultStr,"/",3),-1);
 		if (Drv_Object_ID != -1) {
 			GDataMonInp.AddExtParam(ftInteger, "OBJECT_ID_TAG", Drv_Object_ID);
@@ -663,21 +682,35 @@ void __fastcall TFormDriverRep::DBGridEhGetCellParams(TObject *Sender, TColumnEh
 //---------------------------------------------------------------------------
 void __fastcall TFormDriverRep::DBGridEhKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 {
-	if (Key == VK_INSERT) {
-		if ((PageTag == 2) || (PageTag == 3 || PageTag == 4)) {
-			TDateTime DateSet = Date();
-			if (DateSet < DT_Beg)
-				DateSet = DT_Beg;
-			else if (DateSet > DT_End)
-				DateSet = DT_End;
-			AnsiString FName = (PageTag == 2) ? "DATEMAKE" : "DATESET";
-			WrkGData->AddCurParam(ftDateTime,FName,DateSet);
-			if (PageTag == 2) {
-            WrkGData->AddCurParam(ftInteger,"DRIVER_ID",DriverID);
-			}
-		}
-	}
+	bool SetMultiFlag = false;
+	switch (Key) {
+		case VK_DELETE:	if (PageTag == 1) return;
+								break;
+		case VK_INSERT:	if (PageTag == 1 || PageTag == 5) return;
+								else {
+									TDateTime DateSet = Date();
+									if (DateSet < DT_Beg)
+										DateSet = DT_Beg;
+									else if (DateSet > DT_End)
+										DateSet = DT_End;
+									AnsiString FName = (PageTag == 2) ? "DATEMAKE" : "DATESET";
+									WrkGData->AddCurParam(ftDateTime,FName,DateSet);
+									if (PageTag == 2) {
+										WrkGData->AddCurParam(ftInteger,"DRIVER_ID",DriverID);
+									}
+								}
+								break;
+		case VK_RETURN:
+		case VK_BACK:    if (PageTag == 1) {
+								  GDataOrders.Flags &= ~MULTIPLE_SEL; // не выбирать текущую строку для редактирования
+								  SetMultiFlag = true;
+							  }
+							  break;
+   }
 	ProcKeyDownStd(GetGDataRef(Sender),Key);
+	if (SetMultiFlag) {
+		GDataOrders.Flags |= MULTIPLE_SEL;
+	}
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormDriverRep::DBGridEhKeyPress(TObject *Sender, System::WideChar &Key)

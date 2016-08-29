@@ -86,6 +86,12 @@ void __fastcall TFormSelRep::InitCommon()
 	SetButtonCaption(CurMM);
 	ToggleShowCost(false);
 	SetGridColumns();
+	AnsiString S = "###0.00";
+	DBGridEh1->Columns->Items[12]->Footers->Items[0]->DisplayFormat = S;
+	DBGridEh1->Columns->Items[13]->Footers->Items[0]->DisplayFormat = S;
+	DBGridEh1->Columns->Items[15]->Footers->Items[0]->DisplayFormat = S;
+	DBGridEh1->Columns->Items[18]->Footers->Items[0]->DisplayFormat = S;
+	DBGridEh1->Columns->Items[21]->Footers->Items[0]->DisplayFormat = S;
 
 }
 //---------------------------------------------------------------------------
@@ -283,7 +289,9 @@ void __fastcall TFormSelRep::sSpeedButton1Click(TObject *Sender)
 {
 	switch (GetComponentTag(Sender)) {
 		case  1:	ProcRefreshPage();                   break;
-		case  4: ProcSelAllStd(*WrkGData, NULL);	break;
+		case  4: ClearSums();
+					ProcUnsAllStd(*WrkGData, NULL);
+					ProcSelAllStd(*WrkGData, NULL);	break;
 		case  5: ClearSums();
 					ProcUnsAllStd(*WrkGData, NULL);
 					break;
@@ -349,6 +357,8 @@ void __fastcall TFormSelRep::ShowMonth(int Shift)
 	DT_E = "01."+DT_E.FormatString("mm.yy");
 	--DT_E;
 	if (DT_B != DT_Beg || DT_E != DT_End) {
+		ClearSums();
+		ProcUnsAllStd(*WrkGData, NULL);
 		SetButtonCaption(CurMM);
 		SetDates(SelMM, SelYY);
 		ProcRefreshPage();
@@ -372,7 +382,7 @@ void __fastcall TFormSelRep::SelectID()
 						 SetSelID(ID, GetPiece(SelectResultStr,"/",1));
 					}
 					break;
-		 case 1:	if (SimpleSelEhTransportID(this,0,ID,TransTypeId, TransCompanyID,Params, &SelectResultStr)) {
+		 case 1:	if (SimpleSelEhTransportID(this,0,ID,TransTypeId, TransCompanyID,Params, &SelectResultStr, true)) {
 						 SetSelID(ID, GetPiece(SelectResultStr,"/",1) + " -- " + GetPiece(SelectResultStr,"/",2) + " -- мест: " +
 													  GetPiece(SelectResultStr,"/",3) + " -- " +  GetPiece(SelectResultStr,"/",4));
 					}
@@ -381,7 +391,7 @@ void __fastcall TFormSelRep::SelectID()
 						 SetSelID(ID, GetPiece(SelectResultStr,"/",1));
 					}
 					break;
-		 case 3:	if (SimpleSelEhDriverID(this,0,ID,0,Params,&SelectResultStr)) {
+		 case 3:	if (SimpleSelEhDriverID(this,0,ID,0,Params,&SelectResultStr, true)) {
 						 SetSelID(ID, GetPiece(SelectResultStr,"/",1));
 					}
 					break;
@@ -419,6 +429,8 @@ void __fastcall TFormSelRep::sDateEditAcceptDate(TObject *Sender, TDateTime &aDa
 					break;
 	 }
 	 if (Shift) {
+		 ClearSums();
+		 ProcUnsAllStd(*WrkGData, NULL);
 		 ProcRefreshPage();
 	 }
 }
@@ -502,11 +514,11 @@ void __fastcall TFormSelRep::ShowLowFooter(TDataSet *DataSet)
 void __fastcall TFormSelRep::ShowHighFooter(TDataSet *DataSet)
 {
 	switch (DataSet->Tag) {
-		case 1: DBGridEh1->Columns->Items[12]->Footers->Items[0]->Value = IntToStr(SumPayCalc);
-				  DBGridEh1->Columns->Items[13]->Footers->Items[0]->Value = IntToStr(SumPayRes);
-				  DBGridEh1->Columns->Items[15]->Footers->Items[0]->Value = IntToStr(SumPayAvc);
-				  DBGridEh1->Columns->Items[18]->Footers->Items[0]->Value = IntToStr(SumPayRest);
-				  DBGridEh1->Columns->Items[21]->Footers->Items[0]->Value = IntToStr(SumIncome);
+		case 1: DBGridEh1->Columns->Items[12]->Footers->Items[0]->Value = FloatToStr(SumPayCalc);
+				  DBGridEh1->Columns->Items[13]->Footers->Items[0]->Value = FloatToStr(SumPayRes);
+				  DBGridEh1->Columns->Items[15]->Footers->Items[0]->Value = FloatToStr(SumPayAvc);
+				  DBGridEh1->Columns->Items[18]->Footers->Items[0]->Value = FloatToStr(SumPayRest);
+				  DBGridEh1->Columns->Items[21]->Footers->Items[0]->Value = FloatToStr(SumIncome);
 				  break;
 	}
 }

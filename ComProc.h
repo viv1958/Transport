@@ -157,7 +157,8 @@ enum ParamFlag  {
 					 UPDATE_IN_MEMORY       = 0x400000,   // обновление записей в памяти
 					 PULSE_AFTER_UPDATE     = 0x800000,   // после обновления записи сделать PulseFilter
 
-					 UPDATE_ONLY_CURRENT    = 0x1000000
+					 UPDATE_ONLY_CURRENT    = 0x1000000,
+					 OK_ON_DELETED          = 0x2000000
 };
 enum InternalFlag {                           // ==== записывается в State =========
   EDIT_IN_PROGRESS              = 0x0001,     // на Grid наложен TCustomEdit для редактирования поля
@@ -315,7 +316,7 @@ TModalResult __fastcall EditSearchKeyDownStd(GridData& GData,WORD &Key, TShiftSt
 // ==== Form KeyDown handlers ==================================================
         void __fastcall FormKeyDownStd(GridData& GData,WORD &Key,TShiftState Shift);
         void __fastcall ProcSeeSQLStd(GridData& GData, bool GetSQL); // VK_F1
-        void __fastcall ProcFilterStd(GridData& GData,AnsiString Title = ""); // VK_F3
+        void __fastcall ProcFilterStd(GridData& GData,bool FilterCurColumn,AnsiString Title = ""); // VK_F3
         void __fastcall ProcSeeDelStd(GridData& GData); // VK_F8
         void __fastcall ProcOutputStd(GridData& GData); // VK_F12
         void __fastcall ProcOutputStd(TDBGridEh* Grid);

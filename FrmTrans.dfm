@@ -551,7 +551,7 @@ object FormTrans: TFormTrans
     Top = 64
     Width = 1892
     Height = 813
-    ActivePage = sTabSheet3
+    ActivePage = sTabSheet4
     Align = alClient
     TabOrder = 1
     OnChange = sPageControl1Change
@@ -1962,12 +1962,20 @@ object FormTrans: TFormTrans
           item
             DynProps = <>
             EditButtons = <>
-            FieldName = 'NDOG_ID_STR'
+            FieldName = 'NDOG_ID'
             Footers = <>
             Title.Caption = #1044#1086#1075#1086#1074#1086#1088
             Title.TitleButton = True
             Title.ToolTips = True
             ToolTips = True
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'ORDER_TEMPLATE_NAME'
+            Footers = <>
+            Title.Caption = #1064#1072#1073#1083#1086#1085
+            Width = 150
           end>
         object RowDetailData: TRowDetailPanelControlEh
           DesignSize = (
@@ -2027,7 +2035,7 @@ object FormTrans: TFormTrans
             Font.Style = [fsBold]
           end
           object sLabel11: TsLabel
-            Left = 924
+            Left = 938
             Top = 9
             Width = 33
             Height = 13
@@ -2040,7 +2048,7 @@ object FormTrans: TFormTrans
             Font.Style = [fsBold]
           end
           object sLabel38: TsLabel
-            Left = 904
+            Left = 918
             Top = 104
             Width = 53
             Height = 13
@@ -2053,11 +2061,11 @@ object FormTrans: TFormTrans
             Font.Style = [fsBold]
           end
           object sLabel72: TsLabel
-            Left = 904
+            Left = 901
             Top = 164
-            Width = 67
+            Width = 70
             Height = 13
-            Caption = 'N '#1076#1086#1075#1086#1074#1086#1088#1072
+            Caption = 'N '#1076#1086#1075#1086#1074#1086#1088#1072':'
             ParentFont = False
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clBlack
@@ -2067,8 +2075,8 @@ object FormTrans: TFormTrans
           end
           object sSpeedButton12: TsSpeedButton
             Tag = 12
-            Left = 1118
-            Top = 161
+            Left = 1057
+            Top = 159
             Width = 23
             Height = 22
             Hint = #1042#1074#1077#1089#1090#1080' '#1085#1086#1074#1099#1081' '#1085#1086#1084#1077#1088' '#1076#1086#1075#1086#1074#1086#1088#1072
@@ -2107,7 +2115,52 @@ object FormTrans: TFormTrans
               46FF006636BB001C0F3300000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000}
-            OnClick = sSpeedButton12Click
+            OnClick = sSpeedButtonClick
+            SkinData.SkinSection = 'SPEEDBUTTON'
+          end
+          object sSpeedButton27: TsSpeedButton
+            Tag = 27
+            Left = 1091
+            Top = 160
+            Width = 23
+            Height = 22
+            Hint = #1042#1099#1073#1088#1072#1090#1100' N '#1076#1086#1075#1086#1074#1086#1088#1072' '#1076#1083#1103' '#1090#1077#1082#1091#1097#1077#1075#1086' '#1082#1083#1080#1077#1085#1090#1072
+            Glyph.Data = {
+              36040000424D3604000000000000360000002800000010000000100000000100
+              2000000000000004000000000000000000000000000000000000000000000000
+              0033000000330000000000000000000000000000000000000022000000330000
+              0033000000330000003300000033000000330000003300000023000000337676
+              76FF767677FF000000330000003300000033000000337B5426B9B78241FFB681
+              42FFB68142FFB68141FFB68142FFB68142FFB78343FF805C2FC0757575FFFDFC
+              FAFFE4E3E1FF6F6F70FFB5B5B3FFB3B4B3FFB0B5B9FFB67C35FFF8CA85FFF4C4
+              7AFFF3C377FFF3C174FFF3C377FFF4C47AFFF9CC87FFB78243FF757575FFFFFF
+              FFFFF6F5F4FFBDBAB8FF6E6E6FFFFFFFFFFFFFFFFFFFB3762CFFF2C582FFEBB6
+              69FFE9B264FFFFFFFFFFE8B365FFEAB76CFFF2C989FFB68141FF000000007070
+              70FFF3F2F1FF8B8885FF7B7977FF6D6E6EFFFFFFFFFFC9A880FFF1E4D0FFE6AC
+              58FFE2A853FFFFFFFFFFE1B063FFE2AE60FFEEC890FFB68141FF000000000000
+              00006F6F6FFFDCDAD9FF8F8B89FF7D7A77FF736F6DFF67BCFFFF82C9FFFFF1B1
+              5BFFE7CFABFFFFFFFFFFDBA352FFDAA251FFECCA97FFB68140FF000000000000
+              0000B9B9B6FF6B6B6BFFDCD9D7FF908A86FF7F766FFF879EAFFF19A7FFFF8DCE
+              FFFF1E99FFFFFFFFFFFFFFFFFFFFF2E4CDFFEBCC9FFFB7813FFF000000000000
+              0000B3B2B0FFFFFFFFFF6C6764FFDDD4CFFFA3CDE6FF94BFDBFF91B8D5FF0CA8
+              FFFFB3DDFFFFFACF9AFFE6C18DFFE6C799FFEACEA4FFB88241FF000000000000
+              0000B0AFACFFFFFFFFFF58B6FFFF869FA9FFE7F1F7FFA2C7DDFF95BCD6FF93B7
+              D2FF13A5FFFF83CAFFFFDAAF7DFFB5792FFFB8803CFFAD7C3FED000000000000
+              0000AFAEABFFFFFFFFFFA2D3FFFF55D7FFFF93BFD2FFE9EFF3FFA8C7DBFF95B9
+              D1FF19ACFFFF5BB3FFFFFFFFFFFFAFB5BBFF0000000000000000000000000000
+              0000AEADABFFFFFFFFFFFDF1E9FF85C4FFFF5EF2FFFF98C0D1FF98BED1FF2ED2
+              FFFF8BC8FFFFFFFFFFFFFFFFFFFFAEB0B0FF0000000000000000000000000000
+              0000ADADABFFFFFFFFFFFFF9F2FF1B93FFFFAFD7FFFF34C4FFFF52D3FFFFB1D9
+              FFFF1E95FFFFDFD7D0FFFFFFFFFFAEAFADFF0000000000000000000000000000
+              0000ADADABFFFFFFFFFFFFFFFFFFFEF7F1FFFDF0E8FF45A7FFFFA8D6FFFFC0B6
+              ADFFFFFFFDFFFFFFFFFFE8E8E8FF777775AC0000000000000000000000000000
+              0000AEAEABFFFFFFFFFFE2E0DFFFE1DFDDFFE5E0DCFFFBF4EFFFFFFFFFFFA8A6
+              A1FFFFFFFFFFE7E6E6FF787877A7000000000000000000000000000000000000
+              0000AFAFADFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFE9E8E9FF727270A700000000000000000000000000000000000000000000
+              00007C7C7AB0B0B0ADFFAEAEACFFAEAEABFFADAEABFFADADABFFAEAEABFFAFAF
+              ADFF777775AC0000000000000000000000000000000000000000}
+            OnClick = sSpeedButtonClick
             SkinData.SkinSection = 'SPEEDBUTTON'
           end
           object sComboEdit3: TsComboEdit
@@ -2211,9 +2264,9 @@ object FormTrans: TFormTrans
           end
           object DBNumberEditEh1: TDBNumberEditEh
             Tag = 4
-            Left = 963
+            Left = 976
             Top = 5
-            Width = 61
+            Width = 70
             Height = 21
             DynProps = <>
             EditButtons = <>
@@ -3601,9 +3654,9 @@ object FormTrans: TFormTrans
           end
           object ComboBox1: TComboBox
             Tag = 11
-            Left = 963
+            Left = 976
             Top = 100
-            Width = 61
+            Width = 70
             Height = 21
             Style = csDropDownList
             TabOrder = 6
@@ -3768,7 +3821,7 @@ object FormTrans: TFormTrans
             object sEdit5: TsEdit
               Tag = 16
               Left = 338
-              Top = 24
+              Top = 20
               Width = 236
               Height = 21
               TabStop = False
@@ -3820,41 +3873,20 @@ object FormTrans: TFormTrans
               OnKeyDown = DetailEditKeyDown
             end
           end
-          object sComboEdit14: TsComboEdit
+          object DBNumberEditEh15: TDBNumberEditEh
             Tag = 41
             Left = 976
-            Top = 161
-            Width = 121
+            Top = 160
+            Width = 70
             Height = 21
-            ParentCustomHint = False
-            AutoSize = False
-            Color = clWhite
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -11
-            Font.Name = 'Tahoma'
-            Font.Style = [fsBold]
-            ParentFont = False
+            DynProps = <>
+            EditButtons = <>
+            ShowHint = True
             TabOrder = 11
+            Visible = True
             OnEnter = DetailEditEnter
             OnExit = DetailEditExit
             OnKeyDown = DetailEditKeyDown
-            BoundLabel.Indent = 0
-            BoundLabel.Font.Charset = DEFAULT_CHARSET
-            BoundLabel.Font.Color = clWindowText
-            BoundLabel.Font.Height = -11
-            BoundLabel.Font.Name = 'Tahoma'
-            BoundLabel.Font.Style = []
-            BoundLabel.Layout = sclLeft
-            BoundLabel.MaxWidth = 0
-            BoundLabel.UseSkinColor = True
-            SkinData.CustomColor = True
-            SkinData.SkinSection = 'EDIT'
-            OnButtonClick = DetailsComboEditButtonClick
-            ClickKey = 45
-            GlyphMode.Blend = 0
-            GlyphMode.Grayed = False
-            DirectInput = False
           end
         end
       end
@@ -4722,7 +4754,7 @@ object FormTrans: TFormTrans
           Top = 61
           Width = 95
           Height = 22
-          Hint = #1057#1086#1093#1088#1072#1085#1080#1090#1100' '#1090#1077#1082#1091#1097#1077#1077' '#1089#1086#1089#1090#1086#1103#1085#1080#1077' '#1082#1072#1082' '#1074#1080#1076
+          Hint = #1055#1088#1086#1089#1084#1086#1090#1088' '#1079#1072#1082#1072#1079#1086#1074' '#1089' '#1076#1086#1075#1086#1074#1086#1088#1072#1084#1080
           Caption = #1044#1086#1075#1086#1074#1086#1088#1072
           Glyph.Data = {
             36040000424D3604000000000000360000002800000010000000100000000100
@@ -4759,6 +4791,54 @@ object FormTrans: TFormTrans
             0000000000000000000000000000000000000000000000000000000000000000
             0000020910230F3E6AE81A588AFF195182FF103966E802091023000000000000
             0000000000000000000000000000000000000000000000000000}
+          ParentShowHint = False
+          ShowHint = True
+          OnClick = sSpeedButtonClick
+          SkinData.SkinSection = 'SPEEDBUTTON'
+        end
+        object sSpeedButton26: TsSpeedButton
+          Tag = 26
+          Left = 465
+          Top = 61
+          Width = 95
+          Height = 22
+          Hint = #1057#1076#1077#1083#1072#1090#1100' '#1085#1086#1074#1099#1081' '#1079#1072#1082#1072#1079' '#1080#1079' '#1096#1072#1073#1083#1086#1085#1072
+          Caption = #1048#1079' '#1064#1072#1073#1083#1086#1085#1072
+          Glyph.Data = {
+            36040000424D3604000000000000360000002800000010000000100000000100
+            2000000000000004000000000000000000000000000000000000000000000000
+            00000000000000000001000000330000002F0000000200000000000000000000
+            00020000002F0000003300000000000000000000000000000000000000000000
+            00000000000001010303468EE0FF2B73C9EF0205083B00000008000000080205
+            083B2B73C9EF3885DEFF00000000000000000000000000000000000000000000
+            000000000000000000004284CCE960ACF4FF307EDBFF07132152071321523382
+            DDFF6AB0F6FF3A7CCAE900000000000000000000000000000000000000000000
+            0000000000000000000018447B9790CAFDFF52A7F7FF327FDBFF327FDBFF52A7
+            F7FF88C4FBFF18447B9700000000000000000000000000000000000000000000
+            000000000000000000000A1C335571B3F3FF73B9FAFF56ACF9FF56ACF9FF73BA
+            FAFF69ACF0FF0A1D335500000000000000000000000000000000000000000000
+            00000000000000000025194A85B252A0EFFF89C5FCFF57ABF8FF57ABF8FF89C5
+            FCFF52A0EFFF194A85B200000025000000000000000000000000000000000000
+            0000000000301D579DC9469BEEFF56AFFBFF55ADFAFF57ADF9FF57ADF9FF55AD
+            FAFF56AFFBFF469BEEFF1D579DC9000000300000000000000000000000000000
+            00002A74CDF490C2F4FFC8EAFFFFC3E6FFFFB7DFFFFF5EB2FBFF5EB2FBFFB7DF
+            FFFFC3E6FFFFC8EAFFFF90C2F4FF2A74CDF40000000000000000000000000000
+            00001D4D89A0266AC3E12974E0FF2570DEFF71A1E6FF83C7FFFF83C7FFFF71A1
+            E6FF2570DEFF2974E0FF266AC3E11D4D89A00000000000000000000000000000
+            00000000000000000001001B0A59008C3FFF367DDBFFB1DBFFFFB1DBFFFF367D
+            DAFF008C3FFF001B0A5900000001000000000000000000000000000000000000
+            00000000000000040234008D43FF00A772FF097B92FFB8D3FFFFB8D3FFFF0D79
+            9CFF00A871FF008D42FF00040234000000000000000000000000000000000000
+            000000000000007F43EC00AA79FF00BD94FF008E59FF76AAE7FF79A9F0FF008C
+            61FF00BD94FF00AA79FF007F43EC000000000000000000000000000000000000
+            000000000000008A48FF1DCAA6FF00C193FF009A62FF129198FF1A8CAAFF009A
+            61FF00C193FF1DCAA6FF008A48FF000000000000000000000000000000000000
+            000000000000008946FF4CDCBBFF00C593FF00A467FF00A667FF00A767FF00A4
+            66FF00C593FF4CDCBBFF008946FF000000000000000000000000000000000000
+            000000000000008A48FF5EE9C8FF5CE7C5FF5DD1A8FF5DD2A9FF5DD2A9FF5DD1
+            A8FF5CE7C5FF5EE9C8FF008A48FF000000000000000000000000000000000000
+            000000000000006134B0008A48FF008846FF008947FF008947FF008947FF0089
+            47FF008846FF008A48FF006134B0000000000000000000000000}
           ParentShowHint = False
           ShowHint = True
           OnClick = sSpeedButtonClick
@@ -4979,7 +5059,8 @@ object FormTrans: TFormTrans
           OnKeyDown = sComboBox1KeyDown
           Items.Strings = (
             #1055#1086' '#1076#1072#1090#1077' '#1087#1088#1080#1077#1084#1082#1080
-            #1055#1086' '#1076#1072#1090#1077' '#1074#1099#1087#1086#1083#1085#1077#1085#1080#1103)
+            #1055#1086' '#1076#1072#1090#1077' '#1074#1099#1087#1086#1083#1085#1077#1085#1080#1103
+            #1064#1072#1073#1083#1086#1085#1099)
         end
         object sDateEdit1: TsDateEdit
           Tag = 1
@@ -7169,7 +7250,7 @@ object FormTrans: TFormTrans
           Top = 11
           Width = 95
           Height = 22
-          Hint = #1055#1077#1088#1077#1093#1086#1076' '#1082' '#1088#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1085#1080#1102' '#1079#1072#1082#1072#1079#1072' ('#1040'4)'
+          Hint = #1055#1077#1088#1077#1093#1086#1076' '#1082' '#1088#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1085#1080#1102' '#1079#1072#1082#1072#1079#1072' (F4)'
           Caption = #1050' '#1079#1072#1082#1072#1079#1091
           Glyph.Data = {
             36040000424D3604000000000000360000002800000010000000100000000100
@@ -9718,6 +9799,10 @@ object FormTrans: TFormTrans
       FieldName = 'NDOG_ID_STR'
       Size = 24
     end
+    object MemTableEh31ORDER_TEMPLATE_NAME: TStringField
+      FieldName = 'ORDER_TEMPLATE_NAME'
+      Size = 64
+    end
   end
   object DataSetDriverEh31: TDataSetDriverEh
     ProviderDataSet = Query31
@@ -10230,6 +10315,9 @@ object FormTrans: TFormTrans
     object MemTableEh41COMMENT: TStringField
       FieldName = 'COMMENT'
       Size = 255
+    end
+    object MemTableEh41STATUS_TRANS: TIntegerField
+      FieldName = 'STATUS_TRANS'
     end
   end
   object DataSetDriverEh41: TDataSetDriverEh
@@ -10946,6 +11034,19 @@ object FormTrans: TFormTrans
       Caption = #1054#1090#1095#1077#1090' '#1087#1086' '#1079#1072#1082#1072#1079#1072#1084' '#1080' '#1087#1086#1083#1091#1095#1072#1090#1077#1083#1103#1084' '#1076#1077#1085#1077#1075' '#1079#1072' '#1087#1077#1088#1080#1086#1076
       OnClick = MenuItemClick
     end
+    object N3: TMenuItem
+      Caption = '-'
+    end
+    object N15: TMenuItem
+      Tag = 15
+      Caption = #1057#1074#1086#1076#1085#1099#1081' '#1087#1086' '#1082#1083#1080#1077#1085#1090#1072#1084
+      OnClick = MenuItemClick
+    end
+    object N16: TMenuItem
+      Tag = 16
+      Caption = #1057#1074#1086#1076#1085#1099#1081' '#1087#1086' '#1090#1088#1072#1085#1089#1087#1086#1088#1090#1091
+      OnClick = MenuItemClick
+    end
   end
   object frxDBDataset31: TfrxDBDataset
     UserName = 'Ord'
@@ -11560,5 +11661,56 @@ object FormTrans: TFormTrans
         end
       end
     end
+  end
+  object Query33: TQuery
+    Tag = 33
+    DatabaseName = 'TransDB'
+    SQL.Strings = (
+      'select * from EDIT_ORDER_TEMPLATE ('
+      ':ORDERS_ID,'
+      ':CLIENT_ID,'
+      ':ORDER_TEMPLATE_NAME,'
+      ':USER_ID,'
+      ':COMP_NAME,'
+      ':DATECHANGE,'
+      ':STATUS)')
+    Left = 400
+    Top = 248
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'ORDERS_ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'CLIENT_ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'ORDER_TEMPLATE_NAME'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'USER_ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'COMP_NAME'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDateTime
+        Name = 'DATECHANGE'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'STATUS'
+        ParamType = ptInput
+      end>
   end
 end

@@ -83,6 +83,8 @@ public:		// User declarations
 //---------------------------------------------------------------------------
 extern PACKAGE TFormFilter *FormFilter;
 bool GetFilter(FilterCols& OrderFilter,TDBGridEh* OrderGrid,int& SelFilterID,AnsiString& FilterName);
+bool SelFilter(FilterCols& OrderFilter,TDBGridEh* OrderGrid,int& SelFilterID,AnsiString& FilterName);
+
 
 //---------------------------------------------------------------------------
 #endif

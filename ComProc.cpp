@@ -6,6 +6,7 @@
 #include <locale>
 #include <ctype.h>
 int Debug = 0;
+extern bool CheckComment;
 bool __fastcall GetDefSrvID(int&) {
 	return false;    // тогда нет проверки на работу в правильном адресном пространстве
 }
@@ -1485,7 +1486,7 @@ TModalResult __fastcall EditSearchKeyDownStd(GridData& GData,WORD &Key, TShiftSt
 		case VK_PRIOR:    NMove = -GData.WrkGrid->VisibleRowCount;  break;
 		case VK_NEXT:     NMove =  GData.WrkGrid->VisibleRowCount;  break;
 		case VK_RETURN:   if (GData.WrkGrid->OptionsEh.Contains(Dbgrideh::dghRowHighlight)) {
-									if (!KeyFieldIsNullStd(GData) && !RowIsDeleted(GData.WrkDSet))
+									if (!KeyFieldIsNullStd(GData) && (!RowIsDeleted(GData.WrkDSet) || GData.Flags & OK_ON_DELETED))
 										 ModalRes = mrOk;
 								}
 								else {
@@ -1821,7 +1822,8 @@ void __fastcall FormKeyDownStd(GridData& GData,WORD &Key,TShiftState Shift)
 		 switch (Key) {
 			 case VK_F1:        ProcSeeSQLStd(GData, Shift.Contains(ssShift) || Shift.Contains(ssAlt) || Shift.Contains(ssCtrl));
 									  break;
-			 case VK_F3:        ProcFilterStd(GData);    	break;
+			 case VK_F3:        ProcFilterStd(GData,Shift.Contains(ssShift));
+									  break;
 			 case VK_F8:        ProcSeeDelStd(GData);    	break;
 			 case VK_F12:       ProcOutputStd(GData);			break;
 			 case VK_ADD:       ProcSelAllStd(GData, &Key);	break;
@@ -1841,9 +1843,10 @@ void __fastcall ProcUnsAllStd(GridData& GData, WORD* KeyPtr )
 	 if (GData.WrkGrid->RowDetailPanel->Active && KeyPtr) *KeyPtr = NULL;
 }
 //---------------------------------------------------------------------------
-void __fastcall ProcFilterStd(GridData& GData,AnsiString Title)
+void __fastcall ProcFilterStd(GridData& GData, bool FilterCurColumn, AnsiString Title)
 {
 	// определяем поле для фильтра
+	AnsiString OldFieldFlt = GData.FieldFlt;
 	if (GData.Flags & FILTER_NOT_ALLOWED) return;
 	GetGridColParam(GData,false);
 	if (GData.FilterFldMask[GData.EditCol-1]) {
@@ -1863,7 +1866,18 @@ void __fastcall ProcFilterStd(GridData& GData,AnsiString Title)
 			Title  = "Фильтр по полю '" + GetFieldOutTitleStd(GData,GData.FieldFlt) + "'";
 		}
 	}
-	if (GetFilterStr(GData.Filter,Title)) {
+	if (FilterCurColumn && GData.FieldFlt == GData.EditFldName) {
+		AnsiString NewFilter = GData.WrkDSet->FieldByName(GData.FieldFlt)->AsString;
+		if (GData.Filter == NewFilter && GData.Filter != "") {
+			GData.Filter = "";
+		}
+		else
+			GData.Filter = NewFilter;
+		PulseFilterStd(GData);
+		SetEditSearchTxtStd(GData);
+		if (GData.EditSearch) GData.EditSearch->SelectAll();
+	}
+	else if (GetFilterStr(GData.Filter,Title)) {
 		PulseFilterStd(GData);
 		SetEditSearchTxtStd(GData);
 		if (GData.EditSearch) GData.EditSearch->SelectAll();
@@ -1873,8 +1887,8 @@ void __fastcall ProcFilterStd(GridData& GData,AnsiString Title)
 void __fastcall ProcSeeDelStd(GridData& GData)
 {
 	TDataSet* WrkDSet = GData.WrkDSet;
-   if (GData.Flags & CAN_SEE_DELETED && WrkDSet && WrkDSet->FindField("STATUS")) {
-      GData.SeeDeleted = !GData.SeeDeleted;
+	if (GData.Flags & CAN_SEE_DELETED && WrkDSet && WrkDSet->FindField("STATUS")) {
+		GData.SeeDeleted = !GData.SeeDeleted;
       if (!GData.SeeDeleted && RowIsDeleted(WrkDSet)) {
          FindUndelStrStd(GData);
       }
@@ -1982,8 +1996,8 @@ bool __fastcall GetFilterStr(AnsiString& Filter,AnsiString Title)
 {
    bool bRes = false;
    UnicodeString OldVal = Filter;
-   UnicodeString NewVal = Filter;
-   if (Title == "") Title = "Установка текстового фильтра";
+	UnicodeString NewVal = Filter;
+	if (Title == "") Title = "Установка текстового фильтра";
 	if (InputQuery(Title,_TEXT("Задайте список текстовых подстрок через пробелы"),NewVal)) {
 	  bRes = (OldVal.UpperCase() != NewVal.UpperCase());
 	  if (bRes) Filter = NewVal;
@@ -2284,7 +2298,7 @@ bool __fastcall PrepQueryStd(GridData& GData,bool Delete)
 	 if (Debug) {
 		 ShowMessage(S);
 	 }
-	 if (bRet && S.Pos("EDIT_ORDERS") && GData.CurKeyPressed != VK_INSERT && ! WrkQuery->ParamByName("ORDERS_ID")->IsNull) {
+	 if (bRet && S.Pos("EDIT_ORDERS") && GData.CurKeyPressed != VK_INSERT && ! WrkQuery->ParamByName("ORDERS_ID")->IsNull && CheckComment) {
 		 AnsiString S1 =  WrkQuery->ParamByName("COMMENT")->AsString;
 		 AnsiString S2 =  TakeDSet->FieldByName("COMMENT")->AsString;
 		 if (S1 != S2) {
@@ -2297,6 +2311,7 @@ bool __fastcall PrepQueryStd(GridData& GData,bool Delete)
 			 }
 		 }
 	 }
+	 CheckComment = true;
 	 return bRet;
 }
 //---------------------------------------------------------------------------
@@ -3335,6 +3350,7 @@ void __fastcall ProcSelectStd(GridData& GData,bool Move)
 				if (GData.SelArray.size()) {
 					GData.KeyValue = (UsePrv) ? Prv : *GData.SelArray.begin();
 					RestorePosStd(GData,false);
+
 				}
 			}
 		}

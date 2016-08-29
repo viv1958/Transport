@@ -28,8 +28,6 @@ object FormGetFieldFilter: TFormGetFieldFilter
     OnDblClick = StringGrid1DblClick
     OnDrawCell = StringGrid1DrawCell
     OnKeyDown = StringGrid1KeyDown
-    ExplicitTop = 41
-    ExplicitHeight = 474
   end
   object sPanel1: TsPanel
     Left = 0

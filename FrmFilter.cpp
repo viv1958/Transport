@@ -18,6 +18,26 @@
 #pragma link "sCustomComboEdit"
 #pragma link "sMaskEdit"
 #pragma resource "*.dfm"
+bool SelFilter(FilterCols& OrderFilter,TDBGridEh* OrderGrid,int& SelFilterID,AnsiString& FilterName)
+{
+
+	TFormFilter* Frm = new TFormFilter(Application, OrderFilter, OrderGrid, SelFilterID, FilterName);
+	if(Frm->SelCurrentFilter(false)) {
+		OrderFilter = Frm->OrderFilter;
+		SelFilterID = Frm->SelFilterID;
+		if (SelFilterID) {
+			FilterName  = Frm->sComboEdit1->Text;
+		}
+		else {
+			FilterName  = "";
+			if (!Frm->FilterIsEmpty()) {
+				FilterName  = "Пользовательский";
+			}
+		}
+		return true;
+	}
+	return false;
+}
 bool GetFilter(FilterCols& OrderFilter,TDBGridEh* OrderGrid,int& SelFilterID,AnsiString& FilterName)
 {
 	TFormFilter* Frm = new TFormFilter(Application, OrderFilter, OrderGrid, SelFilterID, FilterName);
@@ -241,6 +261,7 @@ void __fastcall TFormFilter::StringGrid1KeyDown(TObject *Sender, WORD &Key, TShi
 		case VK_RETURN: EditCell();   	break;
 		case VK_BACK:   ClearCell();  	break;
 		case VK_RIGHT:  AddColIfNeed(); 	break;
+		case VK_ESCAPE: ModalResult = mrCancel; break;
 	}
 }
 //---------------------------------------------------------------------------
@@ -483,7 +504,8 @@ void __fastcall TFormFilter::ClearSelFilter()
 void __fastcall TFormFilter::sComboEdit1KeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 {
 	switch(Key) {
-		case VK_BACK:  ClearSelFilter(); break;
+		case VK_BACK:   ClearSelFilter(); 			break;
+		case VK_ESCAPE: ModalResult = mrCancel;   break;
 	}
 }
 //---------------------------------------------------------------------------
